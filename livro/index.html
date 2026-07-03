@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="preload" as="image" href="/.netlify/images?url=/images/mockup-livro.png&amp;w=900&amp;q=80">
+  <link rel="stylesheet" href="/_shared/vendor/aos.css">
   <link rel="stylesheet" href="/_shared/base.css">
   <link rel="stylesheet" href="/_shared/sales.css">
 </head>
@@ -55,7 +56,7 @@
           </div>
         </div>
         <div class="sl-hero__media sl-hero__media--product">
-          <img src="/.netlify/images?url=/images/mockup-livro.png&amp;w=900&amp;q=80" width="900" height="700" loading="eager" alt="Mockup do livro Leilão e Prosa">
+          <img src="/.netlify/images?url=/images/mockup-livro.png&amp;w=900&amp;q=80" width="900" height="700" loading="eager" fetchpriority="high" alt="Mockup do livro Leilão e Prosa">
         </div>
       </div>
     </section>
@@ -259,10 +260,10 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="/_shared/vendor/aos.js" defer></script>
   <script src="/_shared/forms.js" defer></script>
   <script>
-    window.addEventListener('load', function () {
+    document.addEventListener('DOMContentLoaded', function () {
       if (window.AOS) {
         AOS.init({ duration: 650, easing: 'ease-out-cubic', once: true, disableMutationObserver: true });
       }

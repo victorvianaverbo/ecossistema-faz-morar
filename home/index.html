@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="preload" as="image" href="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80">
+  <link rel="stylesheet" href="/_shared/vendor/aos.css">
   <link rel="stylesheet" href="/home/style.css">
   <link rel="stylesheet" href="/_shared/sales.css">
 </head>
@@ -72,7 +73,7 @@
         </div>
 
         <div class="hero__visual">
-          <img class="hero__photo" src="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80" alt="Jacque Costa, especialista em leilões do Clube do Leilão, segurando a chave de um imóvel" width="980" height="1080" loading="eager">
+          <img class="hero__photo" src="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80" alt="Jacque Costa, especialista em leilões do Clube do Leilão, segurando a chave de um imóvel" width="980" height="1080" loading="eager" fetchpriority="high">
           <div class="hero__glass">
             <div class="hero__glass-eyebrow">LEILÃO &amp; PROSA</div>
             <div class="hero__glass-title">Encontro presencial</div>
@@ -412,10 +413,10 @@
     <div class="footer__base">© 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ · Todos os direitos reservados.</div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="/_shared/vendor/aos.js" defer></script>
   <script src="/home/script.js" defer></script>
   <script>
-    window.addEventListener('load', function () {
+    document.addEventListener('DOMContentLoaded', function () {
       if (window.AOS) {
         AOS.init({
           duration: 650,
