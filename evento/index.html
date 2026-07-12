@@ -6,6 +6,24 @@
   <title>Leilão &amp; Prosa · Evento ao vivo | Clube do Leilão</title>
   <meta name="description" content="Um encontro presencial e estratégico com o time do Clube do Leilão: casos reais, análise de editais e as perguntas que ninguém responde na internet. Vagas limitadas.">
 
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1686347049325562');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1686347049325562&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
@@ -156,7 +174,8 @@
           <p class="ev-signup__text">As vagas são limitadas pela capacidade do espaço. Reserve agora e receba a confirmação no seu WhatsApp e e-mail.</p>
         </div>
         <!-- TODO: quando [URL_CHECKOUT_GURU_EVENTO] existir, o formulário pode ser substituído pelo checkout -->
-        <form class="ev-form" name="evento" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-aos="fade-up" data-aos-delay="100">
+        <!-- TODO: quando receber a URL do Apps Script, adicionar data-sheets="URL_DO_APPS_SCRIPT" -->
+        <form class="ev-form" name="evento" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success-title="Parabéns pelo cadastro!" data-success-text="Sua aplicação foi recebida. Nosso time comercial vai entrar em contato em breve." data-aos="fade-up" data-aos-delay="100">
           <input type="hidden" name="form-name" value="evento">
           <p hidden><label>Não preencha: <input name="bot-field"></label></p>
           <div class="ev-form__group">
@@ -241,6 +260,7 @@
   </footer>
 
   <script src="/_shared/vendor/aos.js" defer></script>
+  <script src="/_shared/forms.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       if (window.AOS) {

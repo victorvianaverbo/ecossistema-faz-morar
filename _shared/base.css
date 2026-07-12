@@ -863,6 +863,46 @@ img, svg { display: block; max-width: 100%; }
 
 .footer-c__legal a:hover { color: var(--accent-deep); }
 
+/* ============ SUCESSO DE FORMULÁRIO (seções escuras) ============ */
+
+.form-success {
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.form-success__ico {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: rgba(47, 184, 160, .15);
+  border: 1px solid rgba(47, 184, 160, .4);
+  color: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form-success__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  color: #FFFFFF;
+  margin-top: 18px;
+}
+
+.form-success__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .7);
+  margin-top: 10px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ============ ACESSIBILIDADE / MOVIMENTO ============ */
 
 a:focus-visible,
