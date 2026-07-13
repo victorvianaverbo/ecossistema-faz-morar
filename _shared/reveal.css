@@ -1,0 +1,27 @@
+/* Animação de entrada no scroll — substitui a biblioteca AOS.
+   Mesmos atributos no HTML (data-aos, data-aos-delay), sem custo de thread. */
+
+[data-aos] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s cubic-bezier(.2, .6, .2, 1), transform .6s cubic-bezier(.2, .6, .2, 1);
+}
+
+[data-aos].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sem JavaScript, o conteúdo aparece normalmente */
+.no-js [data-aos] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

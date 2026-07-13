@@ -1,75 +1,120 @@
-// Formulários Netlify com tracking de Lead, cópia para Google Sheets e
-// sucesso inline ou redirecionamento.
+// Captura de leads: grava no Google Sheets (Apps Script), dispara os eventos de
+// conversão (Meta Pixel / GTM) e leva o visitante ao destino.
 //
-// Atributos suportados no <form data-netlify="true">:
-//   data-redirect="URL"        -> após o envio, leva o visitante para a URL
+// Atributos no <form>:
+//   data-sheets="URL"          -> Apps Script que grava o lead na planilha (obrigatório)
+//   data-redirect="URL"        -> destino após o envio
 //   data-success-title="..."   -> sem redirect: título da mensagem de sucesso
 //   data-success-text="..."    -> sem redirect: texto da mensagem de sucesso
-//   data-sheets="URL"          -> URL do Apps Script que grava o lead no Google Sheets
 //
-// No envio, dispara fbq('track', 'Lead') (Meta Pixel) e
-// dataLayer.push({ event: 'generate_lead' }) (GTM), quando presentes.
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('form[data-netlify]').forEach(function (form) {
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
+// As UTMs são lidas da URL na primeira visita e guardadas na sessão, para
+// sobreviverem à navegação entre páginas até o momento do cadastro.
 
-      var button = form.querySelector('[type="submit"]');
-      if (button) {
-        button.disabled = true;
-        button.textContent = 'Enviando...';
-      }
+(function () {
+  var CHAVE = 'clube_utms';
+  var CAMPOS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'];
 
-      var body = new URLSearchParams(new FormData(form)).toString();
+  function guardarUtms() {
+    try {
+      var url = new URLSearchParams(window.location.search);
+      var achou = false;
+      var dados = {};
 
-      // Registro do lead no Netlify Forms
-      var save = fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
-      }).catch(function () {
-        // Não bloqueia o fluxo do visitante se o registro falhar.
+      CAMPOS.forEach(function (campo) {
+        var valor = url.get(campo);
+        if (valor) {
+          dados[campo] = valor;
+          achou = true;
+        }
       });
 
-      // Cópia do lead para o Google Sheets (Apps Script), se configurado
-      var sheets = form.getAttribute('data-sheets');
-      if (sheets) {
-        fetch(sheets, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: body + '&pagina=' + encodeURIComponent(window.location.pathname)
-        }).catch(function () {});
-      }
+      if (!achou) return;
 
-      // Eventos de conversão (Lead) no momento do submit
-      try {
-        var formName = form.getAttribute('name') || 'form';
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', { content_name: formName });
+      dados.referrer = document.referrer || '';
+      dados.landing = window.location.pathname;
+      sessionStorage.setItem(CHAVE, JSON.stringify(dados));
+    } catch (e) {}
+  }
+
+  function lerUtms() {
+    try {
+      return JSON.parse(sessionStorage.getItem(CHAVE)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  guardarUtms();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('form[data-sheets], form[data-netlify]').forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var botao = form.querySelector('[type="submit"]');
+        if (botao) {
+          botao.disabled = true;
+          botao.textContent = 'Enviando...';
         }
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'generate_lead', form_name: formName, method: 'netlify_form' });
-      } catch (e) {}
 
-      save.finally(function () {
-        var redirect = form.getAttribute('data-redirect');
-        if (redirect) {
-          // Pequena espera para o beacon do Lead sair antes da navegação
-          setTimeout(function () { window.location.href = redirect; }, 300);
-          return;
+        var dados = new URLSearchParams(new FormData(form));
+        var utms = lerUtms();
+
+        CAMPOS.forEach(function (campo) {
+          dados.set(campo, utms[campo] || '');
+        });
+        dados.set('referrer', utms.referrer || document.referrer || '');
+        dados.set('pagina', window.location.pathname);
+
+        var sheets = form.getAttribute('data-sheets');
+        var envio;
+
+        if (sheets) {
+          // Grava na planilha (Google Sheets via Apps Script)
+          envio = fetch(sheets, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: dados.toString()
+          }).catch(function () {});
+        } else {
+          // Registra no Netlify Forms
+          envio = fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: dados.toString()
+          }).catch(function () {});
         }
 
-        var title = form.getAttribute('data-success-title') || 'Cadastro confirmado!';
-        var text = form.getAttribute('data-success-text') || 'Recebemos seus dados. Em breve entraremos em contato.';
-        form.innerHTML = '<div class="form-success">' +
-          '<div class="form-success__ico" aria-hidden="true">✓</div>' +
-          '<h3 class="form-success__title"></h3>' +
-          '<p class="form-success__text"></p>' +
-          '</div>';
-        form.querySelector('.form-success__title').textContent = title;
-        form.querySelector('.form-success__text').textContent = text;
+        // Eventos de conversão no momento do envio
+        try {
+          var nomeForm = form.getAttribute('name') || 'form';
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: nomeForm });
+          }
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'generate_lead', form_name: nomeForm });
+        } catch (e) {}
+
+        envio.finally(function () {
+          var redirect = form.getAttribute('data-redirect');
+          if (redirect) {
+            // Espera curta para o beacon do Lead sair antes de navegar
+            setTimeout(function () { window.location.href = redirect; }, 350);
+            return;
+          }
+
+          var titulo = form.getAttribute('data-success-title') || 'Cadastro confirmado!';
+          var texto = form.getAttribute('data-success-text') || 'Recebemos seus dados. Em breve entraremos em contato.';
+          form.innerHTML = '<div class="form-success">' +
+            '<div class="form-success__ico" aria-hidden="true">✓</div>' +
+            '<h3 class="form-success__title"></h3>' +
+            '<p class="form-success__text"></p>' +
+            '</div>';
+          form.querySelector('.form-success__title').textContent = titulo;
+          form.querySelector('.form-success__text').textContent = texto;
+        });
       });
     });
   });
-});
+})();

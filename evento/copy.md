@@ -1,85 +1,129 @@
-# Copy - Evento ao Vivo (Leilão & Prosa)
+# Copy - Leilão & Prosa | Edição Bairro Castelo/BH
 
 > Blocos globais: ver `/_shared/copy-global.md`
-> ATENÇÃO: página SEM design de referência no kit — o layout será derivado da identidade visual em /gerar-design. Bônus da proposta comercial FM-2026-01.
-> Placeholders a preencher antes da publicação: [DATA_EVENTO], [CIDADE_EVENTO], [LOCAL_EVENTO], [ENDERECO], [HORARIO], [PROGRAMACAO], [BIO_APRESENTADOR], [URL_CHECKOUT_GURU_EVENTO]. Enquanto o checkout não existir, CTAs apontam para o WhatsApp.
+> Briefing oficial: Sympla (https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3460207)
+> Conversão: todos os CTAs abrem o modal de captura (nome, e-mail, WhatsApp). Após o envio, o lead vai para Netlify Forms + Google Sheets e o visitante segue para /evento/obrigado/, onde compra o ingresso no Sympla.
+> Tracking: Meta Pixel 1686347049325562 (PageView na página, Lead no submit, CompleteRegistration no obrigado).
+
+## Dados oficiais do evento
+
+- Nome: Leilão & Prosa · Edição Bairro Castelo/BH
+- Data: 28 de julho de 2026 (terça-feira)
+- Horário: 19h às 22h
+- Local: Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte, MG
+- Produtor: Jacque Leilões
+- Apoio: 3BF · AVANTIK · CONEXÃO SV
+- Estacionamento: não há no local; a rua é tranquila e segura para estacionar à noite
+
+### Lotes
+- 1º Lote (Saia na Frente): R$ 127,00 + taxa · ENCERRADO
+- 2º Lote (Não Fique de Fora): R$ 157,00 + R$ 15,70 de taxa · vendas até 15/07/2026 · LOTE ATUAL
+- 3º Lote (Corre que Ainda Dá Tempo): R$ 187,00 + taxa · vendas até 27/07/2026
+- 4º Lote (Portaria): R$ 217,00 + taxa · vendas até 28/07/2026
+- Todos parcelam em até 12x
 
 ## Hero
 
-- Badge: AO VIVO · [DATA_EVENTO] · [CIDADE_EVENTO]
-- Headline: Leilão & Prosa: uma noite para aprender a arrematar sem cair em pegadinhas.
-- Subheadline: Um encontro presencial e estratégico com o time do Clube do Leilão. Casos reais, análise de editais e as perguntas que ninguém responde na internet — ao vivo, olho no olho.
-- CTA primário: Garantir minha cadeira → [URL_CHECKOUT_GURU_EVENTO]
-- CTA secundário: Tirar dúvidas no WhatsApp → https://wa.me/5531996951660
-- Apoio do CTA: Vagas limitadas · cadeira garantida
+- Badge: 28 DE JULHO · BELO HORIZONTE
+- Marca: Leilão & Prosa (assinatura com o balão de prosa)
+- Tagline da marca: ENCONTRO DO ARREMATE À CHAVE
+- Headline de apoio: O encontro presencial que mostra como investir em imóveis de leilão com estratégia, segurança e clareza.
+- Subheadline: Uma noite com Jacque Costa, especialista que vive o mercado na prática. Networking qualificado, estratégias validadas e acesso a oportunidades concretas.
+- CTA: Garantir minha cadeira (abre o modal)
+- Apoio do CTA: 2º lote encerra dia 15 de julho
+- Barra de informações: Data 28 de julho, terça · Horário 19h às 22h · Local Okay Hub, Bairro Castelo
 
-### Informações-chave (barra do hero)
-- Data: [DATA_EVENTO]
-- Horário: [HORARIO]
-- Local: [LOCAL_EVENTO] · [CIDADE_EVENTO]
+## Seção: A dor
 
-## Seção: O que você vai ver no evento
+- Eyebrow: O QUE TRAVA A MAIORIA
+- Título: Você já pensou em investir em imóvel de leilão, mas travou?
+- Texto: Muitas pessoas têm o desejo de investir, mas sentem medo por não saberem analisar os riscos. Resultado: perdem grandes oportunidades ou congelam na hora de arrematar.
+- Frase de impacto: Quem não entende o jogo não arremata. Assiste.
 
-- Eyebrow: PROGRAMAÇÃO
-- Título: Uma noite, um método completo.
-- Conteúdo: [PROGRAMACAO — lista de blocos/temas do evento, ex.:]
-  1. Como ler um edital e identificar riscos escondidos
-  2. O mapa real do imóvel: ocupação, dívidas e matrícula
-  3. A calculadora do lance: quanto vale a pena pagar
-  4. Financiamento e regularização pós-arremate
-  5. Sessão aberta de perguntas e análise de casos da plateia
+## Seção: O que é o Leilão & Prosa
+
+- Eyebrow: O ENCONTRO
+- Título: Aprenda com quem vive o mercado na prática.
+- Texto: O Leilão & Prosa é um evento presencial exclusivo, desenhado para quem quer sair da teoria. Aqui o foco é o mundo real.
+- Três pilares:
+  1. Networking qualificado: você senta ao lado de quem já arremata e de quem opera o mercado todo dia.
+  2. Estratégias validadas: nada de teoria genérica. Método testado em operações reais.
+  3. Oportunidades concretas: acesso ao que está aberto agora, com análise de quem entende.
+
+## Seção: O que você vai aprender
+
+- Eyebrow: CONTEÚDO
+- Título: Os pilares essenciais para o sucesso nos leilões.
+1. O jogo dos leilões imobiliários: como ele funciona de verdade, por dentro.
+2. O cenário imobiliário e a janela de oportunidade atual.
+3. Por que comprar em leilão pode ser melhor que comprar no mercado tradicional.
+4. Construção de patrimônio com imóveis de leilão.
+5. Tipos de leilões e segurança jurídica.
+6. Modalidades de venda e como cada uma funciona.
+7. Casos reais e números reais.
+
+## Seção: Programação (agenda oficial)
+
+- 19h00 às 19h30: Credenciamento
+- 19h30 às 20h00: Abertura do Leilão & Prosa
+- 20h00 às 21h00: Palestra com a especialista Jacque Costa
+- 21h00 às 21h10: Sessão de perguntas e respostas
+- 21h10 às 21h40: Apresentação do Clube do Leilão Imóveis
+- 21h40 às 22h00: Networking entre os participantes
+- 22h00: Encerramento
 
 ## Seção: Para quem é
 
-- Título: Feito para quem quer comprar bem — e com segurança.
-- Bullets:
-  - Para quem quer o primeiro imóvel pagando abaixo do mercado
-  - Para investidores que buscam margem com segurança jurídica
-  - Para quem já tentou leilão e travou no edital ou na documentação
-  - Para quem quer conhecer o ecossistema completo do Clube do Leilão
+- Eyebrow: PARA QUEM É
+- Título: Feito para quem quer comprar bem e com segurança.
+- Nota de qualificação: Encontro voltado a público com renda mínima de R$ 8 mil.
+1. Investidores iniciantes: querem aprender a identificar oportunidades e conhecer a mentoria e o curso da Jacque Costa.
+2. Compradores para moradia: querem adquirir o imóvel para uso próprio, pagando menos.
+3. Investidores conservadores: focados em reduzir riscos, proteger o patrimônio e gerar renda com aluguel ou valorização.
+4. Investidores arrojados: buscam maior rentabilidade com reforma, construção e aquisições em sociedade.
 
 ## Seção: Quem conduz
 
-- Título: Quem está à frente do Leilão & Prosa
-- Conteúdo: [BIO_APRESENTADOR — nome, credenciais, resultados. Apoiar com os números oficiais: 42% de desconto médio nos arremates acompanhados e +2.400 alunos formados.]
+- Eyebrow: QUEM CONDUZ
+- Título: Jacque Costa
+- Texto: Especialista em leilões de imóveis, empresária, corretora, perita judicial, administradora e despachante credenciada da Caixa desde 2007. São mais de 15 anos vivendo os bastidores do mercado imobiliário. Com vasta experiência prática, ela guia você pelo caminho seguro para identificar boas oportunidades e garantir alta rentabilidade.
+- Números: 42% de desconto médio no arremate · +2.400 alunos formados · 5.0 no Google (39 avaliações)
 
-## Seção: Data, local e como chegar
+## Seção: Ingressos
 
-- Título: Anote na agenda
-- Data: [DATA_EVENTO]
-- Horário: [HORARIO]
-- Local: [LOCAL_EVENTO]
-- Endereço: [ENDERECO]
-- Observação: [INSTRUCOES — estacionamento, credenciamento, chegada antecipada]
+- Eyebrow: INGRESSOS
+- Título: O preço sobe conforme a data se aproxima.
+- Texto: Quanto antes você garantir, menos paga. Todos os lotes parcelam em até 12x.
+- Lotes (conforme dados oficiais acima)
+- CTA: Garantir minha cadeira
 
-## Seção: Inscrição
+## Seção: Local
 
-- Título: Garanta sua cadeira
-- Texto: As vagas são limitadas pela capacidade do espaço. Reserve agora e receba a confirmação imediata no seu WhatsApp e e-mail.
-- CTA: Garantir minha cadeira → [URL_CHECKOUT_GURU_EVENTO]
-- Alternativa (enquanto o checkout não estiver ativo): formulário Netlify Forms com Nome, E-mail e WhatsApp (base: formulário do template da raiz, com intl-tel-input) — botão "Reservar minha vaga"
+- Título: Onde acontece
+- Espaço: Okay Hub de Negócios e Coworking
+- Endereço: Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte, MG
+- Nota: Não há estacionamento no local. Por ser à noite, a rua é tranquila e segura para estacionar.
 
-## FAQ
+## FAQ (oficial)
 
-- Pergunta: O evento é presencial ou online?
-  Resposta: Presencial, em [CIDADE_EVENTO]. É um encontro ao vivo, pensado para conversa direta e análise de casos reais.
-- Pergunta: Haverá gravação para quem não puder ir?
-  Resposta: [A CONFIRMAR]
-- Pergunta: Quanto custa a inscrição?
-  Resposta: [A CONFIRMAR — valor e condições; se gratuito, destacar "vaga gratuita mediante reserva"]
-- Pergunta: Posso levar acompanhante?
-  Resposta: [A CONFIRMAR — cada cadeira corresponde a uma inscrição]
-- Pergunta: E se eu não puder comparecer após reservar?
-  Resposta: [A CONFIRMAR — política de reembolso/transferência]
-- Pergunta: Preciso já entender de leilão para aproveitar?
-  Resposta: Não. O encontro parte do essencial e avança até estratégias de quem já arremata — há conteúdo para os dois perfis.
+- Pergunta: O evento é online ou presencial?
+  Resposta: Presencial. Uma oportunidade única de conexão e aprendizado olho no olho.
+- Pergunta: Posso transferir meu ingresso para outra pessoa?
+  Resposta: Não. O ingresso é pessoal e intransferível.
+- Pergunta: Posso cancelar minha inscrição?
+  Resposta: Sim. Cancelamentos são aceitos até 7 dias após a compra, desde que a solicitação seja enviada até 48 horas antes do início do evento.
+- Pergunta: Haverá estacionamento no local?
+  Resposta: Não. Por ser no período da noite, a rua é tranquila e segura para estacionar.
+- Pergunta: Posso gravar o evento?
+  Resposta: Não. A gravação e a divulgação do conteúdo são proibidas sem autorização formal.
 
 ## Seção: CTA final
 
-- Título: As cadeiras são limitadas. A decisão é sua.
-- Texto: Um encontro pode encurtar anos de tentativa e erro. Venha aprender com quem arremata de verdade.
-- CTA: Garantir minha cadeira → [URL_CHECKOUT_GURU_EVENTO]
+- Título: Dia 28 de julho, às 19h, em Belo Horizonte.
+- Texto: Uma noite pode encurtar anos de tentativa e erro. Venha aprender com quem arremata de verdade.
+- CTA: Garantir minha cadeira
 
-## Seção: Footer
+## Rodapé da página
 
-- Versão compacta — ver `/_shared/copy-global.md`
+- Apoio: 3BF · AVANTIK · CONEXÃO SV
+- Realização: Jacque Leilões · Clube do Leilão Imóveis

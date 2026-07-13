@@ -1,32 +1,51 @@
-# Leads no Google Sheets (Apps Script)
+# Leads na planilha (Google Sheets + Apps Script) — ATIVO
 
-Cada inscrição vira uma linha na planilha, na hora. Gratuito, sem Zapier e sem mensalidade.
-Leva uns 3 minutos para configurar.
+Cada inscrição vira uma linha na planilha, na hora, com nome, e-mail, WhatsApp e as UTMs da campanha.
 
-## Passo 1: criar a planilha
+## Planilha
 
-1. Acesse https://sheets.new e dê um nome (ex.: "Leads Clube do Leilão").
-2. Na primeira linha, crie os cabeçalhos, um por coluna:
+**Leads Leilão e Prosa | 28/07**
+https://docs.google.com/spreadsheets/d/1MPa3yfvFr3v6B5P_tYh6cflh-iRX1LAhhnJGUxZ30MY/edit
+
+Colunas: Data · Nome · E-mail · WhatsApp · utm_source · utm_medium · utm_campaign · utm_content · utm_term · fbclid · Origem · Referrer
+
+## Endpoint em uso (testado e gravando)
 
 ```
-Data | Nome | E-mail | WhatsApp | Origem
+https://script.google.com/macros/s/AKfycbyLtO5zEO-FP-Scak6uOIL69bMyN7x0dszD-KDd37xqQqEtjOP30gZy6o86t-7B_b87/exec
 ```
 
-## Passo 2: colar o script
+Configurado no atributo `data-sheets` do formulário em `evento/index.html`.
 
-Na planilha, vá em **Extensões > Apps Script**, apague o que estiver lá e cole:
+Configuração da implantação (App da Web):
+- Executar como: **Eu** (dono da planilha)
+- Quem pode acessar: **Qualquer pessoa**
+
+ATENÇÃO: ao criar uma implantação NOVA, o Google reseta "Quem pode acessar" para o padrão restrito e a URL muda.
+Para atualizar o código sem quebrar o site, use **Gerenciar implantações > lápis > Versão: Nova versão**.
+
+## Código do script (referência)
+
+Abra a planilha, vá em **Extensões > Apps Script**, apague o que estiver lá e cole:
 
 ```javascript
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  var dados = e.parameter;
+  var d = e.parameter;
 
   sheet.appendRow([
     new Date(),
-    dados.nome || '',
-    dados.email || '',
-    dados.telefone || '',
-    dados.pagina || ''
+    d.nome || '',
+    d.email || '',
+    d.telefone || '',
+    d.utm_source || '',
+    d.utm_medium || '',
+    d.utm_campaign || '',
+    d.utm_content || '',
+    d.utm_term || '',
+    d.fbclid || '',
+    d.pagina || '',
+    d.referrer || ''
   ]);
 
   return ContentService
@@ -37,36 +56,41 @@ function doPost(e) {
 
 Salve (ícone do disquete).
 
-## Passo 3: publicar
+## Passo 2: publicar
 
-1. Clique em **Implantar > Nova implantação**.
-2. No ícone de engrenagem, escolha **App da Web**.
+1. Clique em **Implantar > Nova implantação**
+2. No ícone de engrenagem, escolha **App da Web**
 3. Configure:
    - Executar como: **Eu** (sua conta)
    - Quem pode acessar: **Qualquer pessoa**
-4. Clique em **Implantar** e autorize o acesso (vai pedir login e mostrar um aviso do Google: clique em "Avançado" e depois em "Acessar projeto sem título").
-5. Copie a **URL do app da Web** (começa com `https://script.google.com/macros/s/...`).
+4. Clique em **Implantar** e autorize (o Google mostra um aviso: clique em "Avançado" e depois em "Acessar projeto sem título")
+5. Copie a **URL do app da Web** (começa com `https://script.google.com/macros/s/.../exec`)
 
-## Passo 4: ativar no site
+## Passo 3: me mande a URL
 
-Me mande a URL copiada. Eu coloco no atributo `data-sheets` dos formulários e faço o deploy.
-
-No HTML, o campo fica assim:
+Eu colo no atributo `data-sheets` do formulário do evento e faço o deploy. Fica assim:
 
 ```html
-<form name="evento" data-netlify="true" data-sheets="https://script.google.com/macros/s/SUA_URL/exec" ...>
+<form name="evento" data-sheets="https://script.google.com/macros/s/SUA_URL/exec" data-redirect="/evento/obrigado/">
 ```
 
-## Como funciona
+## Como as UTMs são capturadas
 
-Ao enviar o formulário, o lead vai para dois lugares ao mesmo tempo:
+O `forms.js` lê as UTMs da URL na **primeira visita** e guarda na sessão do navegador. Assim, se a pessoa
+chega por um anúncio (`?utm_source=facebook&utm_campaign=leilao-prosa`), navega pelo site e só depois se
+cadastra, a origem continua junto do lead.
 
-1. **Netlify Forms** (painel do site, com exportação em CSV e notificação por e-mail)
-2. **Google Sheets** (a planilha, atualizada na hora)
+Campos capturados automaticamente: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`,
+`fbclid` (clique do Facebook), `gclid` (clique do Google), o `referrer` e a página onde o cadastro aconteceu.
 
-Se a planilha ficar fora do ar, o lead continua salvo no Netlify. Nenhum cadastro se perde.
+## Exemplo de link para os anúncios
 
-## Notificação por e-mail (opcional)
+```
+https://SEU-DOMINIO/evento/?utm_source=facebook&utm_medium=cpc&utm_campaign=leilao-prosa-28-07&utm_content=video-01
+```
 
-Para receber um e-mail a cada novo lead, no painel do Netlify:
-**Forms > Form notifications > Add notification > Email notification**.
+## Teste depois de publicar
+
+1. Abra a página do evento com UTMs na URL (o exemplo acima)
+2. Preencha o modal com dados de teste
+3. Confira se a linha apareceu na planilha, com as UTMs preenchidas

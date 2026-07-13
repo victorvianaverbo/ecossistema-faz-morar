@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leilão &amp; Prosa · Encontro presencial | Clube do Leilão</title>
-  <meta name="description" content="Um encontro presencial com o time do Clube do Leilão. Casos reais, análise de editais e as perguntas que ninguém responde na internet. Vagas limitadas.">
+  <title>Leilão &amp; Prosa · 28 de julho em BH | Com Jacque Costa</title>
+  <meta name="description" content="O encontro presencial que mostra como investir em imóveis de leilão com estratégia, segurança e clareza. Dia 28 de julho, 19h, Okay Hub, Bairro Castelo, BH.">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -23,15 +23,21 @@
   src="https://www.facebook.com/tr?id=1686347049325562&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
 
-  <meta property="og:title" content="Leilão &amp; Prosa · Encontro presencial">
-  <meta property="og:description" content="Uma noite para aprender a arrematar sem cair em pegadinhas. Vagas limitadas.">
+  <meta property="og:title" content="Leilão &amp; Prosa · 28 de julho em Belo Horizonte">
+  <meta property="og:description" content="O encontro presencial que mostra como investir em imóveis de leilão com estratégia, segurança e clareza. Com Jacque Costa.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/_shared/vendor/aos.css">
+  <!-- No desktop a foto está na primeira dobra (é o LCP): pré-carrega.
+       No mobile ela fica abaixo da dobra, então não compete por banda. -->
+  <link rel="preload" as="image" media="(min-width: 1025px)"
+        href="/.netlify/images?url=/images/jacque-leilao.png&amp;w=900&amp;q=80"
+        fetchpriority="high">
+  <link rel="stylesheet" href="/_shared/reveal.css">
   <link rel="stylesheet" href="/_shared/base.css">
   <link rel="stylesheet" href="/_shared/sales.css">
   <link rel="stylesheet" href="/evento/style.css">
@@ -45,7 +51,7 @@
         <span>Clube do Leilão</span>
       </a>
       <div class="nav__actions">
-        <a href="#inscricao" class="nav__cta" data-modal-open="modal-evento">Garantir minha cadeira</a>
+        <button type="button" class="nav__cta" data-modal-open="modal-evento">Garantir minha cadeira</button>
       </div>
     </div>
   </header>
@@ -56,11 +62,10 @@
     <section class="ev-hero">
       <div class="ev-hero__glow" aria-hidden="true"></div>
       <div class="ev-hero__inner">
-        <div class="ev-hero__content">
+        <div class="ev-hero__top">
           <span class="ev-hero__badge">
             <span class="ev-hero__badge-dot" aria-hidden="true"></span>
-            <!-- TODO: adicionar [DATA_EVENTO] quando confirmada -->
-            ENCONTRO PRESENCIAL · BELO HORIZONTE
+            28 DE JULHO · BELO HORIZONTE
           </span>
 
           <div class="ev-logo">
@@ -70,39 +75,128 @@
             </svg>
             <div class="ev-logo__type">
               <h1 class="ev-logo__word">Leilão <span>&amp;</span> Prosa</h1>
-              <div class="ev-logo__tag">ENCONTRO DO ARREMATE À CHAVE</div>
+              <div class="ev-logo__tag">EDIÇÃO BAIRRO CASTELO · BH</div>
             </div>
           </div>
 
-          <p class="ev-hero__sub">Uma noite para aprender a arrematar sem cair em pegadinhas. Casos reais, análise de editais e as perguntas que ninguém responde na internet, ao vivo e olho no olho com o time do Clube do Leilão.</p>
+          <p class="ev-hero__lede">O encontro presencial que mostra como investir em imóveis de leilão com <strong>estratégia, segurança e clareza.</strong></p>
+        </div>
+
+        <div class="ev-hero__media">
+          <img src="/.netlify/images?url=/images/jacque-leilao.png&amp;w=560&amp;q=75"
+               srcset="/.netlify/images?url=/images/jacque-leilao.png&amp;w=480&amp;q=75 480w,
+                       /.netlify/images?url=/images/jacque-leilao.png&amp;w=720&amp;q=78 720w,
+                       /.netlify/images?url=/images/jacque-leilao.png&amp;w=900&amp;q=80 900w"
+               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 460px, 44vw"
+               alt="Jacque Costa, especialista em leilões de imóveis, conduz o Leilão e Prosa"
+               width="900" height="1125" loading="eager" decoding="async">
+          <div class="ev-hero__seal">
+            <div class="ev-hero__seal-value">+15 anos</div>
+            <div class="ev-hero__seal-label">NO MERCADO DE LEILÕES</div>
+          </div>
+        </div>
+
+        <div class="ev-hero__rest">
+          <p class="ev-hero__sub">Uma noite com Jacque Costa, especialista que vive o mercado na prática. Networking qualificado, estratégias validadas e acesso a oportunidades concretas.</p>
 
           <div class="ev-hero__actions">
             <button type="button" class="btn btn--primary" data-modal-open="modal-evento">Garantir minha cadeira</button>
           </div>
-          <p class="ev-hero__note">Vagas limitadas pela capacidade do espaço</p>
+          <p class="ev-hero__note">2º lote encerra dia 15 de julho · parcele em até 12x</p>
 
           <div class="ev-hero__info">
-            <!-- TODO: adicionar cards de DATA [DATA_EVENTO] e HORÁRIO [HORARIO] quando confirmados -->
             <div class="ev-info">
-              <div class="ev-info__label">FORMATO</div>
-              <div class="ev-info__value">Presencial e ao vivo</div>
+              <div class="ev-info__label">DATA</div>
+              <div class="ev-info__value">28 de julho</div>
+            </div>
+            <div class="ev-info">
+              <div class="ev-info__label">HORÁRIO</div>
+              <div class="ev-info__value">19h às 22h</div>
             </div>
             <div class="ev-info">
               <div class="ev-info__label">LOCAL</div>
-              <div class="ev-info__value">Belo Horizonte · MG</div>
-            </div>
-            <div class="ev-info">
-              <div class="ev-info__label">CONDUÇÃO</div>
-              <div class="ev-info__value">Jacque Costa</div>
+              <div class="ev-info__value">Okay Hub · Castelo</div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="ev-hero__media">
-          <img src="/.netlify/images?url=/images/jacque-leilao.png&amp;w=900&amp;q=80" alt="Jacque Costa, especialista em leilões, conduz o encontro Leilão e Prosa" width="900" height="1000" loading="eager" fetchpriority="high">
-          <div class="ev-hero__seal">
-            <div class="ev-hero__seal-value">+15 anos</div>
-            <div class="ev-hero__seal-label">NO MERCADO DE LEILÕES</div>
+    <!-- ============ A DOR ============ -->
+    <section class="ev-pain">
+      <div class="ev-pain__inner">
+        <div data-aos="fade-up">
+          <div class="eyebrow">O QUE TRAVA A MAIORIA</div>
+          <h2 class="ev-pain__title">Você já pensou em investir em imóvel de leilão, mas travou?</h2>
+          <p class="ev-pain__text">Muitas pessoas têm o desejo de investir, mas sentem medo por não saberem analisar os riscos. Resultado: perdem grandes oportunidades ou congelam na hora de arrematar.</p>
+          <p class="ev-pain__impact">Quem não entende o jogo não arremata. Assiste.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ O QUE É ============ -->
+    <section class="ev-what">
+      <div class="ev-what__inner">
+        <div class="ev-what__head" data-aos="fade-up">
+          <div class="eyebrow eyebrow--onDark">O ENCONTRO</div>
+          <h2 class="ev-what__title">Aprenda com quem vive o mercado na prática.</h2>
+          <p class="ev-what__lead">O Leilão &amp; Prosa é um evento presencial exclusivo, desenhado para quem quer sair da teoria. Aqui o foco é o mundo real.</p>
+        </div>
+        <div class="ev-what__grid">
+          <article class="pillar-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="pillar-card__num">01</div>
+            <h3 class="pillar-card__title">Networking qualificado</h3>
+            <p class="pillar-card__desc">Você senta ao lado de quem já arremata e de quem opera o mercado todo dia.</p>
+          </article>
+          <article class="pillar-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="pillar-card__num">02</div>
+            <h3 class="pillar-card__title">Estratégias validadas</h3>
+            <p class="pillar-card__desc">Nada de teoria genérica. Método testado em operações reais, com números na mesa.</p>
+          </article>
+          <article class="pillar-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="pillar-card__num">03</div>
+            <h3 class="pillar-card__title">Oportunidades concretas</h3>
+            <p class="pillar-card__desc">Acesso ao que está aberto agora, com a análise de quem entende do assunto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ O QUE VOCÊ VAI APRENDER ============ -->
+    <section class="ev-learn">
+      <div class="ev-learn__inner">
+        <div class="ev-learn__head" data-aos="fade-up">
+          <div class="eyebrow">CONTEÚDO</div>
+          <h2 class="ev-learn__title">Os pilares essenciais para o sucesso nos leilões.</h2>
+        </div>
+        <div class="learn-grid">
+          <div class="learn" data-aos="fade-up" data-aos-delay="0">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>O jogo dos leilões imobiliários: como ele funciona de verdade, por dentro.</p>
+          </div>
+          <div class="learn" data-aos="fade-up" data-aos-delay="40">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>O cenário imobiliário e a janela de oportunidade atual.</p>
+          </div>
+          <div class="learn" data-aos="fade-up" data-aos-delay="80">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>Por que comprar em leilão pode ser melhor que comprar no mercado tradicional.</p>
+          </div>
+          <div class="learn" data-aos="fade-up" data-aos-delay="120">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>Construção de patrimônio com imóveis de leilão.</p>
+          </div>
+          <div class="learn" data-aos="fade-up" data-aos-delay="160">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>Tipos de leilões e segurança jurídica.</p>
+          </div>
+          <div class="learn" data-aos="fade-up" data-aos-delay="200">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>Modalidades de venda e como cada uma funciona.</p>
+          </div>
+          <div class="learn learn--wide" data-aos="fade-up" data-aos-delay="240">
+            <span class="learn__ico" aria-hidden="true">✓</span>
+            <p>Casos reais e números reais, abertos na sua frente.</p>
           </div>
         </div>
       </div>
@@ -114,50 +208,57 @@
         <div class="ev-program__head" data-aos="fade-up">
           <div class="eyebrow">PROGRAMAÇÃO</div>
           <h2 class="ev-program__title">Uma noite, um método completo.</h2>
-          <p class="ev-program__lead">Cinco blocos que levam você da leitura do edital à decisão do lance, na ordem em que a coisa acontece de verdade.</p>
+          <p class="ev-program__lead">Das 19h às 22h, na ordem em que a coisa acontece de verdade.</p>
         </div>
 
-        <!-- TODO: [PROGRAMACAO] confirmar blocos com a especialista -->
         <ol class="agenda">
           <li class="agenda__item" data-aos="fade-up" data-aos-delay="0">
-            <div class="agenda__num">01</div>
+            <div class="agenda__time">19h00</div>
             <div class="agenda__body">
-              <h3 class="agenda__name">Como ler um edital</h3>
-              <p class="agenda__desc">As cláusulas que escondem risco e o que fazer quando o edital não perdoa a dívida.</p>
+              <h3 class="agenda__name">Credenciamento</h3>
+              <p class="agenda__desc">Chegada, recepção e primeiros contatos.</p>
             </div>
-            <div class="agenda__tag">Leitura</div>
+            <div class="agenda__tag">30 min</div>
           </li>
           <li class="agenda__item" data-aos="fade-up" data-aos-delay="60">
-            <div class="agenda__num">02</div>
+            <div class="agenda__time">19h30</div>
             <div class="agenda__body">
-              <h3 class="agenda__name">O mapa real do imóvel</h3>
-              <p class="agenda__desc">Ocupação, dívidas e matrícula analisadas ponto a ponto, antes de qualquer lance.</p>
+              <h3 class="agenda__name">Abertura do Leilão &amp; Prosa</h3>
+              <p class="agenda__desc">O contexto do mercado e o que está em jogo nesta janela de oportunidade.</p>
             </div>
-            <div class="agenda__tag">Análise</div>
+            <div class="agenda__tag">30 min</div>
           </li>
           <li class="agenda__item agenda__item--hi" data-aos="fade-up" data-aos-delay="120">
-            <div class="agenda__num">03</div>
+            <div class="agenda__time">20h00</div>
             <div class="agenda__body">
-              <h3 class="agenda__name">A calculadora do lance</h3>
-              <p class="agenda__desc">Quanto vale a pena pagar: o teto máximo que protege o seu lucro, com todos os custos na conta.</p>
+              <h3 class="agenda__name">Palestra com Jacque Costa</h3>
+              <p class="agenda__desc">O coração da noite: o método completo, com casos reais e números reais na mesa.</p>
             </div>
-            <div class="agenda__tag">Bloco central</div>
+            <div class="agenda__tag">1 hora</div>
           </li>
           <li class="agenda__item" data-aos="fade-up" data-aos-delay="180">
-            <div class="agenda__num">04</div>
+            <div class="agenda__time">21h00</div>
             <div class="agenda__body">
-              <h3 class="agenda__name">Financiamento e regularização</h3>
-              <p class="agenda__desc">Crédito para o imóvel arrematado, posse, escritura e o caminho até a chave na mão.</p>
+              <h3 class="agenda__name">Perguntas e respostas</h3>
+              <p class="agenda__desc">Sessão aberta com a especialista.</p>
             </div>
-            <div class="agenda__tag">Pós-arremate</div>
+            <div class="agenda__tag">10 min</div>
           </li>
           <li class="agenda__item" data-aos="fade-up" data-aos-delay="240">
-            <div class="agenda__num">05</div>
+            <div class="agenda__time">21h10</div>
             <div class="agenda__body">
-              <h3 class="agenda__name">Perguntas e casos da plateia</h3>
-              <p class="agenda__desc">Sessão aberta: traga o seu imóvel e analisamos ali, na frente de todo mundo.</p>
+              <h3 class="agenda__name">Apresentação do Clube do Leilão</h3>
+              <p class="agenda__desc">Como funciona o ecossistema que leva você do arremate à chave.</p>
             </div>
-            <div class="agenda__tag">Ao vivo</div>
+            <div class="agenda__tag">30 min</div>
+          </li>
+          <li class="agenda__item" data-aos="fade-up" data-aos-delay="300">
+            <div class="agenda__time">21h40</div>
+            <div class="agenda__body">
+              <h3 class="agenda__name">Networking</h3>
+              <p class="agenda__desc">O momento de trocar com quem está no mesmo caminho. Encerramento às 22h.</p>
+            </div>
+            <div class="agenda__tag">20 min</div>
           </li>
         </ol>
       </div>
@@ -169,28 +270,28 @@
         <div class="ev-who__head" data-aos="fade-up">
           <div class="eyebrow eyebrow--onDark">PARA QUEM É</div>
           <h2 class="ev-who__title">Feito para quem quer comprar bem e com segurança.</h2>
-          <p class="ev-who__lead">Se você se reconhece em algum destes quatro perfis, a cadeira é sua.</p>
+          <p class="ev-who__lead">Encontro voltado a público com renda mínima de R$ 8 mil.</p>
         </div>
         <div class="ev-who__grid">
           <article class="who-card" data-aos="fade-up" data-aos-delay="0">
             <div class="who-card__num">01</div>
-            <h3 class="who-card__title">Primeiro imóvel</h3>
-            <p class="who-card__desc">Você quer a casa própria pagando abaixo do mercado, mas trava na hora de dar o lance.</p>
+            <h3 class="who-card__title">Investidores iniciantes</h3>
+            <p class="who-card__desc">Querem aprender a identificar oportunidades e conhecer a mentoria e o curso da Jacque Costa.</p>
           </article>
           <article class="who-card" data-aos="fade-up" data-aos-delay="60">
             <div class="who-card__num">02</div>
-            <h3 class="who-card__title">Investidor</h3>
-            <p class="who-card__desc">Você busca margem de verdade, com segurança jurídica e a conta fechando no papel.</p>
+            <h3 class="who-card__title">Compradores para moradia</h3>
+            <p class="who-card__desc">Querem adquirir o imóvel para uso próprio, pagando bem menos que no mercado tradicional.</p>
           </article>
           <article class="who-card" data-aos="fade-up" data-aos-delay="120">
             <div class="who-card__num">03</div>
-            <h3 class="who-card__title">Já tentou e travou</h3>
-            <p class="who-card__desc">Você entrou num leilão, empacou no edital ou na documentação e desistiu no meio.</p>
+            <h3 class="who-card__title">Investidores conservadores</h3>
+            <p class="who-card__desc">Focados em reduzir riscos, proteger o patrimônio e gerar renda com aluguel ou valorização.</p>
           </article>
           <article class="who-card" data-aos="fade-up" data-aos-delay="180">
             <div class="who-card__num">04</div>
-            <h3 class="who-card__title">Quer conhecer o Clube</h3>
-            <p class="who-card__desc">Você quer ver de perto como funciona o ecossistema completo, do arremate à chave.</p>
+            <h3 class="who-card__title">Investidores arrojados</h3>
+            <p class="who-card__desc">Buscam maior rentabilidade com reforma, construção e aquisições em sociedade.</p>
           </article>
         </div>
       </div>
@@ -209,8 +310,8 @@
         <div data-aos="fade-up" data-aos-delay="100">
           <div class="eyebrow">QUEM CONDUZ</div>
           <h2 class="bio__title">Jacque Costa</h2>
-          <p class="bio__text">Especialista em leilões, perita judicial e despachante credenciada da Caixa desde 2007. São mais de 15 anos vivendo os bastidores do mercado imobiliário e desmistificando o leilão para centenas de investidores.</p>
-          <p class="bio__text">No Leilão &amp; Prosa, ela abre o método que usa todos os dias: a leitura do edital, o mapa do imóvel e a matemática que define até onde vale a pena ir.</p>
+          <p class="bio__text">Especialista em leilões de imóveis, empresária, corretora, perita judicial, administradora e despachante credenciada da Caixa desde 2007. São mais de 15 anos vivendo os bastidores do mercado imobiliário.</p>
+          <p class="bio__text">Com vasta experiência prática, ela guia você pelo caminho seguro para identificar boas oportunidades e garantir alta rentabilidade.</p>
           <div class="bio__stats">
             <div>
               <div class="bio__stat-value">+2.400</div>
@@ -225,6 +326,73 @@
       </div>
     </section>
 
+    <!-- ============ INGRESSOS ============ -->
+    <section class="ev-tickets" id="ingressos">
+      <div class="ev-tickets__inner">
+        <div class="ev-tickets__head" data-aos="fade-up">
+          <div class="eyebrow">INGRESSOS</div>
+          <h2 class="ev-tickets__title">O preço sobe conforme a data se aproxima.</h2>
+          <p class="ev-tickets__lead">Quanto antes você garantir, menos paga. Todos os lotes parcelam em até 12x.</p>
+        </div>
+        <div class="lots">
+          <div class="lot lot--done" data-aos="fade-up" data-aos-delay="0">
+            <div class="lot__name">1º lote</div>
+            <div class="lot__price">R$ 127</div>
+            <div class="lot__status">Encerrado</div>
+          </div>
+          <div class="lot lot--now" data-aos="fade-up" data-aos-delay="60">
+            <div class="lot__flag">LOTE ATUAL</div>
+            <div class="lot__name">2º lote</div>
+            <div class="lot__price">R$ 157</div>
+            <div class="lot__status">Vendas até 15 de julho</div>
+            <button type="button" class="btn btn--primary lot__cta" data-modal-open="modal-evento">Garantir minha cadeira</button>
+          </div>
+          <div class="lot" data-aos="fade-up" data-aos-delay="120">
+            <div class="lot__name">3º lote</div>
+            <div class="lot__price">R$ 187</div>
+            <div class="lot__status">A partir de 16 de julho</div>
+          </div>
+          <div class="lot" data-aos="fade-up" data-aos-delay="180">
+            <div class="lot__name">4º lote · portaria</div>
+            <div class="lot__price">R$ 217</div>
+            <div class="lot__status">No dia do evento</div>
+          </div>
+        </div>
+        <p class="ev-tickets__note" data-aos="fade-up">Valores sem a taxa da plataforma. Ingresso pessoal e intransferível.</p>
+      </div>
+    </section>
+
+    <!-- ============ LOCAL ============ -->
+    <section class="ev-place">
+      <div class="ev-place__inner" data-aos="fade-up">
+        <div>
+          <div class="eyebrow">ONDE ACONTECE</div>
+          <h2 class="ev-place__title">Okay Hub de Negócios e Coworking</h2>
+          <p class="ev-place__addr">Rua Castelo de Alcázar, 125 · Bairro Castelo<br>Belo Horizonte · MG</p>
+          <p class="ev-place__note">Não há estacionamento no local. Por ser à noite, a rua é tranquila e segura para estacionar.</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Castelo+de+Alc%C3%A1zar%2C+125+-+Castelo%2C+Belo+Horizonte+-+MG" class="btn btn--ghost" target="_blank" rel="noopener">Ver no mapa</a>
+        </div>
+        <div class="ev-place__card">
+          <div class="ev-place__card-row">
+            <span class="ev-place__card-label">DATA</span>
+            <span class="ev-place__card-value">28 de julho de 2026, terça-feira</span>
+          </div>
+          <div class="ev-place__card-row">
+            <span class="ev-place__card-label">HORÁRIO</span>
+            <span class="ev-place__card-value">19h às 22h</span>
+          </div>
+          <div class="ev-place__card-row">
+            <span class="ev-place__card-label">FORMATO</span>
+            <span class="ev-place__card-value">Presencial, com networking</span>
+          </div>
+          <div class="ev-place__card-row">
+            <span class="ev-place__card-label">REALIZAÇÃO</span>
+            <span class="ev-place__card-value">Jacque Leilões · Clube do Leilão</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ FAQ ============ -->
     <section class="ev-faq">
       <div class="ev-faq__inner">
@@ -234,27 +402,24 @@
         </div>
         <div class="faq__list" data-aos="fade-up" data-aos-delay="100">
           <details class="faq__item">
-            <summary>O evento é presencial ou online?</summary>
-            <p>Presencial, em Belo Horizonte. É um encontro ao vivo, pensado para conversa direta e análise de casos reais.</p>
+            <summary>O evento é online ou presencial?</summary>
+            <p>Presencial. Uma oportunidade única de conexão e aprendizado olho no olho.</p>
           </details>
           <details class="faq__item">
-            <summary>Preciso já entender de leilão para aproveitar?</summary>
-            <p>Não. O encontro parte do essencial e avança até o nível de quem já arremata. Há conteúdo para os dois perfis.</p>
+            <summary>Posso transferir meu ingresso para outra pessoa?</summary>
+            <p>Não. O ingresso é pessoal e intransferível.</p>
           </details>
           <details class="faq__item">
-            <summary>Haverá gravação para quem não puder ir?</summary>
-            <!-- TODO: [A CONFIRMAR] -->
-            <p>A definição sobre gravação será comunicada aos inscritos. Reserve sua cadeira para garantir a experiência completa ao vivo.</p>
+            <summary>Posso cancelar minha inscrição?</summary>
+            <p>Sim. Cancelamentos são aceitos até 7 dias após a compra, desde que a solicitação seja enviada até 48 horas antes do início do evento.</p>
           </details>
           <details class="faq__item">
-            <summary>Quanto custa a inscrição?</summary>
-            <!-- TODO: [A CONFIRMAR] valor e condições -->
-            <p>Os detalhes de investimento serão divulgados aos inscritos. Deixe seu contato e avisaremos você em primeira mão.</p>
+            <summary>Haverá estacionamento no local?</summary>
+            <p>Não. Por ser no período da noite, a rua é tranquila e segura para estacionar.</p>
           </details>
           <details class="faq__item">
-            <summary>Posso levar acompanhante?</summary>
-            <!-- TODO: [A CONFIRMAR] -->
-            <p>Cada cadeira corresponde a uma inscrição. Se quiser levar alguém, garanta uma vaga para cada pessoa.</p>
+            <summary>Posso gravar o evento?</summary>
+            <p>Não. A gravação e a divulgação do conteúdo são proibidas sem autorização formal.</p>
           </details>
         </div>
       </div>
@@ -267,8 +432,8 @@
           <svg width="240" height="260" viewBox="0 0 100 108"><path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="none" stroke="#16A88E" stroke-width="4"/><path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="6" stroke-linecap="square"/></svg>
         </div>
         <div class="ev-cta__content">
-          <h2 class="ev-cta__title">As cadeiras são limitadas. A decisão é sua.</h2>
-          <p class="ev-cta__text">Um encontro pode encurtar anos de tentativa e erro. Venha aprender com quem arremata de verdade.</p>
+          <h2 class="ev-cta__title">Dia 28 de julho, às 19h, em Belo Horizonte.</h2>
+          <p class="ev-cta__text">Uma noite pode encurtar anos de tentativa e erro. Venha aprender com quem arremata de verdade.</p>
         </div>
         <button type="button" class="btn btn--primary" data-modal-open="modal-evento">Garantir minha cadeira</button>
       </div>
@@ -282,7 +447,7 @@
         <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#23282A"/><path d="M28 75 V27 H73 V72 H45 V45 H61" fill="none" stroke="#16A88E" stroke-width="9.5" stroke-linecap="square"/></svg>
         <span>Clube do Leilão</span>
       </div>
-      <div class="footer-c__legal">© 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ · Belo Horizonte · MG · <a href="https://wa.me/5531996951660">WhatsApp (31) 99695-1660</a></div>
+      <div class="footer-c__legal">Apoio: 3BF · AVANTIK · CONEXÃO SV<br>© 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ · <a href="https://wa.me/5531996951660">WhatsApp (31) 99695-1660</a></div>
     </div>
   </footer>
 
@@ -294,12 +459,11 @@
         <svg width="52" height="56" viewBox="0 0 100 108"><path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="#23282A"/><path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="9" stroke-linecap="square"/></svg>
       </div>
       <h2 class="modal__title" id="modal-evento-titulo">Garanta sua cadeira</h2>
-      <p class="modal__text">Preencha seus dados e reserve sua vaga no Leilão &amp; Prosa. As vagas são limitadas pela capacidade do espaço.</p>
+      <p class="modal__text">Preencha seus dados para reservar sua vaga no Leilão &amp; Prosa, dia 28 de julho em Belo Horizonte.</p>
 
-      <!-- TODO: preencher data-sheets com a URL do Apps Script (Google Sheets) -->
-      <form class="modal__form" name="evento" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-redirect="/evento/obrigado/" data-sheets="">
-        <input type="hidden" name="form-name" value="evento">
-        <p hidden><label>Não preencha: <input name="bot-field"></label></p>
+      <!-- Leads na planilha "Leads Leilão e Prosa | 28/07" (Google Sheets via Apps Script) -->
+      <form class="modal__form" name="evento" data-sheets="https://script.google.com/macros/s/AKfycbyLtO5zEO-FP-Scak6uOIL69bMyN7x0dszD-KDd37xqQqEtjOP30gZy6o86t-7B_b87/exec" data-redirect="/evento/obrigado/">
+        <p hidden><label>Não preencha: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="modal__group">
           <label class="modal__label" for="ev-nome">NOME</label>
           <input class="modal__input" type="text" id="ev-nome" name="nome" required autocomplete="name" placeholder="Seu nome completo">
@@ -312,21 +476,14 @@
           <label class="modal__label" for="ev-telefone">WHATSAPP</label>
           <input class="modal__input" type="tel" id="ev-telefone" name="telefone" required autocomplete="tel" placeholder="(31) 90000-0000">
         </div>
-        <button type="submit" class="btn btn--primary modal__submit">Reservar minha vaga</button>
-        <p class="modal__note">Seus dados ficam seguros e não enviamos spam.</p>
+        <button type="submit" class="btn btn--primary modal__submit">Continuar para o ingresso</button>
+        <p class="modal__note">2º lote: R$ 157 em até 12x. Seus dados ficam seguros.</p>
       </form>
     </div>
   </div>
 
-  <script src="/_shared/vendor/aos.js" defer></script>
+  <script src="/_shared/reveal.js" defer></script>
   <script src="/_shared/modal.js" defer></script>
   <script src="/_shared/forms.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      if (window.AOS) {
-        AOS.init({ duration: 650, easing: 'ease-out-cubic', once: true, disableMutationObserver: true });
-      }
-    });
-  </script>
 </body>
 </html>
