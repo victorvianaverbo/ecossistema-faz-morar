@@ -91,6 +91,10 @@
           var nomeForm = form.getAttribute('name') || 'form';
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', { content_name: nomeForm });
+            // Quando o destino é um checkout externo, marca também a ida para a compra
+            if (form.hasAttribute('data-checkout')) {
+              fbq('track', 'InitiateCheckout', { content_name: nomeForm });
+            }
           }
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'generate_lead', form_name: nomeForm });

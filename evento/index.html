@@ -456,10 +456,11 @@
         <svg width="52" height="56" viewBox="0 0 100 108"><path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="#23282A"/><path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="9" stroke-linecap="square"/></svg>
       </div>
       <h2 class="modal__title" id="modal-evento-titulo">Garanta sua cadeira</h2>
-      <p class="modal__text">Preencha seus dados para reservar sua vaga no Leilão &amp; Prosa, dia 28 de julho em Belo Horizonte.</p>
+      <p class="modal__text">Preencha seus dados e siga para a inscrição do Leilão &amp; Prosa, dia 28 de julho em Belo Horizonte.</p>
 
-      <!-- Leads na planilha "Leads Leilão e Prosa | 28/07" (Google Sheets via Apps Script) -->
-      <form class="modal__form" name="evento" data-sheets="https://script.google.com/macros/s/AKfycbyLtO5zEO-FP-Scak6uOIL69bMyN7x0dszD-KDd37xqQqEtjOP30gZy6o86t-7B_b87/exec" data-redirect="/evento/obrigado/">
+      <!-- O lead grava na planilha "Leads Leilão e Prosa | 28/07" e o visitante
+           segue direto para o checkout do Sympla. -->
+      <form class="modal__form" name="evento" data-checkout data-sheets="https://script.google.com/macros/s/AKfycbyLtO5zEO-FP-Scak6uOIL69bMyN7x0dszD-KDd37xqQqEtjOP30gZy6o86t-7B_b87/exec" data-redirect="https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3460207">
         <p hidden><label>Não preencha: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="modal__group">
           <label class="modal__label" for="ev-nome">NOME</label>
@@ -473,8 +474,8 @@
           <label class="modal__label" for="ev-telefone">WHATSAPP</label>
           <input class="modal__input" type="tel" id="ev-telefone" name="telefone" required autocomplete="tel" placeholder="(31) 90000-0000">
         </div>
-        <button type="submit" class="btn btn--primary modal__submit">Continuar para o ingresso</button>
-        <p class="modal__note">Seus dados ficam seguros e não enviamos spam.</p>
+        <button type="submit" class="btn btn--primary modal__submit">Continuar para a inscrição</button>
+        <p class="modal__note">Você será levado à página oficial de inscrição. Seus dados ficam seguros.</p>
       </form>
     </div>
   </div>
