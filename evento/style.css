@@ -1,5 +1,29 @@
 /* Leilão & Prosa (evento) — estilos próprios sobre /_shared/base.css e sales.css */
 
+/* ============ MARCA NO NAV E FOOTER ============ */
+
+.nav__brand,
+.footer-c__brand {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--ink);
+  cursor: default;
+}
+
+.nav__brand em,
+.footer-c__brand em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.footer-c__brand { font-size: 18px; }
+
+.nav__cta {
+  border: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
 /* ============ HERO ============ */
 
 .ev-hero {
