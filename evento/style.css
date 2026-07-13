@@ -985,7 +985,18 @@
     margin-bottom: 12px;
   }
 
-  .agenda__item--hi { padding-left: 20px; }
+  /* O bloco da palestra mantém o destaque escuro também no mobile */
+  .agenda__item--hi {
+    padding-left: 20px;
+    background: var(--ink);
+    box-shadow: 0 24px 48px -26px rgba(31, 36, 37, .55);
+  }
+
+  .agenda__item--hi .agenda__time {
+    background: linear-gradient(180deg, #1DB79A 0%, #16A88E 100%);
+    border-color: transparent;
+    color: #FFFFFF;
+  }
 
   .agenda__time {
     width: 76px;
