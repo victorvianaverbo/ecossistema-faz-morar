@@ -27,10 +27,10 @@
   <meta property="og:description" content="O encontro presencial que mostra como investir em imóveis de leilão com estratégia, segurança e clareza. Com Jacque Costa.">
   <meta property="og:type" content="website">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://connect.facebook.net">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/figtree-400-700.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/dm-serif-display-400.woff2" crossorigin>
+  <link rel="stylesheet" href="/_shared/fonts.css">
 
   <!-- No desktop a foto está na primeira dobra (é o LCP): pré-carrega.
        No mobile ela fica abaixo da dobra, então não compete por banda. -->
@@ -102,7 +102,7 @@
           <div class="ev-hero__actions">
             <button type="button" class="btn btn--primary" data-modal-open="modal-evento">Garantir minha cadeira</button>
           </div>
-          <p class="ev-hero__note">2º lote encerra dia 15 de julho · parcele em até 12x</p>
+          <p class="ev-hero__note">Vagas limitadas · parcele em até 12x</p>
 
           <div class="ev-hero__info">
             <div class="ev-info">
@@ -326,39 +326,36 @@
       </div>
     </section>
 
-    <!-- ============ INGRESSOS ============ -->
+    <!-- ============ RESERVA ============ -->
     <section class="ev-tickets" id="ingressos">
       <div class="ev-tickets__inner">
         <div class="ev-tickets__head" data-aos="fade-up">
-          <div class="eyebrow">INGRESSOS</div>
-          <h2 class="ev-tickets__title">O preço sobe conforme a data se aproxima.</h2>
-          <p class="ev-tickets__lead">Quanto antes você garantir, menos paga. Todos os lotes parcelam em até 12x.</p>
+          <div class="eyebrow">RESERVA</div>
+          <h2 class="ev-tickets__title">Os lotes viram, e o valor acompanha.</h2>
+          <p class="ev-tickets__lead">Quanto antes você garantir sua cadeira, melhor a condição. O parcelamento vai até 12x.</p>
         </div>
-        <div class="lots">
-          <div class="lot lot--done" data-aos="fade-up" data-aos-delay="0">
-            <div class="lot__name">1º lote</div>
-            <div class="lot__price">R$ 127</div>
-            <div class="lot__status">Encerrado</div>
+        <div class="reserve" data-aos="fade-up" data-aos-delay="60">
+          <div class="reserve__list">
+            <div class="reserve__item">
+              <span class="reserve__ico" aria-hidden="true">✓</span>
+              <p>Lugar garantido no encontro presencial, dia 28 de julho</p>
+            </div>
+            <div class="reserve__item">
+              <span class="reserve__ico" aria-hidden="true">✓</span>
+              <p>Networking com investidores e com o time do Clube do Leilão</p>
+            </div>
+            <div class="reserve__item">
+              <span class="reserve__ico" aria-hidden="true">✓</span>
+              <p>Parcelamento em até 12x, com condição do lote vigente</p>
+            </div>
+            <div class="reserve__item">
+              <span class="reserve__ico" aria-hidden="true">✓</span>
+              <p>Vagas limitadas pela capacidade do espaço</p>
+            </div>
           </div>
-          <div class="lot lot--now" data-aos="fade-up" data-aos-delay="60">
-            <div class="lot__flag">LOTE ATUAL</div>
-            <div class="lot__name">2º lote</div>
-            <div class="lot__price">R$ 157</div>
-            <div class="lot__status">Vendas até 15 de julho</div>
-            <button type="button" class="btn btn--primary lot__cta" data-modal-open="modal-evento">Garantir minha cadeira</button>
-          </div>
-          <div class="lot" data-aos="fade-up" data-aos-delay="120">
-            <div class="lot__name">3º lote</div>
-            <div class="lot__price">R$ 187</div>
-            <div class="lot__status">A partir de 16 de julho</div>
-          </div>
-          <div class="lot" data-aos="fade-up" data-aos-delay="180">
-            <div class="lot__name">4º lote · portaria</div>
-            <div class="lot__price">R$ 217</div>
-            <div class="lot__status">No dia do evento</div>
-          </div>
+          <button type="button" class="btn btn--primary reserve__cta" data-modal-open="modal-evento">Garantir minha cadeira</button>
         </div>
-        <p class="ev-tickets__note" data-aos="fade-up">Valores sem a taxa da plataforma. Ingresso pessoal e intransferível.</p>
+        <p class="ev-tickets__note" data-aos="fade-up">Ingresso pessoal e intransferível.</p>
       </div>
     </section>
 
@@ -477,7 +474,7 @@
           <input class="modal__input" type="tel" id="ev-telefone" name="telefone" required autocomplete="tel" placeholder="(31) 90000-0000">
         </div>
         <button type="submit" class="btn btn--primary modal__submit">Continuar para o ingresso</button>
-        <p class="modal__note">2º lote: R$ 157 em até 12x. Seus dados ficam seguros.</p>
+        <p class="modal__note">Seus dados ficam seguros e não enviamos spam.</p>
       </form>
     </div>
   </div>

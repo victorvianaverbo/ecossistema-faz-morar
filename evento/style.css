@@ -672,96 +672,57 @@
   margin-top: 16px;
 }
 
-.lots {
+.reserve {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-
-.lot {
-  position: relative;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 32px 28px;
-  background: var(--paper);
-  text-align: center;
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-
-.lot:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -22px rgba(31, 36, 37, .24);
-}
-
-.lot--done {
-  opacity: .5;
-  background: var(--mist);
-}
-
-.lot--done:hover { transform: none; box-shadow: none; }
-
-.lot--done .lot__price { text-decoration: line-through; }
-
-.lot--now {
-  border: 2px solid var(--accent);
+  grid-template-columns: 1.25fr .75fr;
+  gap: 48px;
+  align-items: center;
   background: linear-gradient(180deg, #FFFFFF 0%, var(--mint) 100%);
-  box-shadow: 0 24px 48px -24px rgba(22, 168, 142, .4);
-  padding-top: 40px;
+  border: 2px solid var(--accent);
+  border-radius: 22px;
+  padding: 44px 48px;
+  box-shadow: 0 30px 60px -30px rgba(22, 168, 142, .45);
 }
 
-.lot__flag {
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #1DB79A 0%, #16A88E 100%);
-  color: #FFFFFF;
-  font-size: 11px;
+.reserve__list {
+  display: grid;
+  gap: 18px;
+}
+
+.reserve__item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.reserve__ico {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--accent-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
-  letter-spacing: .12em;
-  padding: 6px 16px;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 8px 18px -8px rgba(22, 168, 142, .6);
+  font-size: 14px;
 }
 
-.lot__name {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-50);
-}
-
-.lot--now .lot__name { color: var(--accent-deep); }
-
-.lot__price {
-  font-family: var(--serif);
-  font-size: 40px;
-  line-height: 1;
+.reserve__item p {
+  font-size: 16px;
+  line-height: 1.55;
   color: var(--ink);
-  margin-top: 12px;
+  font-weight: 600;
 }
 
-.lot--now .lot__price { color: var(--accent-deep); font-size: 46px; }
-
-.lot__status {
-  font-size: 13px;
-  color: var(--ink-60);
-  margin-top: 10px;
-  line-height: 1.5;
-}
-
-.lot__cta {
-  display: block;
-  width: 100%;
-  margin-top: 20px;
+.reserve__cta {
   border: 0;
   cursor: pointer;
   font-family: var(--sans);
-  font-size: 15px;
-  padding: 14px 20px;
+  font-size: 17px;
+  padding: 20px 32px;
+  white-space: nowrap;
 }
 
 .ev-tickets__note {
@@ -947,8 +908,17 @@
 
   .ev-what__grid { grid-template-columns: 1fr; }
 
-  .ev-who__grid,
-  .lots { grid-template-columns: 1fr 1fr; }
+  .ev-who__grid { grid-template-columns: 1fr 1fr; }
+
+  .reserve {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .reserve__item { text-align: left; }
+
+  .reserve__cta { width: 100%; }
 
   .learn-grid { grid-template-columns: 1fr; }
 
@@ -1007,10 +977,9 @@
     margin-top: 4px;
   }
 
-  .ev-who__grid,
-  .lots { grid-template-columns: 1fr; }
+  .ev-who__grid { grid-template-columns: 1fr; }
 
-  .lot--now { order: -1; }
+  .reserve { padding: 32px 24px; }
 
   .ev-place__card { padding: 8px 24px; }
 

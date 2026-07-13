@@ -1,0 +1,25 @@
+/* Fontes servidas pelo proprio site: tira fonts.googleapis.com e fonts.gstatic.com do caminho critico */
+
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_shared/fonts/dm-serif-display-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_shared/fonts/dm-serif-display-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/_shared/fonts/figtree-400-700.woff2') format('woff2');
+}
