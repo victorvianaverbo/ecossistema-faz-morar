@@ -5,10 +5,13 @@
 .nav__brand,
 .footer-c__brand {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 19px;
   color: var(--ink);
-  cursor: default;
 }
+
+/* O brand virou link no co-branding (marca-mãe → /, sub-marca →
+   /leilao-e-prosa/), então não pode mais ser cursor: default. */
+.footer-c__brand { cursor: default; }
 
 .nav__brand em,
 .footer-c__brand em {

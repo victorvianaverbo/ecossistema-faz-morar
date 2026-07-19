@@ -170,6 +170,44 @@ img, svg { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 
+/* ============ CO-BRANDING (páginas Leilão & Prosa) ============ */
+
+/* A marca-mãe e a sub-marca lado a lado, separadas por um filete. */
+.nav__brands {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.nav__brands-sep {
+  flex: none;
+  width: 1px;
+  height: 26px;
+  background: var(--line);
+}
+
+/* O "&" da sub-marca em itálico verde, como no evento. */
+.nav__brand--lp em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Duas assinaturas + menu + ações não cabem na mesma barra. A nav recolhe
+   em dois estágios: primeiro a marca-mãe fica só no monograma (o menu ainda
+   aparece até 1024px), depois a sub-marca também, sobrando os dois símbolos.
+   Assim as duas marcas seguem presentes em qualquer largura. */
+@media (max-width: 1150px) {
+  .nav__brands { gap: 12px; }
+  .nav__brands .nav__brand:first-child span { display: none; }
+}
+
+@media (max-width: 560px) {
+  .nav__brands { gap: 8px; }
+  .nav__brands .nav__brand--lp span { display: none; }
+  .nav__brands-sep { height: 22px; }
+}
+
 .nav__links {
   display: flex;
   gap: 30px;
