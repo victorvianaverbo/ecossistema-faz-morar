@@ -40,7 +40,7 @@
   width: 720px;
   height: 720px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(22, 168, 142, .28) 0%, rgba(22, 168, 142, 0) 62%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), .28) 0%, rgba(var(--accent-rgb), 0) 62%);
   pointer-events: none;
 }
 
@@ -72,8 +72,8 @@
   font-weight: 700;
   letter-spacing: .16em;
   color: var(--accent-soft);
-  background: rgba(47, 184, 160, .1);
-  border: 1px solid rgba(47, 184, 160, .32);
+  background: rgba(var(--accent-soft-rgb), .1);
+  border: 1px solid rgba(var(--accent-soft-rgb), .32);
   padding: 9px 16px;
   border-radius: 999px;
 }
@@ -87,8 +87,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 168, 142, .5); }
-  50%      { box-shadow: 0 0 0 6px rgba(22, 168, 142, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), .5); }
+  50%      { box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0); }
 }
 
 /* Assinatura Leilão & Prosa */
@@ -189,7 +189,7 @@
   border-radius: 22px;
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background: linear-gradient(150deg, #3A4042, #23282A);
+  background: linear-gradient(150deg, var(--ink-panel), var(--ink));
   box-shadow: 0 40px 80px -32px rgba(0, 0, 0, .6);
 }
 
@@ -206,10 +206,10 @@
   position: absolute;
   left: 20px;
   bottom: 20px;
-  background: rgba(35, 40, 42, .82);
+  background: rgba(var(--ink-rgb), .82);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(47, 184, 160, .4);
+  border: 1px solid rgba(var(--accent-soft-rgb), .4);
   border-radius: 14px;
   padding: 14px 20px;
 }
@@ -306,7 +306,7 @@
 
 .pillar-card {
   position: relative;
-  background: linear-gradient(165deg, rgba(47, 184, 160, .12), rgba(255, 255, 255, .03));
+  background: linear-gradient(165deg, rgba(var(--accent-soft-rgb), .12), rgba(255, 255, 255, .03));
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 18px;
   padding: 36px 32px;
@@ -329,7 +329,7 @@
 
 .pillar-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(47, 184, 160, .5);
+  border-color: rgba(var(--accent-soft-rgb), .5);
   box-shadow: 0 30px 56px -28px rgba(0, 0, 0, .7);
 }
 
@@ -398,8 +398,8 @@
 
 .learn:hover {
   transform: translateY(-3px);
-  border-color: rgba(22, 168, 142, .4);
-  box-shadow: 0 16px 32px -18px rgba(31, 36, 37, .3);
+  border-color: rgba(var(--accent-rgb), .4);
+  box-shadow: 0 16px 32px -18px rgba(var(--ink-rgb), .3);
 }
 
 .learn--wide { grid-column: 1 / -1; }
@@ -468,7 +468,7 @@
   top: 40px;
   bottom: 40px;
   width: 1px;
-  background: linear-gradient(180deg, rgba(22, 168, 142, .35), rgba(22, 168, 142, .06));
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), .35), rgba(var(--accent-rgb), .06));
 }
 
 .agenda__item {
@@ -484,7 +484,7 @@
 
 .agenda__item:hover {
   background: var(--paper);
-  box-shadow: 0 20px 44px -22px rgba(31, 36, 37, .28);
+  box-shadow: 0 20px 44px -22px rgba(var(--ink-rgb), .28);
   transform: translateX(4px);
 }
 
@@ -504,10 +504,10 @@
 }
 
 .agenda__item:hover .agenda__time {
-  background: linear-gradient(180deg, #1DB79A 0%, #16A88E 100%);
+  background: linear-gradient(180deg, var(--accent-lift) 0%, var(--accent) 100%);
   border-color: transparent;
   color: #FFFFFF;
-  box-shadow: 0 10px 22px -10px rgba(22, 168, 142, .7);
+  box-shadow: 0 10px 22px -10px rgba(var(--accent-rgb), .7);
 }
 
 .agenda__name {
@@ -534,7 +534,7 @@
   text-transform: uppercase;
   color: var(--accent-deep);
   background: var(--mint);
-  border: 1px solid rgba(22, 168, 142, .2);
+  border: 1px solid rgba(var(--accent-rgb), .2);
   padding: 8px 14px;
   border-radius: 999px;
   white-space: nowrap;
@@ -544,7 +544,7 @@
 
 .agenda__item--hi {
   background: var(--ink);
-  box-shadow: 0 30px 60px -28px rgba(31, 36, 37, .5);
+  box-shadow: 0 30px 60px -28px rgba(var(--ink-rgb), .5);
   padding-left: 24px;
 }
 
@@ -552,16 +552,16 @@
 .agenda__item--hi .agenda__desc { color: rgba(255, 255, 255, .65); }
 
 .agenda__item--hi .agenda__time {
-  background: linear-gradient(180deg, #1DB79A 0%, #16A88E 100%);
+  background: linear-gradient(180deg, var(--accent-lift) 0%, var(--accent) 100%);
   border-color: transparent;
   color: #FFFFFF;
-  box-shadow: 0 12px 26px -10px rgba(22, 168, 142, .8);
+  box-shadow: 0 12px 26px -10px rgba(var(--accent-rgb), .8);
 }
 
 .agenda__item--hi .agenda__tag {
   color: var(--accent-soft);
-  background: rgba(47, 184, 160, .12);
-  border-color: rgba(47, 184, 160, .35);
+  background: rgba(var(--accent-soft-rgb), .12);
+  border-color: rgba(var(--accent-soft-rgb), .35);
 }
 
 .agenda__item--hi:hover {
@@ -616,7 +616,7 @@
 
 .who-card {
   position: relative;
-  background: linear-gradient(165deg, rgba(47, 184, 160, .12), rgba(255, 255, 255, .03));
+  background: linear-gradient(165deg, rgba(var(--accent-soft-rgb), .12), rgba(255, 255, 255, .03));
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 18px;
   padding: 34px 30px 32px;
@@ -639,7 +639,7 @@
 
 .who-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(47, 184, 160, .5);
+  border-color: rgba(var(--accent-soft-rgb), .5);
   box-shadow: 0 30px 56px -28px rgba(0, 0, 0, .7);
 }
 
@@ -705,7 +705,7 @@
   border: 2px solid var(--accent);
   border-radius: 22px;
   padding: 44px 48px;
-  box-shadow: 0 30px 60px -30px rgba(22, 168, 142, .45);
+  box-shadow: 0 30px 60px -30px rgba(var(--accent-rgb), .45);
 }
 
 .reserve__list {
@@ -800,7 +800,7 @@
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 12px 32px;
-  box-shadow: 0 20px 44px -28px rgba(31, 36, 37, .3);
+  box-shadow: 0 20px 44px -28px rgba(var(--ink-rgb), .3);
 }
 
 .ev-place__card-row {
@@ -989,11 +989,11 @@
   .agenda__item--hi {
     padding-left: 20px;
     background: var(--ink);
-    box-shadow: 0 24px 48px -26px rgba(31, 36, 37, .55);
+    box-shadow: 0 24px 48px -26px rgba(var(--ink-rgb), .55);
   }
 
   .agenda__item--hi .agenda__time {
-    background: linear-gradient(180deg, #1DB79A 0%, #16A88E 100%);
+    background: linear-gradient(180deg, var(--accent-lift) 0%, var(--accent) 100%);
     border-color: transparent;
     color: #FFFFFF;
   }

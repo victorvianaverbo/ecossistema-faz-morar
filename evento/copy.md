@@ -68,7 +68,7 @@
 - 19h30 às 20h00: Abertura do Leilão & Prosa
 - 20h00 às 21h00: Palestra com a especialista Jacque Costa
 - 21h00 às 21h10: Sessão de perguntas e respostas
-- 21h10 às 21h40: Apresentação do Clube do Leilão Imóveis
+- 21h10 às 21h40: Apresentação da Faz Morar Imóveis
 - 21h40 às 22h00: Networking entre os participantes
 - 22h00: Encerramento
 
@@ -126,4 +126,4 @@
 ## Rodapé da página
 
 - Apoio: 3BF · AVANTIK · CONEXÃO SV
-- Realização: Jacque Leilões · Clube do Leilão Imóveis
+- Realização: Jacque Leilões · Faz Morar Imóveis

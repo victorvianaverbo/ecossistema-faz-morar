@@ -99,4 +99,4 @@
 
 ## Seção: Footer
 
-- Versão compacta com CRECI: © 2026 Clube do Leilão Imóveis · Jacqueline Costa · Especialista e Perita em Leilões · CRECI 5314 PJ · CNAI 19244
+- Versão compacta com CRECI: © 2026 Faz Morar Imóveis · Jacqueline Costa · Especialista e Perita em Leilões · CRECI 5314 PJ · CNAI 19244

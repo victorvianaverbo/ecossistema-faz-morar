@@ -1,4 +1,4 @@
-# Copy - Home (Ecossistema Clube do Leilão)
+# Copy - Home (Ecossistema Faz Morar)
 
 > Blocos globais (nav, footer, faixa de confiança, contatos, placeholders de URL): ver `/_shared/copy-global.md`
 > Fonte de design: `design-kit/project/Ecossistema/Home.dc.html`
@@ -8,7 +8,7 @@
 - Badge (link para /evento/): PRÓXIMO EVENTO AO VIVO · [DATA_EVENTO] · [CIDADE_EVENTO]
 - Headline: Conquiste seu imóvel pagando menos, com segurança jurídica.
   (destaque em itálico/cor no trecho "segurança jurídica.")
-- Subheadline: Do arremate à escritura: o ecossistema completo da Clube do Leilão reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.
+- Subheadline: Do arremate à escritura: o ecossistema completo da Faz Morar reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.
 - CTA primário: Garantir minha vaga → /evento/
 - CTA secundário: Conhecer o ecossistema → âncora para a seção Pilares
 - Visual: imagem premium (chave na mão / evento ao vivo) sobre fundo escuro, com card flutuante:
@@ -32,7 +32,7 @@
 - Link auxiliar: Ver todos os serviços → /servicos/
 
 Cards (grade 3x2, numerados):
-1. Clube do Leilão → /clube-do-leilao/
+1. Leilão & Prosa → /leilao-e-prosa/
    Arremate com mapa real e a calculadora que blinda o seu lance.
 2. Cursos e Mentorias → /cursos/
    Aprenda a arrematar do zero, com quem já fez na prática.
@@ -78,7 +78,7 @@ Card 1 (claro):
 Card 2 (verde escuro):
 - Eyebrow: MARKETPLACE
 - Título: Imóveis particulares, sem corretor.
-- Texto: Compre direto, com consultoria da Clube do Leilão e toda a parte documental cuidada por nós.
+- Texto: Compre direto, com consultoria da Faz Morar e toda a parte documental cuidada por nós.
 - CTA: Explorar imóveis → /consultoria-sem-corretor/
 
 ## Seção: Banda do evento (fundo escuro)

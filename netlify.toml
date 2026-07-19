@@ -18,10 +18,19 @@
   status = 200
   force = true
 
-# Redirect www → apex
+# Rebranding: o clube "Clube do Leilão" virou "Leilão & Prosa" (jul/2026).
+# Sem force de propósito: o diretório antigo não existe mais, então não há
+# arquivo para o redirect competir. Manter enquanto houver links antigos
+# circulando em anúncios, e-mails e no grupo do WhatsApp.
 [[redirects]]
-  from = "https://www.example.com/*"
-  to = "https://example.com/:splat"
+  from = "/clube-do-leilao/*"
+  to = "/leilao-e-prosa/:splat"
+  status = 301
+
+# Redirect www → apex (leilãoeprosa.com em punycode)
+[[redirects]]
+  from = "https://www.xn--leiloeprosa-c8a.com/*"
+  to = "https://xn--leiloeprosa-c8a.com/:splat"
   status = 301
   force = true
 

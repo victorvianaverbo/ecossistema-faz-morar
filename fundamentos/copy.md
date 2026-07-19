@@ -73,4 +73,4 @@ Aqui, o aluno não contrata serviços de terceiros. Você aprende a base prátic
 
 ## Seção: Footer
 
-- Versão compacta com CRECI: © 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ
+- Versão compacta com CRECI: © 2026 Faz Morar Imóveis · CRECI 5314 PJ

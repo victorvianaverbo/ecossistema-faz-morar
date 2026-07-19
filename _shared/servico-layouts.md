@@ -36,7 +36,7 @@ Os heros seguem as variantes A-D acima, mas as seções internas são remixadas 
 
 | # | Página | Hero | Incluído | Como funciona | CTA final |
 |---|---|---|---|---|---|
-| 01 | clube-do-leilao | A (card escuro) | grid 2x2 | escuro linha superior | card menta |
+| 01 | leilao-e-prosa | A (card escuro) | grid 2x2 | escuro linha superior | card menta |
 | 02 | cursos | B (editorial escuro) | linhas numeradas | timeline vertical | banda escura |
 | 03 | financiamento | C (card menta) | chips soltos | claro números gigantes | card menta |
 | 04 | despachante | D (fato tipográfico) | bento | escuro borda esquerda | banda menta |

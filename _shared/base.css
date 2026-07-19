@@ -1,26 +1,111 @@
 /* ============================================================
-   Clube do Leilão — Base compartilhada (páginas internas)
+   Faz Morar — Base compartilhada (páginas internas)
    Tokens: /_shared/design-tokens.md
    Variantes: /_shared/servico-layouts.md
+   Sub-marca Leilão & Prosa: /_shared/brand-leilao-prosa.css
    ============================================================ */
 
 :root {
+  --accent: #B08D57;
+  --accent-deep: #8A6B3E;
+  --accent-soft: #D4B98A;
+  --accent-lift: #C9A874;
+  --accent-sink: #96763F;
+  --accent-rgb: 176, 141, 87;
+  --accent-deep-rgb: 138, 107, 62;
+  --accent-soft-rgb: 212, 185, 138;
+  --mint: #F3EDE3;
+  --mint-line: rgba(138, 107, 62, .25);
+  /* CTA primário: charcoal com filete dourado. Fundo dourado com texto
+     branco daria 3,09:1 e reprovaria em WCAG AA. */
+  --cta-from: #3A3A3C;
+  --cta-mid: #2E2E30;
+  --cta-to: #232325;
+  --cta-hover-from: #46464B;
+  --cta-hover-to: #343437;
+  --cta-shadow-rgb: 46, 46, 48;
+  --cta-sheen: rgba(176, 141, 87, .5);
+  --cta-sheen-hover: rgba(176, 141, 87, .8);
+  --cta-shadow-near-rgb: 46, 46, 48;
+  --ink: #2E2E30;
+  --ink-lift: #3A3A3C;
+  --ink-panel: #414144;
+  --ink-rgb: 46, 46, 48;
+  /* Alphas recalibrados: #2E2E30 é mais claro que o #23282A antigo, então os
+     alphas originais baixariam o contraste de todo texto secundário. Estes
+     valores reproduzem o contraste anterior (5,96:1 / 4,33:1 / 3,06:1 / 2,69:1).
+     Os números no nome do token são os antigos — mantidos para não quebrar os
+     100+ call sites. */
+  --ink-72: rgba(46, 46, 48, .75);
+  --ink-60: rgba(46, 46, 48, .64);
+  --ink-50: rgba(46, 46, 48, .52);
+  --ink-45: rgba(46, 46, 48, .47);
+  --line: rgba(46, 46, 48, .12);
+  --paper: #FFFFFF;
+  --mist: #F6F3EE;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Figtree', sans-serif;
+  --ease: cubic-bezier(.2, .6, .2, 1);
+}
+
+/* ============================================================
+   SUB-MARCA LEILÃO & PROSA
+   Escopada por classe, nunca em :root — a home mistura as duas
+   marcas no mesmo documento (a seção .club e o card do hero são
+   da sub-marca). Custom properties herdam pela árvore, então isto
+   funciona tanto em <body> quanto numa <section> isolada.
+   Não aplicar em <html>: mesma especificidade de :root (0,1,0),
+   e aí quem vence passa a depender da ordem no arquivo.
+   Os valores são os originais do site, para que /evento/,
+   /comunidade/ e /livro/ fiquem pixel-idênticas ao aprovado.
+   ============================================================ */
+
+.brand-lp {
   --accent: #16A88E;
   --accent-deep: #0E7A67;
   --accent-soft: #2FB8A0;
+  --accent-lift: #1DB79A;
+  --accent-sink: #0F9A83;
+  --accent-rgb: 22, 168, 142;
+  --accent-deep-rgb: 14, 122, 103;
+  --accent-soft-rgb: 47, 184, 160;
   --mint: #E7F4F0;
+  --mint-line: rgba(22, 168, 142, .25);
+  --cta-from: #1DB79A;
+  --cta-mid: #16A88E;
+  --cta-to: #0F9A83;
+  --cta-hover-from: #16A88E;
+  --cta-hover-to: #0E7A67;
+  --cta-shadow-rgb: 22, 168, 142;
+  --cta-shadow-near-rgb: 11, 90, 76;
+  --cta-sheen: rgba(255, 255, 255, .24);
+  --cta-sheen-hover: rgba(255, 255, 255, .18);
   --ink: #23282A;
+  --ink-lift: #2C3234;
+  --ink-panel: #3A4042;
+  --ink-rgb: 35, 40, 42;
   --ink-72: rgba(35, 40, 42, .72);
   --ink-60: rgba(35, 40, 42, .62);
   --ink-50: rgba(35, 40, 42, .5);
   --ink-45: rgba(35, 40, 42, .45);
   --line: rgba(31, 36, 37, .1);
-  --paper: #FFFFFF;
   --mist: #F5F6F6;
-  --serif: 'DM Serif Display', serif;
-  --sans: 'Figtree', sans-serif;
-  --ease: cubic-bezier(.2, .6, .2, 1);
 }
+
+/* ============ MONOGRAMA FAZ MORAR ============ */
+
+/* Dois nós para que quadrado e glifo sejam recoloridos separadamente.
+   Cor via CSS, nunca fill="var()" como atributo — inconsistente entre engines. */
+.mono__bg { fill: var(--mono-bg, #2E2E30); }
+.mono__fg { fill: var(--mono-fg, #FFFFFF); }
+
+/* Sobre fundo escuro o quadrado charcoal sumiria: inverte. */
+.on-dark .mono { --mono-bg: #FFFFFF; --mono-fg: #2E2E30; }
+
+/* Marca d'água: só o glifo, sem o quadrado. Um quadrado sólido a 7% de
+   opacidade vira mancha sem forma — o contorno é que carrega a marca. */
+.mono--mark .mono__bg { display: none; }
+.mono--mark .mono__fg { fill: var(--mono-mark, var(--accent)); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -131,20 +216,20 @@ img, svg { display: block; max-width: 100%; }
 
 .nav__cta {
   padding: 11px 20px;
-  background: linear-gradient(180deg, #2C3234 0%, #23282A 100%);
+  background: linear-gradient(180deg, var(--ink-lift) 0%, var(--ink) 100%);
   color: #FFFFFF;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: .01em;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 6px 16px -8px rgba(35, 40, 42, .5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 6px 16px -8px rgba(var(--ink-rgb), .5);
   transition: background .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
 }
 
 .nav__cta:hover {
-  background: linear-gradient(180deg, #128F79 0%, var(--accent-deep) 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 10px 20px -8px rgba(14, 122, 103, .5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 10px 20px -8px rgba(var(--accent-deep-rgb), .5);
 }
 
 /* ============ BREADCRUMB ============ */
@@ -178,35 +263,35 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .btn--primary {
-  background: linear-gradient(180deg, #1DB79A 0%, #16A88E 52%, #0F9A83 100%);
+  background: linear-gradient(180deg, var(--cta-from) 0%, var(--cta-mid) 52%, var(--cta-to) 100%);
   color: #FFFFFF;
   padding: 16px 32px;
   font-weight: 600;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 1px 2px rgba(11, 90, 76, .25), 0 12px 26px -12px rgba(22, 168, 142, .6);
+  box-shadow: inset 0 1px 0 var(--cta-sheen), 0 1px 2px rgba(var(--cta-shadow-near-rgb), .25), 0 12px 26px -12px rgba(var(--cta-shadow-rgb), .6);
 }
 
 .btn--primary:hover {
-  background: linear-gradient(180deg, #16A88E 0%, #0E7A67 100%);
+  background: linear-gradient(180deg, var(--cta-hover-from) 0%, var(--cta-hover-to) 100%);
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 2px 4px rgba(11, 90, 76, .22), 0 16px 32px -12px rgba(14, 122, 103, .55);
+  box-shadow: inset 0 1px 0 var(--cta-sheen-hover), 0 2px 4px rgba(var(--cta-shadow-near-rgb), .22), 0 16px 32px -12px rgba(var(--cta-shadow-rgb), .55);
 }
 
 .btn--primary:active {
   transform: translateY(0);
-  box-shadow: inset 0 2px 4px rgba(11, 90, 76, .25);
+  box-shadow: inset 0 2px 4px rgba(var(--cta-shadow-near-rgb), .25);
 }
 
 .btn--ghost {
   padding: 16px 30px;
-  border: 1px solid rgba(35, 40, 42, .16);
+  border: 1px solid rgba(var(--ink-rgb),.16);
   font-weight: 600;
   color: var(--ink);
   background: transparent;
 }
 
 .btn--ghost:hover {
-  border-color: rgba(35, 40, 42, .45);
-  background: rgba(35, 40, 42, .04);
+  border-color: rgba(var(--ink-rgb),.45);
+  background: rgba(var(--ink-rgb),.04);
   transform: translateY(-1px);
 }
 
@@ -370,7 +455,7 @@ img, svg { display: block; max-width: 100%; }
 
 .fact-card--mint {
   background: var(--mint);
-  border: 1px solid rgba(22, 168, 142, .25);
+  border: 1px solid var(--mint-line);
   border-radius: 20px;
   padding: 44px;
   color: var(--accent-deep);
@@ -378,13 +463,13 @@ img, svg { display: block; max-width: 100%; }
   overflow: hidden;
 }
 
-.fact-card--mint .fact-card__mark svg path { stroke: #16A88E; }
+.fact-card--mint .fact-card__mark svg path { fill: var(--accent); }
 
 .fact-card--mint .fact-card__label { color: var(--accent-deep); opacity: .75; }
 
 .fact-card--mint .fact-card__value { color: var(--accent-deep); }
 
-.fact-card--mint .fact-card__note { color: rgba(14, 122, 103, .8); }
+.fact-card--mint .fact-card__note { color: rgba(var(--accent-deep-rgb), .8); }
 
 /* Variante D — fato tipográfico gigante */
 
@@ -550,12 +635,12 @@ img, svg { display: block; max-width: 100%; }
 
 .inc--bento .inc__item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(31, 36, 37, .08);
+  box-shadow: 0 14px 28px rgba(var(--ink-rgb),.08);
 }
 
 .inc--bento .inc__item--hi {
   background: var(--mint);
-  border-color: rgba(22, 168, 142, .25);
+  border-color: var(--mint-line);
 }
 
 .inc--bento .inc__item--hi .inc__item-title { color: var(--accent-deep); }
@@ -656,7 +741,7 @@ img, svg { display: block; max-width: 100%; }
   top: 8px;
   bottom: -8px;
   width: 2px;
-  background: rgba(22, 168, 142, .25);
+  background: var(--mint-line);
 }
 
 .how--timeline .how__step:last-child { padding-bottom: 0; }
@@ -734,7 +819,7 @@ img, svg { display: block; max-width: 100%; }
 
 .cta__box {
   background: var(--mint);
-  border: 1px solid rgba(22, 168, 142, .25);
+  border: 1px solid var(--mint-line);
   border-radius: 18px;
   padding: 36px;
 }
@@ -819,7 +904,7 @@ img, svg { display: block; max-width: 100%; }
   border-radius: 22px;
   padding: 52px;
   background: var(--mint);
-  border: 1px solid rgba(22, 168, 142, .25);
+  border: 1px solid var(--mint-line);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -829,7 +914,7 @@ img, svg { display: block; max-width: 100%; }
 
 .cta--mint .cta__title { color: var(--accent-deep); }
 
-.cta--mint .cta__note { color: rgba(35, 40, 42, .65); margin-top: 12px; }
+.cta--mint .cta__note { color: rgba(var(--ink-rgb),.65); margin-top: 12px; }
 
 /* ============ FOOTER COMPACTO ============ */
 
@@ -875,8 +960,8 @@ img, svg { display: block; max-width: 100%; }
   height: 56px;
   margin: 0 auto;
   border-radius: 999px;
-  background: rgba(47, 184, 160, .15);
-  border: 1px solid rgba(47, 184, 160, .4);
+  background: rgba(var(--accent-soft-rgb),.15);
+  border: 1px solid rgba(var(--accent-soft-rgb),.4);
   color: var(--accent-soft);
   display: flex;
   align-items: center;
