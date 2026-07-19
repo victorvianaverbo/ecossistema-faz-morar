@@ -33,8 +33,12 @@ function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   var d = e.parameter;
 
+  // O fuso padrao do Apps Script e o do Pacifico. Formatamos em horario de
+  // Brasilia para o registro bater com a realidade.
+  var agora = Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm:ss');
+
   sheet.appendRow([
-    new Date(),
+    agora,
     d.nome || '',
     d.email || '',
     d.telefone || '',
@@ -55,6 +59,10 @@ function doPost(e) {
 ```
 
 Salve (ícone do disquete).
+
+Recomendado tambem: alinhar os fusos para que filtros e formulas por data funcionem.
+- Apps Script: engrenagem (Configuracoes do projeto) > Fuso horario > (GMT-03:00) Sao Paulo
+- Planilha: Arquivo > Configuracoes > Fuso horario > (GMT-03:00) Sao Paulo
 
 ## Passo 2: publicar
 
