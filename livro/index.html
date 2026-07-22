@@ -46,10 +46,21 @@
         <a href="/servicos/">Serviços</a>
       </nav>
       <div class="nav__actions">
-        <!-- TODO: trocar wa.me por [URL_MEMBERKIT_LOGIN] e [URL_MEMBERKIT_AREA] quando definidos -->
-        <a href="https://wa.me/5531996951660" class="nav__login">Entrar</a>
-        <a href="https://wa.me/5531996951660" class="nav__cta">Área de membros</a>
+        <a href="https://leilaoeprosa.membroclub.com.br" class="nav__login">Login</a>
+        <a href="https://leilaoeprosa.membroclub.com.br" class="nav__cta">Entrar no Leilão &amp; Prosa</a>
+        <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+        </button>
       </div>
+    </div>
+
+    <div class="nav__drawer" id="nav-drawer" hidden>
+      <a href="/leilao-e-prosa/">Leilões</a>
+      <a href="/cursos/">Cursos</a>
+      <a href="/financiamento/">Financiamento</a>
+      <a href="/servicos/">Serviços</a>
+      <a href="https://leilaoeprosa.membroclub.com.br" class="nav__drawer-cta">Entrar no Leilão &amp; Prosa</a>
     </div>
   </header>
 
@@ -267,16 +278,50 @@
   </main>
 
   <footer class="footer-c">
-    <div class="footer-c__inner">
-      <div class="footer-c__brand">
+    <div class="footer-c__nav">
+      <nav class="footer-c__col" aria-label="Leilão e Prosa">
+        <div class="footer-c__col-title">Leilão &amp; Prosa</div>
+        <a href="/leilao-e-prosa/">O Clube</a>
+        <a href="/planos/">Planos</a>
+        <a href="/calculadora/">Calculadora do Leilão</a>
+        <a href="/comunidade/">Comunidade (grátis)</a>
+        <a href="/evento/">Evento presencial</a>
+      </nav>
+      <nav class="footer-c__col" aria-label="Aprender">
+        <div class="footer-c__col-title">Aprender</div>
+        <a href="/cursos/">Todos os cursos</a>
+        <a href="/fundamentos/">Fundamentos dos Leilões</a>
+        <a href="/curso-roi/">Antes do Lance (ROI)</a>
+        <a href="/livro/">Livro Leilão &amp; Prosa</a>
+        <a href="/dossie-financiamento/">Dossiê do Financiamento</a>
+      </nav>
+      <nav class="footer-c__col" aria-label="Comprar e financiar">
+        <div class="footer-c__col-title">Comprar e financiar</div>
+        <a href="/servicos/">Todos os serviços</a>
+        <a href="/financiamento/">Financiamento</a>
+        <a href="/assessoria-habitacional/">Assessoria habitacional</a>
+        <a href="/corretagem/">Corretagem</a>
+        <a href="/consultoria-sem-corretor/">Comprar sem corretor</a>
+      </nav>
+      <nav class="footer-c__col" aria-label="Depois do arremate">
+        <div class="footer-c__col-title">Depois do arremate</div>
+        <a href="/despachante/">Despachante</a>
+        <a href="/consultoria/">Consultoria 1:1</a>
+        <a href="/consorcio/">Consórcio Caixa</a>
+        <a href="/seguros/">Seguros</a>
+        <a href="/conta-caixa/">Conta Caixa</a>
+      </nav>
+    </div>    <div class="footer-c__inner">
+      <a href="/" class="footer-c__brand">
         <svg class="mono" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><path class="mono__bg" fill="#2E2E30" d="M0 0h100v100H0z"/><path class="mono__fg" fill="#FFFFFF" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
         <span>Faz Morar</span>
-      </div>
+      </a>
       <div class="footer-c__legal">© 2026 Faz Morar Imóveis · CRECI 5314 PJ · Belo Horizonte · MG · <a href="https://wa.me/5531996951660">WhatsApp (31) 99695-1660</a></div>
     </div>
   </footer>
 
   <script src="/_shared/reveal.js?v=20260719b" defer></script>
+  <script src="/_shared/nav.js?v=20260719b" defer></script>
   <script src="/_shared/forms.js?v=20260719b" defer></script>
 </body>
 </html>

@@ -986,6 +986,193 @@ img, svg { display: block; max-width: 100%; }
 
 .footer-c__legal a:hover { color: var(--accent-deep); }
 
+/* ============ MENU MOBILE ============ */
+
+/* Abaixo de 1024px a .nav__links some. Sem este bloco o site fica sem
+   navegação alguma no celular — só o logo e o WhatsApp. */
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  flex: none;
+}
+
+.nav__toggle-bar {
+  display: block;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .25s var(--ease);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
+
+.nav__drawer {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 40px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .22s var(--ease), transform .22s var(--ease);
+}
+
+/* Vence a regra de display acima — o drawer nasce fora da árvore. */
+.nav__drawer[hidden] { display: none; }
+
+.nav__drawer.is-open { opacity: 1; transform: none; }
+
+.nav__drawer a {
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-72);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__drawer a:last-child { border-bottom: 0; }
+
+.nav__drawer .nav__drawer-cta {
+  margin-top: 16px;
+  padding: 14px 20px;
+  text-align: center;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--ink-lift) 0%, var(--ink) 100%);
+  color: #FFFFFF;
+  border-bottom: 0;
+  box-shadow: inset 0 1px 0 var(--cta-sheen);
+}
+
+body.nav-open { overflow: hidden; }
+
+@media (max-width: 1024px) {
+  .nav__toggle { display: flex; }
+}
+
+@media (max-width: 640px) {
+  .nav__drawer { padding: 4px 24px 20px; }
+}
+
+/* ============ NAVEGAÇÃO DO RODAPÉ ============ */
+
+/* Cobre as 20 páginas internas (a home entra pelo brand). Junto com o menu
+   mobile, é o que tira 11 páginas da dependência de uma única fonte. */
+
+.footer-c__nav {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 40px 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer-c__col {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--ink-60);
+}
+
+.footer-c__col-title {
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.footer-c__col a {
+  position: relative;
+  align-self: flex-start;
+  line-height: 2.05;
+  transition: color .25s var(--ease);
+}
+
+.footer-c__col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--ease);
+}
+
+.footer-c__col a:hover { color: var(--accent-deep); }
+.footer-c__col a:hover::after { transform: scaleX(1); }
+
+/* Com a grade acima, a linha marca+legal passa a ser a base do rodapé. */
+.footer-c__nav + .footer-c__inner {
+  padding-top: 26px;
+  border-top: 1px solid rgba(var(--ink-rgb), .08);
+}
+
+/* Variante enxuta do /evento/: é LP de tráfego pago, então o rodapé serve
+   de saída para quem rolou até o fim sem se inscrever, não de menu. */
+.footer-c__thin {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-50);
+}
+
+.footer-c__thin a { transition: color .25s var(--ease); }
+.footer-c__thin a:hover { color: var(--accent-deep); }
+
+.footer-c--lean .footer-c__inner { padding-bottom: 22px; }
+
+/* ============ ITENS DE LISTA QUE VIRAM LINK ============ */
+
+/* Onde não existe página de destino, o item continua <div> e sem
+   afordância. A diferença visível é o que separa "não é link" de
+   "link quebrado". */
+
+.inc__item--link .inc__item-title { transition: color .25s var(--ease); }
+.inc__item--link:hover .inc__item-title { color: var(--accent-deep); }
+
+.inc__go {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-deep);
+  margin-top: 12px;
+  transition: transform .25s var(--ease);
+}
+
+.inc__item--link:hover .inc__go { transform: translateX(4px); }
+
+/* Na variante rows a seta vai dentro do <h3>: a grade tem 3 colunas e um
+   4º filho cairia numa coluna implícita. */
+.inc--rows .inc__item-title .inc__go { margin-top: 0; margin-left: 8px; }
+
+/* .inc--grid .inc__list tem overflow:hidden para arredondar os cantos, e
+   um outline com offset positivo seria cortado nas bordas. */
+.inc--grid .inc__item--link:focus-visible { outline-offset: -3px; }
+
+.inc--grid .inc__item--link:hover { background: rgba(var(--accent-rgb), .04); }
+
+/* O check já é --mint e sumiria contra o tint do hover. */
+.inc--grid .inc__item--link:hover .inc__check { background: var(--paper); }
+
+
 /* ============ SUCESSO DE FORMULÁRIO (seções escuras) ============ */
 
 .form-success {
