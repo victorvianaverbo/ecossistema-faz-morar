@@ -4,10 +4,28 @@ Cada inscrição vira uma linha na planilha, na hora, com nome, e-mail, WhatsApp
 
 ## Planilha
 
-**Leads Leilão e Prosa | 28/07**
+**Leads Leilão e Prosa**
 https://docs.google.com/spreadsheets/d/1MPa3yfvFr3v6B5P_tYh6cflh-iRX1LAhhnJGUxZ30MY/edit
 
-Colunas: Data · Nome · E-mail · WhatsApp · utm_source · utm_medium · utm_campaign · utm_content · utm_term · fbclid · Origem · Referrer
+Colunas: Data · Nome · E-mail · WhatsApp · **Evento** · **Modalidade** · utm_source · utm_medium · utm_campaign · utm_content · utm_term · fbclid · Origem · Referrer
+
+## PENDENTE: duas colunas novas na edição de 25/08
+
+A LP do evento passou a enviar dois campos que a versão anterior não tinha:
+
+| Campo | Valores | Para que serve |
+|---|---|---|
+| `evento` | `2026-08-25` | Separar as edições. A URL continua sendo `/evento/`, então a coluna `Origem` (que grava `d.pagina`) não distingue julho de agosto |
+| `modalidade` | `presencial` ou `online` | Saber qual ingresso o lead quer. Quem escolhe online costuma morar fora de BH e responde a criativo diferente |
+
+**O script abaixo já está atualizado, mas o que está publicado no Apps Script ainda
+não.** Enquanto ele não for atualizado, os dois campos chegam na requisição e são
+descartados no `appendRow`, que tem lista fixa de colunas.
+
+Para corrigir: abrir a planilha, ir em **Extensões > Apps Script**, colar o código
+abaixo, salvar, e publicar com **Gerenciar implantações > lápis > Versão: Nova
+versão** (nunca "Nova implantação", que troca a URL). Antes disso, acrescentar os
+dois cabeçalhos novos na planilha, na ordem em que aparecem no `appendRow`.
 
 ## Endpoint em uso (testado e gravando)
 
@@ -42,6 +60,10 @@ function doPost(e) {
     d.nome || '',
     d.email || '',
     d.telefone || '',
+    // Edicao do evento e ingresso escolhido. Sem estas duas, os leads de agosto
+    // se misturam com os de julho e nao da para saber quem quer a transmissao.
+    d.evento || '',
+    d.modalidade || '',
     d.utm_source || '',
     d.utm_medium || '',
     d.utm_campaign || '',
