@@ -1,13 +1,14 @@
 // Específico da LP do evento. Duas funções, e nenhuma delas mexe em
-// /_shared/modal.js, que é usado por outras 15 páginas.
+// /_shared/modal.js, que é usado por outras 19 páginas.
 //
-// 1. Modalidade do ingresso: cada CTA carrega data-modalidade="presencial|online".
+// 1. Modalidade do ingresso: cada botão carrega data-modalidade="presencial|online".
 //    Ao abrir o modal, o valor vai para o campo escondido que o forms.js envia
 //    junto para a planilha. Sem isso não dá para saber se o lead queria a cadeira
-//    ou a transmissão, que é justamente o que separa o público de BH do resto.
+//    ou a transmissão, que é o que separa o público de BH do resto do país.
 //
-// 2. Barra fixa no mobile: aparece depois que o visitante passa do mecanismo,
-//    porque antes disso ele ainda não tem motivo para comprar.
+// 2. Barra fixa no mobile: aparece depois que o visitante passa do bloco que
+//    explica de onde vem o desconto, e some enquanto a seção de ingressos está
+//    na tela, para não tapar os cards que ele foi ler.
 
 (function () {
   var TEXTOS = {
@@ -17,7 +18,7 @@
     },
     online: {
       titulo: 'Garanta seu acesso ao vivo',
-      texto: 'Preencha seus dados e siga para a compra do ingresso online do Leilão & Prosa, dia 25 de agosto, transmitido ao vivo.'
+      texto: 'Preencha seus dados e siga para a compra do acesso à transmissão ao vivo do Leilão & Prosa, dia 25 de agosto.'
     }
   };
 
@@ -37,25 +38,41 @@
       });
     }
 
-    // A barra só existe para o polegar: no desktop os CTAs da página já bastam.
+    // A barra só existe para o polegar: no desktop os pares de botões da página
+    // já aparecem quatro vezes ao longo do scroll.
     var barra = document.getElementById('ev-bar');
-    var gatilho = document.querySelector('.ev-math');
+    var gatilho = document.getElementById('cta-duplo-1');
     var oferta = document.getElementById('ingressos');
+    var fecho = document.getElementById('inscricao');
     if (!barra || !gatilho) return;
-    if (!window.matchMedia('(max-width: 860px)').matches) return;
 
-    // Duas condições, medidas na mesma passada. Com dois IntersectionObserver
-    // separados eles se sobrescreviam e a barra continuava por cima dos cards
-    // de ingresso, que é justamente o que ela não pode tapar.
+    var ativa = window.matchMedia('(max-width: 860px)');
+
+    // As duas condições medidas na mesma passada. Com IntersectionObserver
+    // separados eles se sobrescreviam e a barra ficava por cima dos cards.
     function atualizar() {
-      var altura = window.innerHeight;
-      var passouDoMecanismo = gatilho.getBoundingClientRect().top < altura * 0.5;
-      var naOferta = false;
-      if (oferta) {
-        var o = oferta.getBoundingClientRect();
-        naOferta = o.top < altura && o.bottom > 0;
+      if (!ativa.matches) {
+        barra.classList.remove('is-up');
+        barra.setAttribute('inert', '');
+        return;
       }
-      barra.hidden = !passouDoMecanismo || naOferta;
+      var altura = window.innerHeight;
+      var passou = gatilho.getBoundingClientRect().top < altura * 0.6;
+      var tapando = [oferta, fecho].some(function (secao) {
+        if (!secao) return false;
+        var c = secao.getBoundingClientRect();
+        return c.top < altura && c.bottom > 0;
+      });
+
+      if (passou && !tapando) {
+        barra.classList.add('is-up');
+        barra.removeAttribute('inert');
+      } else {
+        barra.classList.remove('is-up');
+        // inert tira os botões escondidos da ordem de tabulação e do leitor de
+        // tela: barra invisível não pode receber foco.
+        barra.setAttribute('inert', '');
+      }
     }
 
     window.addEventListener('scroll', atualizar, { passive: true });

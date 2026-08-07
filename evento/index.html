@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leilão &amp; Prosa · 25/08 em BH ou ao vivo | Jacque Costa</title>
-  <meta name="description" content="No dia 25 de agosto Jacque Costa abre a conta de um arremate de imóvel, linha por linha. Presencial em Belo Horizonte, 19h, ou ao vivo pela internet.">
+  <title>Nunca deu um lance? Leilão &amp; Prosa · 25/08, BH ou ao vivo</title>
+  <meta name="description" content="Nunca deu um lance? Dia 25 eu abro a conta inteira de uma compra de imóvel em leilão e explico cada palavra difícil na hora. Em BH ou ao vivo, 19h.">
+
+  <!--
+    ROTINA DE VIRADA DE LOTE (o preço está dentro dos botões).
+      12/08 -> trocar 157 por 187 e 67 por 87
+      21/08 -> trocar 187 por 217 e 87 por 97
+    Trocar junto: microcopy do hero, cards da oferta, a linha destacada da tabela
+    de lotes (.ev-table__now) e as datas "até 11 de agosto".
+    Sem essa rotina a página vende preço vencido.
+  -->
 
   <!-- Meta Pixel Code -->
   <script>
@@ -24,7 +33,7 @@
   <!-- End Meta Pixel Code -->
 
   <meta property="og:title" content="Quem não entende o jogo não arremata. Assiste.">
-  <meta property="og:description" content="Uma noite com Jacque Costa sobre leilão de imóvel: edital real projetado e planilha de custo aberta. 25 de agosto, 19h, em BH ou ao vivo.">
+  <meta property="og:description" content="Uma noite comigo sobre comprar imóvel em leilão, começando do começo. Edital de verdade na tela e a conta aberta. 25 de agosto, 19h, em BH ou ao vivo.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://connect.facebook.net">
@@ -37,17 +46,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/figtree-400-700.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/dm-serif-display-400.woff2" crossorigin>
-  <link rel="stylesheet" href="/_shared/fonts.css?v=20260804a">
-
-  <!-- No desktop a foto está na primeira dobra (é o LCP): pré-carrega.
-       No mobile ela fica abaixo da dobra, então não compete por banda. -->
-  <link rel="preload" as="image" media="(min-width: 1025px)"
-        href="/.netlify/images?url=/images/jacque-leilao.png&amp;w=900&amp;q=80"
-        fetchpriority="high">
-  <link rel="stylesheet" href="/_shared/reveal.css?v=20260804a">
-  <link rel="stylesheet" href="/_shared/base.css?v=20260804a">
-  <link rel="stylesheet" href="/_shared/sales.css?v=20260804a">
-  <link rel="stylesheet" href="/evento/style.css?v=20260804a">
+  <link rel="stylesheet" href="/_shared/fonts.css?v=20260805a">
+  <!-- Sem preload de imagem: o hero não tem foto, e o LCP passa a ser o H1,
+       servido por fonte que já vem pré-carregada acima. -->
+  <link rel="stylesheet" href="/_shared/reveal.css?v=20260805a">
+  <link rel="stylesheet" href="/_shared/base.css?v=20260805a">
+  <link rel="stylesheet" href="/_shared/sales.css?v=20260805a">
+  <link rel="stylesheet" href="/evento/style.css?v=20260805a">
 </head>
 <body class="brand-lp">
 
@@ -68,288 +73,270 @@
         </a>
       </div>
       <div class="nav__actions">
-        <button type="button" class="nav__cta" data-modal-open="modal-evento" data-modalidade="presencial">Garantir ingresso</button>
+        <!-- Rola até a oferta em vez de abrir o modal: mandar alguém para o
+             formulário antes de saber o preço é o gesto de LP de tráfego que
+             esta versão está desfazendo. -->
+        <a href="#ingressos" class="nav__cta">Ingressos</a>
       </div>
     </div>
   </header>
 
   <main>
 
-    <!-- ============ HERO ============ -->
+    <!-- ============ 1. HERO (centralizado, sem foto) ============ -->
     <section class="ev-hero">
       <div class="ev-hero__glow" aria-hidden="true"></div>
-      <div class="ev-hero__inner">
-        <div class="ev-hero__top">
-          <span class="ev-hero__badge">
-            <span class="ev-hero__badge-dot" aria-hidden="true"></span>
-            TERÇA, 25 DE AGOSTO · 19H · EM BH OU AO VIVO
-          </span>
+      <div class="ev-hero__inner on-ink">
+        <p class="ev-hero__kicker">Terça, 25 de agosto de 2026 · Belo Horizonte ou ao vivo</p>
 
-          <div class="ev-logo">
-            <svg class="ev-logo__mark" width="88" height="95" viewBox="0 0 100 108" aria-hidden="true">
-              <path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="#FFFFFF"/>
-              <path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="9" stroke-linecap="square"/>
-            </svg>
-            <div class="ev-logo__type">
-              <h1 class="ev-logo__word">Leilão <span>&amp;</span> Prosa</h1>
-              <div class="ev-logo__tag">EDIÇÃO 25 DE AGOSTO · BH E ONLINE</div>
-            </div>
-          </div>
-
-          <p class="ev-hero__lede"><strong>42% abaixo da avaliação.</strong> Esse é o desconto médio dos arremates que a Jacque Costa conduz.<a class="ev-ref" href="#metodologia" aria-label="Ver metodologia dos 42%">*</a></p>
+        <div class="ev-logo">
+          <svg class="ev-logo__mark" width="64" height="69" viewBox="0 0 100 108" aria-hidden="true">
+            <path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="#FFFFFF"/>
+            <path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="9" stroke-linecap="square"/>
+          </svg>
+          <span class="ev-logo__word">Leilão <span>&amp;</span> Prosa</span>
         </div>
 
-        <div class="ev-hero__media">
-          <img src="/.netlify/images?url=/images/jacque-leilao.png&amp;w=560&amp;q=75"
-               srcset="/.netlify/images?url=/images/jacque-leilao.png&amp;w=480&amp;q=75 480w,
-                       /.netlify/images?url=/images/jacque-leilao.png&amp;w=720&amp;q=78 720w,
-                       /.netlify/images?url=/images/jacque-leilao.png&amp;w=900&amp;q=80 900w"
-               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 460px, 44vw"
-               alt="Jacque Costa, especialista em leilões de imóveis, conduz o Leilão e Prosa"
-               width="900" height="1125" loading="eager" decoding="async">
-          <div class="ev-hero__seal">
-            <div class="ev-hero__seal-value">+15 anos</div>
-            <div class="ev-hero__seal-label">NO MERCADO DE LEILÕES</div>
-          </div>
+        <h1 class="ev-hero__title">Dá para comprar apartamento em leilão bem abaixo do preço da rua. Dia 25 eu abro essa conta na sua frente.</h1>
+
+        <p class="ev-hero__sub">Eu montei essa noite para quem nunca deu um lance na vida. Nas compras que eu já fechei em leilão, o lance vencedor ficou 42% abaixo do valor de avaliação do imóvel, em média.<a class="ev-ref" href="#metodologia" aria-label="Ver a metodologia dos 42%">*</a> A conta que vem depois do lance eu abro também, porque é ela que decide se o negócio prestou.</p>
+
+        <div class="ev-duo">
+          <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Quero minha cadeira em Belo Horizonte · R$ 157</button>
+          <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Quero meu acesso à transmissão ao vivo · R$ 67</button>
         </div>
 
-        <div class="ev-hero__rest">
-          <p class="ev-hero__sub">No dia 25 ela abre a conta de um arremate na frente de você, linha por linha, do lance até o custo que só aparece depois. Quem explica é perita judicial e despachante credenciada da Caixa desde 2007.</p>
-
-          <div class="ev-hero__actions">
-            <button type="button" class="btn btn--primary" data-modal-open="modal-evento" data-modalidade="presencial">Quero minha cadeira em BH · R$ 157 no lote 1</button>
-          </div>
-          <p class="ev-hero__alt">
-            <button type="button" class="linkish" data-modal-open="modal-evento" data-modalidade="online">Não estou em BH. Quero assistir ao vivo por R$ 67</button>
-          </p>
-          <p class="ev-hero__note">Checkout pela Sympla, em até 12x, com valores e taxa exibidos lá. As cadeiras são limitadas pela capacidade da sala e o lote 1 vira dia 11 de agosto. O ingresso online não tem limite de lugares.</p>
-
-          <div class="ev-hero__info">
-            <div class="ev-info">
-              <div class="ev-info__label">DATA</div>
-              <div class="ev-info__value">25 de agosto</div>
-            </div>
-            <div class="ev-info">
-              <div class="ev-info__label">HORÁRIO</div>
-              <div class="ev-info__value">19h às 22h</div>
-            </div>
-            <div class="ev-info">
-              <div class="ev-info__label">ONDE</div>
-              <div class="ev-info__value">Okay Hub ou online</div>
-            </div>
-          </div>
-        </div>
+        <p class="ev-hero__micro">Compra pela Sympla, em até 12x, com valores e taxa exibidos no checkout. Esses preços valem até 11 de agosto. Na sala, das 19h às 22h, com lugar limitado pela capacidade do espaço. A transmissão ao vivo vai das 19h30 às 21h40 e não tem limite de lugares.</p>
       </div>
     </section>
 
-    <!-- ============ FAIXA DE CREDIBILIDADE ============ -->
+    <!-- ============ 2. FAIXA DE CREDIBILIDADE ============ -->
     <section class="ev-cred">
       <div class="ev-cred__inner">
-        <span>Perita judicial</span>
+        <span>Perita judicial em imóveis</span>
         <span>Credenciada da Caixa desde 2007</span>
-        <span>+2.400 alunos nas formações dela</span>
+        <span>+2.400 alunos nas minhas formações</span>
         <span>5,0 no Google em 39 avaliações</span>
       </div>
     </section>
 
-    <!-- Nota do 42% logo abaixo do hero, visível. Esconder no rodapé seria
-         justamente o que transforma um número honesto em promessa duvidosa. -->
+    <!-- A nota dos 42% fica logo abaixo do hero, e não escondida no rodapé:
+         é o que separa um número honesto de uma promessa que não se sustenta. -->
     <section class="ev-fine">
-      <p class="ev-fine__text">
-        Os 42% são a média dos arremates que a Jacque conduziu, medida entre a avaliação constante do laudo e o lance vencedor. O número mede o trabalho dela até aqui. O seu resultado depende do seu edital, da disputa do dia e dos custos que entram depois do lance. <a href="#metodologia">Metodologia completa no rodapé</a>.
-      </p>
+      <div class="ev-fine__inner">
+        <p class="ev-fine__text">
+          <strong>*</strong> Os 42% são a média das compras que eu já fechei em leilão, medida entre o valor de avaliação do imóvel e o lance que venceu. Valor de avaliação é o preço que um técnico atribuiu àquele imóvel dentro do processo, e ele quase nunca é igual ao preço do anúncio de imobiliária. Fechar uma compra dessas é o que o mercado chama de arrematar. Esse número mede o meu trabalho até aqui. O seu resultado depende do leilão que você escolher, de quem disputar com você naquele dia, do estado do imóvel e dos custos que entram depois do lance. <a href="#metodologia">Metodologia completa no rodapé desta página</a>.
+        </p>
+      </div>
     </section>
 
-    <!-- ============ A DOR ============ -->
+    <!-- ============ 3. A DOR ============ -->
     <section class="ev-pain">
       <div class="ev-pain__inner">
-        <div data-aos="fade-up">
-          <div class="eyebrow">O CUSTO DE CONTINUAR PARADO</div>
-          <h2 class="ev-pain__title">Você já chegou perto. Aí abriu o edital.</h2>
-          <p class="ev-pain__text">Tinha 58 páginas. A matrícula vinha com seis averbações escritas em letra de cartório. No meio do documento, um parágrafo dizia que o imóvel estava ocupado e que a desocupação corria por conta do arrematante. Você leu duas vezes, não entendeu direito, e fechou a aba.</p>
-          <p class="ev-pain__text">Três semanas depois aquele apartamento foi arrematado por um valor bem abaixo do que o prédio pede no portal. Quem levou tinha lido as mesmas 58 páginas que te fizeram desistir.</p>
-          <p class="ev-pain__text">Dinheiro você tinha. O que faltou foi alguém te sentar na frente de um edital e mostrar onde olhar.</p>
-          <p class="ev-pain__text">E vale igual para os dois lados do balcão. Quem investe olha aquela diferença e pensa em revenda ou em aluguel. Quem quer a casa própria olha a mesma diferença e vê metro quadrado a mais, ou o bairro que estava fora do orçamento. A conta que se faz antes do lance é a mesma.</p>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">O QUE TRAVA QUASE TODO MUNDO</p>
+            <h2 class="ev-h2">Eu já ouvi essa história umas quinhentas vezes</h2>
+            <div class="ev-read">
+              <p class="ev-p">Você viu um apartamento em leilão por um valor que parecia erro de digitação. Clicou. Abriu um arquivo de 58 páginas escrito em língua de cartório. Leu duas telas e fechou a aba.</p>
+              <p class="ev-p">Três semanas depois esse apartamento foi vendido no leilão, e o preço final ficou perto daquele valor que tinha te assustado de tão baixo. Quem levou leu exatamente o mesmo arquivo que te fez desistir.</p>
+              <p class="ev-p">Dinheiro você tinha, ou tinha como financiar. Faltou alguém sentar do seu lado e apontar onde olhar.</p>
+              <p class="ev-p">Isso vale igual para os dois tipos de gente que aparecem na minha sala. Quem quer investir olha aquela diferença de preço e já pensa em revender ou alugar. Quem quer a casa própria olha a mesma diferença e enxerga um quarto a mais, ou o bairro que estava fora do orçamento. A conta que se faz antes de dar o lance é a mesma para os dois.</p>
 
-          <h3 class="ev-pain__sub">O que continuar parado custa</h3>
-          <p class="ev-pain__text">Ninguém sabe onde o preço do imóvel vai estar no ano que vem, e quem promete isso está chutando. O que dá para afirmar é mais simples: tem leilão acontecendo em Belo Horizonte toda semana, e cada um termina com alguém levando o imóvel. O aluguel que você paga não volta. A parcela que você já financiou continua correndo. E a cada leilão que passa, quem arremata é alguém que aprendeu a ler o documento que você fechou.</p>
+              <h3 class="ev-h3">O que custa ficar parado</h3>
+              <p class="ev-p">Eu não sei onde vai estar o preço do imóvel no ano que vem, e quem te prometer isso está chutando. O que eu sei é mais simples. Tem leilão de imóvel acontecendo em Belo Horizonte toda semana, e cada um deles termina com alguém levando o bem para casa. O aluguel que você paga esse mês não volta. E a cada leilão que passa, quem arremata é alguém que aprendeu a ler o documento que você fechou.</p>
+            </div>
+          </div>
+
+          <blockquote class="ev-quote" data-aos="fade-up">
+            <p class="ev-quote__line">Quem não entende o jogo não arremata. Assiste.</p>
+            <p class="ev-quote__after">Dia 25 eu sento do seu lado e a gente lê.</p>
+          </blockquote>
         </div>
-        <blockquote class="ev-quote" data-aos="fade-up">
-          <p class="ev-quote__line">Quem não entende o jogo não arremata. Assiste.</p>
-          <p class="ev-quote__after">Dia 25 de agosto a gente para de assistir.</p>
-        </blockquote>
       </div>
     </section>
 
-    <!-- ============ O MECANISMO ============ -->
+    <!-- ============ 4. POR QUE EXISTE DESCONTO ============ -->
     <section class="ev-mech">
       <div class="ev-mech__inner">
-        <div class="ev-mech__head" data-aos="fade-up">
-          <div class="eyebrow">O MECANISMO</div>
-          <h2 class="ev-mech__title">De onde sai o desconto, e por que ele continua lá.</h2>
-        </div>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">DE ONDE VEM O DESCONTO</p>
+            <h2 class="ev-h2">Antes de tudo, o que é esse leilão de que eu falo</h2>
+          </div>
 
-        <div class="ev-mech__block" data-aos="fade-up">
-          <h3>Por que existe desconto no leilão</h3>
-          <p>Banco não quer imóvel. Banco quer dinheiro de volta.</p>
-          <p>Quando o financiamento para de ser pago, o credor retoma o bem. Dali em diante aquele apartamento vira despesa no balanço dele. IPTU correndo, condomínio acumulando todo mês, unidade fechada, síndico cobrando alguém. O objetivo passa a ser tirar aquilo da carteira rápido, recuperando o saldo devedor. E saldo devedor quase nunca é o preço que o imóvel faz na rua.</p>
-          <p>É daí que nasce a diferença. Ela sai da contabilidade de outra pessoa.</p>
-        </div>
+          <div class="ev-read">
+            <p class="ev-p" data-aos="fade-up">Quando alguém financia um apartamento e para de pagar, o banco toma o imóvel de volta. Aí o banco coloca esse apartamento à venda num leilão, que é uma venda com data e hora marcadas onde quem oferece mais leva. Fechar essa compra é o que o mercado chama de arrematar, e essa é a palavra que você vai ver em todo site de leilão.</p>
+            <p class="ev-p" data-aos="fade-up">Existe também o leilão que sai de dentro de um processo na Justiça, quando um imóvel é vendido para pagar a dívida de alguém. Eu explico os dois na noite, com nome de gente.</p>
 
-        <div class="ev-mech__block" data-aos="fade-up">
-          <h3>Por que a diferença sobrevive</h3>
-          <p>Se todo mundo disputasse, o desconto sumia.</p>
-          <p>O edital afasta a maioria antes do lance. Documento longo, linguagem de cartório, prazo curto para pagar, débito que às vezes acompanha o imóvel e às vezes se extingue com a arrematação (depende do que o edital determina e de como a dívida está constituída). Junte o medo do ocupante e você tem imóvel disputado por um punhado de gente, quando o mesmo apartamento anunciado num portal teria fila na porta.</p>
-          <p class="ev-mech__punch">Boa parte do desconto que existe no leilão é, na prática, o preço do medo dos outros.</p>
-          <p>Quem sabe ler o documento entra numa disputa esvaziada.</p>
-        </div>
+            <h3 class="ev-h3" data-aos="fade-up">O que o banco quer é o dinheiro de volta</h3>
+            <p class="ev-p" data-aos="fade-up">Assim que o banco retoma um imóvel, aquilo vira despesa na conta dele. IPTU correndo todo ano, condomínio entrando todo mês, apartamento fechado e síndico ligando para cobrar alguém. O banco quer tirar esse apartamento da mão dele rápido e recuperar o que ficou devendo do financiamento. E o que ficou devendo quase nunca é o preço que o apartamento faz na rua.</p>
+            <p class="ev-p" data-aos="fade-up">É daí que nasce a diferença. Ela sai da contabilidade de outra pessoa.</p>
 
-        <div class="ev-mech__block" data-aos="fade-up">
-          <h3>Por que quase ninguém faz isso sozinho</h3>
-          <p>Dar lance qualquer um dá. A parte difícil vem antes e vem depois.</p>
-          <p><strong>Antes do lance:</strong> ler a matrícula e entender quem mais tem direito sobre aquele bem, checar se o rito é de execução judicial ou de retomada extrajudicial, calcular o débito que você herda, medir prazo e custo de desocupação.</p>
-          <p><strong>Depois do lance:</strong> pagar dentro do prazo do edital, registrar a carta de arrematação, entrar na posse, resolver o que ficou pendente com condomínio e prefeitura.</p>
-          <p>Errar em qualquer um desses pontos transforma um desconto de 40% num prejuízo. Por isso a noite de 25 de agosto se resolve em documento e em conta. Motivação fica de fora.</p>
-        </div>
+            <h3 class="ev-h3" data-aos="fade-up">Por que essa diferença ainda existe</h3>
+            <p class="ev-p" data-aos="fade-up">Se todo mundo disputasse leilão, o desconto sumia no primeiro mês.</p>
+            <p class="ev-p" data-aos="fade-up">O que segura a maioria do lado de fora é um documento chamado edital, que é o caderno com as regras daquela venda: o que você paga, em quanto tempo, o que vem junto com o imóvel e o que fica para trás. Esse edital é longo, é escrito em linguagem de cartório, dá prazo curto para pagar e às vezes traz dívida velha pendurada no imóvel. Junte a isso o medo de comprar um apartamento com gente morando dentro e você entende por que um imóvel bom acaba disputado por meia dúzia de pessoas, quando o mesmo apartamento num site de imobiliária teria fila na porta.</p>
+            <p class="ev-punch" data-aos="fade-up">Boa parte do desconto do leilão é o preço do medo dos outros. Quem aprende a ler o edital entra numa disputa vazia.</p>
 
-        <div class="ev-inline-cta" data-aos="fade-up">
-          <button type="button" class="btn btn--primary" data-modal-open="modal-evento" data-modalidade="presencial">Quero minha cadeira em BH · R$ 157 no lote 1</button>
-          <button type="button" class="linkish" data-modal-open="modal-evento" data-modalidade="online">Prefiro assistir ao vivo por R$ 67</button>
+            <h3 class="ev-h3" data-aos="fade-up">Por que quase ninguém faz isso sozinho na primeira vez</h3>
+            <p class="ev-p" data-aos="fade-up">Dar lance é a parte fácil. O trabalho está antes e está depois.</p>
+            <p class="ev-p" data-aos="fade-up"><strong>Antes do lance,</strong> eu leio o edital inteiro e leio também o histórico do imóvel no cartório, que é o documento onde fica registrado tudo que já aconteceu com aquele bem desde que ele existe, inclusive quem mais tem direito sobre ele. Confiro que tipo de leilão é aquele, porque leilão de banco e leilão que corre dentro de um processo na Justiça têm regras de prazo e de pagamento diferentes. Somo as dívidas que vêm penduradas no imóvel. Calculo quanto custa e quanto demora tirar um ocupante, quando tem ocupante.</p>
+            <p class="ev-p" data-aos="fade-up"><strong>Depois do lance,</strong> o prazo para pagar é curto, tem o imposto da prefeitura para transferir o imóvel, tem o registro no cartório, que é o ato que faz o apartamento ser seu no papel, e tem a conversa com o condomínio sobre o que ficou atrasado.</p>
+            <p class="ev-p" data-aos="fade-up">Errar num desses pontos transforma um desconto grande em prejuízo. Por isso a noite de 25 de agosto se resolve em edital e em conta. Motivação eu deixo para os outros.</p>
+          </div>
+
+          <div class="ev-duo" id="cta-duplo-1" data-aos="fade-up">
+            <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Garantir minha cadeira em BH · R$ 157</button>
+            <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Garantir meu acesso ao vivo · R$ 67</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ A CONTA ABERTA ============ -->
+    <!-- ============ 5. A CONTA DE UM ARREMATE ============ -->
     <section class="ev-math">
       <div class="ev-math__inner">
-        <div class="ev-math__head" data-aos="fade-up">
-          <div class="eyebrow">A CONTA ABERTA</div>
-          <h2 class="ev-math__title">A matemática de um arremate, linha por linha.</h2>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">A CONTA ABERTA</p>
+            <h2 class="ev-h2">Vou te contar como essa conta se monta, linha por linha</h2>
+          </div>
+
+          <div class="ev-warn" data-aos="fade-up">
+            <strong>Exemplo ilustrativo.</strong> Os valores abaixo são inventados e foram escolhidos redondos por mim, só para você enxergar a mecânica. Não representam caso real, não citam cliente nenhum e não são previsão do que você vai conseguir. Cada imóvel tem edital, dívida e disputa próprios.
+          </div>
+
+          <div class="ev-read">
+            <p class="ev-p" data-aos="fade-up">Imagina um apartamento de dois quartos, num prédio comum, em bairro que já tem padaria e ponto de ônibus na esquina. Na rua, hoje, esse apartamento é anunciado por R$ 400 mil. Dentro do leilão ele tem um valor de avaliação, que é quanto um técnico disse que ele vale: R$ 380 mil. Repara que os dois números já são diferentes, e essa confusão é o primeiro erro de quem está começando.</p>
+            <p class="ev-p" data-aos="fade-up">O lance vence em R$ 220.400, que é 42% abaixo da avaliação. Aí começa a segunda metade da conta, que é a parte que ninguém mostra no Instagram.</p>
+          </div>
+
+          <div class="ev-table-wrap" data-aos="fade-up" tabindex="0" role="region" aria-label="Conta de um arremate, exemplo ilustrativo">
+            <table class="ev-table">
+              <thead>
+                <tr><th scope="col">O que entra na conta</th><th scope="col">Valor</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Preço que o apartamento faz na rua hoje</td><td>R$ 400.000</td></tr>
+                <tr><td>Valor de avaliação do imóvel no leilão</td><td>R$ 380.000</td></tr>
+                <tr><td>O lance vencedor, 42% abaixo da avaliação</td><td>R$ 220.400</td></tr>
+                <tr><td>Comissão de 5% para o leiloeiro, que é quem conduz a venda</td><td>R$ 11.020</td></tr>
+                <tr><td>Imposto da prefeitura para transferir o imóvel</td><td>R$ 6.612</td></tr>
+                <tr><td>Cartório e taxas, para registrar que o imóvel agora é seu</td><td>R$ 7.000</td></tr>
+                <tr><td>Condomínio e IPTU atrasados que você assume</td><td>R$ 15.000</td></tr>
+                <tr><td>Tirar o ocupante: advogado, taxas do processo e despesas do período</td><td>R$ 12.000</td></tr>
+                <tr><td>Reforma para deixar o apartamento em condição de morar</td><td>R$ 25.000</td></tr>
+                <tr class="ev-table__total"><td>Total que sai do seu bolso</td><td>R$ 297.032</td></tr>
+                <tr><td>Tempo entre o lance e a chave na mão, neste exemplo</td><td>cerca de 12 meses</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ev-table__hint">Role a tabela para o lado para ver os valores.</p>
+
+          <p class="ev-math__big" data-aos="fade-up">R$ 102.968 de diferença neste exemplo inventado.</p>
+
+          <div class="ev-read">
+            <p class="ev-p" data-aos="fade-up">Agora presta atenção no que eu comparei. Os 42% comparam o lance com o valor de avaliação. Essa tabela compara o dinheiro que saiu do seu bolso com o preço que o apartamento faz na rua, e nessa base a folga cai para 25,7%. Continua sendo mais de cem mil reais. Continua sendo uma conta que precisa ser feita antes de você dar o lance.</p>
+            <p class="ev-p" data-aos="fade-up">Falta ainda uma linha que quase ninguém coloca no papel. Essa folga só vira dinheiro no bolso no dia em que o apartamento for vendido, e a venda tem corretagem e imposto sobre o ganho. Quem arremata para morar não recebe nada em dinheiro. O que essa pessoa ganha é o mesmo imóvel por bem menos, e um financiamento menor pelos próximos anos.</p>
+            <p class="ev-p" data-aos="fade-up">Quem faz essa planilha errado acha que comprou barato e descobre o contrário no terceiro boleto de condomínio atrasado.</p>
+            <p class="ev-p ev-p--strong" data-aos="fade-up">No dia 25 essa tabela vai estar na tela, com um edital de verdade projetado do lado.</p>
+          </div>
         </div>
-
-        <div class="ev-warn" data-aos="fade-up">
-          <strong>Exemplo ilustrativo.</strong> Os valores abaixo são fictícios, escolhidos redondos para explicar a mecânica. Não representam caso real, não citam cliente nenhum e não são previsão do que você vai conseguir. Cada imóvel tem edital, débito e disputa próprios.
-        </div>
-
-        <p class="ev-math__lead" data-aos="fade-up">Apartamento de dois quartos, prédio comum, região consolidada.</p>
-
-        <div class="ev-table-wrap" data-aos="fade-up">
-          <table class="ev-table">
-            <thead>
-              <tr><th scope="col">Linha</th><th scope="col">Valor</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Preço que o apartamento faz na rua hoje</td><td>R$ 400.000</td></tr>
-              <tr><td>Avaliação constante do laudo</td><td>R$ 380.000</td></tr>
-              <tr><td>Lance vencedor, 42% abaixo da avaliação</td><td>R$ 220.400</td></tr>
-              <tr><td>Comissão do leiloeiro (5%)</td><td>R$ 11.020</td></tr>
-              <tr><td>ITBI (alíquota e base mudam conforme o município)</td><td>R$ 6.612</td></tr>
-              <tr><td>Registro da carta de arrematação e custas</td><td>R$ 7.000</td></tr>
-              <tr><td>Condomínio e IPTU atrasados assumidos</td><td>R$ 15.000</td></tr>
-              <tr><td>Desocupação: honorários, custas e despesas do período</td><td>R$ 12.000</td></tr>
-              <tr><td>Reforma para deixar em condição de uso</td><td>R$ 25.000</td></tr>
-              <tr class="ev-table__total"><td>Total desembolsado</td><td>R$ 297.032</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="ev-math__big" data-aos="fade-up">R$ 102.968 de diferença numa única operação.</p>
-
-        <p class="ev-math__text" data-aos="fade-up">Repare nas duas primeiras linhas da tabela. Avaliação do laudo e preço da rua estão separados de propósito, porque são bases diferentes: a avaliação do processo costuma ser feita antes, por outro critério, e quase nunca bate com o anúncio do portal. Confundir as duas é o primeiro erro de quem está começando.</p>
-        <p class="ev-math__text" data-aos="fade-up">Os 42% comparam o lance com a avaliação. A conta acima compara o desembolso total com o preço praticado na rua, e nessa base a folga fica em 25,7%. Continua sendo mais de cem mil reais. E continua sendo uma conta, que precisa ser feita antes de levantar a placa.</p>
-        <p class="ev-math__text" data-aos="fade-up">Quem faz essa planilha errado acha que comprou barato e descobre o contrário no terceiro boleto de condomínio atrasado.</p>
-        <p class="ev-math__text ev-math__text--strong" data-aos="fade-up">No dia 25 essa tabela vai estar no telão, com edital de verdade projetado ao lado.</p>
       </div>
     </section>
 
-    <!-- ============ A TRANSFORMAÇÃO ============ -->
+    <!-- ============ 6. O QUE MUDA PARA QUEM VAI ============ -->
     <section class="ev-shift">
       <div class="ev-shift__inner">
-        <div class="ev-shift__head" data-aos="fade-up">
-          <div class="eyebrow">A TRANSFORMAÇÃO</div>
-          <h2 class="ev-shift__title">O que muda entre a pessoa que entra na sala e a que sai.</h2>
-        </div>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">O QUE MUDA</p>
+            <h2 class="ev-h2">A pessoa que começa a noite e a pessoa que termina</h2>
+          </div>
 
-        <div class="ev-table-wrap" data-aos="fade-up">
-          <table class="ev-table ev-table--shift">
-            <thead>
-              <tr><th scope="col">Hoje</th><th scope="col">Depois do dia 25</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Você abre um edital e não sabe qual parte importa.</td>
-                <td>Você sai com o roteiro de leitura: quais cláusulas abrir primeiro e o que cada uma muda no seu bolso.</td>
-              </tr>
-              <tr>
-                <td>Você olha o valor do lance e acha que aquilo é o custo do imóvel.</td>
-                <td>Você sai com a planilha de custo de arrematação, com as linhas que a maioria esquece.</td>
-              </tr>
-              <tr>
-                <td>A palavra “ocupado” te faz fechar a página.</td>
-                <td>Você entende os caminhos de desocupação e a ordem de grandeza de prazo e de custo de cada um.</td>
-              </tr>
-              <tr>
-                <td>Você não distingue leilão judicial de extrajudicial.</td>
-                <td>Você reconhece o rito, identifica quem é o credor e sabe o que isso muda no seu risco.</td>
-              </tr>
-              <tr>
-                <td>Você depende de alguém de confiança dizer “pode ir”.</td>
-                <td>Você tem critério próprio para descartar imóvel ruim antes de gastar dinheiro com ele.</td>
-              </tr>
-              <tr>
-                <td>Você guarda link de leilão nos favoritos e adia. Há uns três anos.</td>
-                <td>Você sai da sala sabendo qual é o seu próximo passo e em que prazo ele acontece.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <div class="ev-table-wrap" data-aos="fade-up" tabindex="0" role="region" aria-label="Antes e depois da noite">
+            <table class="ev-table ev-table--shift">
+              <thead>
+                <tr><th scope="col">Como você chega</th><th scope="col">Quando a noite acabar</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Você abre o edital de um leilão e não sabe qual parte importa.</td>
+                  <td>Você sai sabendo quais páginas abrir primeiro e o que cada uma muda no seu bolso.</td>
+                </tr>
+                <tr>
+                  <td>Você olha o valor do lance e acha que aquilo é o preço do imóvel.</td>
+                  <td>Você sai com a planilha de custo na cabeça, com as linhas que quase todo iniciante esquece.</td>
+                </tr>
+                <tr>
+                  <td>A palavra “ocupado” te faz fechar a página na hora.</td>
+                  <td>Você entende quais caminhos existem para receber a chave, e mais ou menos quanto custa e quanto demora cada um deles.</td>
+                </tr>
+                <tr>
+                  <td>Você não sabe diferenciar um leilão de banco de um leilão que vem de processo na Justiça.</td>
+                  <td>Você reconhece qual é qual, entende quem está vendendo e sabe o que isso muda no seu risco.</td>
+                </tr>
+                <tr>
+                  <td>Você depende de alguém de confiança dizer “pode ir”.</td>
+                  <td>Você tem critério próprio para descartar imóvel ruim antes de gastar um real com ele.</td>
+                </tr>
+                <tr>
+                  <td>Você guarda link de leilão nos favoritos e adia. Faz uns três anos.</td>
+                  <td>Você sai sabendo qual é o seu próximo passo e em que prazo ele acontece.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <p class="ev-shift__note" data-aos="fade-up">Ninguém vira especialista numa terça-feira. O que muda numa terça-feira é você parar de ter medo do documento. A prática vem depois, e fica bem mais barata quando você começa sabendo onde não pisar.</p>
+          <p class="ev-p ev-shift__note" data-aos="fade-up">Ninguém vira especialista numa terça-feira, e eu não vou fingir o contrário. O que uma terça-feira resolve é o medo do documento. A prática vem depois, e sai bem mais barata quando você já sabe onde não pisar.</p>
+        </div>
       </div>
     </section>
 
-    <!-- ============ O QUE A NOITE COBRE ============ -->
+    <!-- ============ 7. O QUE EU VOU MOSTRAR ============ -->
     <section class="ev-learn">
       <div class="ev-learn__inner">
-        <div class="ev-learn__head" data-aos="fade-up">
-          <div class="eyebrow">O QUE A NOITE COBRE</div>
-          <h2 class="ev-learn__title">Documento na tela, conta aberta, pergunta respondida.</h2>
-        </div>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">A NOITE</p>
+            <h2 class="ev-h2">O que eu vou mostrar no dia 25</h2>
+          </div>
 
-        <ol class="learn-grid" data-aos="fade-up">
-          <li class="learn"><span class="learn__ico" aria-hidden="true">01</span><p>Um edital real projetado, com as cláusulas que decidem a compra lidas em voz alta.</p></li>
-          <li class="learn"><span class="learn__ico" aria-hidden="true">02</span><p>A matrícula e as averbações que fazem um bom negócio virar dor de cabeça.</p></li>
-          <li class="learn"><span class="learn__ico" aria-hidden="true">03</span><p>A planilha de custo de arrematação aberta na tela, do lance até a chave na mão.</p></li>
-          <li class="learn"><span class="learn__ico" aria-hidden="true">04</span><p>Leilão judicial e extrajudicial: o que muda no prazo, no pagamento e em quem responde pelo quê.</p></li>
-          <li class="learn"><span class="learn__ico" aria-hidden="true">05</span><p>Imóvel ocupado: os caminhos possíveis e a ordem de grandeza de custo e de prazo de cada um.</p></li>
-          <li class="learn"><span class="learn__ico" aria-hidden="true">06</span><p>A inadimplência dos últimos anos está enchendo as praças de imóvel. O que isso abre, e por quanto tempo esse tipo de janela costuma durar.</p></li>
-          <li class="learn learn--wide"><span class="learn__ico" aria-hidden="true">07</span><p>Casos e números de arremates conduzidos pela Jacque, com o que deu certo e com o que deu errado no meio do caminho.</p></li>
-        </ol>
-
-        <p class="ev-learn__note" data-aos="fade-up">Os documentos vão para o telão com os dados pessoais de terceiros suprimidos.</p>
-
-        <div class="ev-agenda" data-aos="fade-up">
-          <h3 class="ev-agenda__title">Programação</h3>
-          <ol class="ev-agenda__list">
-            <li><span>19h</span> Credenciamento e café</li>
-            <li><span>19h30</span> Abertura</li>
-            <li><span>20h</span> Palestra com Jacque Costa</li>
-            <li><span>21h</span> Perguntas e respostas</li>
-            <li><span>21h10</span> Próximos passos</li>
-            <li><span>21h40</span> Networking (só presencial)</li>
-            <li><span>22h</span> Encerramento</li>
+          <ol class="learn-grid" data-aos="fade-up">
+            <li class="learn"><span class="learn__ico" aria-hidden="true">01</span><p>Eu abro um edital de verdade na tela e leio em voz alta, com você, as páginas que decidem se aquele imóvel presta.</p></li>
+            <li class="learn"><span class="learn__ico" aria-hidden="true">02</span><p>Eu abro o histórico do imóvel no cartório e aponto as anotações que fazem um bom negócio virar dor de cabeça.</p></li>
+            <li class="learn"><span class="learn__ico" aria-hidden="true">03</span><p>Eu abro a planilha de custo e refaço a conta do lance até a chave na mão, com você acompanhando linha por linha.</p></li>
+            <li class="learn"><span class="learn__ico" aria-hidden="true">04</span><p>Eu explico a diferença entre o leilão de banco e o leilão que vem de processo na Justiça, e o que isso muda no seu prazo para pagar.</p></li>
+            <li class="learn"><span class="learn__ico" aria-hidden="true">05</span><p>Eu mostro o que fazer com imóvel que tem gente morando dentro: quais caminhos existem, quanto custa cada um e quanto tempo cada um leva.</p></li>
+            <li class="learn"><span class="learn__ico" aria-hidden="true">06</span><p>Eu explico por que tem tanto imóvel indo a leilão nos últimos anos, depois de tanta gente parar de pagar financiamento, e por quanto tempo esse tipo de janela costuma durar.</p></li>
+            <li class="learn learn--wide"><span class="learn__ico" aria-hidden="true">07</span><p>Eu mostro arremates meus, com número na tela, incluindo o que deu errado no meio do caminho.</p></li>
           </ol>
-          <p class="ev-agenda__place">Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG</p>
-        </div>
 
-        <div class="ev-inline-cta" data-aos="fade-up">
-          <button type="button" class="btn btn--primary" data-modal-open="modal-evento" data-modalidade="presencial">Garantir minha cadeira · R$ 157 no lote 1</button>
-          <button type="button" class="linkish" data-modal-open="modal-evento" data-modalidade="online">Garantir meu acesso online · R$ 67</button>
+          <p class="ev-learn__note" data-aos="fade-up">Eu apago os dados pessoais de terceiros antes de levar qualquer documento para a tela.</p>
+
+          <div class="ev-agenda" data-aos="fade-up">
+            <h3 class="ev-agenda__title">Programação</h3>
+            <ol class="ev-agenda__list">
+              <li><span>19h</span> Credenciamento e café</li>
+              <li><span>19h30</span> Abertura</li>
+              <li><span>20h</span> A conversa comigo</li>
+              <li><span>21h</span> Suas perguntas</li>
+              <li><span>21h20</span> Próximos passos</li>
+              <li><span>21h40</span> Networking (só na sala)</li>
+              <li><span>22h</span> Encerramento</li>
+            </ol>
+            <p class="ev-agenda__place">Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG</p>
+          </div>
+
+          <div class="ev-duo" data-aos="fade-up">
+            <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Garantir minha cadeira em BH · R$ 157</button>
+            <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Garantir meu acesso ao vivo · R$ 67</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ QUEM CONDUZ ============ -->
+    <!-- ============ 8. QUEM ESTÁ FALANDO (a foto vem para cá) ============ -->
     <section class="bio">
       <div class="bio__inner">
         <div class="bio__media" data-aos="fade-up">
@@ -361,207 +348,225 @@
                width="720" height="900" loading="lazy" decoding="async">
           <div class="bio__seal">
             <div class="bio__seal-value">42%</div>
-            <div class="bio__seal-label">DESCONTO MÉDIO NO ARREMATE</div>
+            <div class="bio__seal-label">DESCONTO MÉDIO NAS MINHAS COMPRAS</div>
           </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="100">
-          <div class="eyebrow">QUEM CONDUZ</div>
-          <h2 class="bio__title">Jacque Costa</h2>
-          <p class="bio__text">Antes de subir em qualquer palco, ela já resolvia leilão. O palco veio depois.</p>
-          <p class="bio__text">Perita judicial: quando um juiz precisa saber quanto vale um imóvel dentro de um processo, alguém assina esse laudo e responde por ele. A Jacque é uma dessas pessoas.</p>
-          <p class="bio__text">Despachante credenciada da Caixa desde 2007. São quase duas décadas vendo, por dentro, como um banco grande trata os imóveis que retoma.</p>
-          <p class="bio__text">Também é corretora e administradora, e toca a própria empresa. Mais de 15 anos no mercado imobiliário, quase todos na parte que ninguém posta no Instagram: cartório, processo, vistoria, negociação com condomínio.</p>
+          <p class="eyebrow">QUEM ESTÁ FALANDO COM VOCÊ</p>
+          <h2 class="bio__title">Eu sou a Jacque Costa</h2>
+          <p class="bio__text">Eu resolvia leilão muito antes de subir em qualquer palco. O palco veio depois, e veio porque as pessoas começaram a me perguntar as mesmas coisas.</p>
+          <p class="bio__text">Sou perita judicial. Quando um juiz precisa saber quanto vale um imóvel dentro de um processo, alguém tem que ir lá, examinar o imóvel, colocar um valor no papel e assinar embaixo, respondendo por aquilo na Justiça. Esse alguém, em muitos processos, sou eu.</p>
+          <p class="bio__text">Sou despachante credenciada da Caixa desde 2007. Na prática, isso quer dizer que o banco me autoriza a tocar a papelada dos imóveis que ele retoma e coloca à venda. São quase duas décadas vendo por dentro como um banco grande trata esses imóveis, o que ele quer receber e com que pressa.</p>
+          <p class="bio__text">Também sou corretora e administradora, e toco a minha própria empresa. Mais de 15 anos no mercado imobiliário, quase todos na parte que ninguém posta na internet: cartório, processo, vistoria em apartamento vazio, conversa difícil com síndico.</p>
+          <p class="bio__text">A marca se chama Leilão &amp; Prosa porque o que acontece na sala é conversa, com pergunta interrompendo no meio. O que eu levo é edital para mostrar e conta para abrir.</p>
 
           <ul class="bio__facts">
-            <li><strong>42%</strong> desconto médio nos arremates que ela conduziu, medido entre a avaliação do laudo e o lance vencedor</li>
-            <li><strong>+2.400</strong> alunos já passaram pelas formações dela</li>
+            <li><strong>42%</strong> de desconto médio nas compras que eu já fechei em leilão, medido entre o valor de avaliação e o lance vencedor</li>
+            <li><strong>+2.400</strong> alunos já passaram pelas minhas formações</li>
             <li><strong>5,0</strong> no Google, em 39 avaliações do perfil Jacque Leilões</li>
             <li><strong>Desde 2007</strong> credenciada da Caixa</li>
             <li><strong>Perita judicial</strong>, com laudo assinado dentro de processo</li>
           </ul>
 
-          <p class="bio__disclaimer">O credenciamento é profissional e individual da Jacque. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
+          <p class="bio__disclaimer">O meu credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
         </div>
       </div>
     </section>
 
     <!--
-      ============ PROVA SOCIAL ============
-      Seção 9 da copy. Fica FORA do ar até haver depoimento real de quem foi a uma
-      edição anterior (nome, cidade e o que a pessoa destravou), ou print de
-      avaliação do Google. A página inteira se apoia em número verificável, então
-      depoimento inventado derruba a credibilidade dos 42% junto. Assim que o
-      material chegar, entra aqui, entre a bio e a oferta.
+      ============ 9. PROVA SOCIAL ============
+      Fora do ar até haver depoimento REAL de quem foi a uma edição anterior
+      (nome, cidade e o que a pessoa destravou) ou print de avaliação do Google.
+      A página inteira se apoia em número verificável: depoimento inventado
+      derrubaria a credibilidade dos 42% junto. Entra aqui quando o material chegar.
     -->
 
-    <!-- ============ A OFERTA ============ -->
+    <!-- ============ 10. A OFERTA ============ -->
     <section class="ev-offer" id="ingressos">
       <div class="ev-offer__inner">
-        <div class="ev-offer__head" data-aos="fade-up">
-          <div class="eyebrow">INGRESSOS</div>
-          <h2 class="ev-offer__title">Escolha como você vai participar.</h2>
-          <p class="ev-offer__lead">O conteúdo é o mesmo nos dois ingressos. A palestra é a mesma e o edital projetado é o mesmo. O que muda é a cadeira e o que acontece quando a Jacque desce do palco.</p>
-        </div>
-
-        <div class="tickets" data-aos="fade-up" data-aos-delay="60">
-
-          <article class="ticket ticket--live">
-            <div class="ticket__tag">PRESENCIAL · OKAY HUB, BELO HORIZONTE</div>
-            <div class="ticket__price"><span class="ticket__currency">R$</span>157<span class="ticket__lot">no lote 1</span></div>
-            <p class="ticket__install">à vista ou em até 12x pela Sympla</p>
-
-            <h3 class="ticket__for">Para quem é</h3>
-            <p class="ticket__fortext">Você mora na Grande BH, quer perguntar olhando no olho e quer sair da sala com telefone de gente que já arrematou. Também para quem sabe que, assistindo de casa, vai atender o telefone no meio.</p>
-
-            <h4 class="ticket__label">Inclui</h4>
-            <ul class="ticket__list">
-              <li>Cadeira na sala no dia 25, com credenciamento e café a partir das 19h</li>
-              <li>A conta aberta no telão, com edital real projetado ao lado</li>
-              <li>Espaço para perguntas ao final, com microfone na sala</li>
-              <li>Networking das 21h40 às 22h, com a Jacque e com os apoiadores presentes</li>
-              <li>A conversa de corredor no intervalo, que costuma render tanto quanto a palestra</li>
-            </ul>
-
-            <h4 class="ticket__label ticket__label--out">Não inclui</h4>
-            <ul class="ticket__list ticket__list--out">
-              <li>Estacionamento no local</li>
-              <li>Gravação da noite. Gravar é proibido, e não haverá replay para ninguém</li>
-              <li>Acesso à transmissão online</li>
-              <li>Análise individual do seu imóvel ou do seu edital</li>
-            </ul>
-
-            <button type="button" class="btn btn--primary ticket__cta" data-modal-open="modal-evento" data-modalidade="presencial">Quero a cadeira presencial · R$ 157</button>
-          </article>
-
-          <article class="ticket ticket--online">
-            <div class="ticket__tag">ONLINE · TRANSMISSÃO AO VIVO</div>
-            <div class="ticket__price"><span class="ticket__currency">R$</span>67<span class="ticket__lot">no lote 1</span></div>
-            <p class="ticket__install">à vista ou em até 12x pela Sympla</p>
-
-            <h3 class="ticket__for">Para quem é</h3>
-            <p class="ticket__fortext">Você está fora de BH, ou tem compromisso naquela terça, ou quer conhecer o trabalho da Jacque antes de investir numa noite inteira fora de casa. Assiste do sofá, com o caderno do lado.</p>
-
-            <h4 class="ticket__label">Inclui</h4>
-            <ul class="ticket__list">
-              <li>Transmissão ao vivo das 19h30 às 21h40, o bloco de conteúdo inteiro</li>
-              <li>A mesma palestra e o mesmo edital projetado, com a planilha de custo aberta na tela</li>
-              <li>Campo de perguntas no chat, lidas ao vivo no bloco de Q&amp;A</li>
-              <li>Link individual, enviado por e-mail e por WhatsApp no dia 25</li>
-              <li>Se a falha técnica for nossa e comprometer parte relevante do conteúdo, você escolhe entre receber a gravação da noite ou o reembolso integral</li>
-            </ul>
-
-            <h4 class="ticket__label ticket__label--out">Não inclui</h4>
-            <ul class="ticket__list ticket__list--out">
-              <li>O networking das 21h40, que acontece só na sala</li>
-              <li>Conversa presencial com a Jacque e com os apoiadores</li>
-              <li>Replay. A transmissão é ao vivo, no horário</li>
-              <li>Credenciamento e café</li>
-            </ul>
-
-            <button type="button" class="btn btn--ghost ticket__cta" data-modal-open="modal-evento" data-modalidade="online">Quero assistir ao vivo · R$ 67</button>
-          </article>
-
-        </div>
-
-        <div class="ev-why" data-aos="fade-up">
-          <h3 class="ev-why__title">Por que o presencial custa mais</h3>
-          <p>A sala do Okay Hub tem um número fixo de cadeiras e não tem como criar mais nenhuma. Cada cadeira ocupa espaço e custa estrutura. A transmissão não tem esse teto, e é por isso que ela pode sair por menos da metade do preço.</p>
-          <p>Quem compra o presencial está pagando a escassez física e o acesso direto no intervalo. Quem assiste de casa vê a mesma coisa por menos da metade, e abre mão do aperto de mão. O ingresso online existe justamente para que o valor do conteúdo não fique preso ao tamanho da sala.</p>
-          <p>Em minutos, para você decidir com número: o online entrega 2h10 de conteúdo ao vivo, das 19h30 às 21h40. Os vinte minutos finais são de networking, e networking só existe na cadeira física.</p>
-          <p class="ev-why__how"><strong>Como escolher em dez segundos.</strong> Se o que você quer é o conteúdo, o online entrega inteiro. Se você pode estar em Belo Horizonte na terça e quer sair de lá com contato de mercado, a cadeira vale a diferença.</p>
-        </div>
-
-        <div class="ev-lots" data-aos="fade-up">
-          <h3 class="ev-lots__title">O preço sobe conforme a data se aproxima</h3>
-          <div class="ev-table-wrap">
-            <table class="ev-table ev-table--lots">
-              <thead>
-                <tr><th scope="col">Lote</th><th scope="col">Período</th><th scope="col">Presencial</th><th scope="col">Online</th></tr>
-              </thead>
-              <tbody>
-                <tr class="ev-table__now"><td>Lote 1</td><td>até 11 de agosto</td><td>R$ 157</td><td>R$ 67</td></tr>
-                <tr><td>Lote 2</td><td>12 a 20 de agosto</td><td>R$ 187</td><td>R$ 87</td></tr>
-                <tr><td>Lote 3</td><td>21 de agosto até esgotar</td><td>R$ 217</td><td>R$ 97</td></tr>
-              </tbody>
-            </table>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">INGRESSOS</p>
+            <h2 class="ev-h2">Escolha como você quer estar comigo no dia 25</h2>
+            <p class="ev-p ev-read">O que eu vou mostrar é igual nos dois ingressos. A conversa é a mesma e o edital que vai para a tela é o mesmo. O que muda é a cadeira e o que acontece quando eu desço do palco.</p>
           </div>
-          <p class="ev-lots__note">A sala tem capacidade limitada e, quando as cadeiras acabam, acabaram. O ingresso online não tem limite de lugares, e o preço sobe na mesma data do presencial. Valores sem a taxa da plataforma. Ingresso pessoal e intransferível.</p>
+
+          <div class="tickets" data-aos="fade-up" data-aos-delay="60">
+
+            <article class="ticket ticket--live">
+              <p class="ticket__tag">PRESENCIAL · OKAY HUB, BELO HORIZONTE</p>
+              <p class="ticket__price"><span class="ticket__currency">R$</span>157<span class="ticket__lot">até 11 de agosto</span></p>
+              <p class="ticket__install">à vista ou em até 12x pela Sympla</p>
+
+              <h3 class="ticket__for">Para quem é</h3>
+              <p class="ticket__fortext">Você mora na Grande BH, quer me perguntar olhando no olho e quer sair da sala com o telefone de gente que já arrematou. Serve também para quem sabe que, de casa, vai acabar atendendo o telefone no meio da noite.</p>
+
+              <h4 class="ticket__label">Inclui</h4>
+              <ul class="ticket__list">
+                <li>Sua cadeira na sala no dia 25, com credenciamento e café a partir das 19h</li>
+                <li>A conta aberta na tela, com edital de verdade projetado do lado</li>
+                <li>Bloco de perguntas com microfone na sala, das 21h às 21h20</li>
+                <li>Networking das 21h40 às 22h, comigo e com os apoiadores presentes</li>
+                <li>A conversa de corredor no intervalo, que costuma render tanto quanto a palestra</li>
+              </ul>
+
+              <h4 class="ticket__label ticket__label--out">Não inclui</h4>
+              <ul class="ticket__list ticket__list--out">
+                <li>Estacionamento no prédio</li>
+                <li>Gravação. Eu não libero gravação na sala, e não vai existir replay para ninguém</li>
+                <li>Acesso à transmissão ao vivo</li>
+                <li>Análise individual do seu imóvel ou do edital de um leilão específico</li>
+              </ul>
+
+              <p class="ticket__seats">A sala tem lugar limitado. Quando as cadeiras acabam, acabaram.</p>
+
+              <button type="button" class="btn-duo btn-duo--fill ticket__cta" data-modal-open="modal-evento" data-modalidade="presencial">Quero a cadeira em BH · R$ 157</button>
+            </article>
+
+            <article class="ticket ticket--online">
+              <p class="ticket__tag">ONLINE · TRANSMISSÃO AO VIVO</p>
+              <p class="ticket__price"><span class="ticket__currency">R$</span>67<span class="ticket__lot">até 11 de agosto</span></p>
+              <p class="ticket__install">à vista ou em até 12x pela Sympla</p>
+
+              <h3 class="ticket__for">Para quem é</h3>
+              <p class="ticket__fortext">Você está fora de Belo Horizonte, ou tem compromisso naquela terça, ou quer me conhecer antes de investir uma noite inteira fora de casa. Assiste do sofá, com o caderno do lado.</p>
+
+              <h4 class="ticket__label">Inclui</h4>
+              <ul class="ticket__list">
+                <li>Transmissão ao vivo das 19h30 às 21h40. Desse total, 1h50 é conteúdo e os 20 minutos das 21h20 às 21h40 são a minha apresentação comercial, que está marcada na programação</li>
+                <li>A mesma conversa e o mesmo edital projetado, com a planilha de custo aberta na sua tela</li>
+                <li>Campo de perguntas no chat, lidas ao vivo por mim no bloco das 21h</li>
+                <li>Link individual, enviado por e-mail e por WhatsApp no dia 25</li>
+                <li>Abre no celular e no computador</li>
+              </ul>
+
+              <h4 class="ticket__label ticket__label--out">Não inclui</h4>
+              <ul class="ticket__list ticket__list--out">
+                <li>O networking das 21h40, que só existe na sala</li>
+                <li>Conversa presencial comigo e com os apoiadores</li>
+                <li>Replay. A transmissão é ao vivo, no horário</li>
+                <li>Credenciamento e café</li>
+              </ul>
+
+              <p class="ticket__seats ticket__seats--free">Sem limite de lugares.</p>
+
+              <button type="button" class="btn-duo btn-duo--out ticket__cta" data-modal-open="modal-evento" data-modalidade="online">Quero o acesso ao vivo · R$ 67</button>
+            </article>
+
+          </div>
+
+          <div class="ev-why" data-aos="fade-up">
+            <h3 class="ev-h3">Por que a cadeira custa mais que a transmissão</h3>
+            <p class="ev-p">A sala do Okay Hub tem um número fixo de cadeiras e nós não temos como criar mais nenhuma. Cada cadeira ocupa espaço físico e custa estrutura. A transmissão não tem esse teto, e é por isso que ela sai por menos da metade do preço.</p>
+            <p class="ev-p">Quem compra a cadeira está pagando o lugar que acaba e o acesso direto a mim no intervalo. Quem assiste de casa vê a mesma coisa por bem menos e abre mão do aperto de mão. O acesso ao vivo existe para que o valor da noite não fique preso ao tamanho da sala.</p>
+            <p class="ev-p ev-p--strong">Como decidir em dez segundos. Se o que você quer é o conteúdo, o online entrega ele inteiro, das 19h30 às 21h20. Se você consegue estar em Belo Horizonte naquela terça e quer sair de lá com contato de mercado no celular, a cadeira vale a diferença.</p>
+          </div>
+
+          <div class="ev-lots" data-aos="fade-up">
+            <h3 class="ev-h3">Os preços sobem em data marcada</h3>
+            <div class="ev-table-wrap" tabindex="0" role="region" aria-label="Tabela de lotes e preços">
+              <table class="ev-table ev-table--lots">
+                <thead>
+                  <tr><th scope="col">Lote</th><th scope="col">Período</th><th scope="col">Presencial</th><th scope="col">Online</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="ev-table__now"><td>Lote 1</td><td>até 11/08</td><td>R$ 157</td><td>R$ 67</td></tr>
+                  <tr><td>Lote 2</td><td>de 12/08 a 20/08</td><td>R$ 187</td><td>R$ 87</td></tr>
+                  <tr><td>Lote 3</td><td>de 21/08 até esgotar</td><td>R$ 217</td><td>R$ 97</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="ev-lots__note">A sala tem lugar limitado. Quando as cadeiras acabam, acabaram. O acesso ao vivo não tem limite de lugares, e o preço dele sobe nas mesmas datas do presencial. Se um lote não virar na data anunciada, a oferta continua valendo pelo preço veiculado. Valores sem a taxa da plataforma. Ingresso pessoal e intransferível.</p>
+          </div>
+
+          <div class="ev-duo" data-aos="fade-up">
+            <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Quero a cadeira em BH · R$ 157</button>
+            <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Quero o acesso ao vivo · R$ 67</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ OBJEÇÕES ============ -->
+    <!-- ============ 11. PERGUNTAS ============ -->
     <section class="ev-faq">
       <div class="ev-faq__inner">
-        <div data-aos="fade-up">
-          <div class="eyebrow">PERGUNTAS FREQUENTES</div>
-          <h2 class="ev-faq__title">O que todo mundo pergunta antes de comprar</h2>
-        </div>
+        <div class="ev-col">
+          <div data-aos="fade-up">
+            <p class="eyebrow">PERGUNTAS FREQUENTES</p>
+            <h2 class="ev-h2">Perguntas que eu sempre ouço</h2>
+          </div>
 
-        <div class="faq__list" data-aos="fade-up" data-aos-delay="100">
-          <details class="faq__item">
-            <summary>E se o imóvel vier com dívida, com processo em cima ou com gente morando dentro?</summary>
-            <p>Esse é o medo certo de se ter, e é o assunto que ocupa mais tempo da noite. Débito de condomínio e IPTU, natureza da dívida, o que o edital determina sobre a responsabilidade do arrematante, quem mais aparece na matrícula, imóvel ocupado e os caminhos de desocupação. A Jacque mostra onde cada uma dessas informações aparece no documento, e o que fazer quando alguma delas não aparece em lugar nenhum. O objetivo é você conseguir descartar um imóvel ruim antes de gastar dinheiro com ele. Leilão tem risco, e o risco continua existindo depois da análise. O que muda é você saber quanto ele custa antes de levantar a placa.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Vale a pena o ingresso online?</summary>
-            <p>Você assiste a palestra inteira e o bloco de perguntas inteiro. O edital projetado e a planilha de custo aparecem na transmissão do mesmo jeito que aparecem na sala. O que fica de fora é o intervalo e o networking do fim. Quem quer o conteúdo resolve com o online. Quem quer sair da noite com telefone de gente do mercado e falar com a Jacque cara a cara compra a cadeira.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Quero comprar para morar. Serve para mim?</summary>
-            <p>Serve, e esse é o segundo maior grupo da sala. A leitura do edital é a mesma, a análise da matrícula é a mesma e a planilha de custo é a mesma. Muda o destino da diferença: quem investe pensa em revenda ou em aluguel, e quem vai morar troca aquela diferença por metro quadrado a mais ou por um bairro que estava fora do orçamento. Boa parte dos imóveis de retomada bancária é exatamente apartamento de família em bairro comum.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Nunca participei de leilão. Vou entender alguma coisa?</summary>
-            <p>A noite começa do começo. O maior grupo da plateia é quem nunca arrematou e tem medo de errar. Quando aparece termo de cartório, a Jacque traduz na hora. Quem já arremata também aproveita, porque a parte de custo real pega gente experiente errando.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Preciso de quanto dinheiro?</summary>
-            <p>Depende do imóvel e do edital, e isso vai estar na tela com número. Existem imóveis de leilão em faixas bem diferentes de valor, e existem modalidades de pagamento que mudam bastante o desembolso inicial, inclusive com financiamento em alguns casos. O que a noite entrega é a conta completa, para você saber qual faixa cabe no seu bolso antes de se animar com anúncio.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Como eu sei que os 42% são verdade?</summary>
-            <p>São a média dos arremates que a Jacque conduziu, medida entre a avaliação do laudo e o lance vencedor. Ela mostra os números na noite, e mostra também onde a conta aperta depois do lance, com comissão, imposto, cartório, dívida e obra. Os 42% medem o que já foi arrematado por ela. O seu resultado depende do seu edital e da disputa do seu dia. A metodologia está no rodapé desta página.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Vou receber alguma proposta comercial no evento?</summary>
-            <p>Vai. Às 21h10 tem um bloco de próximos passos, onde a Jacque apresenta como acompanhar o trabalho dela depois da noite. Está na programação, com horário marcado. Você pode ir embora às 22h sem gastar mais um real e ainda assim vai ter aprendido a ler um edital.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Posso passar meu ingresso para outra pessoa?</summary>
-            <p>O ingresso é nominal, no presencial e no online, e o credenciamento confere documento. Se você não puder ir, fale com a produção pelo WhatsApp antes do evento.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Consigo cancelar?</summary>
-            <p>Consegue. Você tem 7 dias corridos a partir da compra para desistir e receber tudo de volta, sem precisar justificar, como manda o artigo 49 do Código de Defesa do Consumidor. Passado esse prazo, aceitamos cancelamento com reembolso integral até 48 horas antes do evento.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Tem estacionamento?</summary>
-            <p>No prédio, não. A Rua Castelo de Alcázar é tranquila e costuma ter vaga na rua à noite. Quem preferir, aplicativo de carro deixa na porta.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Posso gravar a palestra?</summary>
-            <p>Não. Parte do que aparece no telão é documento de processo, e mesmo com os dados pessoais suprimidos a gravação fica proibida na sala, junto com a retransmissão da live. Leve caderno, que vale mais.</p>
-          </details>
+          <div class="faq__list" data-aos="fade-up" data-aos-delay="100">
+            <details class="faq__item">
+              <summary>E se o imóvel vier com dívida, com processo em cima ou com gente morando dentro?</summary>
+              <p>Esse é o medo certo de se ter, e é o assunto que ocupa mais tempo da minha noite. Eu vou te mostrar onde aparece a dívida de condomínio e de IPTU, o que o edital diz sobre quem paga o quê, quem mais tem direito sobre aquele imóvel segundo o cartório, o que fazer quando o apartamento está ocupado e o que fazer quando alguma dessas informações não aparece em lugar nenhum, que é quando eu costumo dar meia-volta. O objetivo é você conseguir descartar um imóvel ruim antes de gastar dinheiro com ele. Leilão tem risco, e o risco continua ali depois da análise. O que a análise entrega é o preço desse risco, calculado antes de você dar o lance.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Nunca participei de leilão nenhum. Eu vou entender alguma coisa?</summary>
+              <p>Eu montei essa noite para você. Eu começo do começo, explicando o que é o leilão e por que o preço dele é mais baixo. Toda vez que aparecer uma palavra de cartório, eu traduzo na hora, dentro da frase. Quem já arremata também aproveita, porque a parte de custo real pega gente experiente errando.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Vale a pena o ingresso online?</summary>
+              <p>Você assiste a conversa inteira e o bloco de perguntas inteiro, das 19h30 às 21h20. O edital projetado e a planilha de custo aparecem na sua tela igual aparecem na sala, e a sua pergunta no chat é lida por mim ao vivo. Fica de fora o intervalo e os vinte minutos de networking do fim. Quem quer o conteúdo resolve com o online. Quem quer sair da noite com telefone de gente do mercado compra a cadeira.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Eu quero comprar para morar, não para investir. Serve para mim?</summary>
+              <p>Serve, e esse é o segundo maior grupo da minha sala. A leitura do edital é a mesma e a planilha de custo é a mesma. O que muda é o destino da diferença: quem investe pensa em revender ou alugar, e quem vai morar troca aquela diferença por metro quadrado a mais, por um bairro que estava fora do orçamento ou por um financiamento bem menor. Boa parte do que o banco retoma é exatamente apartamento de família em bairro comum.</p>
+            </details>
+            <details class="faq__item">
+              <summary>De quanto dinheiro eu preciso para começar?</summary>
+              <p>Depende do imóvel e das regras daquele leilão, e isso vai estar na tela com número. Tem imóvel em leilão em faixas de preço bem diferentes. O que eu entrego na noite é a conta completa, para você saber qual faixa cabe em você antes de se animar com anúncio.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Em quanto tempo eu preciso pagar? Dá para financiar?</summary>
+              <p>O prazo está escrito no edital de cada leilão, e ele costuma ser curto, contado em dias depois do lance vencedor. Em parte dos casos dá para financiar, e isso muda tudo no planejamento de quem tem renda mas não tem o valor inteiro guardado. Na noite eu mostro onde essa informação aparece no edital, quando o financiamento é possível e o que costuma ser exigido, porque isso precisa ser conferido imóvel por imóvel, antes do lance.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Como eu sei que esses 42% são verdade?</summary>
+              <p>São a média das compras que eu já fechei em leilão, medida entre o valor de avaliação do imóvel e o lance que venceu. Eu mostro esses números na noite e mostro também onde a conta aperta depois do lance, com comissão, imposto, cartório, dívida e obra. Esse número mede o que eu já fiz. O seu resultado vai depender do leilão que você escolher e de quem estiver disputando com você naquele dia. A metodologia inteira está no rodapé desta página, e a documentação fica à disposição para quem quiser conferir.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Vou levar oferta comercial na cara durante o evento?</summary>
+              <p>Vai ter, sim, e está marcado na programação. Às 21h20 eu apresento como acompanhar meu trabalho depois da noite. Você pode ir embora às 22h sem gastar mais um real e ainda assim vai sair sabendo ler um edital de leilão.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Consigo cancelar se eu mudar de ideia?</summary>
+              <p>Consegue. Você tem 7 dias corridos a partir da compra para desistir e receber tudo de volta, sem precisar justificar nada, como manda o artigo 49 do Código de Defesa do Consumidor. Quem comprar em cima da data tem esse direito válido até o começo do evento, dia 25 às 19h, porque depois disso o serviço já foi entregue. Fora esse prazo, nós aceitamos cancelamento com devolução integral até 48 horas antes do evento.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Posso passar meu ingresso para outra pessoa?</summary>
+              <p>O ingresso é nominal nos dois formatos. No presencial o credenciamento confere documento, e no online o link é individual. Se você não puder ir, dá para pedir a troca de titularidade até 48 horas antes pelo e-mail da produção.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Tem estacionamento no prédio?</summary>
+              <p>No prédio, não. A Rua Castelo de Alcázar é tranquila à noite e costuma ter vaga na rua. Quem preferir, aplicativo de carro deixa na porta.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Posso gravar a noite?</summary>
+              <p>Não. Parte do que vai para a tela é documento de processo, e mesmo com os dados pessoais apagados eu não libero gravação na sala. Retransmitir a transmissão ao vivo também está fora. Leva caderno, que rende mais.</p>
+            </details>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CTA FINAL ============ -->
+    <!-- ============ 12. CTA FINAL ============ -->
     <section class="ev-cta" id="inscricao">
-      <div class="ev-cta__inner">
+      <div class="ev-cta__inner on-ink">
         <div class="ev-cta__content">
-          <h2 class="ev-cta__title">Terça, 25 de agosto, 19h.</h2>
-          <p class="ev-cta__text">Semana que vem alguém vai arrematar o apartamento que você viu e deixou passar. Vai ser alguém que leu o edital inteiro.</p>
-          <p class="ev-cta__text">O que a Jacque leva para o telão é documento e planilha. Você sai sabendo o que olhar primeiro, quanto custa além do lance, quando dar meia-volta e quando insistir.</p>
+          <h2 class="ev-cta__title">Terça-feira, 25 de agosto, 19h</h2>
+          <p class="ev-cta__text">Semana que vem alguém vai arrematar um apartamento que você viu e deixou passar. Vai ser alguém que leu o edital inteiro.</p>
+          <p class="ev-cta__text">O que eu levo para a tela é papel e planilha. Você sai sabendo o que olhar primeiro, quanto custa além do lance, quando dar meia-volta e quando insistir.</p>
           <p class="ev-cta__refrain">Quem não entende o jogo não arremata. Assiste.</p>
         </div>
-        <div class="ev-cta__actions">
-          <button type="button" class="btn btn--primary" data-modal-open="modal-evento" data-modalidade="presencial">Quero minha cadeira em BH · R$ 157 no lote 1</button>
-          <button type="button" class="btn btn--ghost" data-modal-open="modal-evento" data-modalidade="online">Quero assistir ao vivo · R$ 67 no lote 1</button>
+
+        <div class="ev-duo">
+          <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Quero minha cadeira em Belo Horizonte · R$ 157</button>
+          <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Quero meu acesso à transmissão ao vivo · R$ 67</button>
         </div>
+
         <p class="ev-cta__place">Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG. Ou ao vivo, de onde você estiver.</p>
-        <p class="ev-cta__legal">Parcelamento em até 12x pela Sympla. Presencial limitado à capacidade da sala. Arrependimento em 7 dias corridos a partir da compra, com devolução integral.</p>
+        <p class="ev-cta__legal">Preços do lote 1, válidos até 11 de agosto. Parcelamento em até 12x pela Sympla. Presencial limitado à capacidade da sala. Arrependimento em 7 dias corridos a partir da compra, com devolução integral.</p>
       </div>
     </section>
 
@@ -580,9 +585,12 @@
     </div>
 
     <div class="footer-c__method" id="metodologia">
+      <div class="footer-c__method-col">
         <p class="footer-c__method-title">Sobre os 42%</p>
-        <p>Os 42% são a média simples dos descontos obtidos por Jacque Costa nos arremates que ela conduziu, calculada sobre o valor de avaliação constante do laudo em comparação com o lance vencedor. Valor de avaliação e preço de mercado são bases diferentes: a avaliação constante do processo pode estar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, ITBI, custas de registro, débitos assumidos, desocupação e reforma entram depois e reduzem a diferença final. A média mede trabalho já realizado e não garante resultado individual. Cada leilão depende do edital, da disputa do dia, do estado do imóvel e do que a matrícula mostra. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação. Os valores usados nos exemplos desta página são ilustrativos e não representam operação real. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado.</p>
-        <p>O credenciamento junto à Caixa é profissional e individual da Jacque. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
+        <p>Os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi, calculada entre o valor de avaliação do imóvel e o lance vencedor. Valor de avaliação e preço de mercado são bases diferentes: a avaliação feita dentro do processo pode ficar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, imposto de transferência, taxas de cartório, dívidas assumidas, desocupação e reforma entram depois e reduzem a diferença final. Essa média mede trabalho que eu já realizei e não garante o resultado individual de quem assiste ao evento. Cada leilão depende do edital daquele imóvel, da disputa do dia, do estado de conservação do bem e do histórico dele no cartório. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação.</p>
+        <p>Os valores usados nos exemplos desta página são inventados e não representam operação real. Eu tenho interesse comercial no assunto, porque conduzo arremates e vendo formação sobre leilão. Esta página não indica nenhum imóvel específico. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado. A documentação que sustenta a média fica à disposição para conferência pelo WhatsApp da produção.</p>
+        <p>O meu credenciamento junto à Caixa é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
+      </div>
     </div>
 
     <!-- Rodapé enxuto: esta é a LP de tráfego pago, então serve de saída
@@ -596,10 +604,10 @@
     </nav>
   </footer>
 
-  <!-- Barra fixa no mobile. Aparece depois que o visitante passa do mecanismo. -->
-  <div class="ev-bar" id="ev-bar" hidden>
-    <span class="ev-bar__text">25/08 · em BH ou ao vivo</span>
-    <button type="button" class="btn btn--primary ev-bar__cta" data-modal-open="modal-evento" data-modalidade="presencial">Garantir ingresso</button>
+  <!-- Barra fixa no mobile, com os DOIS botões. Aparece depois do mecanismo. -->
+  <div class="ev-bar" id="ev-bar">
+    <button type="button" class="btn-duo btn-duo--fill" data-modal-open="modal-evento" data-modalidade="presencial">Cadeira em BH · R$ 157</button>
+    <button type="button" class="btn-duo btn-duo--out" data-modal-open="modal-evento" data-modalidade="online">Ao vivo · R$ 67</button>
   </div>
 
   <!-- ============ MODAL ============ -->
@@ -610,17 +618,13 @@
         <svg width="52" height="56" viewBox="0 0 100 108"><path d="M6 24 Q6 4 26 4 H74 Q94 4 94 24 V70 Q94 90 74 90 H40 L20 106 V90 Q6 90 6 70 Z" fill="#23282A"/><path d="M31 72 V30 H70 V68 H46 V46 H60" fill="none" stroke="#16A88E" stroke-width="9" stroke-linecap="square"/></svg>
       </div>
       <h2 class="modal__title" id="modal-evento-titulo">Garanta seu ingresso</h2>
-      <p class="modal__text" id="modal-evento-texto">Preencha seus dados e siga para a inscrição do Leilão &amp; Prosa, dia 25 de agosto.</p>
+      <p class="modal__text" id="modal-evento-texto">Preencha seus dados e siga para a compra do ingresso do Leilão &amp; Prosa, dia 25 de agosto.</p>
 
       <!--
-        O lead grava na planilha via Apps Script. Os campos escondidos `evento` e
-        `modalidade` viajam junto no FormData e são o que separa esta edição da de
-        julho (a URL continua sendo /evento/, então a coluna `pagina` não distingue).
-
         FALTA O LINK DO SYMPLA DE AGOSTO. Enquanto ele não existe, o formulário
         NÃO tem data-redirect: o lead é capturado e vê a mensagem de sucesso, em
-        vez de ser mandado para o evento errado. Quando o link existir, acrescentar:
-            data-redirect="https://www.sympla.com.br/evento/SLUG-DO-EVENTO/ID"
+        vez de ser mandado para o evento de julho. Quando o link existir:
+            data-redirect="https://www.sympla.com.br/evento/SLUG/ID"
         e remover data-success-title / data-success-text.
       -->
       <form class="modal__form" name="evento-25-08" data-checkout
@@ -650,9 +654,9 @@
     </div>
   </div>
 
-  <script src="/_shared/reveal.js?v=20260804a" defer></script>
-  <script src="/_shared/modal.js?v=20260804a" defer></script>
-  <script src="/_shared/forms.js?v=20260804a" defer></script>
-  <script src="/evento/script.js?v=20260804a" defer></script>
+  <script src="/_shared/reveal.js?v=20260805a" defer></script>
+  <script src="/_shared/modal.js?v=20260805a" defer></script>
+  <script src="/_shared/forms.js?v=20260805a" defer></script>
+  <script src="/evento/script.js?v=20260805a" defer></script>
 </body>
 </html>
