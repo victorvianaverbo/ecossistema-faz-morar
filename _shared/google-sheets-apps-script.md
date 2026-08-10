@@ -59,12 +59,14 @@ Cole no editor (Extensões > Apps Script), substituindo todo o conteúdo de `Có
 var VERSAO = '2026-08-10';
 
 // ---------------------------------------------------------------- configuração
-var FUSO                   = 'America/Sao_Paulo';
-var ABA_RESUMO             = 'Resumo';
-var ABA_FALHAS             = '_Falhas';
-var ABA_SEM_EDICAO         = 'Edicao sem data';
-var EDICAO_ATUAL           = '2026-08-26';  // mesmo valor do input hidden "evento"
-var JANELA_DUPLICIDADE_MIN = 10;
+var FUSO                  = 'America/Sao_Paulo';
+var ABA_RESUMO            = 'Resumo';
+var ABA_FALHAS            = '_Falhas';
+var ABA_SEM_EDICAO        = 'Edicao sem data';
+var EDICAO_ATUAL          = '2026-08-26';  // mesmo valor do input hidden "evento"
+// Em milissegundos, e não em minutos multiplicados: multiplicação em cadeia
+// dentro de documentação markdown já chegou aqui sem os operadores.
+var JANELA_DUPLICIDADE_MS = 600000;        // 10 minutos
 
 var COLUNAS = [
   'Data', 'Nome', 'WhatsApp', 'E-mail', 'Modalidade',
@@ -203,12 +205,11 @@ function ehDuplicado(aba, d, agora) {
   var dados  = aba.getRange(inicio, 1, ultima - inicio + 1, 4).getValues();
   var email  = String(d.email || '').trim().toLowerCase();
   var fone   = somenteDigitos(d.telefone);
-  var limite = JANELA_DUPLICIDADE_MIN * 60 * 1000;
 
   for (var i = dados.length - 1; i >= 0; i--) {
     var quando = dados[i][0];
     if (!(quando instanceof Date)) continue;
-    if (agora.getTime() - quando.getTime() > limite) break;   // daqui para trás é antigo
+    if (agora.getTime() - quando.getTime() > JANELA_DUPLICIDADE_MS) break;   // daqui para trás é antigo
     if (email && String(dados[i][3]).trim().toLowerCase() === email) return true;
     if (fone  && somenteDigitos(dados[i][2]) === fone)             return true;
   }
@@ -350,6 +351,25 @@ function atualizarSeletor(ss, resumo) {
 }
 
 /**
+ * Descobre se esta planilha separa argumentos de fórmula por vírgula ou por
+ * ponto e vírgula. Planilha com Localidade Brasil exige ";", e uma fórmula
+ * escrita com "," vira #ERROR! em toda a aba. A sonda resolve isso sem
+ * depender de configuração: escreve =SUM(1,2) e vê se o resultado é 3.
+ */
+function separadorDeFormula(resumo) {
+  var sonda = resumo.getRange('Z200');
+  try {
+    sonda.setFormula('=SUM(1,2)');
+    var v = sonda.getValue();
+    sonda.clearContent();
+    return (v === 3) ? ',' : ';';
+  } catch (e) {
+    sonda.clearContent();
+    return ';';                                  // no Brasil, o padrão é este
+  }
+}
+
+/**
  * Painel único. Tudo aponta para a aba escolhida em B1 via INDIRECT, então
  * continua funcionando quando surgir a edição de setembro, outubro, etc.
  */
@@ -358,6 +378,11 @@ function criarResumo(ss) {
   if (!r) r = ss.insertSheet(ABA_RESUMO, 0);
   ss.setActiveSheet(r);
   ss.moveActiveSheet(1);
+
+  // Separador de ARGUMENTOS. As vírgulas dentro da string do QUERY são da
+  // linguagem de consulta e continuam vírgulas em qualquer localidade.
+  var SEP = separadorDeFormula(r);
+  function s(formula) { return formula.split('~').join(SEP); }
 
   // atalho para "a aba escolhida em B1, intervalo X"
   function R(intervalo) {
@@ -380,24 +405,28 @@ function criarResumo(ss) {
     r.getRange(c).setFontWeight('bold').setFontColor('#1F2A24');
   });
 
+  // O "~" marca separador de argumento e é trocado por "," ou ";" conforme a
+  // localidade. As vírgulas dentro das aspas do QUERY ficam como estão.
   var formulas = [
-    ['B4',  '=IFERROR(COUNTA(' + R('B2:B') + '),0)'],
-    ['B5',  '=IFERROR(COUNTIF(' + R('E2:E') + ',"presencial"),0)'],
-    ['B6',  '=IFERROR(COUNTIF(' + R('E2:E') + ',"online"),0)'],
-    ['B7',  '=IFERROR(COUNTA(' + R('F2:F') + ')-COUNTIF(' + R('F2:F') + ',"Novo"),0)'],
-    ['B8',  '=IFERROR(B7/B4,0)'],
-    ['B9',  '=IFERROR(COUNTIF(' + R('F2:F') + ',"Vai comprar"),0)'],
-    ['B10', '=IFERROR(COUNTIF(' + R('F2:F') + ',"Comprou"),0)'],
+    ['B4',  '=IFERROR(COUNTA(' + R('B2:B') + ')~0)'],
+    ['B5',  '=IFERROR(COUNTIF(' + R('E2:E') + '~"presencial")~0)'],
+    ['B6',  '=IFERROR(COUNTIF(' + R('E2:E') + '~"online")~0)'],
+    ['B7',  '=IFERROR(COUNTA(' + R('F2:F') + ')-COUNTIF(' + R('F2:F') + '~"Novo")~0)'],
+    ['B8',  '=IFERROR(B7/B4~0)'],
+    ['B9',  '=IFERROR(COUNTIF(' + R('F2:F') + '~"Vai comprar")~0)'],
+    ['B10', '=IFERROR(COUNTIF(' + R('F2:F') + '~"Comprou")~0)'],
 
-    ['A13', '=IFERROR(QUERY(' + R('F2:F') + ', "select Col1, count(Col1) where Col1 is not null group by Col1 order by count(Col1) desc label Col1 \'Status\', count(Col1) \'Leads\'", 0), "")'],
-    ['D13', '=IFERROR(QUERY(' + R('A2:A') + ', "select toDate(Col1), count(Col1) where Col1 is not null group by toDate(Col1) order by toDate(Col1) label toDate(Col1) \'Dia\', count(Col1) \'Leads\'", 0), "")'],
-    ['G13', '=IFERROR(QUERY(' + R('H2:H') + ', "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'utm_source\', count(Col1) \'Leads\'", 0), "")'],
-    ['J13', '=IFERROR(QUERY(' + R('J2:J') + ', "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'Campanha\', count(Col1) \'Leads\'", 0), "")'],
-    ['M13', '=IFERROR(QUERY(' + R('O2:O') + ', "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'Referrer\', count(Col1) \'Leads\'", 0), "")']
+    ['A13', '=IFERROR(QUERY(' + R('F2:F') + '~ "select Col1, count(Col1) where Col1 is not null group by Col1 order by count(Col1) desc label Col1 \'Status\', count(Col1) \'Leads\'"~ 0)~ "")'],
+    ['D13', '=IFERROR(QUERY(' + R('A2:A') + '~ "select toDate(Col1), count(Col1) where Col1 is not null group by toDate(Col1) order by toDate(Col1) label toDate(Col1) \'Dia\', count(Col1) \'Leads\'"~ 0)~ "")'],
+    ['G13', '=IFERROR(QUERY(' + R('H2:H') + '~ "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'utm_source\', count(Col1) \'Leads\'"~ 0)~ "")'],
+    ['J13', '=IFERROR(QUERY(' + R('J2:J') + '~ "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'Campanha\', count(Col1) \'Leads\'"~ 0)~ "")'],
+    ['M13', '=IFERROR(QUERY(' + R('O2:O') + '~ "select Col1, count(Col1) where Col1 is not null and Col1 != \'\' group by Col1 order by count(Col1) desc label Col1 \'Referrer\', count(Col1) \'Leads\'"~ 0)~ "")']
   ];
-  formulas.forEach(function (f) { r.getRange(f[0]).setFormula(f[1]); });
+  formulas.forEach(function (f) { r.getRange(f[0]).setFormula(s(f[1])); });
 
   r.getRange('B8').setNumberFormat('0%');
+  // Sem isso, a coluna Dia do QUERY sai como número de série (46244).
+  r.getRange('D14:D').setNumberFormat('dd/MM/yyyy');
   r.getRange('B4:B10').setFontSize(12).setFontWeight('bold').setHorizontalAlignment('left');
   r.setColumnWidth(1, 210); r.setColumnWidth(2, 110);
   r.setColumnWidth(4, 130); r.setColumnWidth(5, 80);
@@ -460,6 +489,12 @@ function testeDeGravacao() {
   }});
 }
 ```
+
+### Três armadilhas descobertas na primeira execução (10/08)
+
+1. **Separador de argumento depende da localidade.** Planilha com Localidade Brasil usa `;` no lugar de `,`, e uma fórmula escrita com vírgula vira `#ERROR!` no painel inteiro. A função `separadorDeFormula()` descobre isso em tempo de execução com uma sonda `=SUM(1,2)`, então o Resumo continua correto se alguém trocar a localidade depois.
+2. **Multiplicação em cadeia não sobrevive a copiar e colar de markdown renderizado.** `X * 60 * 1000` chegou no editor como `X  60  1000`, que é erro de sintaxe e derruba o arquivo inteiro, inclusive o `doPost`. Por isso a janela de duplicidade agora é uma constante já em milissegundos.
+3. **A coluna Dia do QUERY sai como número de série** (46244 em vez de 26/08/2026) e precisa do `setNumberFormat('dd/MM/yyyy')` aplicado em `D14:D`.
 
 ### Por que `getActiveSpreadsheet()` e não `openById()`
 
