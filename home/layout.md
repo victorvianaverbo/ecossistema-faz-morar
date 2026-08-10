@@ -1,4 +1,4 @@
-# Layout - Home (Ecossistema Clube do Leilão)
+# Layout - Home (Ecossistema Faz Morar)
 
 Especificação de diretor de arte para construção da página completa em `/desenvolver`.
 
@@ -150,7 +150,7 @@ Card 1 (claro):
 Card 2 (verde escuro):
 - Eyebrow: `MARKETPLACE`
 - Título: `Imóveis particulares, sem corretor.`
-- Texto: `Compre direto, com consultoria da Clube do Leilão e toda a parte documental cuidada por nós.`
+- Texto: `Compre direto, com consultoria da Faz Morar e toda a parte documental cuidada por nós.`
 - CTA: `Explorar imóveis` → `/consultoria-sem-corretor/`
 
 ### Layout
@@ -238,11 +238,11 @@ Card 2 (verde escuro):
 - Justificativa: fechamento sóbrio e premium; repete o vocabulário do nav (underline animado) criando moldura consistente no topo e na base da página.
 
 ### Conteúdo (exato da copy global — `/_shared/copy-global.md`)
-- Coluna marca: logo monograma 30px + `Clube do Leilão` (DM Serif 18px) + texto `O ecossistema que leva você do leilão à chave na mão, com segurança jurídica.`
-- Coluna `Plataforma`: `Leilões` → `/clube-do-leilao/` · `Cursos` → `/cursos/` · `Financiamento` → `/financiamento/` · `Imóveis` → `/servicos/`
+- Coluna marca: logo monograma 30px + `Leilão & Prosa` (DM Serif 18px) + texto `O ecossistema que leva você do leilão à chave na mão, com segurança jurídica.`
+- Coluna `Plataforma`: `Leilões` → `/leilao-e-prosa/` · `Cursos` → `/cursos/` · `Financiamento` → `/financiamento/` · `Imóveis` → `/servicos/`
 - Coluna `Serviços`: `Despachante` → `/despachante/` · `Consórcio` → `/consorcio/` · `Seguros` → `/seguros/` · `Conta Caixa` → `/conta-caixa/`
 - Coluna `Contato`: `WhatsApp (31) 99695-1660` → `https://wa.me/5531996951660` · `Área de membros` → `https://wa.me/5531996951660` (TODO: [URL_MEMBERKIT_AREA]) · `Belo Horizonte · MG` (texto)
-- Base: `© 2026 Clube do Leilão Imóveis · Todos os direitos reservados.`
+- Base: `© 2026 Faz Morar Imóveis · Todos os direitos reservados.`
 
 ### Layout
 - Wrapper: `border-top: 1px solid var(--line); background: var(--mist);`

@@ -9,7 +9,7 @@ Início (/) / Serviços (/servicos/) / Corretagem de Imóveis Particulares
 ## Hero
 - Eyebrow (categoria): CORRETAGEM
 - Headline: Compre o imóvel particular certo, bem assessorado.
-- Descrição: Corretagem para compra de imóveis particulares com a curadoria e a segurança da Clube do Leilão — negociação, análise e documentação em um só lugar.
+- Descrição: Corretagem para compra de imóveis particulares com a curadoria e a segurança da Faz Morar — negociação, análise e documentação em um só lugar.
 - CTA primário: Buscar meu imóvel → https://wa.me/5531996951660 (mensagem pré-preenchida: "Olá, quero ajuda para encontrar um imóvel")
 - CTA secundário: Falar no WhatsApp → https://wa.me/5531996951660
 - Card de fato (painel escuro):
@@ -32,7 +32,7 @@ Início (/) / Serviços (/servicos/) / Corretagem de Imóveis Particulares
 
 ## Seção: Nota + CTA final
 - Título fixo: Pronto para dar o próximo passo?
-- Nota: Você compra com um corretor de confiança e todo o suporte documental da Clube do Leilão.
+- Nota: Você compra com um corretor de confiança e todo o suporte documental da Faz Morar.
 - Card: Corretagem de Imóveis Particulares · CTA "Buscar meu imóvel" → WhatsApp · WhatsApp (31) 99695-1660
 
 ## Seção: Footer

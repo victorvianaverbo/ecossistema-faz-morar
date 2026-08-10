@@ -1,21 +1,57 @@
-# Design Tokens - Ecossistema Clube do Leilão
+# Design Tokens - Ecossistema Faz Morar
 
 Fonte da identidade: `design-kit/project/Ecossistema/Home.dc.html` e `ServicoLayout.dc.html` (handoff Claude Design, aprovado pelo cliente). Todas as páginas do ecossistema usam estes tokens.
 
-## Cores
+## Cores — marca-mãe Faz Morar
+
+Charcoal da logo com destaque em dourado champanhe. Definidos em
+`/_shared/base.css` e duplicados em `/home/style.css` (a home não carrega o
+base.css — os dois blocos precisam ser mantidos em sincronia).
 
 | Token | Valor | Uso |
 |---|---|---|
-| --accent | #16A88E | CTAs primários, selos, monograma, detalhes |
-| --accent-deep | #0E7A67 | Eyebrows, números de destaque, hover de CTA, textos de apoio verdes |
-| --accent-soft | #2FB8A0 | Acentos sobre fundo escuro (eyebrows, números de passo) |
-| --mint | #E7F4F0 | Fundos de badge, cards claros de CTA |
-| --ink | #23282A | Texto principal, fundos escuros (nav dark, painéis, seções) |
-| --ink-60 | rgba(35,40,42,.62) | Texto secundário |
-| --ink-45 | rgba(35,40,42,.45) | Breadcrumb, legendas |
-| --line | rgba(31,36,37,.1) | Bordas e divisores |
+| --accent | #B08D57 | Filetes, selos, detalhes gráficos. **Não usar em texto pequeno** (3,09:1 sobre branco) |
+| --accent-deep | #8A6B3E | Eyebrows e qualquer texto dourado abaixo de 18px (4,94:1, passa AA) |
+| --accent-soft | #D4B98A | Acentos sobre fundo escuro (7,17:1 sobre charcoal) |
+| --accent-lift / --accent-sink | #C9A874 / #96763F | Topo e base de gradientes dourados |
+| --accent-rgb e derivados | 176,141,87 | Compor `rgba(var(--accent-rgb), .25)` em bordas e sombras |
+| --mint | #F3EDE3 | Fundos de badge e cards claros (era o verde-menta) |
+| --ink | #2E2E30 | Texto principal e fundos escuros |
+| --ink-lift / --ink-panel | #3A3A3C / #414144 | Topo de gradientes escuros (o `--ink-lift` é a cor exata da logo) |
+| --ink-72/60/50/45 | alphas .75/.64/.52/.47 | Texto secundário. Alphas recalibrados: o charcoal novo é mais claro que o antigo, e os alphas originais teriam baixado o contraste |
+| --line | rgba(46,46,48,.12) | Bordas e divisores |
 | --paper | #FFFFFF | Fundo padrão |
-| --mist | #F5F6F6 | Fundos alternados (faixa de confiança, footer, seção incluído) |
+| --mist | #F6F3EE | Fundos alternados — cinza quente, para casar com o dourado |
+| --cta-* | charcoal + filete dourado | CTA primário. Fundo dourado com texto branco daria 4,38:1 e reprovaria |
+| --mono-bg / --mono-fg | #2E2E30 / #FFF | Quadrado e glifo do monograma |
+
+## Cores — sub-marca Leilão & Prosa
+
+O verde deixou de ser a cor do ecossistema e passou a identificar só a vertical
+de leilões: evento, comunidade, livro e o clube de assinatura.
+
+Aplicado pela classe **`.brand-lp`**, nunca por um `:root` próprio — a home
+mistura as duas marcas no mesmo documento (a seção `.club` e o card do hero são
+da sub-marca), e custom properties herdam pela árvore do DOM. Não aplicar em
+`<html>`: teria a mesma especificidade de `:root` e o vencedor passaria a
+depender da ordem no arquivo.
+
+| Token | Valor |
+|---|---|
+| --accent / --accent-deep / --accent-soft | #16A88E / #0E7A67 / #2FB8A0 |
+| --mint | #E7F4F0 |
+| --ink | #23282A |
+
+Os valores são os originais do site, para que `/evento/`, `/comunidade/` e
+`/livro/` fiquem pixel-idênticas ao que o cliente aprovou.
+
+## Monograma
+
+Quadrado sólido (sem cantos arredondados) com o glifo em branco vazado.
+Geometria em `/favicon.svg`, que é a fonte única — os SVGs inline derivam dela.
+Dois nós (`.mono__bg` e `.mono__fg`) para que quadrado e glifo sejam recoloridos
+separadamente. A marca d'água usa `.mono--mark`, que esconde o quadrado e deixa
+só o glifo.
 
 ## Tipografia
 

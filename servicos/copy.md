@@ -11,7 +11,7 @@
 
 ## Seção: Grade de serviços (cards numerados, link "Ver serviço →" em cada um)
 
-1. Clube do Leilão → /clube-do-leilao/
+1. Leilão & Prosa → /leilao-e-prosa/
    Arremate com mapa real, análise jurídica e a calculadora do lance.
 2. Cursos e Mentorias → /cursos/
    Aprenda a arrematar do zero, com acesso liberado na hora.

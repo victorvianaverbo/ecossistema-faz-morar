@@ -71,7 +71,7 @@
 
 ## Seção: Footer
 
-- Versão compacta com CRECI: © 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ
+- Versão compacta com CRECI: © 2026 Faz Morar Imóveis · CRECI 5314 PJ
 
 ## [OPCIONAL — matéria-prima do vídeo, usar se a página precisar de mais profundidade]
 - Documentos básicos: RG, CPF, comprovante de endereço atual, certidão de estado civil, comprovação de renda (contracheque, IR completo, MEI com duas declarações, prolabore).

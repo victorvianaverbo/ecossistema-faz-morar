@@ -18,10 +18,46 @@
   status = 200
   force = true
 
-# Redirect www → apex
+# Rebranding: o clube "Clube do Leilão" virou "Leilão & Prosa" (jul/2026).
+# Sem force de propósito: o diretório antigo não existe mais, então não há
+# arquivo para o redirect competir. Manter enquanto houver links antigos
+# circulando em anúncios, e-mails e no grupo do WhatsApp.
 [[redirects]]
-  from = "https://www.example.com/*"
-  to = "https://example.com/:splat"
+  from = "/clube-do-leilao/*"
+  to = "/leilao-e-prosa/:splat"
+  status = 301
+
+# Redirect www → apex (dominio principal)
+[[redirects]]
+  from = "https://www.fazmorar.com.br/*"
+  to = "https://fazmorar.com.br/:splat"
+  status = 301
+  force = true
+
+# Redirect www → apex (leilãoeprosa.com em punycode, dominio secundario)
+[[redirects]]
+  from = "https://www.xn--leiloeprosa-c8a.com/*"
+  to = "https://xn--leiloeprosa-c8a.com/:splat"
+  status = 301
+  force = true
+
+# O template do framework ainda responde em /index.html e seria indexavel
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# Specs internos da pagina do evento nao sao pagina do site
+[[redirects]]
+  from = "/evento/layout.md"
+  to = "/evento/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/evento/copy.md"
+  to = "/evento/"
   status = 301
   force = true
 

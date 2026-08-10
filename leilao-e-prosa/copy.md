@@ -1,10 +1,10 @@
-# Copy - Clube do Leilão
+# Copy - Leilão & Prosa
 
 > Blocos globais: ver `/_shared/copy-global.md` · Template visual: `design-kit/project/Ecossistema/ServicoLayout.dc.html`
 > Fonte de design: `design-kit/project/Ecossistema/Clube-do-Leilao.dc.html`
 
 ## Breadcrumb
-Início (/) / Serviços (/servicos/) / Clube do Leilão
+Início (/) / Serviços (/servicos/) / Leilão & Prosa
 
 ## Hero
 - Eyebrow (categoria): CLUBE DO LEILÃO
@@ -33,7 +33,7 @@ Início (/) / Serviços (/servicos/) / Clube do Leilão
 ## Seção: Nota + CTA final
 - Título fixo: Pronto para dar o próximo passo?
 - Nota: Custos de cartório, ITBI e eventuais débitos do imóvel são simulados na calculadora antes do lance — sem surpresas.
-- Card: Clube do Leilão · CTA "Entrar no Clube" → [URL_CHECKOUT_GURU_CLUBE] · WhatsApp (31) 99695-1660
+- Card: Leilão & Prosa · CTA "Entrar no Clube" → [URL_CHECKOUT_GURU_CLUBE] · WhatsApp (31) 99695-1660
 
 ## Seção: Footer
 - Versão compacta — ver `/_shared/copy-global.md`

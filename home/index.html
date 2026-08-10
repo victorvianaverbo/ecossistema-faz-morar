@@ -3,38 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clube do Leilão | Conquiste seu imóvel pagando menos, com segurança jurídica</title>
-  <meta name="description" content="Do arremate à escritura: o ecossistema completo da Clube do Leilão reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.">
+  <title>Faz Morar | Conquiste seu imóvel pagando menos, com segurança jurídica</title>
+  <meta name="description" content="Do arremate à escritura: o ecossistema completo da Faz Morar reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.">
+  <meta property="og:title" content="Faz Morar | Conquiste seu imóvel pagando menos, com segurança jurídica">
+  <meta property="og:description" content="Do arremate à escritura: o ecossistema completo da Faz Morar reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fazmorar.com.br/">
+  <meta property="og:image" content="https://fazmorar.com.br/images/og-faz-morar.jpg">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/figtree-400-700.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/dm-serif-display-400.woff2" crossorigin>
-  <link rel="stylesheet" href="/_shared/fonts.css">
+  <link rel="stylesheet" href="/_shared/fonts.css?v=20260719b">
 
   <link rel="preload" as="image" href="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80">
-  <link rel="stylesheet" href="/_shared/reveal.css">
-  <link rel="stylesheet" href="/home/style.css">
-  <link rel="stylesheet" href="/_shared/sales.css">
+  <link rel="stylesheet" href="/_shared/reveal.css?v=20260719b">
+  <link rel="stylesheet" href="/home/style.css?v=20260719b">
+  <link rel="stylesheet" href="/_shared/sales.css?v=20260719b">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1686347049325562');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1686347049325562&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
   <!-- ============ NAV ============ -->
   <header class="nav">
     <div class="nav__inner">
-      <a href="/home/" class="nav__brand" aria-label="Clube do Leilão, página inicial">
-        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#23282A"/><path d="M28 75 V27 H73 V72 H45 V45 H61" fill="none" stroke="#16A88E" stroke-width="9.5" stroke-linecap="square"/></svg>
-        <span>Clube do Leilão</span>
+      <a href="/" class="nav__brand" aria-label="Faz Morar, página inicial">
+        <svg class="mono" width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><path class="mono__bg" fill="#2E2E30" d="M0 0h100v100H0z"/><path class="mono__fg" fill="#FFFFFF" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
+        <span>Faz Morar</span>
       </a>
       <nav class="nav__links" aria-label="Navegação principal">
-        <a href="/clube-do-leilao/">Leilões</a>
+        <a href="/leilao-e-prosa/">Leilões</a>
         <a href="/cursos/">Cursos</a>
         <a href="/financiamento/">Financiamento</a>
-        <a href="/servicos/">Imóveis</a>
         <a href="/servicos/">Serviços</a>
       </nav>
       <div class="nav__actions">
-        <!-- TODO: trocar wa.me por [URL_MEMBERKIT_LOGIN] e [URL_MEMBERKIT_AREA] quando definidos -->
-        <a href="https://wa.me/5531996951660" class="nav__login">Entrar</a>
-        <a href="https://wa.me/5531996951660" class="nav__cta">Área de membros</a>
+        <a href="https://leilaoeprosa.membroclub.com.br" class="nav__login">Login</a>
+        <a href="https://leilaoeprosa.membroclub.com.br" class="nav__cta">Entrar no Leilão &amp; Prosa</a>
+        <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+        </button>
       </div>
+    </div>
+
+    <div class="nav__drawer" id="nav-drawer" hidden>
+      <a href="/leilao-e-prosa/">Leilões</a>
+      <a href="/cursos/">Cursos</a>
+      <a href="/financiamento/">Financiamento</a>
+      <a href="/servicos/">Serviços</a>
+      <a href="https://leilaoeprosa.membroclub.com.br" class="nav__drawer-cta">Entrar no Leilão &amp; Prosa</a>
     </div>
   </header>
 
@@ -46,10 +83,10 @@
         <div class="hero__content">
           <a href="/evento/" class="hero__badge">
             <span class="hero__badge-dot" aria-hidden="true"></span>
-            PRÓXIMO EVENTO AO VIVO · 28 DE JULHO · BELO HORIZONTE
+            PRÓXIMO EVENTO · 26 DE AGOSTO · EM BH OU AO VIVO
           </a>
           <h1 class="hero__title">Conquiste seu imóvel pagando menos, com <em>segurança jurídica.</em></h1>
-          <p class="hero__sub">Do arremate à escritura: o ecossistema completo da Clube do Leilão reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.</p>
+          <p class="hero__sub">Do arremate à escritura: o ecossistema completo da Faz Morar reúne leilão, financiamento, despachante, cursos e imóveis em um só lugar.</p>
           <div class="hero__actions">
             <a href="/evento/" class="btn btn--primary">Garantir minha vaga</a>
             <a href="#ecossistema" class="btn btn--ghost">Conhecer o ecossistema</a>
@@ -71,11 +108,11 @@
         </div>
 
         <div class="hero__visual">
-          <img class="hero__photo" src="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80" alt="Jacque Costa, especialista em leilões do Clube do Leilão, segurando a chave de um imóvel" width="980" height="1080" loading="eager" fetchpriority="high">
-          <div class="hero__glass">
+          <img class="hero__photo" src="/.netlify/images?url=/images/jacque1.png&amp;w=980&amp;q=80" alt="Jacque Costa, especialista em leilões da Faz Morar, segurando a chave de um imóvel" width="980" height="1080" loading="eager" fetchpriority="high">
+          <div class="hero__glass brand-lp">
             <div class="hero__glass-eyebrow">LEILÃO &amp; PROSA</div>
-            <div class="hero__glass-title">Encontro presencial</div>
-            <div class="hero__glass-note">Vagas limitadas · cadeira garantida</div>
+            <div class="hero__glass-title">26 de agosto</div>
+            <div class="hero__glass-note">Presencial em BH ou ao vivo pela internet</div>
           </div>
         </div>
       </div>
@@ -158,9 +195,9 @@
         <a href="/servicos/" class="pillars__all">Ver todos os serviços →</a>
       </div>
       <div class="pillars__grid">
-        <a href="/clube-do-leilao/" class="pillar" data-aos="fade-up" data-aos-delay="0">
+        <a href="/leilao-e-prosa/" class="pillar" data-aos="fade-up" data-aos-delay="0">
           <div class="pillar__num">01</div>
-          <div class="pillar__name">Clube do Leilão</div>
+          <div class="pillar__name">Leilão &amp; Prosa</div>
           <p class="pillar__desc">Arremate com mapa real e a calculadora que blinda o seu lance.</p>
         </a>
         <a href="/cursos/" class="pillar" data-aos="fade-up" data-aos-delay="60">
@@ -222,7 +259,7 @@
         </div>
       </div>
       <div class="steps__mark" aria-hidden="true">
-        <svg width="280" height="280" viewBox="0 0 100 100"><path d="M28 75 V27 H73 V72 H45 V45 H61" fill="none" stroke="#16A88E" stroke-width="6" stroke-linecap="square"/></svg>
+        <svg class="mono mono--mark" width="280" height="280" viewBox="0 0 100 100"><path class="mono__fg" fill="#B08D57" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
       </div>
     </section>
 
@@ -306,37 +343,37 @@
         <article class="teaser__card teaser__card--green" data-aos="fade-up" data-aos-delay="100">
           <div class="eyebrow eyebrow--onGreen">MARKETPLACE</div>
           <h2 class="teaser__title teaser__title--onGreen">Imóveis particulares, sem corretor.</h2>
-          <p class="teaser__text teaser__text--onGreen">Compre direto, com consultoria da Clube do Leilão e toda a parte documental cuidada por nós.</p>
+          <p class="teaser__text teaser__text--onGreen">Compre direto, com consultoria da Faz Morar e toda a parte documental cuidada por nós.</p>
           <a href="/consultoria-sem-corretor/" class="teaser__cta teaser__cta--white">Explorar imóveis</a>
           <div class="teaser__mark" aria-hidden="true">
-            <svg width="180" height="180" viewBox="0 0 100 100"><path d="M28 75 V27 H73 V72 H45 V45 H61" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5" stroke-linecap="square"/></svg>
+            <svg class="mono mono--mark" style="--mono-mark: rgba(255,255,255,.35)" width="180" height="180" viewBox="0 0 100 100"><path class="mono__fg" fill="#B08D57" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
           </div>
         </article>
       </div>
     </section>
 
     <!-- ============ CLUBE DO LEILÃO (PLANOS) ============ -->
-    <section class="club">
+    <section class="club brand-lp">
       <div class="club__inner">
         <div class="club__head" data-aos="fade-up">
           <div class="eyebrow eyebrow--onDark">ASSINATURA</div>
-          <h2 class="club__title">Clube do Leilão</h2>
+          <h2 class="club__title">Leilão &amp; Prosa</h2>
           <p class="club__sub">O mercado mudou. Nós antecipamos o futuro.</p>
         </div>
         <div class="club__grid">
           <div class="club__card" data-aos="fade-up" data-aos-delay="0">
             <div class="club__num">01</div>
-            <h3 class="club__name">Clube Te Ensina</h3>
+            <h3 class="club__name">Te Ensina</h3>
             <p class="club__desc">Treinamentos completos para investidores que buscam autonomia e domínio técnico total sobre o mercado de leilões.</p>
           </div>
           <div class="club__card" data-aos="fade-up" data-aos-delay="80">
             <div class="club__num">02</div>
-            <h3 class="club__name">Clube Te Apoia</h3>
+            <h3 class="club__name">Te Apoia</h3>
             <p class="club__desc">Mentoria próxima. Pegamos na sua mão e guiamos você em cada etapa, garantindo uma arrematação segura e estratégica.</p>
           </div>
           <div class="club__card" data-aos="fade-up" data-aos-delay="160">
             <div class="club__num">03</div>
-            <h3 class="club__name">Clube Faz por Você</h3>
+            <h3 class="club__name">Faz por Você</h3>
             <p class="club__desc">Assessoria e consultoria. Executamos todo o processo, do garimpo à liquidez, enquanto você foca no seu objetivo.</p>
           </div>
         </div>
@@ -379,23 +416,41 @@
     <div class="footer__top">
       <div class="footer__brand">
         <div class="footer__brand-row">
-          <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#23282A"/><path d="M28 75 V27 H73 V72 H45 V45 H61" fill="none" stroke="#16A88E" stroke-width="9.5" stroke-linecap="square"/></svg>
-          <span>Clube do Leilão</span>
+          <svg class="mono" width="30" height="30" viewBox="0 0 100 100" aria-hidden="true"><path class="mono__bg" fill="#2E2E30" d="M0 0h100v100H0z"/><path class="mono__fg" fill="#FFFFFF" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
+          <span>Faz Morar</span>
         </div>
         <p class="footer__tagline">O ecossistema que leva você do leilão à chave na mão, com segurança jurídica.</p>
       </div>
       <div class="footer__cols">
-        <nav class="footer__col" aria-label="Plataforma">
-          <div class="footer__col-title">Plataforma</div>
-          <a href="/clube-do-leilao/">Leilões</a>
-          <a href="/cursos/">Cursos</a>
-          <a href="/financiamento/">Financiamento</a>
-          <a href="/servicos/">Imóveis</a>
+        <nav class="footer__col" aria-label="Leilão e Prosa">
+          <div class="footer__col-title">Leilão &amp; Prosa</div>
+          <a href="/leilao-e-prosa/">O Clube</a>
+          <a href="/planos/">Planos</a>
+          <a href="/calculadora/">Calculadora do Leilão</a>
+          <a href="/comunidade/">Comunidade (grátis)</a>
+          <a href="/evento/">Evento ao vivo</a>
         </nav>
-        <nav class="footer__col" aria-label="Serviços">
-          <div class="footer__col-title">Serviços</div>
+        <nav class="footer__col" aria-label="Aprender">
+          <div class="footer__col-title">Aprender</div>
+          <a href="/cursos/">Todos os cursos</a>
+          <a href="/fundamentos/">Fundamentos dos Leilões</a>
+          <a href="/curso-roi/">Antes do Lance (ROI)</a>
+          <a href="/livro/">Livro Leilão &amp; Prosa</a>
+          <a href="/dossie-financiamento/">Dossiê do Financiamento</a>
+        </nav>
+        <nav class="footer__col" aria-label="Comprar e financiar">
+          <div class="footer__col-title">Comprar e financiar</div>
+          <a href="/servicos/">Todos os serviços</a>
+          <a href="/financiamento/">Financiamento</a>
+          <a href="/assessoria-habitacional/">Assessoria habitacional</a>
+          <a href="/corretagem/">Corretagem</a>
+          <a href="/consultoria-sem-corretor/">Comprar sem corretor</a>
+        </nav>
+        <nav class="footer__col" aria-label="Depois do arremate">
+          <div class="footer__col-title">Depois do arremate</div>
           <a href="/despachante/">Despachante</a>
-          <a href="/consorcio/">Consórcio</a>
+          <a href="/consultoria/">Consultoria 1:1</a>
+          <a href="/consorcio/">Consórcio Caixa</a>
           <a href="/seguros/">Seguros</a>
           <a href="/conta-caixa/">Conta Caixa</a>
         </nav>
@@ -408,10 +463,11 @@
         </div>
       </div>
     </div>
-    <div class="footer__base">© 2026 Clube do Leilão Imóveis · FAZ MORAR IMÓVEIS · CRECI 5314 PJ · Todos os direitos reservados.</div>
+    <div class="footer__base">© 2026 Faz Morar Imóveis · CRECI 5314 PJ · Todos os direitos reservados.</div>
   </footer>
 
-  <script src="/_shared/reveal.js" defer></script>
-  <script src="/home/script.js" defer></script>
+  <script src="/_shared/reveal.js?v=20260719b" defer></script>
+  <script src="/_shared/nav.js?v=20260719b" defer></script>
+  <script src="/home/script.js?v=20260719b" defer></script>
 </body>
 </html>

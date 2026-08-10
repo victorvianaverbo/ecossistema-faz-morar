@@ -1,4 +1,4 @@
-# Copy Global - Ecossistema Clube do Leilão
+# Copy Global - Ecossistema Faz Morar
 
 Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página referencia este arquivo em vez de duplicar o conteúdo. Qualquer alteração de link, contato ou texto institucional acontece SOMENTE aqui.
 
@@ -11,10 +11,27 @@ Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página re
 
 ## Marca
 
-- Nome: Clube do Leilão
-- Assinatura institucional: Clube do Leilão Imóveis
+**Faz Morar é a marca-mãe.** Ela assina o site inteiro: nav, footer, títulos e
+todo texto institucional. Leilão & Prosa é a sub-marca da vertical de leilões e
+cobre quatro produtos: o clube de assinatura (/leilao-e-prosa/ e /planos/), o
+evento presencial, o livro e a comunidade gratuita do WhatsApp.
+
+Regra prática: se o texto fala do negócio como um todo, é Faz Morar. Se fala de
+leilão como produto, é Leilão & Prosa. A palavra "clube" sozinha, em minúscula,
+continua válida como substantivo comum ("entre no clube", "a análise do clube").
+
+- Nome: Faz Morar
+- Assinatura institucional: Faz Morar Imóveis
+- Sub-marca: Leilão & Prosa
 - Promessa central: do leilão à chave na mão, com segurança jurídica.
 - Praça: Belo Horizonte · MG
+
+### Cores
+
+A marca-mãe é charcoal `#2E2E30` com destaque em dourado champanhe `#B08D57`.
+A sub-marca mantém o verde `#16A88E`, aplicado pela classe `.brand-lp` — nunca
+por um `:root` próprio, porque a home mistura as duas marcas no mesmo documento.
+Tokens em `/_shared/base.css` e `/home/style.css` (mantidos em sincronia).
 
 ## Dados oficiais (confirmados pelo cliente)
 
@@ -27,8 +44,8 @@ Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página re
 
 | Item | Destino |
 |---|---|
-| Logo Clube do Leilão | / |
-| Leilões | /clube-do-leilao/ |
+| Logo Faz Morar | / |
+| Leilão & Prosa | /leilao-e-prosa/ |
 | Cursos | /cursos/ |
 | Financiamento | /financiamento/ |
 | Imóveis | /servicos/ |
@@ -44,15 +61,15 @@ Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página re
 ## Footer
 
 **Versão completa (home):**
-- Coluna marca: logo + "Clube do Leilão" + "O ecossistema que leva você do leilão à chave na mão, com segurança jurídica."
-- Coluna Plataforma: Leilões → /clube-do-leilao/ · Cursos → /cursos/ · Financiamento → /financiamento/ · Imóveis → /servicos/
+- Coluna marca: logo + "Faz Morar" + "O ecossistema que leva você do leilão à chave na mão, com segurança jurídica."
+- Coluna Plataforma: Leilão & Prosa → /leilao-e-prosa/ · Cursos → /cursos/ · Financiamento → /financiamento/ · Imóveis → /servicos/
 - Coluna Serviços: Despachante → /despachante/ · Consórcio → /consorcio/ · Seguros → /seguros/ · Conta Caixa → /conta-caixa/
 - Coluna Contato: WhatsApp (31) 99695-1660 → https://wa.me/5531996951660 · Área de membros → [URL_MEMBERKIT_AREA] · Belo Horizonte · MG
-- Copyright: © 2026 Clube do Leilão Imóveis · Todos os direitos reservados.
+- Copyright: © 2026 Faz Morar Imóveis · Todos os direitos reservados.
 
 **Versão compacta (páginas internas):**
-- Logo + "Clube do Leilão"
-- © 2026 Clube do Leilão Imóveis · Belo Horizonte · MG · WhatsApp (31) 99695-1660
+- Logo + "Faz Morar"
+- © 2026 Faz Morar Imóveis · Belo Horizonte · MG · WhatsApp (31) 99695-1660
 
 ## Placeholders de URL (preencher antes da publicação)
 
@@ -60,7 +77,7 @@ Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página re
 |---|---|---|
 | [URL_MEMBERKIT_LOGIN] | Login da área de membros (MemberKit) | Cliente/MemberKit |
 | [URL_MEMBERKIT_AREA] | Página da área de membros (MemberKit) | Cliente/MemberKit |
-| [URL_CHECKOUT_GURU_CLUBE] | Checkout do Clube do Leilão (Digital Manager Guru) | Cliente/Guru |
+| [URL_CHECKOUT_LEILAO_PROSA] | Checkout do clube Leilão & Prosa (Digital Manager Guru) | Cliente/Guru |
 | [URL_CHECKOUT_GURU_CURSOS] | Checkout dos cursos (Digital Manager Guru) | Cliente/Guru |
 | [URL_CHECKOUT_GURU_EVENTO] | Checkout/inscrição do evento ao vivo | Cliente/Guru |
 | [URL_CHECKOUT_LIVRO] | Checkout do livro Leilão & Prosa (R$ 77 com frete) | Cliente/Guru |
@@ -69,9 +86,9 @@ Blocos que se repetem em todas as páginas do site. Cada `copy.md` de página re
 | [URL_CHECKOUT_FUNDAMENTOS] | Checkout do curso Fundamentos (R$ 397) | Cliente/Guru |
 | [URL_CHECKOUT_DOSSIE] | Checkout/entrega do Dossiê do Financiamento | Cliente/Guru |
 | [URL_CHECKOUT_CONSULTORIA] | Checkout/agendamento da consultoria | Cliente |
-| [URL_CHECKOUT_PLANO_ENSINA] | Assinatura Clube Te Ensina (R$ 2.561/ano) | Cliente/Guru |
-| [URL_CHECKOUT_PLANO_APOIA] | Assinatura Clube Te Apoia (R$ 4.700/ano) | Cliente/Guru |
-| [URL_CHECKOUT_PLANO_FAZ] | Assinatura Clube Faz por Você (R$ 24.000/ano) | Cliente/Guru |
+| [URL_CHECKOUT_PLANO_ENSINA] | Assinatura Leilão & Prosa Te Ensina (R$ 2.561/ano) | Cliente/Guru |
+| [URL_CHECKOUT_PLANO_APOIA] | Assinatura Leilão & Prosa Te Apoia (R$ 4.700/ano) | Cliente/Guru |
+| [URL_CHECKOUT_PLANO_FAZ] | Assinatura Leilão & Prosa Faz por Você (R$ 24.000/ano) | Cliente/Guru |
 | [DATA_EVENTO] | Data do próximo evento ao vivo | Cliente |
 | [CIDADE_EVENTO] | Cidade do evento | Cliente |
 | [LOCAL_EVENTO] | Nome do local/endereço do evento | Cliente |
@@ -92,7 +109,7 @@ Regra: nenhum link pode ir ao ar como `#`. Enquanto um placeholder não estiver 
 |---|---|---|
 | Home | home/ | / |
 | Serviços (hub) | servicos/ | /servicos/ |
-| Clube do Leilão | clube-do-leilao/ | /clube-do-leilao/ |
+| Clube Leilão & Prosa | leilao-e-prosa/ | /leilao-e-prosa/ |
 | Cursos e Mentorias | cursos/ | /cursos/ |
 | Financiamento e Crédito | financiamento/ | /financiamento/ |
 | Despachante e Imóveis | despachante/ | /despachante/ |
@@ -110,4 +127,4 @@ Regra: nenhum link pode ir ao ar como `#`. Enquanto um placeholder não estiver 
 | Curso Antes do Lance (ROI) | curso-roi/ | /curso-roi/ |
 | Calculadora do Leilão | calculadora/ | /calculadora/ |
 | Curso Fundamentos Práticos | fundamentos/ | /fundamentos/ |
-| Planos do Clube | planos/ | /planos/ |
+| Planos do Leilão & Prosa | planos/ | /planos/ |
