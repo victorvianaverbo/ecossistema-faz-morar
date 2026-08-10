@@ -4,3 +4,6 @@
 Thumbs.db
 __MACOSX/
 lh-*.json
+
+# Versoes antigas guardadas em disco, nao vao para o site
+_backup_*/
