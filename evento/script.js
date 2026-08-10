@@ -75,19 +75,6 @@
     });
   }
 
-  /* ---------- Barra fixa mobile ---------- */
-
-  var barra = document.querySelector('.barra');
-  var sentinela = document.getElementById('sentinela-mec');
-
-  if (barra && sentinela && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      barra.classList.toggle('barra--on', entries[0].boundingClientRect.top < 0);
-    }).observe(sentinela);
-  } else if (barra) {
-    barra.classList.add('barra--on');
-  }
-
   /* ---------- Contadores da planilha (progressive enhancement) ---------- */
 
   function formatar(valor) {

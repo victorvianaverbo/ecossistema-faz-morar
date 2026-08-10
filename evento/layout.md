@@ -1356,7 +1356,7 @@ Copyright: `© 2026 Faz Morar Imóveis · Todos os direitos reservados.`
     <div class="rodape__id">
       <p class="rodape__linha">(identificação completa, com [Termos de uso] e [Política de privacidade] como links quando as URLs existirem; até lá, texto entre colchetes)</p>
       <p class="rodape__caixa">A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
-      <p class="rodape__apoio">Apoio: AVANTIK</p>
+      <p class="rodape__apoio">Apoio: AVANTIK <span class="dot">·</span> Vértice Labs</p>
       <p class="rodape__copy">© 2026 Faz Morar Imóveis · Todos os direitos reservados.</p>
     </div>
   </div>
