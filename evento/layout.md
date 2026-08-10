@@ -1,1348 +1,1489 @@
-# Layout — `/evento/` · Leilão & Prosa, edição de 25 de agosto de 2026 (v2)
+# LAYOUT.MD · LEILÃO & PROSA · EVENTO 26/08/2026 · v3 "PREMIUM NOTURNO"
 
-Especificação de direção de arte para o `/desenvolver` construir a página inteira. Substitui a v1 que está no ar. Onde este documento e o HTML atual divergirem, **este documento vence**.
-
-**Regra mestra da v2:** a página deixa de parecer uma LP de tráfego e passa a parecer um convite. Isso se resolve em três decisões, e não em enfeite: hero tipográfico sem foto, coluna única centralizada em toda a página (a correção obrigatória, detalhada abaixo) e os dois ingressos com o mesmo peso de botão em todos os pontos.
-
----
-
-## 0. Tokens (fonte única: `/_shared/design-tokens.md`)
-
-A página inteira roda dentro de `<body class="brand-lp">`. Todos os tokens abaixo já existem em `/_shared/base.css` sob `.brand-lp` — **não redeclarar nenhum deles em `evento/style.css`**.
-
-| Token | Valor |
-|---|---|
-| `--accent` | `#16A88E` |
-| `--accent-deep` | `#0E7A67` |
-| `--accent-soft` | `#2FB8A0` |
-| `--accent-lift` / `--accent-sink` | `#1DB79A` / `#0F9A83` |
-| `--accent-rgb` / `--accent-deep-rgb` / `--accent-soft-rgb` | `22,168,142` / `14,122,103` / `47,184,160` |
-| `--mint` / `--mint-line` | `#E7F4F0` / `rgba(22,168,142,.25)` |
-| `--ink` / `--ink-lift` / `--ink-panel` / `--ink-rgb` | `#23282A` / `#2C3234` / `#3A4042` / `35,40,42` |
-| `--ink-72` / `--ink-60` / `--ink-50` / `--ink-45` | `rgba(35,40,42,.72 / .62 / .5 / .45)` |
-| `--line` | `rgba(31,36,37,.1)` |
-| `--paper` / `--mist` | `#FFFFFF` / `#F5F6F6` |
-| `--cta-from/mid/to` | `#1DB79A` / `#16A88E` / `#0F9A83` |
-| `--cta-hover-from/to` | `#16A88E` / `#0E7A67` |
-| `--serif` / `--sans` | `'DM Serif Display', serif` / `'Figtree', sans-serif` |
-| `--ease` | `cubic-bezier(.2,.6,.2,1)` |
-
-**Verde é a cor desta página.** Nenhum dourado no corpo. O dourado da marca-mãe `#B08D57` aparece em exatamente **dois lugares**, escrito como hex literal com comentário (não dá para usar `var(--accent)`, que aqui é verde):
-
-1. `.nav__brands-sep` — o filete que separa Faz Morar de Leilão & Prosa vira `background: linear-gradient(180deg, rgba(176,141,87,0) 0%, rgba(176,141,87,.6) 50%, rgba(176,141,87,0) 100%); width: 1px; height: 28px;`
-2. `.footer-c__brand`, no rodapé, ganha `border-left: 2px solid #B08D57; padding-left: 14px;` na assinatura da marca-mãe.
-
-Só isso. É a assinatura da casa, não a paleta da página.
-
-**Tokens novos, declarados em `evento/style.css` dentro de `.brand-lp` (escopo da página):**
-
-```
---col:        1040px;   /* coluna mestra de TODA seção */
---col-read:    720px;   /* medida de linha para texto corrido */
---col-tight:   620px;   /* leads e subtítulos */
---col-fine:    880px;   /* letra miúda e nota metodológica */
---col-hero:    900px;   /* hero e CTA final, centrados */
---sec-y:       104px;   /* respiro vertical de seção, desktop */
---r-btn:        12px;   /* raio de botão */
---r-card:       18px;   /* raio de card */
---r-panel:      24px;   /* raio de painel/banda */
-```
+> Especificação completa da página, seção a seção, baseada na copy v4 (`copy.md`) e no design aprovado do hero + faixa + mecanismo (`index.html` + `style.css` na raiz da pasta). Este documento é a bíblia do `/desenvolver`: nada aqui é sugestão, tudo é valor exato.
+> A versão anterior da página vive em `_backup_v1/` e deve ser IGNORADA. Onde este documento e o HTML atual divergirem, este documento vence.
 
 ---
 
-## 1. A CORREÇÃO DE LAYOUT (obrigatória, vale para a página inteira)
+# FUNDAMENTOS GLOBAIS
 
-**O defeito medido no navegador:** `.ev-mech__head` (720px), `.ev-learn__head` (680px), `.ev-table-wrap` (860px) e `.ev-why` (860px) têm `max-width` mas **não têm `margin-inline: auto`**. Dentro de um container de 1280px com 40px de padding (1200px úteis), esses blocos encostam na borda esquerda e deixam de 340px a 640px de vazio à direita. Cada seção fica torta em relação à anterior, porque cada bloco tem uma largura diferente. Somado, o efeito é o de uma página desalinhada.
+## Regras inegociáveis (decisões do cliente)
 
-**A regra, aplicada seção por seção, sem exceção:**
+1. **PROIBIDO eyebrow/kicker/overline em qualquer seção.** Nenhum rótulo pequeno em caixa alta com letter-spacing acima de títulos. Toda seção começa direto na headline. O selo de data do hero foi excluído por decisão do Victor em 09/08.
+2. **Nenhum botão carrega preço.** Preço existe apenas na tabela de lotes (seção 10) e no exemplo ilustrativo (seção 5). Urgência só por data absoluta.
+3. **Sem emojis, sem exclamações, sem travessão (— –)** em qualquer texto renderizado.
+4. Padrões proibidos: 3 cards com ícones, grid simétrico de features, depoimento com foto circular, bullets com checkmark, pricing table de SaaS, FAQ accordion básico sem tratamento, hero centralizado genérico.
+5. Textos vêm EXATAMENTE da `copy.md` v4. Marcadores **[CONFIRMAR]** não sobem para produção (ver pendências no fim da copy).
 
-1. Toda seção tem `.__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }`.
-2. **Dentro do inner existe UM único wrapper `.ev-col { max-width: var(--col); margin-inline: auto; }`** que envolve *todos* os blocos da seção — cabeçalho, corpo, tabela, painel e CTA. Assim os blocos compartilham a mesma borda esquerda e a mesma borda direita. Nenhum bloco filho recebe `max-width` próprio para efeito de posição.
-3. **Encurtar linha de texto se faz com `max-width` + `margin-inline: 0`**, nunca `auto`, e nunca no wrapper. Um parágrafo de 720px dentro de uma coluna de 1040px começa na mesma vertical da tabela de 1040px que vem depois.
-4. **`text-align: left` em tudo.** As duas únicas exceções centradas na página são o Hero (§3) e o CTA final (§14), e elas são centradas de propósito, como abertura e fecho.
-5. Todo bloco que hoje tem `max-width` sem `margin-inline: auto` recebe `margin-inline: auto` **ou** passa a herdar a largura de `.ev-col`. A lista completa dos culpados: `.ev-mech__head`, `.ev-mech__block`, `.ev-learn__head`, `.ev-table-wrap`, `.ev-why`, `.ev-math__head`, `.ev-math__big`, `.ev-math__text`, `.ev-warn`, `.ev-shift__head`, `.ev-shift__note`, `.ev-offer__head`, `.ev-lots__note`, `.ev-agenda`, `.faq__list`, `.ev-cta__content`, `.bio__text`, `.ev-fine__text`.
+## Ritmo de zonas claras e escuras (revisão de 09/08)
 
-**Conferência visual obrigatória no fim do `/desenvolver`:** em 1280px de viewport, medir a borda esquerda do H2 de cada seção. Todas têm de dar o mesmo número (120px da borda da janela: 40 de padding + 80 de folga da coluna). Se alguma der diferente, o bloco está fora da `.ev-col`.
+A página alterna sete blocos, e a lógica não é decorativa: o que é documento e estudo vai para papel; o que é noite, palco e oferta fica no escuro.
 
 ```
-.ev-col        { max-width: var(--col); margin-inline: auto; }
-.ev-col--fine  { max-width: var(--col-fine); margin-inline: auto; }
-.ev-read       { max-width: var(--col-read); margin-inline: 0; }   /* nunca auto */
-.ev-tight      { max-width: var(--col-tight); margin-inline: 0; }
+ESCURO  hero + credibilidade + mecanismo
+CLARO   currículo + a conta
+ESCURO  dois públicos + a professora
+CLARO   programação hora a hora
+ESCURO  a oferta
+CLARO   FAQ
+ESCURO  CTA final + rodapé
 ```
+
+A implementação é uma classe de escopo `.zona-clara` no `<section>`, que **redefine os tokens** em vez de reescrever regra por regra. Tudo que já usa `var()` vira papel sozinho:
+
+```css
+.zona-clara {
+  --bg-0: #F1EDE4;  --bg-1: #E6E0D3;  --paper: #FBF9F4;
+  --text: #0E211C;  --text-muted: #4A5F58;
+  --mint: #0E7A67;  --accent: #0E7A67;  --accent-deep: #0A5F50;
+  --line: rgba(14,33,28,0.14);  --line-strong: rgba(14,33,28,0.30);
+}
+```
+
+Regras invioláveis do bloco:
+- **Nunca** declarar `transform`, `filter`, `perspective`, `will-change` ou `contain` na `.zona-clara`: qualquer uma cria contexto de empilhamento e quebra o `position: sticky` do currículo e o `animation-timeline: view()` dos descendentes.
+- O bloco vive **depois** de todas as regras de seção no arquivo, para vencer por ordem de origem sem `!important`.
+- Onze overrides acompanham os tokens, para hardcodes que não sobrevivem ao remapeamento: chip do currículo (menta some no papel), `.curr__privacy`, `.btn--fill` (texto `#04110D` sobre verde reprova AA, vira `--paper` a 6,9:1), `.btn--ghost::before`, `.faq__q:hover`, `.faq__num`, `.faq__mark`, `mark.confirmar`, `.ast` e `::selection`.
+- `.curr` e `.faq` tiveram o `max-width` movido da section para o wrapper interno; sem isso o papel vira uma laje centralizada com calhas escuras nas laterais.
+- Transição entre zonas: filete de 2px em `--accent-deep` só nas bordas externas do bloco claro, via `:not(.zona-clara) + .zona-clara` e `:has()`. Sem suporte a `:has()`, o filete simplesmente não aparece.
+- O grain global permanece como está: o alfa efetivo é 0,12 e a oscilação sobre o papel fica em ±0,75%, o que produz dente de papel em vez de sujeira.
+
+## Tokens (já implementados no style.css)
+
+```css
+--bg-0: #071310;          /* verde-preto profundo, base */
+--bg-1: #0B1B16;          /* bandas e superfícies elevadas */
+--ink-inverse: #0E211C;   /* texto sobre papel */
+--paper: #F1EDE4;         /* material documental */
+--text: #F1EDE4;          /* off-white quente */
+--text-muted: #9FB3AB;    /* sálvia acinzentada (>= 0.75 de alpha em corpo pequeno) */
+--accent: #16A88E;        /* verde da marca */
+--accent-deep: #0E7A67;   /* verde profundo (tinta sobre papel) */
+--mint: #8CEFD3;          /* menta luminosa, cor seletiva de destaque */
+--line: rgba(241,237,228,0.13);        /* hairlines */
+--line-strong: rgba(241,237,228,0.25); /* bordas de contorno */
+```
+
+Nota: esta página NÃO usa os tokens `.brand-lp` de `/_shared/base.css`; a identidade evoluída vive inteira em `evento/style.css`. Nenhum dourado da marca-mãe no corpo da página.
+
+## Tipografia
+
+- **Display: Fraunces** (Google Fonts, variável `ital,opsz,wght 0/1, 9..144, 300..900`). Pesos usados: 300 (light), 450 (títulos de seção), 500, 600, 650, 750 (o 42% e numerais). Itálico como voz de ênfase.
+- **Corpo/UI: DM Sans** (variável `opsz,wght 9..40, 300..700`). Corpo 300, UI/botões 500, rótulos documentais 700.
+- Corpo base 17px / lh 1.7 (16px em <=680px). Parágrafos longos sempre com `max-width` entre 56ch e 68ch.
+- Link Google Fonts (único, no `<head>`): `https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&display=swap` com preconnect para `fonts.googleapis.com` e `fonts.gstatic.com`.
+
+## Dispositivos da identidade (vocabulário visual recorrente)
+
+1. **Stroke gigante em menta**: numerais/aspas em Fraunces com `color: rgba(140,239,211,0.02)` e `-webkit-text-stroke: 1.5px rgba(140,239,211,0.22–0.4)`. Usado no "25" do hero, nos 01–03 do mecanismo, na aspa do refrão (e na segunda aparição do refrão no CTA final).
+2. **Material papel**: `--paper` com texto `--ink-inverse`, raio 6px, rotação sutil (-1 a -1.4deg), sombra `0 30px 70px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.35)`, separadores `1px dashed rgba(14,33,28,0.22)`, rótulos DM Sans 700 10.5–11px tracking 0.12–0.16em em `rgba(14,33,28,0.7)`. Usado na ficha do hero, no documento da conta (seção 5), no ingresso presencial (seção 10) e no modal.
+3. **Hairlines** `--line` como divisor universal; nunca box com borda nos 4 lados em conteúdo editorial.
+4. **Grain global**: `body::after` fixo, SVG feTurbulence inline, `opacity: 0.35`, `mix-blend-mode: overlay`, `z-index: 60`, `pointer-events: none`.
+5. **Glow ambiente**: um único radial `rgba(22,168,142,0.17)` blur 10px por tela (hero e CTA final). Nunca sombra colorida em botão ou texto.
+
+## Botões (sistema fechado)
+
+- **Primário `.btn--fill`**: fundo sólido `#16A88E`, texto `#04110D`, DM Sans 500 15.5px, padding 19px 20px, raio 6px, sombra `0 4px 18px rgba(0,0,0,0.35)`. Hover: fundo `#2FD4AF` (sem lift, sem glow).
+- **Secundário `.btn--ghost`**: transparente, borda `1px solid var(--line-strong)`, texto `--text`. Hover: borda e texto `--mint` + preenchimento `rgba(140,239,211,0.1)` subindo de baixo via `::before` com `transform: scaleY(0→1)`, 320ms `cubic-bezier(0.22,1,0.36,1)`.
+- Pares sempre com a mesma largura (grid `repeat(2, minmax(0,1fr))`, máx 660px; empilham em <=680px, presencial em cima).
+- Textos exatos por posição: anexo (b) da `copy.md`. Todos abrem o modal de captura (seção 13) com `data-modal-open` e `data-modalidade` presencial/online.
+
+## Grid, espaçamento e âncoras
+
+- Container `--w-page: 1240px`; padding lateral `--pad-x: clamp(20px, 4.5vw, 56px)`.
+- Respiro vertical de seção: `clamp(90px, 13vh, 150px)` no topo, `clamp(80px, 11vh, 130px)` na base (seções dark); bandas têm padding próprio menor.
+- Âncoras: `#topo` (hero), `#nota-42` (nota do hero), `#ingressos` (seção 10), `#inscricao` (CTA final), `#metodologia` (rodapé). O topbar linka `#ingressos`.
+- Ordem: 1 Hero → 2 Faixa → 3 Mecanismo → 4 Currículo → 5 Conta → 6 Públicos → 7 Professora → (8 Prova social, condicional) → 9 Hora a hora → 10 Oferta → 11 FAQ → 12 CTA final → 14 Rodapé. Modal (13) e barra mobile (15) são globais.
+
+## Animação e acessibilidade (regras globais)
+
+- Reveal de scroll: `@supports (animation-timeline: view())` com keyframe `rise` (opacity 0 + translateY(34px) → 1/0), `animation-range: entry 0% entry 42%`. Sem JavaScript para reveals; fallback é conteúdo visível.
+- Hero NÃO tem animação de entrada; só ambient motion (drift do numeral, 26s ease-in-out alternate).
+- `prefers-reduced-motion: reduce` desliga: drift, reveals, transitions de botões e `scroll-behavior` (vira `auto`).
+- Foco visível global: `outline: 2px solid var(--mint); outline-offset: 3px`.
+- Contraste mínimo AA: texto pequeno sobre `--bg-0/--bg-1` nunca abaixo de `rgba(159,179,171,0.75)`; sobre papel nunca abaixo de `rgba(14,33,28,0.7)`.
+- `::selection { background: var(--accent); color: #04110D; }`.
+
+## Breakpoints
+
+- **1060px**: hero em coluna única (ficha desce, máx 460px); grids largos colapsam conforme cada seção.
+- **680px**: tipografia mobile, CTAs empilham, barra fixa inferior entra (bloco 15), grids em coluna única.
 
 ---
 
-## 2. Componentes globais
-
-### 2.1 Componente A — O par de botões (`.ev-duo`)
-
-É a peça central da v2. O online **nunca** aparece como link de texto. Some `.linkish` de toda a página.
-
-```
-.ev-duo {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  max-width: 760px;
-  margin-inline: auto;   /* centrado dentro da coluna */
-  margin-top: 36px;
-}
-
-.btn-duo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 66px;
-  padding: 18px 24px;
-  border-radius: var(--r-btn);
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: .005em;
-  border: 2px solid transparent;   /* iguala a caixa dos dois */
-  cursor: pointer;
-  transition: background .25s var(--ease), border-color .25s var(--ease),
-              color .25s var(--ease), transform .25s var(--ease),
-              box-shadow .25s var(--ease);
-}
-```
-
-O `border: 2px solid transparent` no preenchido é o que garante altura idêntica ao contornado. Sem ele, os dois botões diferem 4px e o olho percebe.
-
-**Primário (presencial), sobre claro e sobre escuro, igual:**
-```
-.btn-duo--fill {
-  background: linear-gradient(180deg, #1DB79A 0%, #16A88E 52%, #0F9A83 100%);
-  color: #FFFFFF;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.24),
-              0 1px 2px rgba(11,90,76,.25),
-              0 14px 28px -14px rgba(22,168,142,.6);
-}
-.btn-duo--fill:hover {
-  background: linear-gradient(180deg, #16A88E 0%, #0E7A67 100%);
-  transform: translateY(-2px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.18),
-              0 2px 4px rgba(11,90,76,.22),
-              0 18px 34px -14px rgba(22,168,142,.55);
-}
-.btn-duo--fill:active { transform: translateY(0); box-shadow: inset 0 2px 5px rgba(11,90,76,.3); }
-```
-
-**Secundário (online), sobre fundo claro:**
-```
-.btn-duo--out {
-  background: transparent;
-  border-color: #16A88E;
-  color: #0E7A67;
-}
-.btn-duo--out:hover {
-  background: rgba(22,168,142,.08);
-  border-color: #0E7A67;
-  color: #0E7A67;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px -16px rgba(22,168,142,.55);
-}
-.btn-duo--out:active { transform: translateY(0); background: rgba(22,168,142,.14); }
-```
-
-**Secundário sobre fundo escuro (`.on-ink .btn-duo--out`, usado no hero e no CTA final):**
-```
-border-color: rgba(47,184,160,.85);
-color: #FFFFFF;
-hover: background rgba(47,184,160,.14); border-color #2FB8A0;
-```
-`#2FB8A0` sobre `#23282A` dá 6,2:1 — passa AA inclusive para texto pequeno.
-
-**Foco:** `outline: 2px solid var(--accent); outline-offset: 3px;` no claro. Sobre `--ink`, `outline-color: #2FB8A0` para não sumir.
-
-**Mobile (≤640px):** `grid-template-columns: 1fr;` gap 12px, presencial em cima, os dois em largura total, `min-height: 60px; font-size: 15px; padding: 16px 18px;`.
-
-**Textos exatos, por ponto da página** (os pares foram equalizados em caracteres para quebrar igual no celular — não reescrever):
-
-| Onde | `.btn-duo--fill` | `.btn-duo--out` |
-|---|---|---|
-| Hero (§3) | `Quero minha cadeira em Belo Horizonte · R$ 157` | `Quero meu acesso à transmissão ao vivo · R$ 67` |
-| CTA duplo 1, fim da §6 | `Garantir minha cadeira em BH · R$ 157` | `Garantir meu acesso ao vivo · R$ 67` |
-| CTA duplo 2, fim da §9 | `Garantir minha cadeira em BH · R$ 157` | `Garantir meu acesso ao vivo · R$ 67` |
-| Dentro do card presencial (§12) | `Quero a cadeira em BH · R$ 157` | — |
-| Dentro do card online (§12) | — | `Quero o acesso ao vivo · R$ 67` |
-| CTA duplo da oferta (§12) | `Quero a cadeira em BH · R$ 157` | `Quero o acesso ao vivo · R$ 67` |
-| CTA final (§14) | `Quero minha cadeira em Belo Horizonte · R$ 157` | `Quero meu acesso à transmissão ao vivo · R$ 67` |
-| Barra fixa mobile | `Cadeira em BH · R$ 157` | `Ao vivo · R$ 67` |
-
-Todos são `<button type="button" data-modal-open="modal-evento" data-modalidade="presencial|online">`. O `data-modalidade` já é lido por `evento/script.js` e viaja para a planilha — manter.
-
-**Rotina de virada de lote (obrigatória, escrever no topo do `index.html` como comentário HTML):** em 12/08 trocar todos os `157` por `187` e todos os `67` por `87`; em 21/08 trocar para `217` e `97`. Trocar junto: a microcopy do hero, a tabela de lotes (`.ev-table__now` muda de linha), os preços dos cards e o texto "até 11 de agosto". Com preço dentro do botão e sem essa rotina, a página vende preço vencido.
-
-### 2.2 Componente B — Barra fixa no mobile (`.ev-bar`)
-
-Aparece a partir do fim da §6 e some quando a seção de ingressos está na tela. Contém os **dois** botões.
-
-```
-.ev-bar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -12px 32px -20px rgba(35,40,42,.6);
-  transform: translateY(120%); opacity: 0; visibility: hidden;
-  transition: transform .3s var(--ease), opacity .3s var(--ease), visibility 0s linear .3s;
-}
-.ev-bar.is-up { transform: none; opacity: 1; visibility: visible; transition-delay: 0s; }
-.ev-bar .btn-duo { min-height: 50px; padding: 12px 10px; font-size: 13.5px; border-radius: 10px; line-height: 1.2; }
-```
-
-Botões dentro dela mantêm a mesma hierarquia: preenchido à esquerda, contornado à direita.
-
-**JS (estender `evento/script.js`, sem biblioteca):** um único handler de scroll `{ passive: true }` com throttle por `requestAnimationFrame`. Só roda se `window.matchMedia('(max-width: 860px)').matches`. Mostra quando `#cta-duplo-1` (a `.ev-duo` do fim da §6) tem `getBoundingClientRect().top < innerHeight * .5`. Esconde quando `#ingressos` **ou** `#inscricao` intersecta a viewport (`top < innerHeight && bottom > 0`) — o CTA final repete os dois botões e a barra por cima dele é redundância. Alterna a classe `.is-up` e o atributo `inert` (com fallback `aria-hidden="true"` + `tabindex="-1"` nos botões) para que os botões escondidos não sejam focáveis pelo teclado.
-
-`@media (max-width: 860px) { body { padding-bottom: 78px; } }` para a barra não cobrir o rodapé.
-
-**Não existe contador regressivo de tempo em lugar nenhum da página.** O único elemento temporal é a data pública do lote.
-
-### 2.3 Componente C — Tabela que rola dentro do próprio container
-
-Três tabelas na página (§7 a conta, §8 o que muda, §12 lotes). Todas usam a mesma casca:
-
-```
-.ev-table-wrap {
-  max-width: var(--col);
-  margin-inline: auto;              /* a correção */
-  position: relative;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;   /* não puxa a navegação do browser */
-  -webkit-overflow-scrolling: touch;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--paper);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(22,168,142,.5) transparent;
-}
-.ev-table-wrap::-webkit-scrollbar { height: 8px; }
-.ev-table-wrap::-webkit-scrollbar-thumb { background: rgba(22,168,142,.45); border-radius: 999px; }
-.ev-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px; }
-```
-
-`min-width: 520px` na tabela de dinheiro e `min-width: 640px` na de 4 colunas (§12) e na comparativa (§8). É esse `min-width` que faz a rolagem acontecer **dentro** do wrapper e não na página.
-
-**Acessibilidade e afordância, obrigatórias:**
-- O wrapper recebe `tabindex="0"`, `role="region"` e `aria-label` descritivo (ex.: `aria-label="Tabela do custo total de um arremate, role para o lado"`), senão quem navega por teclado não consegue rolar.
-- Sombra de borda indicando que há mais conteúdo: `.ev-table-wrap::after { content:""; position: sticky; right: 0; top: 0; display: block; width: 34px; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95)); pointer-events: none; }` — some quando `scrollLeft + clientWidth >= scrollWidth - 2`, via classe `.is-end` aplicada no listener de scroll do próprio wrapper.
-- Dica visível só em ≤640px, acima da tabela: `Role a tabela para o lado`, Figtree 600 12px, `letter-spacing: .12em`, `text-transform: uppercase`, `color: var(--ink-45)`, `margin-bottom: 10px`.
-
-**A página nunca rola na horizontal.** Se em 375px o `<body>` tiver `scrollWidth > clientWidth`, o build está errado.
-
-### 2.4 Componente D — Caixa de aviso (`.ev-warn`)
-
-```
-max-width: var(--col); margin-inline: auto; margin-bottom: 24px;
-padding: 18px 22px; border-radius: 14px;
-background: var(--mint); border: 1px solid rgba(22,168,142,.4);
-border-left: 4px solid var(--accent);
-font-size: 14.5px; line-height: 1.65; color: var(--ink); text-align: left;
-```
-O `strong` de abertura em Figtree 700 `--accent-deep`, caixa alta, `letter-spacing: .04em`.
-
-### 2.5 Componente E — Asterisco dos 42% (`.ev-ref`)
-
-```
-.ev-ref { font-size: .58em; vertical-align: super; margin-left: 2px;
-          color: var(--accent); text-decoration: none; }
-.ev-ref:hover { color: var(--accent-deep); text-decoration: underline; }
-.on-ink .ev-ref { color: var(--accent-soft); }
-```
-Sempre `href="#metodologia"` e `aria-label="Ver a metodologia dos 42%"`. Aparece em: hero (§3), nota do hero, §8 (grade de números da bio) e §13 (FAQ dos 42%). Sempre que o número 42% aparecer no corpo, o asterisco vai junto.
-
-Complemento de craft: `#metodologia:target { background: var(--mint); animation: alvo 1.4s var(--ease) 1 forwards; }`, com `@keyframes alvo { from { background: var(--mint); } to { background: transparent; } }`, desligado em `prefers-reduced-motion`. Quem clica no asterisco vê onde caiu.
-
-### 2.6 Movimento — regras globais
-
-- Sistema de revelação: `/_shared/reveal.css` + `reveal.js` (`data-aos="fade-up"`, `data-aos-delay` em ms). Transição de 600ms `cubic-bezier(.2,.6,.2,1)`, `translateY(22px)`, threshold 0.08, `rootMargin 0px 0px -6% 0px`, dispara uma vez.
-- **O hero não tem `data-aos` em nenhum elemento.** Regra do framework, sem exceção.
-- `prefers-reduced-motion: reduce` já neutraliza `[data-aos]` no `reveal.css` e zera `animation-duration`/`transition-duration` no `base.css`. Além disso, desligar explicitamente: float da marca d'água, glow pulsante do CTA final, contagem do número da §7 e o crescimento das barras de lugares da §12.
-
----
-
-## 3. Seção 1 — HERO (tipográfico, centralizado, sem foto)
+# SEÇÃO 1: HERO (id="topo") — CONSTRUÍDO E APROVADO
 
 ### Arquétipo e Constraints
-- **Arquétipo:** Type Hero (Baseado em Tipografia) — a tipografia é o único protagonista; nenhuma imagem de pessoa, nenhum card, nenhum selo pulsante.
-- **Constraints:** White Space Hero (Densidade — respiro vertical dobrado em relação à v1), Container Narrow (Layout — coluna de 900px centrada dentro de 1200px úteis), Noise Texture (Efeitos Especiais — grain a 3% para dar textura de papel), Mixed Fonts (Tipografia — serif no título com um trecho em itálico verde, sans em tudo mais).
-- **Justificativa:** o cliente pediu convite, não anúncio. Convite se faz com respiro, filete e tipografia gravada. Tirar a foto do topo esvazia o hero de "cara de página de tráfego" e joga toda a força para a frase e para os dois botões. O grain e o glow radial estático dão profundidade sem movimento — e sem movimento é obrigação, porque o hero não anima.
-
-### Conteúdo (exato da copy)
-
-Selo (caixa alta, acima do título):
-`Terça, 25 de agosto de 2026 · Belo Horizonte ou ao vivo`
-
-H1:
-`Dá para comprar apartamento em leilão bem abaixo do preço da rua. Dia 25 eu abro essa conta na sua frente.`
-
-Subheadline:
-`Eu montei essa noite para quem nunca deu um lance na vida. Nas compras que eu já fechei em leilão, o lance vencedor ficou 42% abaixo do valor de avaliação do imóvel, em média.*  A conta que vem depois do lance eu abro também, porque é ela que decide se o negócio prestou.`
-
-Botões: par `.ev-duo` com os textos do hero (ver §2.1).
-
-Microcopy sob os botões:
-`Compra pela Sympla. Presencial R$ 157 à vista ou 12x de R$ [XX,XX], total de R$ [XXX,XX] com juros e taxa da plataforma. Online R$ 67 à vista ou 12x de R$ [XX,XX], total de R$ [XX,XX]. Esses preços valem até 11 de agosto. Na sala, das 19h às 22h, e a sala tem [XX] cadeiras. A transmissão ao vivo vai das 19h30 às 21h40 e não tem limite de lugares.`
-
-**[CONFIRMAR]** — nenhum colchete sobe para a tela. Enquanto os valores de parcela não vierem, o build usa a versão sem parcelamento: `Compra pela Sympla. Presencial R$ 157, online R$ 67, preços válidos até 11 de agosto. Na sala, das 19h às 22h. A transmissão ao vivo vai das 19h30 às 21h40 e não tem limite de lugares.` Anunciar "12x" sem parcela, total e taxa contraria o art. 52 do CDC e o Decreto 5.903/2006.
-
-Nota dos 42%, dentro do hero, abaixo de um filete (texto integral da copy, versão "visível abaixo do hero", em primeira pessoa), terminando em `Metodologia completa no rodapé desta página.` com "rodapé desta página" como link para `#metodologia`.
-
-### Layout
-
-```
-.ev-hero { position: relative; background: var(--ink); color: #FFFFFF; overflow: hidden; }
-.ev-hero__inner {
-  position: relative; z-index: 1;
-  max-width: 1280px; margin-inline: auto;
-  padding: 104px 40px 84px;
-  text-align: center;                 /* exceção declarada à regra da coluna */
-}
-.ev-hero__col { max-width: var(--col-hero); margin-inline: auto; }
-```
-
-Ordem vertical, com as margens exatas:
-1. Filete superior: `<span aria-hidden="true">` de `width: 56px; height: 1px; background: rgba(47,184,160,.55); margin: 0 auto 26px;`
-2. Selo da data — `margin-bottom: 30px`
-3. H1 — `max-width: 900px; margin-inline: auto;`
-4. Subheadline — `max-width: 700px; margin: 26px auto 0;`
-5. `.ev-duo` — `margin-top: 40px`
-6. Microcopy — `max-width: 640px; margin: 20px auto 0; text-align: center;`
-7. Bloco da nota dos 42% — `margin-top: 56px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.12); max-width: var(--col-fine); margin-inline: auto; text-align: left;` (a única coisa alinhada à esquerda no hero, e é o que faz a letra miúda parecer gravada em vez de esquecida)
-
-Sem grade de DATA/HORÁRIO/ONDE — a informação já está no selo e na microcopy, e a grade era resto da versão de tráfego.
-
-**Nenhum elemento de urgência acima da dobra.** Sai o badge com bolinha pulsante da v1.
-
-### Tipografia
-
-| Elemento | Especificação |
-|---|---|
-| Selo | Figtree 600, 12px, `letter-spacing: .26em`, `text-transform: uppercase`, `color: var(--accent-soft)`. Marcado como `display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0 10px;` com o `·` num `<span aria-hidden="true">` próprio, para a quebra no celular cair no separador e nunca no meio de "agosto" |
-| H1 | DM Serif Display 400, `clamp(34px, 4.4vw, 56px)`, `line-height: 1.1`, `letter-spacing: -.015em`, `color: #FFFFFF` |
-| H1 `<em>` (a segunda frase, `Dia 25 eu abro essa conta na sua frente.`) | mesmo tamanho, `font-style: italic`, `color: var(--accent-soft)` |
-| Subheadline | Figtree 400, `clamp(17px, 1.5vw, 20px)`, `line-height: 1.6`, `color: rgba(255,255,255,.76)` |
-| `42%` dentro da subheadline | Figtree 700, `color: #FFFFFF` (sem caixa, sem destaque de fundo) |
-| Microcopy | Figtree 400, 13.5px, `line-height: 1.6`, `color: rgba(255,255,255,.5)` |
-| Nota dos 42% | Figtree 400, 13px, `line-height: 1.7`, `color: rgba(255,255,255,.62)`; o `*` inicial em `--accent-soft`; o link do rodapé em `#FFFFFF` com `text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(47,184,160,.6)` |
-
-### Cores
-- Fundo `#23282A`. Título `#FFFFFF`. Itálico `#2FB8A0`.
-- Glow: `radial-gradient(60% 55% at 50% 22%, rgba(22,168,142,.16) 0%, rgba(22,168,142,0) 70%)`, `position: absolute; inset: 0; pointer-events: none;` — **estático**, sem animação.
-- Vinheta inferior para o hero não cortar seco na faixa seguinte: `linear-gradient(180deg, rgba(35,40,42,0) 70%, rgba(20,24,25,.5) 100%)`.
-- Filetes: `rgba(47,184,160,.55)` no superior, `rgba(255,255,255,.12)` no da nota.
-
-### Elementos Visuais
-- **Grain:** camada `.ev-hero__grain` com `position:absolute; inset:0; opacity:.035; mix-blend-mode: overlay; pointer-events:none;` e `background-image` de um SVG `feTurbulence` inline em `data:` URI (`baseFrequency=".9"`, `numOctaves="4"`), `background-size: 180px 180px`. Sem requisição externa.
-- **Sem foto. Sem monograma grande. Sem card de vidro.** A marca já está assinada no nav.
-- Marca d'água opcional, discreta: o glifo do símbolo Leilão & Prosa (`M31 72 V30 H70 V68 H46 V46 H60`, `fill: none; stroke: #16A88E; stroke-width: 9; stroke-linecap: square`), 420x420px, `position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); opacity: .045; pointer-events: none;` atrás do H1. Estático.
-
-### Animações
-**Nenhuma.** Sem `data-aos`, sem `opacity: 0` inicial, sem fade, sem float, sem pulse. Regra do framework. As únicas transições permitidas no hero são as de `:hover` dos dois botões.
-
-### Interatividade
-- Botões: hover, active e focus conforme §2.1, variante `.on-ink` para o contornado.
-- Asterisco `*` e "rodapé desta página": links âncora, `scroll-behavior: smooth` já é global.
-- Nada segue o mouse, nada reage ao scroll.
-
-### Responsividade
-- **≤1024px:** `padding: 88px 40px 72px`; H1 `clamp(32px, 5vw, 46px)`; `.ev-duo` mantém 2 colunas até 720px de viewport.
-- **≤720px:** `.ev-duo { grid-template-columns: 1fr; gap: 12px; }`
-- **≤640px:** `padding: 72px 24px 56px`; selo 11px com `letter-spacing: .16em` e `max-width: 320px; margin-inline: auto` (quebra em 2 linhas, nunca 3); H1 `clamp(30px, 8vw, 38px)`, `line-height: 1.14`; sub 16.5px; microcopy 13px; bloco da nota `margin-top: 44px`.
-- **≤375px:** H1 30px; botões `font-size: 14.5px; padding: 15px 14px`.
-
----
-
-## 4. Seção 2 — FAIXA DE CREDIBILIDADE
-
-### Arquétipo e Constraints
-- **Arquétipo:** Rhythmic (Baseado em Movimento) — quatro provas em cadência idêntica, lidas como um só compasso horizontal.
-- **Constraints:** Color Blocking (Cor — banda `--mint` isolando a faixa entre o hero escuro e a página branca), Bleed Both (Layout — a cor sangra as duas margens, o conteúdo não), Hover Underline (Interação — só o item do Google, que é o único clicável).
-- **Justificativa:** depois de um hero escuro e vazio, uma banda verde-clara fina funciona como respiro e como carimbo. É a única seção da página sem título — é assinatura, não argumento.
+- Arquétipo: **Type Hero assimétrico** (tipografia protagonista + contraponto documental).
+- Constraints: Mixed Weights/Fonts extremos (Tipografia) · Grain Overlay (Efeitos) · Selective Color menta (Cor) · Ambient Motion no numeral (Movimento) · Hover Fill nos CTAs (Interação).
+- Justificativa: a promessa "Aprenda a arrematar" é verbal por natureza; tipografia em escala dramática vende sozinha, e a ficha em papel ancora o universo documental do leilão sem foto de banco de imagem.
 
 ### Conteúdo
-`Perita judicial em imóveis` · `Credenciada da Caixa desde 2007` · `+2.400 alunos nas minhas formações` · `5,0 no Google em 39 avaliações` (este último é link para o perfil Jacque Leilões — **[CONFIRMAR a URL]**; sem URL real, o item vira texto simples, sem afordância de link)
+Exato da copy seção 1 (sem selo/kicker): H1 "Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação", subheadline completa, botões `Garantir minha vaga em Belo Horizonte` / `Assistir à transmissão ao vivo`, microcopy completa, nota dos 42%.
 
 ### Layout
-```
-.ev-cred { background: var(--mint); border-bottom: 1px solid rgba(22,168,142,.22); }
-.ev-cred__inner {
-  max-width: 1280px; margin-inline: auto; padding: 20px 40px;
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 10px 30px;
-}
-```
-Separador entre itens via `span + span::before { content: "·"; margin-right: 30px; color: rgba(22,168,142,.7); }` — mantém o ponto médio pedido e some naturalmente na quebra de linha.
+- `position: relative; min-height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center;` padding `clamp(120px,16vh,170px) var(--pad-x) 34px`.
+- Topbar absoluto: wordmark "Leilão & Prosa" (Fraunces 500 19px, & itálico 300 em `--mint`) à esquerda; "Edição 26.08" (11.5px 500 tracking 0.22em uppercase `--text-muted`) + pill "Ingressos" (13px 500 tracking 0.14em uppercase, borda `--line-strong`, raio 999px, padding 10px 22px, hover `--mint`) à direita; padding 26px var(--pad-x).
+- `.hero__inner`: grid `minmax(0,1.55fr) minmax(300px,0.45fr)`, gap `clamp(40px,5vw,84px)`, align center, máx 1240px.
+- Fundo: numeral "25" absoluto (top -0.15em, right -0.12em, `font-size: clamp(340px,46vw,760px)`, Fraunces 700, stroke 1.5px rgba(140,239,211,0.22), fill rgba(140,239,211,0.02), lh 0.8, drift `translate(0,0) → translate(-1.6vw,3vh)` 26s ease-in-out infinite alternate) + glow radial (left -18vw, bottom -34vh, 62vw x 62vw, `radial-gradient(circle, rgba(22,168,142,0.17) 0%, transparent 62%)`, blur 10px).
+- Nota dos 42% abaixo do grid: `border-left: 2px solid var(--accent)`, padding-left 18px, `column-width: 38ch; column-gap: 48px`, 12.5px lh 1.7, rgba(159,179,171,0.85), margem-top `clamp(34px,5vh,54px)`, id `nota-42`.
 
-### Tipografia
-Figtree 600, 14px, `letter-spacing: .01em`, `color: var(--ink-72)`. O item do Google em `--accent-deep`, 600.
+### Tipografia (headline escalonada, 3 linhas)
+- `.t-1` "Aprenda a *arrematar*": Fraunces 300, `clamp(36px,4.6vw,66px)`, cor `--text-muted`; "arrematar" itálico 600 cor `--text`.
+- `.t-2` "imóveis em leilão": Fraunces 650, `clamp(46px,6.4vw,96px)`, cor `--text`, margem `0.04em 0 0.08em`; em <=680px `clamp(36px,12vw,46px)`.
+- `.t-3` "em média **42%** abaixo da avaliação": flex baseline com wrap, column-gap 0.35em; base Fraunces 300 itálico `clamp(30px,3.6vw,52px)` `--text-muted`; `42%` Fraunces 750 romano `clamp(58px,8vw,122px)` lh 0.9 `--mint` letter-spacing -0.03em, sem text-shadow. Sem asterisco no H1 (decisão do cliente); a nota logo abaixo cumpre o papel. Bloco "abaixo<br>da avaliação" com lh 1.06.
+- Headline geral: lh 1.02, letter-spacing -0.015em, margem-bottom `clamp(26px,3.6vh,40px)`.
+- Sub: DM Sans 300 `clamp(16px,1.35vw,18.5px)`, máx 58ch, `--text-muted`, margem-bottom `clamp(28px,4vh,42px)`. Microcopy: 12.5px lh 1.65, rgba(159,179,171,0.75), máx 62ch.
 
-### Cores
-Fundo `#E7F4F0`. Texto `rgba(35,40,42,.72)`. Separador `rgba(22,168,142,.7)`. Link `#0E7A67`; hover `#16A88E`.
+### Ficha do evento (aside, material papel)
+Dispositivo 2 completo: raio 6px, rotação -1.4deg, sombra funda, furo de arquivo (pill 44x5px rgba(14,33,28,0.14) centrado, top 16px), padding 26px 26px 30px. Cabeçalho: rótulo "FICHA DO EVENTO" (11px 700 tracking 0.24em `--accent-deep`) + carimbo circular 64px (borda 1.5px `--accent-deep`, rotação 8deg, opacity 0.85, "L&P" Fraunces 600 15px + "26.08" DM Sans 700 9.5px tracking 0.12em). Linhas `<dl>`: grid `104px 1fr` gap 12px, padding 10px 0, `border-top: 1px dashed rgba(14,33,28,0.22)`; dt 10.5px 700 tracking 0.16em rgba(14,33,28,0.7) uppercase; dd 13.5px lh 1.5. Conteúdo exato: Data "Quarta, 26 de agosto de 2026" / Presencial "19h às 22h · Okay Hub, Bairro Castelo, BH" / Ao vivo "Transmissão das 19h30 às 21h40" / Formato "Edital real projetado e conta aberta na tela" / Investimento "Valor do lote vigente, na tabela de lotes desta página". Linha fina: "Ingresso pessoal e intransferível · Arrependimento em 7 dias" (11px, rgba(14,33,28,0.7), border-top dashed). SEM barcode.
 
-### Elementos Visuais
-Nenhum ícone, nenhuma estrela desenhada. O "5,0 no Google" é texto — desenhar cinco estrelas aqui empurraria a faixa para a estética de e-commerce.
-
-### Animações
-`data-aos="fade-up"` no `.ev-cred__inner` inteiro, sem delay. Um único alvo, para a faixa entrar como bloco.
-
-### Interatividade
-Só o item do Google: sublinhado animado `::after { height: 1px; background: var(--accent-deep); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }`, `scaleX(1)` no hover e no `:focus-visible`. `target="_blank" rel="noopener"` com `aria-label="Perfil Jacque Leilões no Google, 5,0 em 39 avaliações, abre em nova aba"`.
+### Animações e interatividade
+Sem animação de entrada. Drift do numeral apenas. Botões conforme sistema global. Focus visible global.
 
 ### Responsividade
-- **≤1024px:** `gap: 10px 24px`, separador `margin-right: 24px`.
-- **≤640px:** `padding: 16px 24px`, `font-size: 12.5px`, `gap: 8px 16px`, separador `margin-right: 16px`. Os quatro itens ocupam 2 a 3 linhas centradas — aceito.
+- 1060px: grid 1 coluna, gap 54px, ficha máx 460px rotação -1deg.
+- 680px: padding-top 110px, min-height auto; numeral 300px top -30px right -60px stroke rgba(140,239,211,0.14); `.t-2` `clamp(36px,12vw,46px)`; CTAs 1 coluna; ficha sem rotação largura 100%; "Edição 26.08" some.
 
 ---
 
-## 5. Seção 3 — A DOR
+# SEÇÃO 2: FAIXA DE CREDIBILIDADE — CONSTRUÍDA E APROVADA
 
 ### Arquétipo e Constraints
-- **Arquétipo:** Editorial (Baseado em Tipografia) — coluna de leitura única, medida controlada, letra capitular, filete vertical marcando a narrativa.
-- **Constraints:** Container Narrow (Layout — 720px de medida dentro da coluna de 1040px, alinhado à esquerda), Mixed Weights (Tipografia — capitular serif 72px contra corpo sans 17px), Clip Reveal (Movimento — o bloco do refrão entra com `clip-path` em vez de fade).
-- **Justificativa:** cinco parágrafos de narrativa só funcionam com medida de revista. Centralizar esse volume de texto (o que a v1 faz) cansa o olho a cada quebra. A capitular e o filete dão à seção cara de crônica, que é exatamente a voz da Jacque.
-
-### Conteúdo (exato)
-Eyebrow: `O QUE CUSTA FICAR PARADO`
-H2: `Eu já ouvi essa história umas quinhentas vezes`
-
-P1 `Você viu um apartamento em leilão por um valor que parecia erro de digitação. Clicou. Abriu um arquivo de 58 páginas escrito em língua de cartório. Leu duas telas e fechou a aba.`
-P2 `Três semanas depois esse apartamento foi vendido no leilão, e o preço final ficou perto daquele valor que tinha te assustado de tão baixo. Quem levou leu exatamente o mesmo arquivo que te fez desistir.`
-P3 `Dinheiro você tinha, ou tinha como financiar. Faltou alguém sentar do seu lado e apontar onde olhar.`
-P4 `Isso vale igual para os dois tipos de gente que aparecem na minha sala. Quem quer investir olha aquela diferença de preço e já pensa em revender ou alugar. Quem quer a casa própria olha a mesma diferença e enxerga um quarto a mais, ou o bairro que estava fora do orçamento. A conta que se faz antes de dar o lance é a mesma para os dois.`
-
-H3: `O que custa ficar parado`
-P5 `Eu não sei onde vai estar o preço do imóvel no ano que vem, e quem te prometer isso está chutando. O que eu sei é mais simples. Tem leilão de imóvel acontecendo em Belo Horizonte toda semana, e cada um deles termina com alguém levando o bem para casa. O aluguel que você paga esse mês não volta. E a cada leilão que passa, quem arremata é alguém que aprendeu a ler o documento que você fechou.`
-
-Bloco do refrão (**primeira das duas aparições na página**):
-`Quem não entende o jogo não arremata. Assiste.`
-`Dia 25 eu sento do seu lado e a gente lê.`
-
-### Layout
-```
-.ev-pain { background: var(--paper); }
-.ev-pain__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-pain .ev-col { max-width: var(--col); margin-inline: auto; }   /* 1040, centrado */
-```
-Dentro da coluna, **tudo alinhado à esquerda**:
-- Eyebrow, depois H2 com `max-width: 780px; margin: 14px 0 0;` (margin-inline 0 — o título encurta a linha sem deslocar o bloco)
-- Parágrafos: `max-width: var(--col-read); margin: 22px 0 0; margin-inline: 0;`
-- Filete vertical de narrativa: os parágrafos ficam dentro de `.ev-pain__story { border-left: 2px solid rgba(22,168,142,.22); padding-left: 30px; margin-top: 34px; }`
-- H3 `O que custa ficar parado`: `margin: 44px 0 0;` dentro do mesmo filete
-- Bloco do refrão: `max-width: 820px; margin: 56px auto 0;` (aqui `auto` é intencional — é um objeto, não um bloco de texto), `padding: 36px 40px; border-radius: var(--r-panel); background: var(--ink); color: #FFFFFF; position: relative; overflow: hidden;`
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| Eyebrow | Figtree 600, 12px, `.26em`, uppercase, `--accent-deep` |
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)`, `line-height: 1.08`, `letter-spacing: -.01em`, `--ink` |
-| Capitular (primeira letra do P1) | `p:first-of-type::first-letter { font-family: var(--serif); font-size: 68px; line-height: .82; float: left; margin: 6px 12px 0 0; color: var(--accent-deep); }` |
-| Corpo | Figtree 400, 17px, `line-height: 1.75`, `--ink-60` |
-| H3 | Figtree 700, 20px, `line-height: 1.35`, `--ink` |
-| Refrão | DM Serif Display 400, `clamp(24px, 3vw, 34px)`, `line-height: 1.18`, `#FFFFFF` |
-| Linha de apoio do refrão | Figtree 400, 16px, `rgba(255,255,255,.7)`, `margin-top: 14px` |
-
-### Cores
-Fundo `#FFFFFF`. Texto `rgba(35,40,42,.62)`. Capitular `#0E7A67`. Filete `rgba(22,168,142,.22)`. Painel do refrão `#23282A` com filete esquerdo interno de 3px `#16A88E` (`padding-left: 22px` no `<p>` do refrão).
-
-### Elementos Visuais
-Aspas tipográficas decorativas no painel: `„` em DM Serif Display 140px, `position: absolute; right: 26px; top: -14px; color: rgba(47,184,160,.14); pointer-events: none;` — `aria-hidden="true"`.
-
-### Animações
-- Eyebrow + H2: `data-aos="fade-up"`.
-- `.ev-pain__story`: `data-aos="fade-up" data-aos-delay="80"`.
-- Painel do refrão: revelação por clip-path, não fade. Classe `.ev-reveal-clip` com `clip-path: inset(0 100% 0 0)` inicial e `.is-in { clip-path: inset(0 0 0 0); transition: clip-path 820ms cubic-bezier(.2,.6,.2,1); }`, disparada pelo mesmo IntersectionObserver do `reveal.js` (aceita qualquer elemento com `data-aos`; adicionar a variante no `reveal.css` como `[data-aos="clip-right"]`). Em `prefers-reduced-motion`, `clip-path: none` desde o início.
-
-### Interatividade
-Nenhum link, nenhum hover. Seleção de texto liberada. Cursor padrão. É a seção que o leitor só lê.
-
-### Responsividade
-- **≤1024px:** `padding: 88px 40px`; corpo 16.5px.
-- **≤640px:** `padding: 68px 24px`; capitular 54px, `margin: 4px 10px 0 0`; `.ev-pain__story { padding-left: 18px; }`; painel do refrão `padding: 28px 24px`; aspas decorativas `display: none` (a 140px elas roubam a linha no celular).
-
----
-
-## 6. Seção 4 — POR QUE EXISTE DESCONTO NO LEILÃO
-
-### Arquétipo e Constraints
-- **Arquétipo:** Split Assimétrico (Baseado em Divisão) — 34%/66%: coluna esquerda com o cabeçalho grudado (sticky) e coluna direita com os quatro blocos de argumento.
-- **Constraints:** Sticky Element (Layout), Scroll Progress (Movimento — filete vertical que preenche conforme o leitor avança pelos quatro blocos), Selective Color (Cor — só a frase-chave em `--accent-deep`).
-- **Justificativa:** são quatro argumentos encadeados; o cabeçalho fixo à esquerda segura o contexto enquanto o leitor desce, e o filete de progresso transforma leitura longa em percurso com fim visível. É o oposto estrutural da §3, que era coluna única.
-
-### Conteúdo (exato)
-Eyebrow: `DE ONDE VEM A DIFERENÇA`
-H2: `Antes de tudo, o que é esse leilão de que eu falo`
-
-Bloco 1 (sem H3 próprio, é a continuação do H2):
-`Quando alguém financia um apartamento e para de pagar, o banco toma o imóvel de volta. Aí o banco coloca esse apartamento à venda num leilão, que é uma venda com data e hora marcadas onde quem oferece mais leva. Fechar essa compra é o que o mercado chama de arrematar, e essa é a palavra que você vai ver em todo site de leilão.`
-`Existe também o leilão que sai de dentro de um processo na Justiça, quando um imóvel é vendido para pagar a dívida de alguém. Eu explico os dois na noite, com nome de gente.`
-
-Bloco 2 — H3 `O que o banco quer é o dinheiro de volta`
-`Assim que o banco retoma um imóvel, aquilo vira despesa na conta dele. IPTU correndo todo ano, condomínio entrando todo mês, apartamento fechado e síndico ligando para cobrar alguém. O banco quer tirar esse apartamento da mão dele rápido e recuperar o que ficou devendo do financiamento. E o que ficou devendo quase nunca é o preço que o apartamento faz na rua.`
-`É daí que nasce a diferença. Ela sai da contabilidade de outra pessoa.` (frase-chave)
-
-Bloco 3 — H3 `Por que essa diferença ainda existe`
-`Se todo mundo disputasse leilão, o desconto sumia no primeiro mês.`
-`O que segura a maioria do lado de fora é um documento chamado edital, que é o caderno com as regras daquela venda: o que você paga, em quanto tempo, o que vem junto com o imóvel e o que fica para trás. Esse edital é longo, é escrito em linguagem de cartório, dá prazo curto para pagar e às vezes traz dívida velha pendurada no imóvel. Junte a isso o medo de comprar um apartamento com gente morando dentro e você entende por que um imóvel bom acaba disputado por meia dúzia de pessoas, quando o mesmo apartamento num site de imobiliária teria fila na porta.`
-`Boa parte do desconto do leilão é o preço do medo dos outros. Quem aprende a ler o edital entra numa disputa vazia.` (frase-chave)
-
-Bloco 4 — H3 `Por que quase ninguém faz isso sozinho na primeira vez`
-`Dar lance é a parte fácil. O trabalho está antes e está depois.`
-`**Antes do lance,** eu leio o edital inteiro e leio também o histórico do imóvel no cartório, que é o documento onde fica registrado tudo que já aconteceu com aquele bem desde que ele existe, inclusive quem mais tem direito sobre ele. Confiro que tipo de leilão é aquele, porque leilão de banco e leilão que corre dentro de um processo na Justiça têm regras de prazo e de pagamento diferentes. Somo as dívidas que vêm penduradas no imóvel. Calculo quanto custa e quanto demora tirar um ocupante, quando tem ocupante.`
-`**Depois do lance,** o prazo para pagar é curto, tem o imposto da prefeitura para transferir o imóvel, tem o registro no cartório, que é o ato que faz o apartamento ser seu no papel, e tem a conversa com o condomínio sobre o que ficou atrasado.`
-`Errar num desses pontos transforma um desconto grande em prejuízo. Por isso a noite de 25 de agosto se resolve em edital e em conta. Motivação eu deixo para os outros.`
-
-CTA duplo 1, com `id="cta-duplo-1"` (é o sentinela da barra fixa).
-
-### Layout
-```
-.ev-mech { background: var(--mist); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.ev-mech__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-mech .ev-col { max-width: var(--col); margin-inline: auto; }   /* A CORREÇÃO: .ev-mech__head deixa de ter max-width solto */
-.ev-mech__grid { display: grid; grid-template-columns: 340px 1fr; column-gap: 72px; align-items: start; }
-.ev-mech__head { position: sticky; top: 96px; align-self: start; }  /* sem max-width próprio; a largura vem da coluna do grid */
-.ev-mech__blocks { position: relative; padding-left: 34px; }
-.ev-mech__block { padding: 30px 0; border-top: 1px solid var(--line); max-width: var(--col-read); margin-inline: 0; }
-.ev-mech__block:first-child { border-top: 0; padding-top: 0; }
-```
-`top: 96px` no sticky = 60px de nav sticky + 36px de folga.
-
-Trilho de progresso: `.ev-mech__blocks::before { content:""; position:absolute; left:0; top:6px; bottom:6px; width:2px; background: rgba(22,168,142,.16); }` e `.ev-mech__blocks::after` com `height: var(--prog, 0%)`, `background: var(--accent)`, `transition: height 120ms linear`, atualizado por scroll no JS (0% a 100% conforme o topo do primeiro e o fim do último bloco cruzam 55% da viewport). Desligado em `prefers-reduced-motion` (fica cheio, estático).
-
-CTA duplo 1: `.ev-duo` com `margin: 52px auto 0;` dentro da `.ev-col` (ocupa as duas colunas do grid: `grid-column: 1 / -1`).
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| Eyebrow | Figtree 600, 12px, `.26em`, `--accent-deep` |
-| H2 (na coluna sticky) | DM Serif Display 400, `clamp(28px, 2.9vw, 38px)`, `line-height: 1.1`, `--ink` |
-| H3 dos blocos | Figtree 700, 20px, `line-height: 1.35`, `--ink`, `margin-bottom: 14px` |
-| Corpo | Figtree 400, 17px, `line-height: 1.75`, `--ink-60` |
-| `<strong>` ("Antes do lance," / "Depois do lance,") | Figtree 700, `--ink` |
-| Frase-chave | DM Serif Display 400, `clamp(20px, 2.1vw, 26px)`, `line-height: 1.32`, `--accent-deep`, `margin-top: 20px` |
-
-### Cores
-Fundo `#F5F6F6`. Hairlines `rgba(31,36,37,.1)`. Trilho `rgba(22,168,142,.16)`; preenchimento `#16A88E`. Frase-chave `#0E7A67`.
-
-### Elementos Visuais
-Numeração discreta dos blocos: `01` a `04` em DM Serif Display 18px `rgba(22,168,142,.55)`, `position: absolute; left: -34px;` alinhada ao topo de cada H3, sobre o trilho. `aria-hidden="true"`.
-
-### Animações
-- `.ev-mech__head`: `data-aos="fade-up"`.
-- Blocos: `data-aos="fade-up"` com `data-aos-delay` 0 / 80 / 160 / 240ms.
-- `.ev-duo`: `data-aos="fade-up" data-aos-delay="120"`.
-- Trilho: scroll-linked (acima). Sem `will-change`, o handler só escreve uma custom property.
-
-### Interatividade
-Hover só nos dois botões. O sticky do cabeçalho é desativado abaixo de 1024px (vira fluxo normal), senão ele ocuparia meia tela no tablet.
-
-### Responsividade
-- **≤1024px:** `.ev-mech__grid { grid-template-columns: 1fr; row-gap: 40px; }`; `.ev-mech__head { position: static; max-width: var(--col-read); margin-inline: 0; }`; H2 volta para `clamp(30px,3.4vw,44px)`; `padding: 88px 40px`.
-- **≤640px:** `padding: 68px 24px`; `.ev-mech__blocks { padding-left: 22px; }`; numeração `left: -22px; font-size: 15px`; corpo 16.5px; blocos `padding: 26px 0`; `.ev-duo` `margin-top: 40px`.
-
----
-
-## 7. Seção 5 — A CONTA DE UM ARREMATE
-
-### Arquétipo e Constraints
-- **Arquétipo:** Data Dense (Baseado em Densidade) — a tabela é a seção; tudo em volta serve para ela ser lida direito.
-- **Constraints:** Color Blocking (Cor — linha de total em `--mint`, aviso em `--mint` com filete `--accent`), Scroll Horizontal contido (Layout — a rolagem acontece dentro do wrapper, nunca na página), Counter Animation (Movimento — o número R$ 102.968 conta de 0 até o valor ao entrar na tela).
-- **Justificativa:** é o momento em que a página prova o que promete. Densidade aqui é honestidade: 11 linhas com nomes longos e sem jargão. O contador é o único momento de espetáculo da página, e ele é permitido porque o número é o argumento.
-
-### Conteúdo (exato)
-Eyebrow: `A CONTA ABERTA`
-H2: `Vou te contar como essa conta se monta, linha por linha`
-
-Aviso (`.ev-warn`, precisa estar na mesma tela da tabela):
-`**EXEMPLO ILUSTRATIVO.** Os valores abaixo são inventados e foram escolhidos redondos por mim, só para você enxergar a mecânica. Não representam caso real, não citam cliente nenhum e não são previsão do que você vai conseguir. Cada imóvel tem edital, dívida e disputa próprios.`
-
-Lead:
-`Imagina um apartamento de dois quartos, num prédio comum, em bairro que já tem padaria e ponto de ônibus na esquina. Na rua, hoje, esse apartamento é anunciado por R$ 400 mil. Dentro do leilão ele tem um valor de avaliação, que é quanto um técnico disse que ele vale: R$ 380 mil. Repara que os dois números já são diferentes, e essa confusão é o primeiro erro de quem está começando.`
-`O lance vence em R$ 220.400, que é 42% abaixo da avaliação. Aí começa a segunda metade da conta, que é a parte que ninguém mostra no Instagram.`
-
-Tabela, cabeçalho `O que entra na conta` / `Valor`, 11 linhas exatamente como na copy, da linha `Preço que o apartamento faz na rua hoje · R$ 400.000` até `Tempo entre o lance e a chave na mão, neste exemplo · cerca de 12 meses`, com `Total que sai do seu bolso · R$ 297.032` em negrito.
-
-Destaque: `R$ 102.968 de diferença neste exemplo inventado.` — a ressalva "neste exemplo inventado" fica **na mesma linha e no mesmo corpo de texto** do destaque, sem parênteses, sem corpo menor.
-
-Fechamento (quatro parágrafos, exatos da copy, de `Agora presta atenção no que eu comparei...` até `No dia 25 essa tabela vai estar na tela, com um edital de verdade projetado do lado.`).
-
-### Layout
-```
-.ev-math { background: var(--paper); }
-.ev-math__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-math .ev-col { max-width: var(--col); margin-inline: auto; }
-```
-Ordem e margens dentro da coluna, tudo à esquerda:
-1. Eyebrow + H2 (`max-width: 780px; margin-inline: 0`) — `margin-bottom: 26px`
-2. `.ev-warn` — largura cheia da coluna, `margin-bottom: 26px`
-3. Lead — `max-width: var(--col-read); margin-inline: 0;` dois parágrafos, `margin-top: 16px`
-4. `.ev-table-wrap` — **`max-width: var(--col); margin-inline: auto;`** (a correção), `margin-top: 32px`
-5. Destaque — `max-width: 840px; margin: 34px 0 0; margin-inline: 0;`
-6. Parágrafos de fechamento — `max-width: var(--col-read); margin-inline: 0; margin-top: 18px`
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)`, lh 1.08 |
-| Lead | Figtree 400, 17px/1.75, `--ink-60` |
-| `th` | Figtree 700, 12px, `.09em`, uppercase, `--ink-60` |
-| `td` primeira coluna | Figtree 400, 15px/1.5, `--ink-60` |
-| `td` segunda coluna | Figtree 600, 15px, `font-variant-numeric: tabular-nums`, `white-space: nowrap`, `--ink` |
-| Linha de total | Figtree 700, 16px, `--ink`, fundo `--mint` |
-| Linha do lance vencedor | Figtree 700, `--accent-deep` na coluna de valor (é a linha que a nota dos 42% referencia) |
-| Destaque | DM Serif Display 400, `clamp(26px, 3.4vw, 42px)`, lh 1.12, `--accent-deep` |
-| Fechamento | Figtree 400, 17px/1.75, `--ink-60`; o último parágrafo em 600 `--ink` |
-
-### Cores
-Fundo `#FFFFFF`. Tabela: `th` sobre `--mist`, `td` com `border-bottom: 1px solid var(--line)`, linha de total `#E7F4F0`. Aviso `#E7F4F0` com borda `rgba(22,168,142,.4)` e filete esquerdo `#16A88E`. Destaque `#0E7A67`. Linha "Tempo entre o lance e a chave" com `td` em itálico `--ink-50` (é tempo, não dinheiro — a diferença tipográfica evita que o leitor some meses com reais).
-
-### Elementos Visuais
-Nenhuma ilustração. A régua da leitura é a própria tabela. Sombra de rolagem e dica "Role a tabela para o lado" conforme §2.3.
-
-### Animações
-- Cabeçalho, aviso e lead: `data-aos="fade-up"` com delays 0 / 60 / 120ms.
-- Tabela: `data-aos="fade-up" data-aos-delay="60"`. Linhas **não** entram em stagger — 11 linhas piscando em sequência viraria ruído.
-- Destaque: `data-aos="fade-up"` + **contador**. `<span data-count-to="102968" data-count-prefix="R$ ">`, 1100ms, easing `easeOutCubic`, formatação `pt-BR` com ponto de milhar, `requestAnimationFrame`, dispara uma vez ao entrar. Enquanto não dispara, o span já contém o valor final no HTML (nunca "0" no DOM inicial — se o JS falhar, o número está lá). Com `prefers-reduced-motion`, o contador não roda.
-
-### Interatividade
-- `.ev-table-wrap` focável e rolável por teclado (§2.3).
-- `tr:hover td { background: rgba(22,168,142,.045); }` com `transition: background .2s var(--ease)` — ajuda a seguir a linha na horizontal. Não aplicar na linha de total nem no `thead`.
-
-### Responsividade
-- **≤1024px:** `padding: 88px 40px`; tabela `font-size: 14.5px`; `td { padding: 12px 16px; }`
-- **≤640px:** `padding: 68px 24px`; `.ev-table { min-width: 520px; }` (rola dentro do wrapper); `th/td padding: 11px 14px`; destaque `clamp(24px, 7vw, 30px)`; aviso `padding: 15px 16px`, corpo 13.5px.
-
----
-
-## 8. Seção 6 — O QUE MUDA PARA QUEM VAI
-
-### Arquétipo e Constraints
-- **Arquétipo:** Before/After (Baseado em Mídia) — comparação de dois estados da mesma pessoa, lado a lado.
-- **Constraints:** Dark Mode (Cor — a única seção escura do miolo, e é o pivô emocional da página), Duocromático (Cor — coluna "como você chega" em branco a 55%, coluna "quando a noite acabar" em branco cheio com filete `--accent-soft`), Stagger (Movimento — as seis linhas entram em sequência).
-- **Justificativa:** o miolo da página é todo claro; um bloco escuro no meio marca a virada e dá a ela peso de cena. E resolve o problema estético de "mais uma tabela": esta não parece tabela, parece um antes e depois.
-
-### Conteúdo (exato)
-Eyebrow: `A TRANSFORMAÇÃO`
-H2: `A pessoa que começa a noite e a pessoa que termina`
-
-Cabeçalhos: `Como você chega` / `Quando a noite acabar`
-
-As seis duplas exatamente como na copy, de `Você abre o edital de um leilão e não sabe qual parte importa.` até `Você sai sabendo qual é o seu próximo passo e em que prazo ele acontece.`
-
-Nota final:
-`Ninguém vira especialista numa terça-feira, e eu não vou fingir o contrário. O que uma terça-feira resolve é o medo do documento. A prática vem depois, e sai bem mais barata quando você já sabe onde não pisar.`
-
-### Layout
-```
-.ev-shift { background: var(--ink); color: #FFFFFF; position: relative; overflow: hidden; }
-.ev-shift__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; position: relative; z-index: 1; }
-.ev-shift .ev-col { max-width: var(--col); margin-inline: auto; }
-```
-Marcação semântica: `<table>` de verdade (é dado comparado), com `scope="col"` nos dois `th`, dentro de `.ev-table-wrap.ev-table-wrap--ink`. No desktop ela é estilizada como duas colunas com calha central:
-
-```
-.ev-table--shift { min-width: 640px; }
-.ev-table--shift th { background: transparent; border-bottom: 1px solid rgba(255,255,255,.16); }
-.ev-table--shift td { width: 50%; vertical-align: top; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.1); }
-.ev-table--shift td:first-child  { color: rgba(255,255,255,.55); }
-.ev-table--shift td:last-child   { color: #FFFFFF; font-weight: 600; border-left: 2px solid rgba(47,184,160,.55); position: relative; }
-```
-Seta na calha: `td:last-child::before { content: "→"; position: absolute; left: -13px; top: 22px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 999px; background: var(--ink); color: var(--accent-soft); font-size: 13px; }`, `aria-hidden` via `speak: none` (o caractere é decorativo; a semântica está nas colunas).
-
-Wrapper escuro: `.ev-table-wrap--ink { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.14); }`, com o gradiente de fim de rolagem trocado para `linear-gradient(90deg, rgba(35,40,42,0), rgba(35,40,42,.95))`.
-
-Nota final: `max-width: var(--col-read); margin: 30px 0 0; margin-inline: 0;`
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| Eyebrow | Figtree 600, 12px, `.26em`, `--accent-soft` |
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)`, lh 1.08, `#FFFFFF`, `max-width: 760px; margin: 14px 0 32px;` |
-| `th` | Figtree 700, 12px, `.1em`, uppercase; o da esquerda `rgba(255,255,255,.45)`, o da direita `--accent-soft` |
-| `td` esquerda | Figtree 400, 15.5px/1.6, `rgba(255,255,255,.55)` |
-| `td` direita | Figtree 600, 15.5px/1.6, `#FFFFFF` |
-| Nota final | Figtree 400, 17px/1.75, `rgba(255,255,255,.65)` |
-
-### Cores
-Fundo `#23282A`. Filete divisor `rgba(47,184,160,.55)`. Hairlines `rgba(255,255,255,.1)`. Glow radial no canto superior direito: `radial-gradient(50% 60% at 82% 0%, rgba(22,168,142,.16), rgba(22,168,142,0) 70%)`, estático.
-
-### Elementos Visuais
-Marca d'água do símbolo Leilão & Prosa: 300x300px, `stroke: #16A88E; stroke-width: 9; fill: none`, `position: absolute; left: -70px; bottom: -70px; opacity: .07; pointer-events: none;` com `animation: float 9s ease-in-out infinite` (amplitude `translateY(-10px)`), desligada em `prefers-reduced-motion`.
-
-### Animações
-- Cabeçalho: `data-aos="fade-up"`.
-- Wrapper da tabela: `data-aos="fade-up" data-aos-delay="60"`.
-- Stagger das linhas: `tbody tr` recebe `data-aos="fade-up"` com delays 0/70/140/210/280/350ms. Aqui o stagger é permitido (6 linhas curtas, ritmo de "vira a chave"), ao contrário da tabela da §5.
-- Nota: `data-aos="fade-up"`.
-
-### Interatividade
-`tr:hover td:first-child { color: rgba(255,255,255,.72); }` e `tr:hover td:last-child::before { background: var(--accent); color: #FFFFFF; }`, 220ms. Wrapper focável para rolagem por teclado.
-
-### Responsividade
-- **≤1024px:** `padding: 88px 40px`; `td { padding: 18px 20px; }`
-- **≤640px:** `padding: 68px 24px`; a tabela **rola dentro do wrapper** com `min-width: 620px`, mantendo a leitura em par (empilhar antes/depois em duas linhas separadas destrói a comparação, que é o ponto da seção); dica "Role a tabela para o lado" visível; nota final 16.5px; marca d'água `display: none`.
-
----
-
-## 9. Seção 7 — O QUE EU VOU MOSTRAR NA NOITE
-
-### Arquétipo e Constraints
-- **Arquétipo:** Bento Box (Baseado em Grid) — sete células de tamanhos diferentes, com a sétima ocupando a linha inteira.
-- **Constraints:** Headline oversized nos números (Tipografia — numeral serif de 42px como marca da célula), Asymmetric Padding (Layout), Hover Lift (Interação).
-- **Justificativa:** sete itens em lista simples viram parede de texto; em grade uniforme, viram o "grid de features" que o framework proíbe. O bento dá hierarquia (o item 7, que é a prova social da própria Jacque, ganha a linha inteira) e mantém a página com cara de peça editorial.
-
-### Conteúdo (exato)
-Eyebrow: `O QUE VAI PARA A TELA`
-H2: `O que eu vou mostrar na noite`
-
-1. `Eu abro um edital de verdade na tela e leio em voz alta, com você, as páginas que decidem se aquele imóvel presta.`
-2. `Eu abro o histórico do imóvel no cartório e aponto as anotações que fazem um bom negócio virar dor de cabeça.`
-3. `Eu abro a planilha de custo e refaço a conta do lance até a chave na mão, com você acompanhando linha por linha.`
-4. `Eu explico a diferença entre o leilão de banco e o leilão que vem de processo na Justiça, e o que isso muda no seu prazo para pagar.`
-5. `Eu mostro o que fazer com imóvel que tem gente morando dentro: quais caminhos existem, quanto custa cada um e quanto tempo cada um leva.`
-6. `Eu explico por que tem tanto imóvel indo a leilão nos últimos anos, depois de tanta gente parar de pagar financiamento, e por quanto tempo esse tipo de janela costuma durar.`
-7. `Eu mostro arremates meus, com número na tela, incluindo o que deu errado no meio do caminho.`
-
-Nota: `Eu apago os dados pessoais de terceiros antes de levar qualquer documento para a tela.`
-
-Programação (título `Programação`):
-`19h credenciamento e café · 19h30 abertura · 20h a conversa comigo · 21h suas perguntas · 21h20 próximos passos · 21h40 networking (só na sala) · 22h encerramento` **[CONFIRMAR com a produção]**
-
-Onde (título `Onde`):
-`Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG`
-
-CTA duplo 2.
-
-### Layout
-```
-.ev-learn { background: var(--paper); }
-.ev-learn__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-learn .ev-col { max-width: var(--col); margin-inline: auto; }   /* A CORREÇÃO: .ev-learn__head perde o max-width solto */
-.ev-learn__head { max-width: 780px; margin: 0 0 40px; margin-inline: 0; }
-.learn-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; list-style: none; }
-```
-Distribuição das células (bento):
-- item 1 → `grid-column: span 3`
-- item 2 → `span 3`
-- item 3 → `span 2`
-- item 4 → `span 2`
-- item 5 → `span 2`
-- item 6 → `span 3`
-- item 7 → `span 3`
-Resultado: linha 1 com dois cards largos, linha 2 com três médios, linha 3 com dois largos. Ritmo irregular sem virar bagunça.
-
-```
-.learn {
-  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-card);
-  padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 14px;
-  transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
-}
-```
-Item 7 recebe `.learn--hi { background: var(--mint); border-color: var(--mint-line); }`.
-
-Programação: `.ev-agenda { margin-top: 44px; padding: 30px 32px; border-radius: var(--r-card); background: var(--mist); border: 1px solid var(--line); max-width: var(--col); margin-inline: auto; }` — a lista é `display: flex; flex-wrap: wrap; gap: 12px 28px; list-style: none;` com o horário em Figtree 700 `--ink` `tabular-nums` e a atividade em `--ink-60`. O item das 21h20 (`próximos passos`) recebe `.ev-agenda__item--comercial` com `color: var(--accent-deep)` e o título `title="Bloco comercial, declarado na programação"` — declarar a oferta na própria agenda é o que sustenta a resposta do FAQ.
-
-Endereço: `.ev-agenda__place { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }`
-
-CTA duplo 2: `.ev-duo { margin: 48px auto 0; }`
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| Eyebrow | Figtree 600, 12px, `.26em`, `--accent-deep` |
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)`, lh 1.08 |
-| Numeral da célula (`01`–`07`) | DM Serif Display 400, 42px, lh 1, `color: rgba(22,168,142,.42)`; no card `--hi`, `color: var(--accent-deep)` |
-| Texto da célula | Figtree 400, 16px/1.6, `--ink-72` (não 700 como na v1 — texto em bold dentro de card cheio pesa demais) |
-| Nota dos dados pessoais | Figtree 400, 14px/1.6, `--ink-50`, `margin-top: 22px` |
-| Título "Programação" / "Onde" | Figtree 700, 12px, `.12em`, uppercase, `--ink-60` |
-| Itens da programação | Figtree 400, 15px, `--ink-60`; horário 700 `--ink` |
-| Endereço | Figtree 400, 14.5px/1.6, `--ink-60` |
-
-### Cores
-Fundo `#FFFFFF`. Cards brancos com borda `rgba(31,36,37,.1)`. Card 7 `#E7F4F0` com borda `rgba(22,168,142,.25)`. Numerais `rgba(22,168,142,.42)`. Painel da programação `#F5F6F6`.
-
-### Elementos Visuais
-Nenhum ícone. O numeral serif gigante **é** o elemento gráfico da célula. Filete de 28px `--accent` no topo do card 7, `position: absolute; top: -1px; left: 28px; height: 3px;`.
-
-### Animações
-- Cabeçalho: `data-aos="fade-up"`.
-- Células: `data-aos="fade-up"` com stagger em onda por linha: 0/60 · 120/180/240 · 300/360ms.
-- Nota, programação e `.ev-duo`: `data-aos="fade-up"` com 0 / 80 / 140ms.
-
-### Interatividade
-`.learn:hover { transform: translateY(-4px); border-color: rgba(22,168,142,.42); box-shadow: 0 18px 34px -22px rgba(35,40,42,.4); }`. Os cards **não** são links (não há destino) — por isso hover sutil e `cursor: default`. Nenhum `:focus-visible` neles, já que não são focáveis.
-
-### Responsividade
-- **≤1024px:** `.learn-grid { grid-template-columns: repeat(4, 1fr); }` — itens 1,2 em `span 2`; 3,4 em `span 2`; 5 em `span 2`; 6 em `span 2`; 7 em `span 4`. `padding: 88px 40px`.
-- **≤640px:** `grid-template-columns: 1fr;` todos em `span 1`; `padding: 68px 24px`; card `padding: 22px 20px 24px`; numeral 34px; programação `padding: 24px 22px`, lista vira `flex-direction: column; gap: 10px;` com cada linha `display: grid; grid-template-columns: 62px 1fr;` para os horários alinharem.
-
----
-
-## 10. Seção 8 — QUEM ESTÁ FALANDO COM VOCÊ (a foto entra aqui)
-
-### Arquétipo e Constraints
-- **Arquétipo:** Documentary (Baseado em Mídia) — retrato sóbrio com legenda de crédito, texto em primeira pessoa, sem pose de palco.
-- **Constraints:** Imagem Dessaturada leve (Mídia — `filter: saturate(.94) contrast(1.02)`, para o retrato casar com a paleta sem virar preto e branco), Golden Ratio (Layout — colunas .62fr/1fr), Selective Color (Cor — só os cinco números em `--accent-deep`, o resto em cinza).
-- **Justificativa:** a foto saiu do hero justamente para não vender pessoa; aqui ela prova pessoa. Tratamento documental (moldura discreta, legenda) é o oposto de "foto de infoprodutor", e é o que o cliente pediu ao chamar de sóbrio.
-
-### Conteúdo (exato)
-Eyebrow: `QUEM ESTÁ FALANDO COM VOCÊ`
-H2: `Eu sou a Jacque Costa`
-
-`Eu resolvia leilão muito antes de subir em qualquer palco. O palco veio depois, e veio porque as pessoas começaram a me perguntar as mesmas coisas.`
-`Sou perita judicial. Quando um juiz precisa saber quanto vale um imóvel dentro de um processo, alguém tem que ir lá, examinar o imóvel, colocar um valor no papel e assinar embaixo, respondendo por aquilo na Justiça. Esse alguém, em muitos processos, sou eu.`
-`Sou despachante credenciada da Caixa desde 2007. Na prática, isso quer dizer que o banco me autoriza a tocar a papelada dos imóveis que ele retoma e coloca à venda. São quase duas décadas vendo por dentro como um banco grande trata esses imóveis, o que ele quer receber e com que pressa.`
-`Também sou corretora e administradora, e toco a minha própria empresa. Mais de 15 anos no mercado imobiliário, quase todos na parte que ninguém posta na internet: cartório, processo, vistoria em apartamento vazio, conversa difícil com síndico.`
-`A marca se chama Leilão & Prosa porque o que acontece na sala é conversa, com pergunta interrompendo no meio. O que eu levo é edital para mostrar e conta para abrir.`
-
-Título da grade: `Os meus números`
-- `42%` — `de desconto médio nas compras que eu já fechei em leilão, medido entre o valor de avaliação e o lance vencedor` + asterisco `.ev-ref`
-- `+2.400` — `alunos já passaram pelas minhas formações` **[CONFIRMAR o que conta como aluno]**
-- `5,0` — `no Google, em 39 avaliações do perfil Jacque Leilões, apurado em agosto de 2026`
-- `Desde 2007` — `credenciada da Caixa`
-- `Perita judicial` — `com laudo assinado dentro de processo`
-
-Disclaimer: `O meu credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.`
-
-### Layout
-```
-.bio { background: var(--mist); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.bio__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.bio .ev-col { max-width: var(--col); margin-inline: auto; }
-.bio__grid { display: grid; grid-template-columns: .62fr 1fr; column-gap: 64px; align-items: start; }
-```
-Mídia (coluna esquerda), `position: sticky; top: 96px;`:
-```
-.bio__media {
-  position: relative; border-radius: var(--r-card); overflow: hidden;
-  aspect-ratio: 4 / 5; background: linear-gradient(150deg, var(--ink-panel), var(--ink));
-  border: 1px solid var(--line);
-}
-```
-Sem selo flutuante de "42%" sobre a foto (a v1 tinha; sai — é enfeite de LP). Em vez disso, legenda documental abaixo da imagem:
-`.bio__caption { margin-top: 12px; font-size: 12.5px; line-height: 1.5; color: var(--ink-45); }` com o texto `Jacque Costa, perita judicial e despachante credenciada da Caixa desde 2007.`
-
-Texto (coluna direita), todos os parágrafos `max-width: 620px; margin-inline: 0;`.
-
-Grade de números: `.bio__facts { margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; list-style: none; }` — cada `li` com `background: var(--paper); padding: 20px 22px;`. O quinto item (`Perita judicial`) ocupa `grid-column: span 2`. Grade com moldura de 1px é vocabulário já existente do ecossistema.
-
-Disclaimer: `margin-top: 22px; max-width: 620px;`.
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| Eyebrow | Figtree 600, 12px, `.26em`, `--accent-deep` |
-| H2 | DM Serif Display 400, `clamp(30px, 3.2vw, 42px)`, lh 1.06 |
-| Corpo | Figtree 400, 16.5px/1.75, `--ink-60`, `margin-top: 18px` |
-| Título "Os meus números" | Figtree 700, 12px, `.12em`, uppercase, `--ink-50`, `margin-top: 34px` |
-| Valor do número | DM Serif Display 400, 32px, lh 1, `--accent-deep` (`Perita judicial` e `Desde 2007` caem para 24px por serem palavras) |
-| Legenda do número | Figtree 400, 13.5px/1.5, `--ink-60`, `margin-top: 8px` |
-| Legenda da foto | Figtree 400, 12.5px/1.5, `--ink-45` |
-| Disclaimer | Figtree 400, 13px/1.65, `--ink-50`, `font-style: italic` |
-
-### Cores
-Fundo `#F5F6F6`. Cards da grade `#FFFFFF` sobre malha `rgba(31,36,37,.1)`. Números `#0E7A67`. Sem verde no retrato.
-
-### Elementos Visuais
-```
-<img src="/.netlify/images?url=/images/jacque.png&w=760&q=80"
-     srcset="/.netlify/images?url=/images/jacque.png&w=480&q=78 480w,
-             /.netlify/images?url=/images/jacque.png&w=760&q=80 760w,
-             /.netlify/images?url=/images/jacque.png&w=1000&q=80 1000w"
-     sizes="(max-width: 640px) 88vw, (max-width: 1024px) 420px, 34vw"
-     alt="Jacque Costa, perita judicial e despachante credenciada da Caixa, sentada à mesa de trabalho"
-     width="1000" height="1250" loading="lazy" decoding="async">
-```
-`position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: saturate(.94) contrast(1.02);`
-
-**Pendência 9:** foto vertical em boa resolução. Enquanto não chegar, usar `/images/jacque.png` (a que já existe). **Deletar do `<head>` o `<link rel="preload" as="image">` do `jacque-leilao.png`** — não existe mais imagem no hero, e o preload passaria a competir com o LCP, que agora é o H1.
-
-### Animações
-- Mídia: `data-aos="fade-up"`.
-- Bloco de texto: `data-aos="fade-up" data-aos-delay="100"`.
-- Itens da grade: `data-aos="fade-up"` com delays 0/60/120/180/240ms.
-- Sem parallax na foto, sem zoom no hover: é retrato, não produto.
-
-### Interatividade
-Nenhum hover na foto. `.bio__facts li:hover { background: rgba(22,168,142,.035); }` apenas. O asterisco dos 42% é o único link.
-
-### Responsividade
-- **≤1024px:** `.bio__grid { grid-template-columns: 1fr; row-gap: 36px; }`; `.bio__media { position: static; max-width: 420px; margin-inline: 0; }` — foto **acima** do texto, como o cliente pediu; `padding: 88px 40px`.
-- **≤640px:** `padding: 68px 24px`; `.bio__media { max-width: 100%; }`; `.bio__facts { grid-template-columns: 1fr; }` com o quinto item voltando a `span 1`; valor do número 28px.
-
----
-
-## 11. Seção 9 — PROVA SOCIAL (bloco a preencher)
-
-### Arquétipo e Constraints
-- **Arquétipo:** Masonry (Baseado em Grid) — três a quatro depoimentos de alturas naturais diferentes, sem forçar altura igual.
-- **Constraints:** Duocromático (Cor — banda `--mint` com cards `--paper`), Aspas tipográficas (Tipografia), Lightbox (Estruturas Especiais — o print da avaliação do Google abre ampliado).
-- **Justificativa:** depoimento em card de altura igual obriga a cortar fala, e fala cortada soa fabricada. Masonry deixa cada depoimento ter o tamanho que tem.
+- Arquétipo: banda mínima de transição (hardware de confiança, não seção editorial).
+- Constraints: hairlines superior e inferior (Layout) + separadores em ponto médio verde (Tipografia).
 
 ### Conteúdo
-**Não existe conteúdo aprovado.** Precisa de três a quatro falas reais de quem foi a uma edição anterior, com nome, cidade e o que a pessoa destravou (arrematou, aprendeu a descartar imóvel ruim, perdeu o medo do edital). Print da avaliação do Google vale mais que texto digitado.
+Exato da copy seção 2: "Perita judicial em imóveis, com laudo assinado na Justiça · Credenciada da Caixa desde 2007 · +2.400 alunos nas formações **[CONFIRMAR: pendência 5]** · 5,0 no Google em 39 avaliações" + disclaimer "O credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento." (1ª de 3 aparições).
 
-**Regra de publicação, obrigatória:** se não houver material real até a publicação, **a seção inteira sai do HTML** (não fica comentada com placeholder visível, não entra com depoimento inventado) e o link do perfil do Google na §4 ganha peso: `font-weight: 700` e um `::after` com `→`. A página inteira se sustenta em número verificável; um depoimento fabricado derruba a credibilidade dos 42% junto.
-
-### Layout (quando houver material)
-```
-.depos { background: var(--mint); border-top: 1px solid rgba(22,168,142,.22); border-bottom: 1px solid rgba(22,168,142,.22); }
-.depos__inner { max-width: 1280px; margin-inline: auto; padding: 88px 40px; }
-.depos .ev-col { max-width: var(--col); margin-inline: auto; }
-.depos__grid { columns: 3; column-gap: 20px; }        /* masonry por colunas CSS */
-.depo { break-inside: avoid; margin-bottom: 20px; background: var(--paper);
-        border: 1px solid rgba(22,168,142,.2); border-radius: var(--r-card); padding: 26px 28px; }
-```
-
-### Tipografia
-Eyebrow `PROVA` (Figtree 600, 12px, `.26em`, `--accent-deep`). H2 `Quem já esteve numa noite dessas`, DM Serif Display `clamp(28px, 3vw, 40px)`. Fala: Figtree 400, 16px/1.7, `--ink-72`, sem itálico (itálico em depoimento longo cansa). Assinatura: Figtree 700, 13.5px, `--accent-deep`, `margin-top: 16px`, no formato `Nome · Cidade`.
-
-### Cores
-Fundo `#E7F4F0`. Cards `#FFFFFF` com borda `rgba(22,168,142,.2)`. Aspas decorativas `rgba(22,168,142,.16)`.
-
-### Elementos Visuais
-Aspa de abertura `„` em DM Serif Display 56px, `color: rgba(22,168,142,.2)`, `margin-bottom: -18px`, `aria-hidden="true"`. Print do Google, se houver: `<img>` via `/.netlify/images?url=/images/depoimento-google.png&w=640&q=80`, `width`/`height` numéricos, `loading="lazy"`, dentro de um `<button>` que abre lightbox (`.modal` já existente no shared, variante `.modal--img`), com `alt` descrevendo o conteúdo da avaliação.
-
-### Animações
-Cards com `data-aos="fade-up"` e delays 0/90/180/270ms.
-
-### Interatividade
-Card não é link. Só o print abre lightbox: `Esc` fecha, foco volta ao botão que abriu, `aria-modal="true"`.
-
-### Responsividade
-**≤1024px:** `columns: 2`. **≤640px:** `columns: 1`; `padding: 68px 24px`.
+### Especificação
+- Banda `--bg-1`, `border-top/bottom: 1px solid var(--line)`, padding 26px var(--pad-x); conteúdo máx 1240px.
+- Lista flex wrap, gap 10px 18px; itens DM Sans 400 13.5px `--text` letter-spacing 0.01em; separador `li:not(:last-child)::after` conteúdo "·" margin-left 18px `--accent` 700 (linha quebrada termina com ponto, nunca começa).
+- Item do Google vira link (URL real, `target="_blank" rel="noopener"`) QUANDO confirmada; até lá, texto puro.
+- Disclaimer: 11.5px, rgba(159,179,171,0.85), margem-top 10px.
+- 680px: lista em coluna, gap 8px, separadores somem (`content: ""`).
 
 ---
 
-## 12. Seção 10 — A OFERTA
+# SEÇÃO 3: O MECANISMO — CONSTRUÍDO E APROVADO
 
 ### Arquétipo e Constraints
-- **Arquétipo:** Floating Cards (Baseado em Camadas) — dois cards com profundidade diferente: o presencial elevado, o online assentado.
-- **Constraints:** Color Blocking (Cor — faixa `--mint` no topo do card presencial), Shadow Depth (Camadas — o presencial tem sombra de 44px, o online não tem sombra), Hover Lift (Interação).
-- **Justificativa:** o cliente vende os dois, mas o presencial é o que tem teto físico. A diferença de elevação comunica isso sem precisar de selo "MAIS VENDIDO", que seria linguagem de tabela de preço genérica — proibida pelo framework.
+- Arquétipo: **Editorial** (linhas largas de revista, hairlines, numerais).
+- Constraints: Texto com Stroke nos numerais 01–03 (Tipografia) · Scroll Reveal via view-timeline (Movimento).
+- Justificativa: os três pagadores do desconto são um argumento em sequência; linhas empilhadas com numerais dão peso de tese, não de feature list.
 
-### Conteúdo (exato)
-Eyebrow: `INGRESSOS`
-H2: `Escolha como você quer estar comigo no dia 25`
-Lead: `O que eu vou mostrar é igual nos dois ingressos. A conversa é a mesma e o edital que vai para a tela é o mesmo. O que muda é a cadeira e o que acontece quando eu desço do palco.`
+### Conteúdo
+Exato da copy seção 3: título "De onde vem o desconto que você vai aprender a capturar" ("capturar" em itálico 650 `--mint`), os 3 parágrafos com subtítulos "O banco com pressa" / "A multidão do lado de fora" / "Quem entra sem a conta", e o refrão (1ª de 2 aparições): "Quem não entende o jogo<br>não arremata. Assiste." + ponte "No dia 26, você aprende o jogo."
 
-**Card 1 — PRESENCIAL · Okay Hub, Belo Horizonte**
-Preço: `R$ 157 até 11 de agosto`, `à vista ou 12x de R$ [XX,XX] pela Sympla` **[CONFIRMAR]**
-`Para quem é` — `Você mora na Grande BH, quer me perguntar olhando no olho e quer sair da sala com o telefone de gente que já arrematou. Serve também para quem sabe que, de casa, vai acabar atendendo o telefone no meio da noite.`
-`Inclui` — os cinco itens exatos da copy, de `Sua cadeira na sala no dia 25...` a `A conversa de corredor no intervalo...`
-`Não inclui` — os quatro itens exatos, de `Estacionamento no prédio` a `Análise individual do seu imóvel ou do edital de um leilão específico`
-Botão: `Quero a cadeira em BH · R$ 157`
-
-**Card 2 — ONLINE · Transmissão ao vivo**
-Preço: `R$ 67 até 11 de agosto`, `à vista ou 12x de R$ [XX,XX] pela Sympla` **[CONFIRMAR]**
-`Para quem é` — `Você está fora de Belo Horizonte, ou tem compromisso naquela terça, ou quer me conhecer antes de investir uma noite inteira fora de casa. Assiste do sofá, com o caderno do lado.`
-`Inclui` — os seis itens exatos da copy, incluindo o de 1h50 de conteúdo + 20 minutos de apresentação comercial e o de devolução integral por 15 minutos somados fora do ar
-`Não inclui` — os quatro itens exatos
-Botão: `Quero o acesso ao vivo · R$ 67`
-
-**Painel** `Por que a cadeira custa mais que a transmissão` — os três parágrafos exatos + `Como decidir em dez segundos.` em destaque.
-
-**Tabela de lotes** — `Lote / Período / Presencial / Online`, três linhas (`Lote 1 · até 11/08 · R$ 157 · R$ 67`, `Lote 2 · de 12/08 a 20/08 · R$ 187 · R$ 87`, `Lote 3 · de 21/08 até esgotar · R$ 217 · R$ 97`).
-Nota: `A sala tem [XX] cadeiras. Quando acabam, acabaram. O acesso ao vivo não tem limite de lugares, e o preço dele sobe nas mesmas datas do presencial. Se o lote não virar na data anunciada, a oferta continua valendo pelo preço veiculado.`
-
-CTA duplo da oferta.
-
-### Layout
-```
-.ev-offer { background: var(--paper); }
-.ev-offer__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-offer .ev-col { max-width: var(--col); margin-inline: auto; }
-.ev-offer__head { max-width: 780px; margin: 0 0 40px; margin-inline: 0; }
-.tickets { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.ticket { border: 1px solid var(--line); border-radius: 20px; padding: 0 0 32px;
-          background: var(--paper); display: flex; flex-direction: column; height: 100%;
-          overflow: hidden; }
-.ticket__body { padding: 0 30px; }
-```
-Faixa de topo (o color blocking):
-```
-.ticket__tag { padding: 14px 30px; font-size: 11.5px; letter-spacing: .12em;
-               text-transform: uppercase; font-weight: 700; }
-.ticket--live .ticket__tag { background: var(--mint); color: var(--accent-deep);
-                             border-bottom: 1px solid var(--mint-line); }
-.ticket--online .ticket__tag { background: var(--mist); color: var(--ink-60);
-                               border-bottom: 1px solid var(--line); }
-.ticket--live { border-color: rgba(22,168,142,.45);
-                box-shadow: 0 28px 56px -34px rgba(35,40,42,.5); }
-```
-O presencial vem primeiro no DOM e continua primeiro no mobile.
-
-**Escassez, só no presencial** (`.ticket__seats`, dentro do card presencial, logo abaixo do preço):
-```
-margin-top: 20px; padding: 14px 16px; border-radius: 12px;
-background: var(--mint); border: 1px solid var(--mint-line);
-```
-Linha superior em flex: `Cadeiras na sala` (Figtree 600 13px `--ink-60`) e `[YY] de [XX] disponíveis` (Figtree 700 13px `--accent-deep`). Barra: `height: 6px; border-radius: 999px; background: rgba(14,122,103,.16);` com preenchimento `background: var(--accent); width: var(--pct);` **valor real, escrito no HTML**.
-**Regra:** este bloco só existe se houver número real e conferível (pendência 1). Sem número, o bloco inteiro sai do HTML — não entra com valor inventado nem com "últimas vagas".
-**O card online recebe o contrário, e isso é de propósito:** `.ticket__nolimit` com o texto `Sem limite de lugares.` em Figtree 600 13px `--ink-60`, dentro de uma caixa `background: var(--mist); border: 1px solid var(--line);` na mesma posição do bloco de lugares. Contador no online derrubaria a credibilidade da página inteira, porque transmissão ao vivo não tem teto e o leitor sabe disso.
-
-Painel "Por que a cadeira custa mais": `.ev-why { max-width: var(--col); margin: 44px auto 0; padding: 32px 34px; border-radius: var(--r-card); background: var(--mist); border: 1px solid var(--line); }` — **a correção: `margin-inline: auto`**. Parágrafos internos com `max-width: var(--col-read); margin-inline: 0;`.
-
-Tabela de lotes: `.ev-lots { margin-top: 44px; }` com `.ev-table-wrap` centrado (`margin-inline: auto`), `min-width: 640px` na tabela, linha do lote vigente com `.ev-table__now` em `--mint` e negrito. Nota abaixo: `max-width: var(--col-read); margin-inline: 0; margin-top: 14px;`.
-
-CTA duplo da oferta: `.ev-duo { margin: 48px auto 0; }`.
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)` |
-| Lead | Figtree 400, 18px/1.7, `--ink-60`, `max-width: 720px`, `margin-inline: 0` |
-| Preço | DM Serif Display 400, 54px, lh 1, `--ink`; cifrão em 24px; `até 11 de agosto` em Figtree 600 13px `--ink-60`, `margin-left: 8px` |
-| Parcelamento | Figtree 400, 14px, `--ink-60`, `margin-top: 8px` |
-| "Para quem é" / "Inclui" / "Não inclui" | Figtree 700, 11.5px, `.1em`, uppercase; os dois últimos com `border-top: 1px solid var(--line); padding-top: 18px; margin-top: 24px;` |
-| Texto de "para quem é" | Figtree 400, 15px/1.6, `--ink-60` |
-| Itens da lista | Figtree 400, 15px/1.6, `--ink-60`, `padding-left: 24px`, marcador `::before` |
-| Título do painel | Figtree 700, 19px |
-| Nota dos lotes | Figtree 400, 13px/1.65, `--ink-60` |
-
-Marcadores: `.ticket__list li::before { content: "✓"; color: var(--accent-deep); font-weight: 700; }` e `.ticket__list--out li::before { content: "×"; color: var(--ink-45); }` — `list-style: none` no `<ul>` para não duplicar marcador.
-
-### Cores
-Fundo `#FFFFFF`. Card presencial com borda `rgba(22,168,142,.45)` e sombra `0 28px 56px -34px rgba(35,40,42,.5)`. Card online com borda `rgba(31,36,37,.1)` e **sem sombra**. Faixas de topo `#E7F4F0` e `#F5F6F6`. Painel `#F5F6F6`. Linha de lote vigente `#E7F4F0`.
-
-### Elementos Visuais
-Nenhuma ilustração, nenhum selo de "melhor escolha". A hierarquia é dada por sombra, borda e cor da faixa.
-
-### Animações
-- Cabeçalho: `data-aos="fade-up"`.
-- Cards: `data-aos="fade-up"` com 0 e 90ms.
-- Barra de lugares: `transform: scaleX(0)` → `scaleX(1)` em 900ms `var(--ease)` quando o card entra (`transform-origin: left`); estática em `prefers-reduced-motion`.
-- Painel, tabela de lotes e `.ev-duo`: `data-aos="fade-up"` com 0/60/120ms.
-
-### Interatividade
-- `.ticket:hover { transform: translateY(-4px); }` só no presencial (`.ticket--live`), 300ms — o online sobe 2px, para a diferença de peso continuar legível no hover.
-- Botões conforme §2.1: o do card presencial é `.btn-duo--fill` em largura total (`width: 100%; margin-top: auto;`), o do card online é `.btn-duo--out` em largura total. **Mesma altura, mesmo raio, mesma tipografia.**
-- A seção tem `id="ingressos"` — é ela que esconde a barra fixa.
-
-### Responsividade
-- **≤1024px:** `.tickets { grid-template-columns: 1fr; }`; presencial em cima; `padding: 88px 40px`.
-- **≤640px:** `padding: 68px 24px`; `.ticket__body { padding: 0 22px; }`; `.ticket__tag { padding: 12px 22px; }`; preço 44px; painel `padding: 26px 22px`; tabela de lotes rola dentro do wrapper com dica visível; `.ev-duo` em coluna.
+### Especificação
+- Container máx 1240px + pad-x, padding vertical padrão. SEM overline acima do título (regra 1).
+- Título: Fraunces 450 `clamp(32px,4.2vw,60px)` lh 1.12 letter-spacing -0.01em, máx 880px, margem-bottom `clamp(50px,7vh,84px)`.
+- Linhas: bloco com `border-top: 1px solid var(--line)`; cada `article` grid `clamp(120px,16vw,220px) 1fr`, gap `clamp(20px,4vw,60px)`, padding vertical `clamp(36px,5.5vh,62px)`, `border-bottom: 1px solid var(--line)`, align start.
+- Numeral: Fraunces 650 `clamp(64px,9vw,132px)` lh 0.85, stroke 1.5px rgba(140,239,211,0.4), fill transparent, user-select none.
+- Subtítulo: Fraunces 600 `clamp(22px,2.2vw,30px)` letter-spacing -0.01em, margem-bottom 14px; parágrafo DM Sans `clamp(15.5px,1.25vw,17.5px)` `--text-muted` máx 68ch.
+- Refrão: grid nas mesmas colunas das linhas; `::before` aspa `\201C` Fraunces 650 `clamp(90px,10vw,150px)` lh 0.6 stroke 1.5px rgba(140,239,211,0.4); citação Fraunces itálico 450 `clamp(30px,4.4vw,62px)` lh 1.18 máx 24ch, quebra controlada com `<br>`; "Assiste." em `--mint` 700 romano; ponte DM Sans 500 13px tracking 0.22em uppercase `--text-muted`, `grid-column: 2`, margem-top 22px (fecho de citação abaixo dela, não eyebrow). Margem-top do bloco `clamp(70px,10vh,110px)`.
+- Reveal: `rise` nas linhas (`animation-range: entry 0% entry 42%`) e no refrão (`entry 0% entry 50%`); reduced-motion desliga.
+- 680px: linhas em 1 coluna (numeral 74px, margem-bottom 4px); refrão 1 coluna com row-gap 10px, aspa 72px lh 0.8, ponte `grid-column: 1`.
 
 ---
 
-## 13. Seção 11 — PERGUNTAS QUE EU SEMPRE OUÇO
+## Seção 4: O Currículo da Noite
 
 ### Arquétipo e Constraints
-- **Arquétipo:** Reveal on Demand (Baseado em Interação) — 13 perguntas em `<details>`, agrupadas em três blocos temáticos com rótulo.
-- **Constraints:** Mixed Fonts (Tipografia — pergunta em serif, resposta em sans), Grid rows animado (Movimento — `grid-template-rows: 0fr → 1fr`, que anima altura sem `max-height` chutado), Filete de estado (Cor — o item aberto ganha barra `--accent` de 2px à esquerda).
-- **Justificativa:** o framework proíbe "FAQ com accordion básico". A diferença aqui está em três coisas: agrupamento com rótulo (13 perguntas seguidas viram muro), numeração serif que dá cara editorial, e abertura animada de verdade em vez de salto seco.
+**Arquétipo:** Split Assimétrico (divisão 38/62) com coluna esquerda fixa durante o scroll.
+**Constraints:** Sticky Element (Layout) + View Timeline com stagger natural de entrada (Movimento) + numerais 01 a 07 em chip sólido de menta pequeno, tratamento invertido em relação ao stroke gigante do mecanismo (Tipografia/Cor).
+**Justificativa:** o mecanismo usa numerais ocos e monumentais para narrar; o currículo responde com numerais pequenos, cheios e densos, sinalizando que a promessa virou item executável. A coluna sticky mantém a promessa "o que você vai dominar" e o CTA na tela durante toda a leitura dos 7 itens, encurtando o caminho até o clique.
 
-### Conteúdo (exato, 13 perguntas na ordem da copy)
-Eyebrow: `ANTES DE COMPRAR`
-H2: `Perguntas que eu sempre ouço`
+### Conteúdo
+Título (H2): `O que você vai dominar quando a noite acabar`
+Parágrafo de abertura: `A noite inteira acontece com documento aberto e conta rodando na tela, na mesma ordem em que eu trabalho desde 2007, para que você saia sabendo fazer, e não apenas sabendo que existe. Quando ela acabar, você vai ser capaz de:`
 
-**Grupo A — `SOBRE O RISCO E O CONTEÚDO`**
-01 `"E se o imóvel vier com dívida, com processo em cima ou com gente morando dentro?"` (aberta por padrão)
-02 `"Nunca participei de leilão nenhum. Eu vou entender alguma coisa?"`
-03 `"Vale a pena o ingresso online?"`
-04 `"Eu quero comprar para morar, não para investir. Serve para mim?"`
+Itens (numeral + sentença única, sem cortar uma palavra):
+- `01.` `Ler um edital sem travar, porque eu abro um documento completo em voz alta com você, mostrando por onde começo, o que cada trecho muda no seu bolso e em que ponto eu descartaria o imóvel sem gastar um real com ele.`
+- `02.` `Conferir a vida do imóvel no cartório, já que a certidão registra os donos antigos, as disputas e quem ainda pode ter direito sobre o bem, e é ali que costuma se esconder o detalhe que derruba um negócio de aparência boa.`
+- `03.` `Fechar a conta do lance até a chave, somando comissão do leiloeiro, imposto de transferência, cartório, dívidas assumidas, desocupação e obra, linha por linha, até o total que sai do seu bolso.`
+- `04.` `Distinguir leilão de banco de leilão de Justiça, entendendo quem vende em cada um, o que muda no prazo e no risco, e por que essa diferença define a sua estratégia de pagamento.`
+- `05.` `Avaliar imóvel com morador dentro, conhecendo o leque de saídas possíveis, do acordo à ação na Justiça, com uma noção honesta de custo e de tempo para cada caminho.`
+- `06.` `Entender a janela de agora, com o que encheu os leilões nos últimos anos e o que a história diz sobre quanto tempo uma fase assim costuma ficar aberta.`
+- `07.` `Aprender com os meus números reais, porque eu mostro as minhas próprias compras com a planilha aberta, dando tempo extra às que doeram, já que errar com a minha conta na sua frente é o jeito mais barato de você acertar na sua.`
 
-**Grupo B — `SOBRE DINHEIRO E PRAZO`**
-05 `"De quanto dinheiro eu preciso para começar?"`
-06 `"Em quanto tempo eu preciso pagar? Dá para financiar?"`
-07 `"Como eu sei que esses 42% são verdade?"` (a resposta carrega o asterisco `.ev-ref`)
-
-**Grupo C — `SOBRE O FORMATO E AS REGRAS`**
-08 `"E se a transmissão cair no meio?"`
-09 `"Vou levar oferta comercial na cara durante o evento?"`
-10 `"Consigo cancelar se eu mudar de ideia?"`
-11 `"Posso passar meu ingresso para outra pessoa?"`
-12 `"Tem estacionamento no prédio?"`
-13 `"Posso gravar a noite?"`
-
-As respostas entram integrais, exatamente como na copy, sem corte e sem reescrita. As aspas fazem parte do texto da pergunta.
+Nota de privacidade: `Todo documento passa por limpeza antes do telão, então nome, CPF e endereço de terceiros não aparecem.`
+CTA duplo 1: botão primário `Garantir minha vaga` · botão secundário `Assistir ao vivo`
 
 ### Layout
+```html
+<section class="curr" id="curriculo">
+  <div class="curr__grid">
+    <div class="curr__left">                <!-- sticky no desktop -->
+      <h2 class="curr__title">O que você vai <em>dominar</em> quando a noite acabar</h2>
+      <p class="curr__intro">A noite inteira acontece com documento aberto e conta rodando na tela, na mesma ordem em que eu trabalho desde 2007, para que você saia sabendo fazer, e não apenas sabendo que existe. Quando ela acabar, você vai ser capaz de:</p>
+      <div class="curr__ctas">
+        <button type="button" class="btn btn--fill">Garantir minha vaga na sala</button>
+        <button type="button" class="btn btn--ghost">Garantir meu acesso ao vivo</button>
+      </div>
+    </div>
+    <ol class="curr__list">
+      <li class="curr__item">
+        <span class="curr__num" aria-hidden="true">01.</span>
+        <p class="curr__text"><strong class="curr__lead">Ler um edital sem travar</strong>, porque eu abro um documento completo em voz alta com você, mostrando por onde começo, o que cada trecho muda no seu bolso e em que ponto eu descartaria o imóvel sem gastar um real com ele.</p>
+      </li>
+      <!-- itens 02 a 07 na mesma estrutura; o <strong class="curr__lead"> envolve exatamente
+           o trecho antes da primeira vírgula de cada item:
+           02 "Conferir a vida do imóvel no cartório" · 03 "Fechar a conta do lance até a chave"
+           04 "Distinguir leilão de banco de leilão de Justiça" · 05 "Avaliar imóvel com morador dentro"
+           06 "Entender a janela de agora" · 07 "Aprender com os meus números reais" -->
+      <li class="curr__privacy">Todo documento passa por limpeza antes do telão, então nome, CPF e endereço de terceiros não aparecem.</li>
+    </ol>
+  </div>
+</section>
 ```
-.ev-faq { background: var(--mist); border-top: 1px solid var(--line); }
-.ev-faq__inner { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-faq .ev-col { max-width: var(--col); margin-inline: auto; }
-.faq__group { margin-top: 40px; }
-.faq__group-label { font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
-                    font-weight: 700; color: var(--accent-deep); margin-bottom: 12px; }
-.faq__list { max-width: var(--col); margin-inline: auto; }   /* A CORREÇÃO */
-.faq__item { border-top: 1px solid var(--line); background: var(--paper);
-             border-left: 2px solid transparent; }
-.faq__item:last-child { border-bottom: 1px solid var(--line); }
-.faq__item[open] { border-left-color: var(--accent); background: var(--paper); }
-.faq__item summary { display: grid; grid-template-columns: 46px 1fr 34px;
-                     align-items: start; gap: 0 10px;
-                     padding: 22px 24px; cursor: pointer; list-style: none; }
-.faq__answer { display: grid; grid-template-rows: 0fr;
-               transition: grid-template-rows 320ms var(--ease); }
-.faq__item[open] .faq__answer { grid-template-rows: 1fr; }
-.faq__answer > div { overflow: hidden; }
-.faq__answer p { padding: 0 24px 24px 80px; max-width: 760px; }
-```
-O `summary::-webkit-details-marker { display: none; }` e o sinal de `+` vira o terceiro item da grade: `.faq__sign` com `+` que rotaciona 45° quando aberto (`transform: rotate(45deg)`, 300ms).
-
-`<details>` nativo, com `name="faq"` **não** aplicado — abrir uma não deve fechar a outra (o leitor compara respostas).
+- `.curr`: `padding: clamp(90px, 13vh, 150px) var(--pad-x) clamp(80px, 11vh, 130px); max-width: calc(var(--w-page) + 2 * 56px); margin: 0 auto; position: relative;` fundo herdado `var(--bg-0)`, sem borda.
+- `.curr__grid`: `display: grid; grid-template-columns: minmax(320px, 440px) minmax(0, 1fr); gap: clamp(48px, 6.5vw, 110px); align-items: start;`
+- `.curr__left`: `position: sticky; top: clamp(96px, 14vh, 140px); align-self: start;`
+- `.curr__intro`: `margin-top: 22px; max-width: 42ch;`
+- `.curr__ctas`: `margin-top: clamp(28px, 4vh, 40px); display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 360px;` (na coluna estreita os dois botões empilham por padrão, primário em cima, mesma largura).
+- `.curr__list`: `list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line);`
+- `.curr__item`: `display: grid; grid-template-columns: 64px 1fr; gap: clamp(18px, 2.4vw, 34px); padding: clamp(28px, 4.2vh, 46px) 0; border-top: 1px solid var(--line); align-items: start;`
+- `.curr__num`: chip `width: 46px; height: 46px; display: grid; place-content: center; border-radius: 6px; background: var(--mint); box-shadow: 0 6px 18px rgba(140, 239, 211, 0.15); user-select: none; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);` (justifica-se: eco invertido do `.mec__num`, que é gigante e vazado; aqui pequeno e preenchido).
+- `.curr__text`: `max-width: 62ch; margin: 0;` com padding-top de 8px para alinhar a primeira linha ao centro óptico do chip.
+- `.curr__privacy`: `margin-top: 26px; padding: 0 0 0 18px; border-left: 2px solid var(--accent); max-width: 58ch;` (mesmo dispositivo da `.hero__note`). Fica dentro do `<ol>` como `<li>` sem numeral, `list-style: none`.
 
 ### Tipografia
-| Elemento | Especificação |
-|---|---|
-| H2 | DM Serif Display 400, `clamp(30px, 3.4vw, 44px)`, `max-width: 720px`, `margin-inline: 0` |
-| Numeral (`01`–`13`) | DM Serif Display 400, 20px, `rgba(22,168,142,.5)`, `line-height: 1.5` |
-| Pergunta | DM Serif Display 400, `clamp(18px, 1.7vw, 21px)`, lh 1.35, `--ink` |
-| Sinal `+` | Figtree 400, 26px, `--accent`, lh 1 |
-| Resposta | Figtree 400, 16px/1.75, `--ink-60` |
+- `.curr__title`: Fraunces, weight 450, `font-size: clamp(30px, 3.6vw, 52px)`, `line-height: 1.12`, `letter-spacing: -0.01em`, cor `var(--text)`. O `<em>` de "dominar": `font-style: italic; font-weight: 650; color: var(--mint);` (idêntico ao `.mec__title em`).
+- `.curr__intro`: DM Sans, weight 300, `font-size: clamp(15.5px, 1.25vw, 17.5px)`, `line-height: 1.7`, `letter-spacing: 0`, cor `var(--text-muted)`.
+- `.curr__num`: Fraunces, weight 600, `font-size: 17px` (680px: 15px), `line-height: 1`, `letter-spacing: 0`, cor `#04110D`.
+- `.curr__text`: DM Sans, weight 300, `font-size: clamp(15.5px, 1.25vw, 17.5px)`, `line-height: 1.68`, cor `var(--text-muted)`.
+- `.curr__lead` (trecho antes da primeira vírgula): Fraunces, weight 600, `font-size: clamp(19px, 1.6vw, 23px)`, `line-height: inherit`, `letter-spacing: -0.01em`, cor `var(--text)`, `font-style: normal`, `transition: color 0.25s ease`.
+- `.curr__privacy`: DM Sans, weight 400, `font-size: 13px`, `line-height: 1.65`, cor `rgba(159, 179, 171, 0.85)`.
+- Botões: DM Sans, weight 500, `font-size: 15.5px`, `letter-spacing: 0.01em` (herdado de `.btn`).
 
 ### Cores
-Fundo da seção `#F5F6F6`. Itens `#FFFFFF`. Hairlines `rgba(31,36,37,.1)`. Item aberto: pergunta `#0E7A67`, filete esquerdo `#16A88E`. Hover da pergunta: `#0E7A67`.
+- Fundo da seção: `var(--bg-0)` `#071310`. Hairlines dos itens: `var(--line)` `rgba(241,237,228,0.13)`.
+- Chip numeral: fundo `#8CEFD3`, texto `#04110D`, sombra `rgba(140,239,211,0.15)`. Hover do item: chip mantém fundo, título do item vai a `#8CEFD3`.
+- Título: `#F1EDE4`; em itálico: `#8CEFD3`. Corpo: `#9FB3AB`. Lead: `#F1EDE4`.
+- Nota de privacidade: texto `rgba(159,179,171,0.85)`, borda esquerda `#16A88E`.
+- Botão primário: fundo `#16A88E`, texto `#04110D`, sombra `0 4px 18px rgba(0,0,0,0.35)`; hover fundo `#2FD4AF`. Botão secundário: borda `1px solid rgba(241,237,228,0.25)`, texto `#F1EDE4`; hover borda e texto `#8CEFD3` com preenchimento `rgba(140,239,211,0.1)` subindo de baixo. Focus visível: outline `2px solid #8CEFD3`, offset 3px.
 
 ### Elementos Visuais
-Nenhum ícone. Numeral e sinal `+` são o vocabulário gráfico.
+- Chip de numeral 46x46px, raio 6px, menta sólida, texto `01.` a `07.` com ponto, Fraunces 600 17px, sombra `0 6px 18px rgba(140,239,211,0.15)`. Nenhum outro ícone ou ornamento.
+- Hairlines horizontais de 1px `var(--line)` no topo de cada item e na base da lista.
+- Barra vertical de 2px `#16A88E` na nota de privacidade, `padding-left: 18px` (eco da nota dos 42% do hero).
+- Sem numeral de fundo gigante nesta seção: o dispositivo de stroke pertence ao mecanismo e ao refrão; repetir aqui diluiria os dois.
 
 ### Animações
-- Cabeçalho e cada grupo: `data-aos="fade-up"` com delays 0/60/120/180ms.
-- Abertura: `grid-template-rows` 320ms `var(--ease)` + rotação do `+` 300ms. Em `prefers-reduced-motion`, abertura instantânea.
-- Sem stagger item a item dentro do grupo — 13 elementos entrando em sequência é ruído.
-
-### Interatividade
-- `summary` é focável por natureza; `:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }` (offset negativo porque o item tem borda esquerda e o outline externo seria cortado).
-- Item 01 com atributo `open` no HTML: a página abre já respondendo o maior medo.
-- Nada de "abrir todas" — botão extra aqui é ruído.
-
-### Responsividade
-- **≤1024px:** `padding: 88px 40px`.
-- **≤640px:** `padding: 68px 24px`; `summary { grid-template-columns: 34px 1fr 26px; padding: 18px 18px; }`; pergunta 17px; `.faq__answer p { padding: 0 18px 20px 52px; }`; numeral 17px.
-
----
-
-## 14. Seção 12 — CTA FINAL
-
-### Arquétipo e Constraints
-- **Arquétipo:** Spotlight (Baseado em Foco) — painel escuro isolado, tudo em volta apagado, glow radial atrás dos dois botões.
-- **Constraints:** Gradiente Radial (Cor), Framed Content (Layout — raio 28px, o painel é um objeto sobre papel branco), Hover Glow (Efeitos Especiais — halo pulsante no botão primário, desligado em `prefers-reduced-motion`).
-- **Justificativa:** é o fecho e o eco do hero. Centralizado de propósito, para a página abrir e fechar com a mesma respiração. O painel flutuando sobre branco encerra a leitura como um cartão-convite, e não como mais uma seção.
-
-### Conteúdo (exato)
-H2: `Terça-feira, 25 de agosto, 19h`
-`Semana que vem alguém vai arrematar um apartamento que você viu e deixou passar. Vai ser alguém que leu o edital inteiro.`
-`O que eu levo para a tela é papel e planilha. Você sai sabendo o que olhar primeiro, quanto custa além do lance, quando dar meia-volta e quando insistir.`
-Refrão (**segunda e última aparição na página**): `Quem não entende o jogo não arremata. Assiste.`
-Botões: par `.ev-duo` com os textos do CTA final.
-Endereço: `Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG. Ou ao vivo, de onde você estiver.`
-Letra miúda: `Preços do lote 1, válidos até 11 de agosto. Parcelamento em até 12x pela Sympla. Presencial limitado a [XX] cadeiras. Arrependimento em 7 dias corridos a partir da compra, com devolução integral.` **[CONFIRMAR a capacidade; sem o número, a frase vira "Presencial limitado à capacidade da sala."]**
-
-### Layout
-```
-.ev-cta { background: var(--paper); }
-.ev-cta__outer { max-width: 1280px; margin-inline: auto; padding: var(--sec-y) 40px; }
-.ev-cta__inner {
-  position: relative; overflow: hidden;
-  max-width: var(--col); margin-inline: auto;
-  border-radius: 28px; padding: 76px 56px 68px;
-  background: var(--ink); color: #FFFFFF;
-  text-align: center;                 /* segunda e última exceção declarada */
+```css
+@supports (animation-timeline: view()) {
+  .curr__left {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 38%;
+  }
+  .curr__item, .curr__privacy {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 42%;
+  }
 }
-.ev-cta__content { max-width: var(--col-hero); margin-inline: auto; }
 ```
-Ordem interna: filete de 56px (igual ao do hero, `rgba(47,184,160,.55)`, `margin: 0 auto 24px`) → H2 → dois parágrafos (`max-width: 660px; margin: 18px auto 0;`) → refrão (`margin-top: 34px`) → `.ev-duo` (`margin-top: 40px`) → endereço (`margin-top: 30px`) → letra miúda (`margin-top: 12px`).
-
-Seção com `id="inscricao"` (a barra fixa também some aqui).
-
-### Tipografia
-| Elemento | Especificação |
-|---|---|
-| H2 | DM Serif Display 400, `clamp(28px, 3.2vw, 42px)`, lh 1.08, `#FFFFFF` |
-| Parágrafos | Figtree 400, 17px/1.7, `rgba(255,255,255,.72)` |
-| Refrão | DM Serif Display 400, `clamp(22px, 2.6vw, 32px)`, lh 1.2, `#FFFFFF`, `padding-top: 22px`, com filete superior de 3px `var(--accent)` e `width: 56px; margin: 0 auto` (no centro, porque o bloco é centrado — diferente do refrão da §5, que tem filete à esquerda; a repetição da frase não pode ser a repetição do enquadramento) |
-| Endereço | Figtree 400, 14px/1.6, `rgba(255,255,255,.7)`, `max-width: 640px; margin-inline: auto` |
-| Letra miúda | Figtree 400, 12.5px/1.6, `rgba(255,255,255,.48)`, `max-width: 640px; margin-inline: auto` |
-
-### Cores
-Painel `#23282A`. Glow atrás dos botões: `radial-gradient(46% 46% at 50% 76%, rgba(22,168,142,.22) 0%, rgba(22,168,142,0) 72%)`. Filetes `rgba(47,184,160,.55)` e `#16A88E`.
-
-### Elementos Visuais
-Marca d'água do símbolo: 260x260px, stroke `#16A88E` width 9, `position: absolute; right: -60px; top: -60px; opacity: .08;` com `animation: float 8s ease-in-out infinite` (amplitude -8px). Grain igual ao do hero, `opacity: .03`.
-
-### Animações
-- `.ev-cta__inner`: `data-aos="fade-up"`.
-- Glow do botão primário, **só aqui**: `animation: ctaGlow 3.4s ease-in-out infinite` alternando `box-shadow` de `0 0 0 0 rgba(22,168,142,.28)` para `0 0 0 12px rgba(22,168,142,0)`. Não é urgência, é foco — e some inteiro em `prefers-reduced-motion`.
-- Marca d'água: float 8s.
+- Keyframe: o `rise` já existente (`opacity 0 + translateY(34px)` até `opacity 1 + translateY(0)`).
+- Stagger: emergente do próprio scroll, cada `.curr__item` cumpre seu range ao entrar no viewport, sem delay artificial.
+- Trigger: entrada no viewport via `view()`. Duração: proporcional ao scroll dentro do range declarado.
+- Fallback: fora do `@supports`, nada anima e tudo fica visível.
+- `prefers-reduced-motion: reduce`: dentro do bloco existente, adicionar `.curr__left, .curr__item, .curr__privacy { animation: none; }` e `.curr__num, .curr__lead { transition: none; }`.
 
 ### Interatividade
-Botões conforme §2.1, variante `.on-ink` no contornado. Nada mais é clicável.
+- Hover no `.curr__item`: `.curr__lead` transiciona para `color: #8CEFD3` em 0.25s ease; `.curr__num` aplica `transform: rotate(-4deg) scale(1.06)` em 0.25s `cubic-bezier(0.22, 1, 0.36, 1)`. Sem mudança de fundo na linha.
+- Botões: comportamentos idênticos aos do hero (`.btn--fill:hover` fundo `#2FD4AF`; `.btn--ghost::before` com `transform: scaleY(0)` para `scaleY(1)` em 0.32s `cubic-bezier(0.22, 1, 0.36, 1)`, origem bottom). Clique abre o modal de captura com `data-modalidade="presencial"` no primário e `data-modalidade="online"` no secundário.
+- Focus: `:focus-visible` global, outline `2px solid var(--mint)`, offset 3px, raio 2px.
+- A coluna sticky nunca cobre conteúdo: `top` de `clamp(96px, 14vh, 140px)` garante folga sob o topbar.
 
 ### Responsividade
-- **≤1024px:** `padding: 88px 40px`; painel `padding: 60px 40px 56px`.
-- **≤640px:** `padding: 68px 24px`; painel `padding: 44px 24px 40px`, `border-radius: 20px`; H2 `clamp(26px, 7.4vw, 32px)`; `.ev-duo` em coluna; marca d'água `display: none`.
+**1060px:**
+- `.curr__grid { grid-template-columns: 1fr; gap: 0; }`
+- `.curr__left { display: contents; }` (os filhos viram itens diretos do grid; sticky deixa de existir).
+- Ordem via grid: `.curr__title { order: 1; }` `.curr__intro { order: 2; margin-bottom: clamp(36px, 5vh, 50px); max-width: 62ch; }` `.curr__list { order: 3; }` `.curr__ctas { order: 4; margin-top: clamp(32px, 5vh, 44px); max-width: 660px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }` (CTA passa para depois da lista, lado a lado como no hero).
+**680px:**
+- `.curr__item { grid-template-columns: 40px 1fr; gap: 14px; padding: 24px 0; }`
+- `.curr__num { width: 36px; height: 36px; font-size: 15px; border-radius: 5px; }`
+- `.curr__lead { font-size: 18px; }` `.curr__text { padding-top: 4px; }`
+- `.curr__ctas { grid-template-columns: 1fr; gap: 12px; max-width: none; }` primário em cima, largura total.
+- `.curr__privacy { margin-top: 20px; font-size: 12.5px; }`
 
 ---
 
-## 15. Seção 13 — RODAPÉ
+## Seção 5: A Conta
 
 ### Arquétipo e Constraints
-- **Arquétipo:** Sparse (Baseado em Densidade) — três blocos separados por hairlines, muito ar, nada competindo.
-- **Constraints:** Low Contrast (Cor — cinza sobre `--mist`, o rodapé não disputa atenção), Hover Underline scaleX (Interação — mesmo vocabulário do nav, fechando a moldura da página).
-- **Justificativa:** é uma LP de tráfego pago; o rodapé serve de saída e de responsabilidade legal, não de menu. Mas a nota dos 42% mora aqui, e ela precisa de corpo de leitura de verdade.
+**Arquétipo:** Editorial em zona clara, com um quadro de três números-chave no lugar da planilha.
+**Constraints:** Counter Animation nos três valores ao entrar no viewport (Movimento) + faixa tracejada de EXEMPLO ILUSTRATIVO herdada do material documental (Cor/Layout) + hairlines verticais separando as células (Tipografia documental).
+**Justificativa:** a versão anterior trazia a planilha inteira em papel rotacionado, com 11 linhas, e o cliente reprovou por tamanho. O quadro preserva o argumento (lance, custo total, folga real) e a proteção jurídica ocupando um terço do espaço. Como a seção agora é zona clara, repetir uma folha de papel sobre papel produziria uma caixa flutuante sem função: por isso nenhum card, só filetes.
 
-### Conteúdo (exato)
-Bloco 1 — assinatura: monograma Leilão & Prosa + `Leilão & Prosa` (com `&` em itálico `--accent`), e a assinatura da marca-mãe `Faz Morar` com o filete dourado `#B08D57` descrito na §0.
+### Conteúdo
+Título (H2): `A conta que você vai sair sabendo fazer`
+Parágrafo 1: o apartamento de R$ 350 mil na imobiliária contra R$ 320 mil de avaliação.
+Parágrafo 2: o lance em R$ 185.600, 42%\* abaixo da avaliação.
+Aviso, na faixa do quadro: texto integral do EXEMPLO ILUSTRATIVO da copy, sem corte.
+Trio de números: **R$ 185.600** (lance vencedor, 42%\* abaixo da avaliação) · **R$ 254.448** (total que sai do seu bolso, já com comissão do leiloeiro, imposto de transferência, cartório, dívidas assumidas, desocupação e obra) · **R$ 95.552** (de folga neste exemplo inventado, contra os R$ 350.000 do preço de imobiliária).
+Linha de tempo: `Tempo estimado entre o lance e a chave, neste exemplo: cerca de 14 meses.`
+Depois do quadro: os três parágrafos de honestidade (a régua dos 27,3%, o custo da revenda, o fecho) e o CTA duplo 2.
 
-Bloco 2 — `#metodologia`, título `Sobre os 42%` e a **versão longa integral** da nota, exatamente como na copy (de `os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi...` até `...à disposição para conferência pelo e-mail [contato].`), em primeira pessoa. Segundo parágrafo com a nota da Caixa.
+### Layout
 
-Bloco 3 — identificação do fornecedor (Decreto 7.962/2013):
-`Realização: Jacque Leilões · [Razão social], CNPJ [XX.XXX.XXX/0001-XX] · [Endereço completo] · Atendimento: [e-mail] e [WhatsApp] · [Termos de uso] · [Política de privacidade]` **[CONFIRMAR — pendência 6; sem esses dados a página não pode ser publicada]**
-`Apoio: 3BF · AVANTIK · CONEXÃO SV`
-`© 2026 Leilão & Prosa · Jacque Leilões · CRECI 5314 PJ`
+```html
+<section class="conta zona-clara" id="conta">
+  <div class="conta__inner">
+    <h2 class="conta__title">A conta que você vai sair sabendo <em>fazer</em></h2>
+    <p class="conta__p conta__p--first">...</p>
+    <p class="conta__p">... 42%<a class="ast" href="#metodologia">*</a> ...</p>
+    <figure class="quadro">
+      <h3 class="sr-only">O exemplo em três números</h3>
+      <figcaption class="quadro__aviso"><strong>Exemplo ilustrativo.</strong> ...</figcaption>
+      <div class="quadro__trio">
+        <div class="quadro__cel">
+          <span class="quadro__num count" data-target="185600">R$ 185.600</span>
+          <span class="quadro__rot">...</span>
+        </div>
+        <div class="quadro__cel">
+          <span class="quadro__num count" data-target="254448" data-delay="200">R$ 254.448</span>
+          <span class="quadro__rot">...</span>
+        </div>
+        <div class="quadro__cel quadro__cel--folga">
+          <span class="quadro__num count" data-target="95552" data-delay="460" data-duracao="1200">R$ 95.552</span>
+          <span class="quadro__rot">...</span>
+        </div>
+      </div>
+      <p class="quadro__tempo">...</p>
+    </figure>
+    <p class="conta__p conta__p--honest">... (três parágrafos)</p>
+    <div class="conta__ctas">... CTA duplo 2 ...</div>
+  </div>
+</section>
+```
 
-Navegação enxuta: `O Clube` → `/leilao-e-prosa/` · `Planos` → `/planos/` · `Comunidade grátis` → `/comunidade/` · `Livro` → `/livro/` · `Faz Morar` → `/`
+Valores exatos:
+- `.conta`: zona clara, `padding: clamp(90px, 13vh, 150px) var(--pad-x)`; `.conta__inner` com `max-width: 880px; margin: 0 auto`.
+- `.quadro`: `margin: clamp(40px, 6vh, 62px) 0 clamp(28px, 4vh, 42px)`.
+- `.quadro__aviso`: `padding: 14px 18px`, fundo `rgba(14, 122, 103, 0.07)`, tracejados `1px dashed rgba(14, 33, 28, 0.28)` no topo e na base.
+- `.quadro__trio`: `display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line)`.
+- `.quadro__cel`: `padding: clamp(20px, 3vh, 30px) clamp(16px, 2vw, 26px) clamp(20px, 3vh, 30px) 0`; a partir da segunda célula, `padding-left: clamp(16px, 2vw, 26px); border-left: 1px solid var(--line)`.
+- `.quadro__cel--folga`: `background: rgba(14, 122, 103, 0.05)`.
+
+### Tipografia
+- `.quadro__num`: Fraunces 700, `clamp(26px, 3.4vw, 42px)`, `line-height: 1`, `letter-spacing: -0.02em`, `font-variant-numeric: lining-nums tabular-nums`, cor `var(--text)`; na célula da folga, `var(--accent-deep)`.
+- `.quadro__rot`: DM Sans 400, 12.5px, `line-height: 1.5`, `max-width: 34ch`, `text-wrap: pretty`, cor `var(--text-muted)`.
+- `.quadro__aviso`: DM Sans 400, 12.5px, `line-height: 1.6`; o `<strong>` inicial em 700, `letter-spacing: 0.14em`, uppercase, `var(--accent-deep)`.
+- `.quadro__tempo`: DM Sans 400, 12.5px, cor `var(--text-muted)`.
+
+### Cores
+Tudo resolvido pelos tokens da zona clara: papel `#F1EDE4`, tinta `#0E211C`, sálvia escurecida `#4A5F58`, verde `#0A5F50`. Nenhum hardcode de tema escuro sobrevive nesta seção; os dois únicos valores fixos são os lavados de verde do aviso e da célula da folga.
+
+### Elementos Visuais
+Faixa tracejada do aviso e hairlines verticais entre as células. Sem papel rotacionado, sem carimbo, sem sombra: numa zona que já é papel, esses dispositivos perderiam a função que tinham no fundo escuro.
+
+### Animações
+Reveal `rise` no `.quadro` (`animation-range: entry 0% entry 45%`). Contadores por IntersectionObserver em `.quadro__trio` (threshold 0.35, dispara uma vez), escalonados pelos `data-delay` de 0, 200 e 460ms, com easing easeOutCubic. Sem JS ou sob `prefers-reduced-motion`, os três valores finais já estão escritos no HTML.
+
+### Interatividade
+Apenas o asterisco dos 42%, que leva a `#metodologia`. Nenhum hover nas células: é documento, não interface.
+
+### Responsividade
+- **1060px:** sem mudança estrutural, a coluna de 880px cabe.
+- **680px:** o trio vira coluna única com `border-top` entre as células (a primeira sem borda), `.quadro__num` em 30px, a célula da folga sangrando 14px para as laterais, aviso com `padding: 14px` e corpo 12px, `.quadro__rot` sem `max-width`.
+
+## Seção 6: Os Dois Públicos
+
+### Arquétipo e Constraints
+**Arquétipo:** Split Vertical espelhado (dois painéis 50/50 divididos por hairline central), com faixa full-width de anti-persona abaixo.
+**Constraints:** Hover Reveal (Interação) + Color Blocking discreto (Cor) + Texto com Stroke como marca d'água tipográfica (Tipografia).
+**Justificativa:** o espelhamento traduz a simetria do argumento (a mesma leitura de edital serve aos dois públicos) e o Hover Reveal transforma a escolha de identidade do leitor em gesto físico. O Color Blocking em opacidades baixíssimas diferencia os painéis sem ícone e sem card, mantendo o vocabulário tipográfico do sistema.
+
+### Conteúdo
+H2: `Para quem eu desenhei essa noite`
+
+Painel esquerdo, lead: `Para quem quer investir.`
+Corpo: `Você nunca deu um lance, mas já entendeu que a distância entre o lance e o preço de rua é margem, e quer aprender a separar imóvel disputável de armadilha para sair do leilão com um bem abaixo do preço de mercado, pronto para revender ou alugar.`
+
+Painel direito, lead: `Para quem quer morar.`
+Corpo: `Metade da minha sala é gente buscando a casa própria, e para essa pessoa o desconto tem outro nome: um endereço melhor com uma prestação que finalmente cabe no salário. A leitura de edital que ela precisa dominar é exatamente a mesma do investidor, e a noite serve às duas na mesma medida.`
+
+Faixa abaixo, lead: `Uma honestidade antes de você comprar.`
+Corpo: `Se o que você procura é dica quente de imóvel ou promessa de renda garantida, essa noite vai te frustrar, porque o que eu entrego é método: você aprende a ler e a calcular, e a decisão, com o risco dela, continua sendo sua.`
 
 ### Layout
 ```
-.footer-c { background: var(--mist); border-top: 1px solid var(--line); }
-.footer-c__inner { max-width: 1280px; margin-inline: auto; padding: 48px 40px 24px;
-                   display: flex; justify-content: space-between; flex-wrap: wrap;
-                   gap: 24px; align-items: center; }
-.footer-c__method { max-width: 1280px; margin-inline: auto; padding: 26px 40px;
-                    border-top: 1px solid var(--line); }
-.footer-c__method-col { max-width: var(--col-fine); margin-inline: auto; text-align: left; }
-.footer-c__thin { max-width: 1280px; margin-inline: auto; padding: 0 40px 40px;
-                  display: flex; flex-wrap: wrap; gap: 10px 24px; }
+section.pub
+├─ div.pub__inner            (max-width: 1240px; margin: 0 auto; padding: clamp(90px,13vh,150px) var(--pad-x) 0)
+│  ├─ h2.pub__title          (max-width: 880px; margin-bottom: clamp(50px,7vh,84px))
+│  └─ div.pub__split         (display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+│     │                       border-top: 1px solid var(--line); border-bottom: 1px solid var(--line))
+│     ├─ article.pub__panel.pub__panel--investir
+│     │  ├─ span.pub__ghost aria-hidden="true"  → "investir"
+│     │  ├─ h3.pub__lead     → "Para quem quer investir."
+│     │  └─ p.pub__body
+│     └─ article.pub__panel.pub__panel--morar   (border-left: 1px solid var(--line)  ← hairline central)
+│        ├─ span.pub__ghost aria-hidden="true"  → "morar"
+│        ├─ h3.pub__lead     → "Para quem quer morar."
+│        └─ p.pub__body
+└─ aside.pub__honest         (full-width, fora do container; background: var(--bg-1);
+   │                          border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+   │                          padding: clamp(44px,6vh,64px) var(--pad-x); margin-top: clamp(70px,9vh,100px))
+   └─ div.pub__honest-inner  (max-width: 1240px; margin: 0 auto; display: grid;
+      │                       grid-template-columns: clamp(120px,16vw,220px) 1fr; column-gap: clamp(20px,4vw,60px))
+      ├─ span.pub__honest-mark aria-hidden="true"  (coluna 1, vazio de texto: hairline vertical decorativa)
+      └─ div (coluna 2)
+         ├─ h3.pub__honest-lead  → "Uma honestidade antes de você comprar."
+         └─ p.pub__honest-body
+```
+Painéis: `padding: clamp(36px, 4.5vw, 64px) clamp(28px, 4vw, 56px) clamp(44px, 5vw, 72px); position: relative; overflow: hidden`. O painel esquerdo sem padding-left extra (alinha com o container); o direito espelha.
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| .pub__title | Fraunces | 450 | clamp(32px, 4.2vw, 60px) | 1.12 | -0.01em |
+| .pub__ghost | Fraunces itálico | 620 | clamp(72px, 8.5vw, 128px) | 0.85 | -0.02em |
+| .pub__lead | Fraunces | 600 | clamp(23px, 2.3vw, 32px) | 1.2 | -0.01em |
+| .pub__body | DM Sans | 300 | clamp(15.5px, 1.25vw, 17.5px) | 1.7 | 0 |
+| .pub__honest-lead | Fraunces itálico | 550 | clamp(22px, 2.2vw, 30px) | 1.25 | -0.01em |
+| .pub__honest-body | DM Sans | 300 | clamp(15.5px, 1.25vw, 17.5px) | 1.7 | 0 |
+
+`.pub__body` e `.pub__honest-body` com `max-width: 52ch`. `.pub__lead` com `margin: clamp(56px,6vw,84px) 0 14px` (o espaço acima acomoda o ghost). `.pub__honest-lead` com `margin-bottom: 12px`.
+
+### Cores
+- Fundo da seção: `var(--bg-0)` #071310. Faixa honest: `var(--bg-1)` #0B1B16.
+- .pub__title: #F1EDE4. .pub__lead: #F1EDE4. .pub__body: #9FB3AB.
+- .pub__ghost: `color: transparent; -webkit-text-stroke: 1.5px rgba(140,239,211,0.22)`.
+- Color blocking discreto: painel investir `background: rgba(140,239,211,0.028)`; painel morar `background: rgba(22,168,142,0.05)`. Cada painel recebe um filete superior interno: `::before` com `content:""; position:absolute; top:0; left: clamp(28px,4vw,56px); width:56px; height:2px`; investir `background: var(--mint)` #8CEFD3; morar `background: var(--accent)` #16A88E.
+- Hairline central: `1px solid rgba(241,237,228,0.13)`.
+- .pub__honest-lead: #F1EDE4. .pub__honest-body: #9FB3AB. .pub__honest-mark: `width: 2px; height: 100%; background: var(--accent); justify-self: end` (ecoa a borda da nota dos 42% do hero).
+- Estado hover (ver Interatividade): painel apagado `opacity: 0.45` + `filter: saturate(0.6)`.
+
+### Elementos Visuais
+- `.pub__ghost`: palavra em stroke posicionada `position:absolute; top: clamp(18px,2.5vw,30px); left: clamp(24px,3.5vw,48px); user-select:none; pointer-events:none; white-space:nowrap`, cortada pelo `overflow:hidden` do painel na borda direita quando exceder. É o mesmo dispositivo dos numerais 01/02/03 do mecanismo, aqui em palavra.
+- Sem ícones, sem cards flutuantes, sem sombras nos painéis: a divisão é feita só por hairlines e blocos de cor a 3 a 5% de opacidade.
+- Grain global do body cobre a seção; nenhum grain adicional.
+
+### Animações
+- Reveal de entrada: dentro de `@supports (animation-timeline: view())`, `.pub__panel { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 42%; }` e `.pub__honest-inner { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 50%; }`. Keyframe `rise` idêntico ao aprovado (opacity 0 + translateY(34px) → opacity 1 + translateY(0)).
+- Fallback: sem suporte a view(), tudo visível estaticamente (nenhuma classe esconde conteúdo fora do @supports).
+- `prefers-reduced-motion: reduce`: dentro do bloco já existente, adicionar `.pub__panel, .pub__honest-inner { animation: none; }` e `.pub__panel, .pub__panel::before { transition: none; }`.
+
+### Interatividade
+- Hover Reveal no split (somente ponteiros finos: envolver em `@media (hover: hover) and (pointer: fine)`):
+  - `.pub__split:hover .pub__panel { opacity: 0.45; filter: saturate(0.6); }`
+  - `.pub__split .pub__panel:hover { opacity: 1; filter: none; }`
+  - Painel sob o cursor intensifica o bloco de cor: investir para `rgba(140,239,211,0.05)`, morar para `rgba(22,168,142,0.08)`.
+  - Transições: `transition: opacity 0.35s ease, filter 0.35s ease, background 0.35s ease` em `.pub__panel`.
+- Sem hover, sem clique e sem link em nenhum outro elemento da seção. Nenhum CTA aqui (a copy não prevê).
+- Foco: não há elementos focáveis; nada a definir além do `:focus-visible` global.
+
+### Responsividade
+- **1060px:** `.pub__split { grid-template-columns: 1fr; }`; o painel morar troca `border-left` por `border-top: 1px solid var(--line)`; `.pub__ghost` cai para `font-size: clamp(64px, 11vw, 96px)`; `.pub__honest-inner { grid-template-columns: 1fr; row-gap: 16px; }` e `.pub__honest-mark` vira horizontal: `width: 56px; height: 2px; justify-self: start`.
+- **680px:** padding dos painéis `28px 0 36px` (hairlines internas somem nas laterais, painéis alinham ao container); `.pub__ghost { font-size: 64px; top: 10px; left: 0; -webkit-text-stroke-color: rgba(140,239,211,0.14); }`; `.pub__lead { margin-top: 48px; font-size: 22px; }`; faixa honest com `padding: 40px var(--pad-x)`; Hover Reveal inerte (já excluído pela media query de hover).
+
+---
+
+## Seção 7: A Professora
+
+### Arquétipo e Constraints
+**Arquétipo:** Split Assimétrico com Overlap: coluna de retrato à esquerda sangrando a margem, headline do texto invadindo a foto.
+**Constraints:** Imagem Dessaturada + Duotone verde (Mídia) + Bleed Left (Layout) + linha documental de carimbos para "Os meus números" (Tipografia/Estrutura, anti grid de stats).
+**Justificativa:** o retrato tratado como documento de arquivo (dessaturado, duotone da paleta, grain global por cima) mantém a página no universo "papel e processo" em vez de "palestrante de palco". O overlap da headline sobre a foto cria a tensão assimétrica do sistema aprovado, e os números como carimbos em linha ecoam o `ficha__stamp` do hero, fechando a identidade.
+
+### Conteúdo
+H2: `Quem vai te ensinar`
+
+Parágrafo 1: `Meu nome é Jacque Costa, e o que eu vou te ensinar no dia 26 é o que eu faço profissionalmente há mais de quinze anos, muito antes de existir palco.`
+
+Parágrafo 2: `Sou perita judicial em imóveis, o que significa que, quando um processo precisa de um valor confiável para um bem, o laudo sai com a minha assinatura e eu respondo por ele diante do juiz. Sou também despachante credenciada da Caixa desde 2007, e a papelada de imóvel retomado passa pela minha mesa antes de virar anúncio, o que me deu quase vinte anos vendo por dentro o que o banco aceita e onde o processo costuma emperrar.`
+
+Parágrafo 3: `Completo o quadro como corretora e administradora, com empresa própria construída no lado do mercado que não rende vitrine: balcão de cartório, prazo de juiz, vistoria de manhã cedo e acerto de dívida com condomínio. O nome Leilão & Prosa é literal, porque a noite funciona como uma conversa com documento aberto, onde a sua dúvida não precisa esperar o bloco de perguntas.`
+
+Título da linha documental: `Os meus números`
+
+Itens, texto exato:
+1. `42%* de desconto médio nas compras que eu fechei em leilão, entre o valor de avaliação e o lance vencedor (metodologia no fim da página)`
+2. `+2.400 alunos nas minhas formações [CONFIRMAR o que conta como aluno: matriculado, concluinte ou certificado]`
+3. `5,0 no Google, em 39 avaliações do perfil Jacque Leilões, apurado em agosto de 2026`
+4. `Desde 2007 credenciada da Caixa`
+5. `Perita judicial, com laudo assinado dentro de processo`
+
+Disclaimer visível: `O credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.`
+
+### Layout
+```
+section.prof                (padding: clamp(90px,13vh,150px) 0 clamp(80px,11vh,130px); overflow: clip)
+└─ div.prof__inner          (max-width: 1240px; margin: 0 auto; padding: 0 var(--pad-x))
+   ├─ div.prof__split       (display: grid; grid-template-columns: clamp(320px,38vw,500px) 1fr;
+   │  │                      column-gap: clamp(36px,5vw,84px); align-items: start)
+   │  ├─ figure.prof__media (grid-column: 1; margin-left: calc(-1 * var(--pad-x));  ← BLEED LEFT
+   │  │  │                   position: relative; z-index: 1)
+   │  │  └─ img src="/images/jacque-leilao.png" alt="Jacque Costa de perfil, com microfone headset, durante uma apresentação à noite"
+   │  │      (display:block; width:100%; height:auto; aspect-ratio: 4/5; object-fit: cover)
+   │  └─ div.prof__body     (grid-column: 2; position: relative; z-index: 2; padding-top: clamp(8px,2vh,24px))
+   │     ├─ h2.prof__title  → "Quem vai te ensinar"
+   │     │   (margin-left: calc(-1 * clamp(70px, 9vw, 160px));  ← OVERLAP sobre a foto
+   │     │    margin-bottom: clamp(30px,4vh,44px))
+   │     └─ p.prof__p  × 3  (margin-bottom: 1.35em; max-width: 62ch)
+   ├─ div.prof__numeros     (margin-top: clamp(60px,8vh,96px); border-top: 1px solid var(--line);
+   │  │                      border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap;
+   │  │                      align-items: stretch)
+   │  ├─ h3.prof__numeros-title → "Os meus números"
+   │  │   (flex: 0 0 auto; align-self: center; padding: 22px clamp(24px,3vw,44px) 22px 0;
+   │  │    border-right: 1px solid var(--line))
+   │  └─ p.prof__stamp × 5  (flex: 1 1 200px; min-width: 200px; padding: 22px clamp(20px,2.4vw,36px);
+   │      border-right: 1px solid var(--line); último sem border-right)
+   │      dentro de cada um: <strong class="prof__stamp-num"> com o dado
+   │      (42%*, +2.400, 5,0, Desde 2007, Perita judicial) e o restante do texto corrido
+   └─ p.prof__disclaimer    (margin-top: 26px; max-width: 66ch)
+```
+No item 1, `42%*` renderiza como `<strong class="prof__stamp-num">42%<a class="stat__ast" href="#metodologia">*</a></strong>` (asterisco clicável, mesmo componente do hero). Os trechos `[CONFIRMAR ...]` renderizam em `<mark class="confirmar">` com o texto exato, colchetes inclusos.
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| .prof__title | Fraunces | 450 | clamp(32px, 4.2vw, 60px) | 1.12 | -0.01em |
+| .prof__p | DM Sans | 300 | clamp(15.5px, 1.25vw, 17.5px) | 1.7 | 0 |
+| .prof__numeros-title | Fraunces itálico | 550 | clamp(18px, 1.6vw, 22px) | 1.2 | -0.01em |
+| .prof__stamp-num | Fraunces | 650 | clamp(26px, 2.4vw, 36px) | 1 | -0.02em |
+| .prof__stamp (texto) | DM Sans | 300 | 13.5px | 1.55 | 0.01em |
+| .prof__disclaimer | DM Sans itálico | 300 | 13px | 1.65 | 0.02em |
+| mark.confirmar | DM Sans | 500 | 0.85em | herdado | 0.02em |
+
+`.prof__stamp-num` em display block com `margin-bottom: 6px; font-variant-numeric: tabular-nums`. Em "Desde 2007" e "Perita judicial" o strong usa `font-size: clamp(20px, 1.8vw, 26px)` (texto, não numeral puro).
+
+### Cores
+- Fundo: `var(--bg-0)` #071310. Títulos: #F1EDE4. Parágrafos: #9FB3AB.
+- Retrato, tratamento duotone verde:
+  - `figure.prof__media { background: linear-gradient(165deg, #0E7A67 0%, #071310 80%); border-radius: 6px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.35); }`
+  - `img { filter: saturate(0.45) contrast(1.06) brightness(1.05); object-position: 55% 50%; }` (sem mix-blend-mode e sem opacity: a foto nova já é noturna, e o blend luminosity achatava o bokeh do fundo)
+  - `figure::after { content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(7,19,16,0.55) 0%, transparent 42%); pointer-events:none; }` (ancora a base da foto no fundo da página)
+- .prof__numeros-title: #8CEFD3. .prof__stamp-num: #F1EDE4; o asterisco `a.stat__ast` em #16A88E, hover #8CEFD3. Texto dos stamps: #9FB3AB.
+- Hairlines da linha documental: `rgba(241,237,228,0.13)`.
+- .prof__disclaimer: `rgba(159,179,171,0.85)`.
+- mark.confirmar: `background: rgba(140,239,211,0.12); color: #8CEFD3; padding: 2px 6px; border-radius: 4px;` (marcador de pendência, some na publicação junto com o colchete).
+
+### Elementos Visuais
+- O grain global do body já cobre o retrato (body::after é fixed por cima de tudo); nenhum noise extra na figura.
+- Carimbos: os itens 2 e 4 da linha recebem `transform: rotate(-1.2deg)` e o item 3 `transform: rotate(0.8deg)` aplicados apenas ao `.prof__stamp-num` interno, nunca ao bloco, evocando carimbo sem quebrar o alinhamento das hairlines.
+- Nenhum card, nenhuma caixa com fundo nos números: só hairlines verticais de 1px separando os itens, dentro das duas hairlines horizontais.
+- A headline sobre a foto cria o overlap; garantir `text-shadow: 0 2px 24px rgba(7,19,16,0.65)` em `.prof__title` para legibilidade no trecho que cruza o retrato.
+
+### Animações
+- `@supports (animation-timeline: view())`:
+  - `.prof__media { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }`
+  - `.prof__body { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 48%; }`
+  - `.prof__numeros { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }`
+- Fallback: tudo visível sem o @supports. Reduced-motion: `animation: none` nos três seletores dentro do bloco `prefers-reduced-motion` existente.
+- Sem contadores animados nos números (Counter Animation proibido pelo tom documental desta página).
+
+### Interatividade
+- Único elemento interativo: `a.stat__ast` (asterisco dos 42%), `href="#metodologia"`, cor #16A88E, hover #8CEFD3, `transition: color 0.25s ease`, foco pelo `:focus-visible` global (outline 2px #8CEFD3, offset 3px).
+- Retrato sem hover, sem zoom, sem parallax de mouse.
+
+### Responsividade
+- **1060px:** `.prof__split { grid-template-columns: 1fr; row-gap: 40px; }`; a foto sobe para antes do texto (ordem natural do DOM já atende: figure primeiro); `figure.prof__media { margin-left: calc(-1 * var(--pad-x)); margin-right: clamp(40px, 12vw, 120px); max-width: 520px; }` (mantém o bleed esquerdo e a assimetria); `.prof__title { margin-left: 0; text-shadow: none; }` (overlap desligado); linha documental mantém flex-wrap, itens `flex: 1 1 45%`.
+- **680px:** `figure.prof__media { margin-right: 0; max-width: none; aspect-ratio: 3/4; }`; `.prof__numeros { flex-direction: column; }`; `.prof__numeros-title { border-right: none; border-bottom: 1px solid var(--line); padding: 18px 0; width: 100%; }`; `.prof__stamp { border-right: none; border-bottom: 1px solid var(--line); padding: 16px 0; min-width: 0; }`; último item sem border-bottom; rotações dos carimbos mantidas; `.prof__stamp-num { font-size: 24px; }`.
+
+---
+
+## Seção 8: Prova Social
+
+### Arquétipo e Constraints
+**Arquétipo (para quando houver material):** Editorial em coluna única, falas como citações de revista com hairlines, e o print do Google como documento em moldura de papel (o mesmo material do `ficha` do hero).
+**Constraints:** Container Narrow (Layout) + Mixed Type com atribuição em Fraunces itálico (Tipografia).
+**Justificativa:** depoimento nesta página só sobrevive se parecer documento verificável, não vitrine; a coluna editorial estreita com atribuição serifada itálica trata cada fala como registro, e o print em papel rotacionado reaproveita o dispositivo documental já aprovado no hero. Foto circular com texto ao lado está proibida.
+
+### Conteúdo
+**Estado atual: SLOT RESERVADO, NÃO PUBLICÁVEL.** A seção não renderiza nenhum pixel. No build, existe apenas este comentário HTML no lugar dela, com o bloco de instrução da copy transcrito na íntegra:
+
+```html
+<!-- SEÇÃO 8 · PROVA SOCIAL · SLOT RESERVADO, NÃO RENDERIZAR SEM MATERIAL REAL.
+[BLOCO A PREENCHER COM MATERIAL REAL. NÃO PUBLICAR ASSIM.] Aqui entram três ou quatro
+falas curtas de quem esteve numa edição anterior, com nome, cidade e o resultado
+concreto: arrematou, descartou um imóvel ruim a tempo ou leu um edital inteiro sem
+ajuda. Não moldar as falas em três itens. Print de avaliação do Google vale mais que
+texto digitado. É proibido inventar depoimento. A página inteira se sustenta em número
+verificável, e uma fala fabricada derruba os 42%* junto. Se não houver material real
+até a publicação, remover a seção inteira e reforçar o link do perfil do Google na
+faixa de credibilidade.
+-->
+```
+
+Regra de publicação: enquanto este comentário existir sem material real aprovado, a Seção 9 encosta diretamente na Seção 7. Nenhum placeholder visual, nenhum "em breve", nenhum depoimento de exemplo, nem em ambiente de homologação.
+
+### Layout
+Especificação para QUANDO houver material real (e somente então):
+```
+section.prova              (padding: clamp(90px,13vh,150px) var(--pad-x))
+└─ div.prova__inner        (max-width: 820px; margin: 0 auto)   ← Container Narrow
+   ├─ h2.prova__title      (headline a definir com o material real; entra na revisão de copy, nunca inventada aqui)
+   ├─ figure.prova__fala × 3 ou 4   (sequência vertical; separadas por border-top: 1px solid var(--line);
+   │  │                              padding: clamp(36px,5vh,56px) 0; sem grid, sem colunas múltiplas)
+   │  ├─ blockquote > p.prova__quote   (a fala, texto real)
+   │  └─ figcaption.prova__attr        (nome e cidade reais)
+   └─ figure.prova__print   (print do Google como imagem)
+       (background: var(--paper) #F1EDE4; padding: 14px; border-radius: 6px;
+        transform: rotate(-1.4deg); box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.35);
+        max-width: 560px; margin: clamp(44px,6vh,64px) auto 0)
+       └─ img (display:block; width:100%; border-radius: 3px)
+```
+Quantidade de falas: 3 ou 4, nunca moldadas em grade de três colunas. PROIBIDO: foto circular do autor, avatar, estrelas decorativas desenhadas em CSS, carrossel.
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| .prova__title | Fraunces | 450 | clamp(32px, 4.2vw, 60px) | 1.12 | -0.01em |
+| .prova__quote | Fraunces | 400 | clamp(20px, 2.2vw, 28px) | 1.45 | -0.005em |
+| .prova__attr | Fraunces itálico | 550 | clamp(15px, 1.4vw, 17px) | 1.4 | 0.01em |
+
+`.prova__attr` com `margin-top: 14px` e um traço tipográfico de 24px x 1px em `background: var(--accent)` como `::before` inline-block com `margin-right: 12px; vertical-align: middle` (assinatura, não bullet).
+
+### Cores
+- Fundo: `var(--bg-0)`. .prova__quote: #F1EDE4. .prova__attr: #8CEFD3. Hairlines: `rgba(241,237,228,0.13)`. Papel do print: #F1EDE4 com sombras exatas acima.
+
+### Elementos Visuais
+- Aspas de abertura em stroke antes da primeira fala: mesmo dispositivo do `.refrao::before` aprovado (`content: "\201C"`, Fraunces 650, `font-size: clamp(90px,10vw,150px)`, `line-height: 0.6`, `color: transparent`, `-webkit-text-stroke: 1.5px rgba(140,239,211,0.4)`), uma única vez na seção.
+- O print entra como imagem estática dentro da moldura de papel; nada de iframe ou embed do Google.
+
+### Animações
+- Quando existir: `@supports (animation-timeline: view())` com `.prova__fala, .prova__print { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }`. Fallback visível, reduced-motion desliga.
+
+### Interatividade
+- Opcional e único: o print pode ser um link `<a>` para o perfil Jacque Leilões no Google (mesmo destino do link da faixa de credibilidade), com `:hover { transform: rotate(-1.4deg) translateY(-4px); }` e `transition: transform 0.3s ease`. Nenhuma outra interação.
+
+### Responsividade
+- **1060px:** sem mudança estrutural (coluna única já cabe).
+- **680px:** `.prova__quote { font-size: 19px; }`; `.prova__print { transform: none; max-width: 100%; }`; aspas de abertura em `font-size: 72px; line-height: 0.8`.
+
+---
+
+## Seção 9: A Noite, Hora a Hora
+
+### Arquétipo e Constraints
+**Arquétipo:** Timeline vertical com linha, nós e horas à esquerda.
+**Constraints:** Scroll Progress na linha via animation-timeline (Movimento) + horas em Fraunces com numerais tabulares como protagonista tipográfico (Tipografia) + bloco das 21h10 em banda `--bg-1` (Cor, tratamento honesto sem tom de alerta).
+**Justificativa:** a programação é o argumento de transparência da página, e a timeline que se desenha conforme o leitor desce transforma "programação pública de ponta a ponta" em experiência física de percorrer a noite. O destaque do pitch em banda escura elevada, com a mesma paleta de todo o resto, declara o bloco comercial sem criminalizá-lo.
+
+### Conteúdo
+H2: `A noite, hora a hora`
+
+Intro: `A programação é pública de ponta a ponta, incluindo os trinta minutos em que eu apresento o Clube do Leilão, para você saber exatamente o que está comprando.`
+
+Itens da timeline, texto exato:
+- `19h` · `Credenciamento, na sala`
+- `19h30` · `Abertura do Leilão & Prosa`
+- `20h` · `Palestra comigo: edital, cartório e planilha na tela`
+- `21h` · `Perguntas e respostas: microfone na sala, chat no online`
+- `21h10` · `Apresentação do Clube do Leilão, Imóveis: trinta minutos meus para mostrar como continuar comigo depois da noite, com hora marcada e sem surpresa`
+- `21h40` · `Networking entre os participantes, só na sala`
+- `22h` · `Encerramento`
+
+Janela do online: `A transmissão ao vivo cobre das 19h30 às 21h40.`
+
+Título do endereço: `Onde`
+Endereço: `Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310`
+
+### Layout
+```
+section.agenda             (padding: clamp(90px,13vh,150px) var(--pad-x) clamp(80px,11vh,130px);
+│                           background: var(--bg-0))
+└─ div.agenda__inner       (max-width: 940px; margin: 0 auto)
+   ├─ h2.agenda__title     (margin-bottom: 18px)
+   ├─ p.agenda__intro      (max-width: 62ch; margin-bottom: clamp(50px,7vh,80px))
+   ├─ ol.tl                (list-style: none; position: relative; padding: 0)
+   │  │  linha trilho:  .tl::before { content:""; position:absolute; top:8px; bottom:8px;
+   │  │                  left: calc(clamp(84px,10vw,132px) + 11px); width:1px; background: var(--line); }
+   │  │  linha progresso: .tl::after  { mesma posição/dimensões; background: var(--accent);
+   │  │                  transform-origin: top; transform: scaleY(1);  ← fallback já desenhada }
+   │  └─ li.tl__item × 7   (display: grid; grid-template-columns: clamp(84px,10vw,132px) 24px 1fr;
+   │      │                 column-gap: clamp(16px,2.5vw,28px); padding: clamp(20px,3vh,30px) 0;
+   │      │                 align-items: start)
+   │      ├─ span.tl__hora     (coluna 1; text-align: right)
+   │      ├─ span.tl__node aria-hidden="true"
+   │      │    (coluna 2; width:9px; height:9px; border-radius:50%; margin-top: 0.55em;
+   │      │     justify-self: center; background: var(--bg-0); border: 1px solid var(--line-strong);
+   │      │     position: relative; z-index: 2)
+   │      └─ p.tl__desc        (coluna 3; max-width: 58ch)
+   │      · item 5 (21h10) recebe classe .tl__item--pitch:
+   │        background: var(--bg-1); border: 1px solid var(--line); border-radius: 6px;
+   │        margin: 8px calc(-1 * clamp(18px,2.5vw,28px));
+   │        padding: clamp(20px,3vh,30px) clamp(18px,2.5vw,28px);
+   │        (a linha vertical atravessa por trás; o nó fica sólido: background: var(--accent),
+   │         border-color: var(--accent))
+   ├─ p.agenda__confirmar  (margin-top: 22px)  → todo o texto dentro de mark.confirmar (spec da Seção 7)
+   ├─ p.agenda__online     (margin-top: 18px; padding-left: 18px; border-left: 2px solid var(--accent))
+   └─ div.agenda__onde     (margin-top: clamp(44px,6vh,64px); border-top: 1px solid var(--line);
+      │                     padding-top: 26px; display: grid;
+      │                     grid-template-columns: clamp(84px,10vw,132px) 1fr; column-gap: clamp(40px,5vw,52px))
+      ├─ h3.agenda__onde-title → "Onde"   (coluna 1; text-align: right)
+      └─ p.agenda__endereco     (coluna 2)
 ```
 
 ### Tipografia
-- Assinatura: DM Serif Display 400, 18px.
-- Título da metodologia: Figtree 700, 12px, `.1em`, uppercase, `--ink-60`.
-- **Nota dos 42%: Figtree 400, 13px, `line-height: 1.7`, `--ink-60`.** 13px é piso, não meta — menor que isso, no celular, deixa de ser informação e vira letra escondida.
-- Identificação do fornecedor: Figtree 400, 12.5px/1.6, `--ink-50`.
-- Links enxutos: Figtree 600, 13px, `--ink-50`.
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| .agenda__title | Fraunces | 450 | clamp(32px, 4.2vw, 60px) | 1.12 | -0.01em |
+| .agenda__intro | DM Sans | 300 | clamp(15.5px, 1.25vw, 17.5px) | 1.7 | 0 |
+| .tl__hora | Fraunces | 650 | clamp(22px, 2.6vw, 34px) | 1.1 | -0.02em |
+| .tl__desc | DM Sans | 300 | clamp(15.5px, 1.25vw, 17.5px) | 1.65 | 0 |
+| .tl__item--pitch .tl__desc | DM Sans | 400 | clamp(15.5px, 1.25vw, 17.5px) | 1.65 | 0 |
+| .agenda__confirmar | DM Sans | 500 | 13px | 1.5 | 0.02em |
+| .agenda__online | DM Sans | 400 | clamp(14.5px, 1.15vw, 16px) | 1.65 | 0.01em |
+| .agenda__onde-title | Fraunces itálico | 550 | clamp(18px, 1.6vw, 22px) | 1.2 | -0.01em |
+| .agenda__endereco | DM Sans | 400 | clamp(15px, 1.2vw, 17px) | 1.7 | 0.01em |
+
+`.tl__hora` com `font-variant-numeric: tabular-nums` obrigatório (alinhamento vertical perfeito de 19h a 22h).
 
 ### Cores
-Fundo `#F5F6F6`. Texto `rgba(35,40,42,.62)` e `rgba(35,40,42,.5)`. Links hover `#0E7A67`. Filete dourado `#B08D57` só na assinatura da marca-mãe.
+- Fundo da seção: #071310. Título e horas: #F1EDE4. Hora do item pitch: #8CEFD3. Descrições: #9FB3AB; no item pitch: #F1EDE4.
+- Trilho da linha: `rgba(241,237,228,0.13)`. Linha de progresso: #16A88E.
+- Nós: fundo #071310, borda `rgba(241,237,228,0.25)`. Nó do pitch: fundo #16A88E, borda #16A88E.
+- Banda do pitch: fundo #0B1B16, borda `rgba(241,237,228,0.13)`, raio 6px. Sem vermelho, sem âmbar, sem ícone de aviso: é programação, não alerta.
+- .agenda__online: texto #F1EDE4, borda esquerda #16A88E (mesmo dispositivo da nota dos 42%).
+- .agenda__onde-title: #8CEFD3. .agenda__endereco: #F1EDE4, com os pontos médios `·` em #16A88E via `<span class="dot">` (font-weight 700), igual ao padrão da faixa de credibilidade.
+- mark.confirmar: mesma spec da Seção 7 (`background rgba(140,239,211,0.12); color #8CEFD3`).
 
 ### Elementos Visuais
-Monograma SVG inline (o mesmo do nav, 26x28). Nada mais.
+- A linha vertical é o único ornamento: dois pseudo-elementos sobrepostos (trilho + progresso) de 1px, atravessando os 7 itens, inclusive por trás da banda do pitch (a banda tem `position: relative; z-index: 1`; a linha fica em z-index 0; o nó em z-index 2 por cima).
+- Nós de 9px alinhados oticamente à primeira linha de texto (`margin-top: 0.55em`).
+- Nenhum número gigante em stroke nesta seção (a tipografia das horas já é o protagonista; não competir com o dispositivo das seções vizinhas).
 
 ### Animações
-Nenhuma. `data-aos` no rodapé atrapalha — ele chega junto com o fim da página.
+- Scroll Progress da linha, dentro de `@supports (animation-timeline: view())`:
+  ```css
+  .tl::after {
+    transform: scaleY(0);
+    animation: draw-line linear both;
+    animation-timeline: view();
+    animation-range: entry 15% exit 80%;
+  }
+  @keyframes draw-line {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+  ```
+  (O `transform: scaleY(0)` inicial vive DENTRO do bloco @supports; fora dele a regra base mantém `scaleY(1)` e a linha aparece inteira. Fallback garantido por construção.)
+- Reveal dos itens: `@supports (animation-timeline: view()) { .tl__item { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; } }`, keyframe `rise` aprovado. O stagger é natural: cada item entra quando cruza a viewport.
+- `prefers-reduced-motion: reduce`: `.tl::after { animation: none; transform: scaleY(1); }` e `.tl__item { animation: none; }` dentro do bloco reduced-motion existente.
 
 ### Interatividade
-Links com sublinhado animado `scaleX` (mesmo `::after` do nav) e `:focus-visible` global. `#metodologia` com o realce `:target` da §2.5.
+- Único elemento interativo: nenhum por padrão. Se a produção pedir mapa, o endereço pode virar link externo para o Google Maps com `target="_blank" rel="noopener"`, cor #8CEFD3, sublinhado 1px com `text-underline-offset: 3px`, hover sem sublinhado; decisão fora desta spec, o padrão é texto puro.
+- Sem hover nos itens da timeline, sem tooltip, sem accordion.
 
 ### Responsividade
-**≤640px:** `.footer-c__inner { padding: 40px 24px 20px; }`; `.footer-c__method { padding: 22px 24px; }`; `.footer-c__thin { padding: 0 24px 32px; }`; nota dos 42% mantém 13px (nunca reduzir).
+- **1060px:** `.agenda__inner { max-width: 760px; }`; colunas da timeline: `grid-template-columns: clamp(64px,9vw,96px) 20px 1fr`; linha em `left: calc(clamp(64px,9vw,96px) + 9px)`; `.tl__hora { font-size: clamp(20px,2.6vw,26px); }`.
+- **680px:** colunas: `grid-template-columns: 56px 16px 1fr; column-gap: 12px`; linha em `left: 63px; width: 1px`; `.tl__hora { font-size: 18px; }`; banda do pitch: `margin: 8px -12px; padding: 18px 12px;`; `.agenda__onde { grid-template-columns: 1fr; row-gap: 8px; }` e `.agenda__onde-title { text-align: left; }`; `.tl__desc` sem max-width (ocupa a coluna inteira); `.agenda__endereco` pode quebrar os segmentos em linhas (os `·` permanecem no texto, exatamente como na copy).
 
 ---
 
-## 16. Nav (já construída — dois ajustes)
+## Seção 10: A Oferta
 
-Mantém a estrutura de co-branding atual. Dois ajustes:
-1. `.nav__brands-sep` recebe o gradiente dourado descrito na §0.
-2. `.nav__cta` muda de texto para `Ingressos` (era `Garantir ingresso`) e passa a ser um link âncora `href="#ingressos"` com `data-modal-open` removido — no topo da página, mandar direto para o modal antes de a pessoa saber o preço é o gesto de LP de tráfego que a v2 está desfazendo. Estilo mantido (charcoal com hover verde).
+### Arquétipo e Constraints
 
----
+**Arquétipo:** Floating Cards (Baseados em Camadas), tratados como ingressos físicos sobre a mesa.
+**Constraints:** duas materialidades papel/dark (Cor: Selective Color + Inverted Colors dentro da mesma seção), Hover Lift discreto de 4px com aprofundamento de sombra (Interação), perfuração/serrilha de canhoto de ingresso via radial-gradient (Efeitos Especiais/Elemento Visual), tabela documental com hairlines (Tipografia: Monospace-like documental via tabular-nums).
+**Justificativa:** a decisão de compra da página inteira acontece aqui, e a metáfora do ingresso físico materializa a diferença real entre os dois produtos: a cadeira existe no mundo físico, por isso vira papel #F1EDE4 com serrilha e rotação; a transmissão é imaterial, por isso vira dark com contorno. A tabela de lotes em tratamento de documento, e não de pricing SaaS, mantém a página no registro documental aprovado no hero e na ficha.
 
-## 17. `<head>` e SEO
+### Conteúdo
+
+Todos os textos exatos da copy.md, seção 10, nesta ordem:
+
+**H2:** `Escolha como você vai aprender: na sala ou ao vivo`
+
+**Parágrafo de abertura:**
+`A aula é a mesma nos dois ingressos, com o mesmo edital projetado e a mesma planilha rodando, e o que muda é o que acontece em volta dela: a sala acrescenta o intervalo no corredor, o networking e a conversa comigo fora do palco.`
+
+**Card 1 (papel):**
+- Título: `PRESENCIAL · Okay Hub, Belo Horizonte`
+- Linha de valor: `Valor conforme o lote vigente, na tabela de lotes logo abaixo.`
+- Label: `Para quem é` + parágrafo: `Para quem consegue estar no Bairro Castelo numa quarta à noite e quer levar da noite o que a transmissão não carrega: a pergunta feita de perto e contatos novos salvos no celular antes de ir embora.`
+- Label: `Inclui` + 5 itens: `Sua cadeira na sala do Okay Hub, com credenciamento e café a partir das 19h` / `O edital projetado e a planilha rodando ao vivo, na sua frente` / `Microfone aberto no bloco de perguntas, das 21h às 21h10` / `Networking das 21h40 às 22h, comigo e com os apoiadores` / `O corredor do intervalo, onde os melhores contatos da noite costumam aparecer`
+- Label: `Não inclui` + 4 itens: `Estacionamento no prédio` / `Gravação ou replay, que não existem para ninguém em nenhum formato` / `Acesso à transmissão online` / `Análise individual do seu imóvel ou de um edital específico`
+- Botão: `Garantir vaga presencial`
+
+**Card 2 (dark):**
+- Título: `ONLINE · Transmissão ao vivo`
+- Linha de valor: `Valor conforme o lote vigente, na tabela de lotes logo abaixo.`
+- Label: `Para quem é` + parágrafo: `Para quem está em outra cidade ou prefere um primeiro encontro comigo sem sair de casa, com o caderno do lado e a mesma aula na tela.`
+- Label: `Inclui` + 5 itens: `Transmissão ao vivo das 19h30 às 21h40, sendo 1h40 de conteúdo e 30 minutos de apresentação comercial declarada na programação` / `O mesmo edital e a mesma planilha, projetados na sua tela` / `Perguntas pelo chat, lidas por mim no bloco das 21h [CONFIRMAR com a produção]` / `Link individual de acesso, enviado por e-mail e WhatsApp no dia 26 [CONFIRMAR horário do envio]` / `Funciona no celular e no computador`
+- Label: `Não inclui` + 3 itens: `Replay, porque a transmissão não fica gravada para ninguém` / `O networking e a conversa de corredor` / `Credenciamento e café`
+- Botão: `Assistir à transmissão`
+
+**Bloco da cadeira, H3:** `Por que a cadeira custa mais`
+Parágrafo: `Cadeira é o único item desta página com estoque: a sala existe, tem paredes e um número finito de lugares [CONFIRMAR capacidade]. A transmissão não esbarra em parede nenhuma, e por isso custa bem menos. O método vai inteiro para os dois formatos; as pessoas, só para a sala.`
+
+**Tabela de lotes, H3:** `Os preços sobem em data marcada: 12 e 21 de agosto`
+Cabeçalho: `Lote` · `Período` · `Presencial` · `Online`
+Linhas: `Lote 1 / até 11/08 / R$ 157 / R$ 67`, `Lote 2 / de 12/08 a 20/08 / R$ 187 / R$ 87`, `Lote 3 / a partir de 21/08 / R$ 217 / R$ 97`
+
+**Parágrafos legais:**
+`O presencial acaba quando as cadeiras acabam, enquanto o online não tem limite de lugares e sobe de preço nas mesmas datas. Se a virada de lote atrasar, vale o que estiver publicado: ninguém paga mais do que a página anuncia.`
+`O ingresso é pessoal e intransferível nos dois formatos, e a Sympla permite editar o participante uma única vez, até 24 horas antes do evento. O cancelamento com devolução integral é aceito em até 7 dias corridos da compra, desde que o pedido chegue até 48 horas antes do evento, conforme a política publicada na Sympla e o artigo 49 do Código de Defesa do Consumidor.`
+
+**CTA duplo da oferta:** `Garantir minha vaga` (cheio) · `Assistir ao vivo` (contorno)
+
+Nenhum botão carrega preço. Os preços aparecem exclusivamente nas células da tabela de lotes.
+
+### Layout
 
 ```
-<title>Nunca deu um lance? Leilão &amp; Prosa · 25/08, BH ou ao vivo</title>
-<meta name="description" content="Nunca deu um lance? Dia 25 eu abro a conta inteira de uma compra de imóvel em leilão e explico cada palavra difícil na hora. Em BH ou ao vivo, 19h.">
-<meta property="og:title" content="Quem não entende o jogo não arremata. Assiste.">
-<meta property="og:description" content="Uma noite comigo sobre comprar imóvel em leilão, começando do começo. Edital de verdade na tela e a conta aberta. 25 de agosto, 19h, em BH ou ao vivo.">
+<section class="oferta" id="ingressos">
+  <header class="oferta__head">
+    <h2 class="oferta__title">
+    <p class="oferta__lead">
+  </header>
+  <div class="oferta__cards">
+    <div class="ticket-wrap">          <!-- alvo da animação de scroll -->
+      <article class="ticket ticket--paper">
+        <span class="ticket__stub" aria-hidden="true">L&P<i>26.08</i></span>
+        <h3 class="ticket__title"><span class="ticket__mode">PRESENCIAL</span> <span class="ticket__place">· Okay Hub, Belo Horizonte</span></h3>
+        <p class="ticket__lote">
+        <p class="ticket__label">Para quem é</p>
+        <p class="ticket__who">
+        <p class="ticket__label">Inclui</p>
+        <ul class="ticket__list">5 <li></ul>
+        <p class="ticket__label">Não inclui</p>
+        <ul class="ticket__list ticket__list--out">4 <li></ul>
+        <button type="button" class="btn btn--fill ticket__btn" data-modalidade="presencial">
+      </article>
+    </div>
+    <div class="ticket-wrap">
+      <article class="ticket ticket--dark"> (mesma estrutura, 3 itens no não inclui,
+        botão .btn--ghost, data-modalidade="online")
+      </article>
+    </div>
+  </div>
+  <div class="oferta__cadeira">
+    <h3 class="oferta__h3">Por que a cadeira custa mais</h3>
+    <p class="oferta__cadeira-txt">
+  </div>
+  <div class="lotes" id="lotes">
+    <h3 class="oferta__h3 lotes__h3">Os preços sobem em data marcada: 12 e 21 de agosto</h3>
+    <div class="lotes__scroll">
+      <table class="lotes__table"> thead + 3 <tr> </table>
+    </div>
+    <p class="lotes__nota">   <!-- parágrafo "O presencial acaba..." -->
+    <p class="lotes__legal">  <!-- parágrafo "O ingresso é pessoal e intransferível..." -->
+  </div>
+  <div class="oferta__ctas">
+    <button type="button" class="btn btn--fill" data-modalidade="presencial">
+    <button type="button" class="btn btn--ghost" data-modalidade="online">
+  </div>
+</section>
 ```
-Manter `og:type`, `og:url`, `og:image`, `og:locale`, `twitter:card`, favicon, apple-touch-icon, preload das duas fontes, Meta Pixel.
 
-**Remover:** `<link rel="preload" as="image" media="(min-width: 1025px)" href=".../jacque-leilao.png...">`. Não existe mais imagem no hero; o LCP agora é o H1, servido por fonte já pré-carregada.
+Valores exatos:
+- `.oferta`: `padding: clamp(90px, 13vh, 150px) var(--pad-x) clamp(80px, 11vh, 130px); max-width: calc(var(--w-page) + 2 * 56px); margin: 0 auto; border-top: 1px solid var(--line);`
+- `.oferta__head`: `max-width: 880px; margin-bottom: clamp(46px, 6vh, 72px);` H2 e lead empilhados, lead com `margin-top: 20px; max-width: 62ch;`
+- `.oferta__cards`: `display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3.2vw, 48px); align-items: start; max-width: 1080px; margin: 0 auto clamp(70px, 9vh, 110px);`
+- `.ticket`: `position: relative; border-radius: 6px; padding: 34px 34px 36px calc(64px + 28px);` (64px é a largura do canhoto). `.ticket--paper`: `transform: rotate(-1deg);` `.ticket--dark`: `transform: none;`
+- `.ticket__stub`: `position: absolute; top: 0; left: 0; bottom: 0; width: 64px; display: grid; place-content: center; writing-mode: vertical-rl; transform: rotate(180deg);` conteúdo idêntico ao carimbo da ficha aprovada (`L&P` + `26.08`).
+- Serrilha do canhoto (em cada `.ticket`, via `.ticket__stub::after`): `content: ""; position: absolute; top: 10px; bottom: 10px; right: 0; width: 0; border-right: 1.5px dashed;` mais a coluna de furos via `.ticket::before`: `content: ""; position: absolute; top: 12px; bottom: 12px; left: 60px; width: 8px; background-image: radial-gradient(circle at 4px 9px, var(--bg-0) 3px, transparent 3.5px); background-size: 8px 18px; background-repeat: repeat-y; pointer-events: none;` e dois recortes de meia-lua nas pontas da serrilha via `.ticket::after`: `content: ""; position: absolute; left: 57px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-0);` duplicado na base com `box-shadow: 0 [altura-do-card] 0 var(--bg-0)` substituído na prática por um segundo pseudo-elemento no `.ticket-wrap::after` com `bottom: -7px; left: 57px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-0); position: absolute; z-index: 2;` (o `.ticket-wrap` recebe `position: relative`).
+- `.ticket__title`: `margin: 4px 0 6px;` `.ticket__lote`: `margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px dashed;`
+- `.ticket__label`: `margin: 22px 0 8px;` `.ticket__who`: `max-width: 52ch;`
+- `.ticket__list`: `list-style: none;` cada `li`: `padding: 9px 0; border-top: 1px dashed; font-size: 14.5px; line-height: 1.55;` último `li` com `border-bottom: 1px dashed;`
+- `.ticket__btn`: `display: block; width: 100%; margin-top: 28px;`
+- `.oferta__cadeira`: `display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); max-width: 1080px; margin: 0 auto clamp(60px, 8vh, 96px); padding-top: clamp(40px, 6vh, 64px); border-top: 1px solid var(--line); align-items: start;` título na coluna 1, parágrafo na coluna 2 com `max-width: 58ch;`
+- `.lotes`: `max-width: 880px; margin: 0 auto clamp(56px, 8vh, 88px);` `.lotes__h3`: `margin-bottom: 28px;`
+- `.lotes__scroll`: `overflow-x: auto;` `.lotes__table`: `width: 100%; min-width: 520px; border-collapse: collapse;`
+- Células: `th` e `td` com `text-align: left; padding: 16px 18px 16px 0;` colunas 3 e 4 (valores) com `text-align: right; padding-right: 0; padding-left: 18px;` Cada `tr` do corpo com `border-top: 1px solid var(--line);` última linha com `border-bottom: 1px solid var(--line);` Sem zebra, sem coluna destacada, sem badge.
+- Linha vigente: classe `.is-vigente` aplicada por JS conforme a data do sistema (até 11/08 inclusive: linha 1; de 12/08 a 20/08: linha 2; de 21/08 em diante: linha 3), com `aria-current="true"`. Sem JS, nenhuma linha é destacada e a tabela permanece correta.
+- `.lotes__nota`: `margin-top: 24px; max-width: 68ch;` `.lotes__legal`: `margin-top: 14px; max-width: 68ch;`
+- `.oferta__ctas`: `display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 660px; margin: 0 auto;` botões idênticos em altura, padding, tipografia e raio aos do hero.
 
-**JSON-LD `Event`** (schema.org) no fim do `<body>`, com `name`, `startDate 2026-08-25T19:00-03:00`, `endDate 2026-08-25T22:00-03:00`, `eventAttendanceMode` misto, `location` (Okay Hub + `VirtualLocation`), `performer` Jacque Costa, `organizer`, e dois `offers` com preço, moeda `BRL`, `validThrough 2026-08-11` e a URL da Sympla. **Só sobe quando a URL da Sympla existir** (pendência 5) — `offers` sem `url` real é marcação inválida.
+### Tipografia
+
+- `.oferta__title`: Fraunces, weight 450, `font-size: clamp(32px, 4.2vw, 60px); line-height: 1.12; letter-spacing: -0.01em;` A palavra `aprender` dentro do H2 em `<em>` itálico weight 650 (mesmo tratamento do título do mecanismo).
+- `.oferta__lead`: DM Sans, weight 300, `font-size: clamp(15.5px, 1.25vw, 17.5px); line-height: 1.7;`
+- `.ticket__mode`: Fraunces, weight 600, `font-size: clamp(24px, 2.3vw, 31px); line-height: 1.1; letter-spacing: 0.01em; display: block;`
+- `.ticket__place`: DM Sans, weight 500, `font-size: 13.5px; letter-spacing: 0.04em; display: block; margin-top: 6px;`
+- `.ticket__lote`: DM Sans, weight 500, `font-size: 13.5px; line-height: 1.55;`
+- `.ticket__label`: DM Sans, weight 700, `font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;`
+- `.ticket__who`: DM Sans, weight 400 no papel e 300 no dark, `font-size: 14.5px; line-height: 1.65;`
+- `.ticket__list li`: DM Sans, weight 400 no papel e 300 no dark, `font-size: 14.5px; line-height: 1.55;`
+- `.ticket__stub`: Fraunces, weight 600, `font-size: 14px; line-height: 1;` o `<i>` interno em DM Sans, weight 700, `font-size: 9px; letter-spacing: 0.12em; font-style: normal; margin-top: 4px;`
+- `.oferta__h3`: Fraunces, weight 550, `font-size: clamp(24px, 2.6vw, 36px); line-height: 1.18; letter-spacing: -0.01em;`
+- `.oferta__cadeira-txt`, `.lotes__nota`: DM Sans, weight 300, `font-size: clamp(15.5px, 1.25vw, 17.5px); line-height: 1.7;`
+- Tabela de lotes: `th` em DM Sans, weight 700, `font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;` Células `Lote N` em DM Sans weight 500 `font-size: 14.5px;` células de período em DM Sans weight 300 `font-size: 14.5px;` células de valor em Fraunces, weight 550, `font-size: clamp(19px, 1.8vw, 24px); letter-spacing: -0.01em; font-variant-numeric: tabular-nums;`
+- `.lotes__legal`: DM Sans, weight 300, `font-size: 13px; line-height: 1.65;`
+- Botões: DM Sans, weight 500, `font-size: 15.5px; letter-spacing: 0.01em;` (idêntico ao hero).
+- Mobile 680px: `.ticket__mode` 22px; valores da tabela 18px; `.oferta__h3` clamp já cobre.
+
+### Cores
+
+- Seção sobre `var(--bg-0)` #071310.
+- `.oferta__title`: #F1EDE4; `em` em #8CEFD3. `.oferta__lead`: #9FB3AB.
+- `.ticket--paper`: fundo #F1EDE4, texto #0E211C, sombra `0 30px 70px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.35)`. Serrilha dashed `rgba(14,33,28,0.25)`; furos `var(--bg-0)` #071310; hairlines internas dashed `rgba(14,33,28,0.2)`; `.ticket__label` em `rgba(14,33,28,0.65)`; `.ticket__lote` em #0E7A67; `.ticket__place` em `rgba(14,33,28,0.7)`; `.ticket__stub` texto #0E7A67 com serrilha própria; lista `Não inclui` com `color: rgba(14,33,28,0.58)`.
+- `.ticket--dark`: fundo #0B1B16, `border: 1px solid rgba(241,237,228,0.25)`, texto #F1EDE4, sombra `0 20px 50px rgba(0,0,0,0.4)`. Serrilha dashed `rgba(241,237,228,0.2)`; furos #071310; hairlines dashed `rgba(241,237,228,0.13)`; `.ticket__label` em #9FB3AB; `.ticket__lote` em #8CEFD3; `.ticket__place` em #9FB3AB; `.ticket__stub` texto `rgba(140,239,211,0.75)`; corpo das listas em #9FB3AB; `Não inclui` em `rgba(159,179,171,0.6)`.
+- Botão cheio: fundo #16A88E, texto #04110D, hover #2FD4AF, sombra `0 4px 18px rgba(0,0,0,0.35)` (no papel: `0 4px 18px rgba(14,33,28,0.25)`). Botão contorno: `border: 1px solid rgba(241,237,228,0.25)`, texto #F1EDE4, hover borda e texto #8CEFD3 com preenchimento `rgba(140,239,211,0.1)`.
+- `.oferta__h3`: #F1EDE4. Parágrafos: #9FB3AB. `[CONFIRMAR ...]`: mesmos estilos do texto corrente, sem cor especial (marcador de produção, não elemento de design).
+- Tabela: `th` em `rgba(159,179,171,0.85)`; `Lote N` em #F1EDE4; períodos em #9FB3AB; valores em #F1EDE4; hairlines `rgba(241,237,228,0.13)`. Linha `.is-vigente`: `background: rgba(140,239,211,0.045); box-shadow: inset 2px 0 0 #16A88E;` valores da linha vigente em #8CEFD3. Nada mais.
+- `.lotes__legal`: `rgba(159,179,171,0.85)`.
+- Focus visible em qualquer botão: `outline: 2px solid #8CEFD3; outline-offset: 3px;`
+
+### Elementos Visuais
+
+- Serrilha de canhoto nos dois cards: coluna de furos circulares de 6px de diâmetro (radial-gradient de 3px de raio, passo vertical de 18px) na cor exata do fundo da página (#071310), simulando perfuração; linha dashed de 1.5px acompanhando; recortes de meia-lua de 14px nas duas extremidades da linha de perfuração, também em #071310.
+- Carimbo vertical `L&P 26.08` no canhoto, rotacionado 180deg em writing-mode vertical, ecoando o carimbo circular da ficha do hero.
+- Hairlines dashed internas nos cards, herdadas da linguagem da ficha (`border-top: 1px dashed`).
+- Hairline sólida de 1px `var(--line)` abrindo a seção, o bloco da cadeira e cada linha da tabela.
+- Nenhum ícone, nenhum checkmark, nenhum badge de lote, nenhuma coluna destacada.
+
+### Animações
+
+- Reveal de scroll nos `.ticket-wrap`, no `.oferta__cadeira`, no `.lotes` e no `.oferta__ctas`, somente dentro de `@supports (animation-timeline: view())`: `animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 42%;` usando o keyframe `rise` já existente (opacity 0 + translateY(34px) até opacity 1). O segundo `.ticket-wrap` usa `animation-range: entry 0% entry 50%` para leve escalonamento natural.
+- A rotação de -1deg vive no `.ticket` interno e a animação no `.ticket-wrap` externo, sem conflito de transform.
+- Fallback: fora do `@supports`, tudo visível estaticamente.
+- `prefers-reduced-motion: reduce`: `animation: none` em todos os alvos acima e `transition: none` nos tickets e botões.
+
+### Interatividade
+
+- Hover Lift nos cards: `.ticket { transition: transform 0.3s ease, box-shadow 0.3s ease; }` `.ticket--paper:hover { transform: rotate(-1deg) translateY(-4px); box-shadow: 0 38px 80px rgba(0,0,0,0.55), 0 6px 18px rgba(0,0,0,0.4); }` `.ticket--dark:hover { transform: translateY(-4px); box-shadow: 0 28px 62px rgba(0,0,0,0.48); border-color: rgba(241,237,228,0.35); }` Sem scale, sem glow.
+- Botões: cheio com hover `background #2FD4AF` (transition 0.25s ease); contorno com Hover Fill subindo de baixo via `::before` com `transform: scaleY(0)` para `scaleY(1)` em `0.32s cubic-bezier(0.22, 1, 0.36, 1)`, borda e texto indo a #8CEFD3.
+- Clique em qualquer botão da seção abre o modal de captura (seção 13) com o campo oculto `modalidade` preenchido a partir de `data-modalidade`.
+- Foco por teclado: `:focus-visible` padrão do sistema (outline 2px #8CEFD3, offset 3px).
+- A tabela não tem hover de linha: documento, não interface.
+
+### Responsividade
+
+**1060px:**
+- `.oferta__cards`: `grid-template-columns: 1fr; max-width: 560px; gap: 40px;` `.ticket--paper` mantém `rotate(-1deg)`.
+- `.oferta__cadeira`: `grid-template-columns: 1fr; gap: 16px;`
+- Restante inalterado.
+
+**680px:**
+- `.ticket`: `padding: 28px 22px 30px calc(48px + 20px);` canhoto reduz para `width: 48px`; furos deslocam para `left: 44px`; meias-luas para `left: 41px`; carimbo interno reduz para `font-size: 12px`.
+- `.ticket--paper`: `transform: none;` (mesma regra do demo aprovado para a ficha).
+- `.ticket__mode`: `font-size: 22px;`
+- `.lotes__scroll` ganha scroll horizontal (`min-width: 520px` na tabela preservado); células com `padding: 13px 14px 13px 0;` valores em `font-size: 18px;`
+- `.oferta__ctas`: `grid-template-columns: 1fr;` presencial em cima, largura total; `.btn { padding: 18px 16px; }`
 
 ---
 
-## 18. Checklist técnico para o `/desenvolver`
+## Seção 11: FAQ
 
-**Layout**
-- [ ] Toda seção: `.__inner` de 1280px com `margin-inline: auto` e `padding: 104px 40px`; dentro dele **uma** `.ev-col` de 1040px com `margin-inline: auto`.
-- [ ] Nenhum `max-width` solto sem `margin-inline: auto`. Conferir nominalmente: `.ev-mech__head`, `.ev-learn__head`, `.ev-table-wrap`, `.ev-why`, `.faq__list`, `.ev-warn`, `.ev-agenda`, `.ev-shift__note`, `.ev-lots__note`, `.ev-cta__content`, `.ev-fine__text`.
-- [ ] Encurtamento de linha só com `max-width` + `margin-inline: 0`.
-- [ ] `text-align: left` em tudo, exceto §3 (hero) e §14 (CTA final).
-- [ ] Em 1280px, a borda esquerda de todos os H2 dá o mesmo valor.
-- [ ] Em 375px, `document.body.scrollWidth === document.body.clientWidth`.
+### Arquétipo e Constraints
 
-**Botões**
-- [ ] `.btn-duo` com `min-height: 66px` e `border: 2px solid transparent` no preenchido (altura idêntica ao contornado).
-- [ ] Os sete pares com os textos exatos da tabela da §2.1.
-- [ ] Zero ocorrências de `.linkish` na página. O online nunca é link de texto.
-- [ ] Todos com `data-modalidade` correto.
+**Arquétipo:** Índice de Edital (variação documental de Accordion dentro de Container Narrow), o FAQ como sumário numerado de documento oficial.
+**Constraints:** numeração tipográfica documental 01. a 14. em Fraunces (Tipografia), Hover Fill sutil no item (Interação), animação de abertura com grid-template-rows (Movimento).
+**Justificativa:** a página inteira ensina a ler um documento de dezenas de páginas, então o próprio FAQ vira um índice de edital: numerado, com hairlines, sem chevrons de interface genérica. O sinal + que rotaciona para x mantém o vocabulário de precisão documental e o details/summary nativo garante acessibilidade e funcionamento sem JS.
 
-**Tabelas**
-- [ ] Três `.ev-table-wrap` com `margin-inline: auto`, `overflow-x: auto`, `overscroll-behavior-x: contain`, `tabindex="0"`, `role="region"` e `aria-label`.
-- [ ] Sombra de fim de rolagem e dica "Role a tabela para o lado" ≤640px.
+### Conteúdo
 
-**Barra fixa**
-- [ ] Dois botões dentro; sentinela `#cta-duplo-1`; some em `#ingressos` e em `#inscricao`; `inert` quando escondida; `body { padding-bottom: 78px }` ≤860px.
+**H2:** `FAQ`
 
-**Escassez**
-- [ ] `.ticket__seats` só no card presencial e só com número real; `Sem limite de lugares.` no card online.
-- [ ] Nenhum contador regressivo de tempo em lugar nenhum.
+As 14 entradas, com pergunta e resposta exatas da copy:
 
-**Movimento**
-- [ ] Hero sem `data-aos`, sem `opacity: 0`, sem animação de entrada.
-- [ ] `prefers-reduced-motion` desliga float, glow, contador, barras de lugares, clip-reveal e o trilho de progresso da §6.
+**01.** `"Leilão de imóvel é legalizado? Isso não tem cara de golpe?"`
+`Leilão de imóvel é uma venda pública prevista em lei, conduzida por leiloeiro oficial ou dentro de um processo na Justiça, sempre com edital publicado e regra escrita. O que circula de sobra na internet é anúncio falso imitando leilão, e a defesa contra isso é a mesma habilidade que eu ensino a noite inteira: ler o documento e conferir quem está vendendo antes de qualquer pagamento. O risco real está em outro lugar, que é comprar sem ler.`
 
-**Mídia**
-- [ ] Única imagem da página: retrato da §10, via `/.netlify/images?url=/images/jacque.png&w=...&q=80`, com `width`/`height` numéricos, `srcset`, `sizes` e `loading="lazy"`.
-- [ ] Preload de imagem do `<head>` removido.
+**02.** `"Dívida, processo, morador dentro: e quando o imóvel vem com tudo isso?"`
+`Cada um desses problemas tem preço e endereço, e a noite ensina a encontrar os dois: a dívida aparece no edital, o direito de terceiro aparece na certidão do cartório, e a ocupação tem custo e prazo que dá para estimar antes do lance. Quando alguma dessas respostas não aparece em lugar nenhum, você também vai saber o que fazer, porque imóvel sem resposta é imóvel descartado. A análise serve para pendurar no risco uma etiqueta de preço antes de o lance sair da sua mão.`
 
-**Marca e conteúdo**
-- [ ] Verde em toda a página; `#B08D57` só no filete do nav e na assinatura do rodapé.
-- [ ] Nenhum emoji.
-- [ ] Refrão `Quem não entende o jogo não arremata. Assiste.` aparece exatamente duas vezes (§5 e §14), com enquadramentos diferentes.
-- [ ] Asterisco dos 42% acompanha o número em todas as ocorrências e aponta para `#metodologia`.
-- [ ] Nota dos 42% no rodapé com no mínimo 13px.
-- [ ] `outline: 2px solid var(--accent); outline-offset: 3px` em todo focável (variante `#2FB8A0` sobre `--ink`).
-- [ ] Validar em 1280 / 1024 / 860 / 640 / 375px.
+**03.** `"Nunca dei um lance na vida. Vou conseguir acompanhar?"`
+`Sim, e você é exatamente o público para quem eu desenhei a noite: nenhum termo de cartório entra sem tradução na mesma respiração, nenhuma etapa supõe experiência anterior, e o ritmo é o de quem está vendo um edital pela primeira vez. Quem já arremata também sai com lição, porque é na conta dos custos que a experiência mais escorrega.`
 
-**Nenhum `[CONFIRMAR]` sobe para a tela.** Onde o dado não existir, o texto usa a versão alternativa já escrita neste documento (parcelamento, capacidade da sala) ou o bloco inteiro não é renderizado (lugares, prova social, JSON-LD).
+**04.** `"Quero comprar para morar, não para investir. Serve?"`
+`Serve, e você vai estar bem acompanhado, porque quem busca a casa própria é metade da minha sala. O edital que você precisa aprender a ler é o mesmo do investidor, e muda apenas o destino do desconto: ele transforma a folga em margem de revenda, enquanto você a transforma em endereço melhor e prestação menor.`
+
+**05.** `"De quanto dinheiro eu preciso para começar?"`
+`Existem imóveis em leilão em faixas de preço muito diferentes, e uma parte deles aceita financiamento, o que muda completamente a resposta para quem tem renda estável sem ter o valor guardado. Por isso o dia 26 não te dá um número mágico e sim o mapa completo de custos, para você mesmo calcular o teto que cabe no seu bolso antes que um anúncio bonito decida por você.`
+
+**06.** `"Qual o prazo para pagar depois do lance? Dá para financiar?"`
+`O prazo vem escrito no edital de cada leilão e costuma ser contado em dias, o que torna o planejamento do pagamento parte da própria decisão de dar o lance. Uma parte dos leilões aceita financiamento, e no dia 26 eu mostro onde essa regra vive dentro do documento e o que conferir antes de disputar, porque ela muda de leilão para leilão.`
+
+**07.** `"Esses 42%* são reais?"`
+`São a média entre o valor de avaliação e o lance vencedor em todas as compras que eu conduzi, sem seleção dos melhores casos, e a metodologia completa está no fim desta página, com a documentação à disposição de quem quiser conferir. Na noite eu mostro esses números na tela, junto com os custos que entram depois do lance e que todo comprador precisa somar.`
+
+**08.** `"Vale a pena assistir de casa?"`
+`Depende do que você quer levar da noite, porque o método viaja inteiro pelo cabo, com o mesmo documento na tela e a sua pergunta lida no chat, enquanto o aperto de mão não viaja. Se o que te falta é a leitura, assista de onde estiver; se o que te falta é rede de contatos, só a sala entrega.`
+
+**09.** `"Vou levar um pitch de vendas no meio?"`
+`Vai ter oferta, com hora e duração publicadas: às 21h10 eu uso trinta minutos para apresentar o Clube do Leilão, o caminho de quem quiser continuar comigo, e quando esse bloco começar a aula prometida já terá sido entregue inteira. Ficar para ouvir é escolha sua.`
+
+**10.** `"Cliquei no botão e não caí num pagamento. Como funciona a inscrição?"`
+`O botão abre um formulário rápido de nome, e-mail e WhatsApp, e logo depois você recebe no seu WhatsApp o link oficial da inscrição na Sympla, que é onde o pagamento acontece, no valor do lote vigente. Todo pagamento roda dentro da Sympla, nunca por transferência direta, e pelo WhatsApp você pode perguntar o que quiser antes de pagar.`
+
+**11.** `"Perdi o horário. Tem replay?"`
+`Não existe replay em nenhum dos dois ingressos, e o motivo é o material que sobe no telão: documento de processo não circula gravado, nem para quem esteve na sala nem para quem assistiu de casa. É por isso que a data aparece em todo canto desta página, porque a única forma de ver essa leitura é ao vivo, no dia 26.`
+
+**12.** `"Posso cancelar se eu mudar de ideia?"`
+`Pode, e o prazo é generoso: são 7 dias corridos a partir da compra para desistir com devolução integral, sem justificar nada, como garante o artigo 49 do Código de Defesa do Consumidor. Quem compra perto da data mantém esse direito até as 19h do dia 26, quando o serviço começa a ser entregue, e fora da janela dos 7 dias a produção aceita cancelamento com devolução integral até 48 horas antes do evento. [CONFIRMAR com o jurídico e com a Sympla]`
+
+**13.** `"Posso transferir meu ingresso para outra pessoa?"`
+`Não. O ingresso é pessoal e intransferível nos dois formatos, com o credenciamento conferindo documento na sala e o link individual valendo no online. O que existe é a edição de participante dentro da Sympla, permitida uma única vez e até 24 horas antes do evento, então confira o nome com calma na hora de comprar.`
+
+**14.** `"Tem estacionamento?"`
+`No prédio, não, mas o entorno costuma ter vaga na rua à noite, e quem vem de aplicativo desce na porta do Okay Hub.`
+
+Na pergunta 07, o asterisco de `42%*` é um link `<a href="#metodologia">` (padrão da página: toda ocorrência do número carrega o asterisco clicável).
+
+### Layout
+
+```
+<section class="faq" id="faq">
+  <h2 class="faq__title">FAQ</h2>
+  <div class="faq__list">
+    <details class="faq__item" id="faq-01">
+      <summary class="faq__q">
+        <span class="faq__num" aria-hidden="true">01.</span>
+        <span class="faq__question">"Leilão de imóvel é legalizado? ..."</span>
+        <span class="faq__mark" aria-hidden="true"></span>
+      </summary>
+      <div class="faq__a-wrap"><div class="faq__a"><p>resposta</p></div></div>
+    </details>
+    <!-- ... até faq-14, mesma estrutura -->
+  </div>
+</section>
+```
+
+Valores exatos:
+- `.faq`: `max-width: 880px; margin: 0 auto; padding: clamp(90px, 13vh, 150px) var(--pad-x) clamp(80px, 11vh, 130px); border-top: 1px solid var(--line);`
+- `.faq__title`: `margin-bottom: clamp(40px, 6vh, 64px);`
+- `.faq__list`: `border-bottom: 1px solid var(--line);`
+- `.faq__item`: `border-top: 1px solid var(--line);`
+- `.faq__q`: `display: grid; grid-template-columns: 56px 1fr 32px; gap: 18px; align-items: baseline; padding: 24px 10px; cursor: pointer; list-style: none;` e `summary::-webkit-details-marker { display: none; }` `summary::marker { content: none; }` O `.faq__mark` alinha via `align-self: center;`
+- `.faq__mark`: `width: 22px; height: 22px; position: relative; justify-self: end;` barras via `::before` e `::after`: `content: ""; position: absolute; top: 50%; left: 50%; width: 16px; height: 1.5px; translate: -50% -50%; background: currentColor;` o `::after` adicionalmente com `rotate: 90deg;`
+- `.faq__a-wrap`: `display: grid; grid-template-rows: 1fr;` `.faq__a`: `overflow: hidden; min-height: 0;`
+- Parágrafo da resposta: `max-width: 68ch; padding: 0 32px 30px 74px;` (74px = 56px da coluna do número + 18px do gap, alinhando resposta sob a pergunta).
+- A resposta 07 contém o link do asterisco; as respostas 12 e 13 terminam com os marcadores `[CONFIRMAR ...]` no próprio parágrafo, sem estilo adicional.
+
+### Tipografia
+
+- `.faq__title`: Fraunces, weight 450, `font-size: clamp(40px, 5vw, 72px); line-height: 1; letter-spacing: -0.015em;`
+- `.faq__num`: Fraunces, weight 550, `font-size: clamp(15px, 1.4vw, 18px); line-height: 1.4; font-variant-numeric: tabular-nums; letter-spacing: 0.02em;`
+- `.faq__question`: Fraunces, weight 500, `font-size: clamp(17px, 1.7vw, 21px); line-height: 1.35; letter-spacing: -0.005em;`
+- `.faq__a p`: DM Sans, weight 300, `font-size: clamp(15px, 1.25vw, 16.5px); line-height: 1.7;`
+- Link do asterisco na 07: mesmo corpo do texto, `text-decoration-thickness: 1px; text-underline-offset: 3px;`
+
+### Cores
+
+- Seção sobre `var(--bg-0)` #071310.
+- `.faq__title`: #F1EDE4.
+- `.faq__num`: `rgba(140,239,211,0.7)`; no hover do item e no estado aberto: #8CEFD3.
+- `.faq__question`: #F1EDE4 em todos os estados.
+- `.faq__mark`: `color: rgba(140,239,211,0.65)`; hover e aberto: #8CEFD3.
+- `.faq__a p`: #9FB3AB. Link do asterisco: #8CEFD3.
+- Hairlines: `rgba(241,237,228,0.13)`.
+- Hover Fill do item: `background: rgba(140,239,211,0.04)` no `.faq__q`.
+- `:focus-visible` no summary: `outline: 2px solid #8CEFD3; outline-offset: -2px; border-radius: 2px;` (offset negativo para o outline não vazar as hairlines).
+
+### Elementos Visuais
+
+- Numeração documental 01. a 14. com ponto, em Fraunces, coluna fixa de 56px, ecoando os numerais em stroke do mecanismo em escala de índice.
+- Marcador + desenhado em CSS (duas barras de 16px x 1.5px), nunca chevron, nunca caractere de fonte; rotaciona 45deg para formar x no estado aberto.
+- Hairlines de 1px entre todos os itens e fechando a lista.
+- Nenhum card, nenhum fundo por item além do Hover Fill, nenhum ícone.
+
+### Animações
+
+- Abertura (com JS): `.faq__a-wrap { transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1); }` fechado: `grid-template-rows: 0fr;` aberto: `grid-template-rows: 1fr;` O conteúdo interno `.faq__a` também transiciona `opacity 0.3s ease 0.08s` (0 fechado, 1 aberto). JS intercepta o clique no summary com `preventDefault`: ao abrir, aplica o atributo `open` e no frame seguinte troca a classe `.is-open` (que leva a `1fr`); ao fechar, remove `.is-open`, espera o `transitionend` de grid-template-rows e então remove `open`.
+- Marcador: `transition: rotate 0.35s cubic-bezier(0.22, 1, 0.36, 1);` aberto: `rotate: 45deg;` no container `.faq__mark`.
+- Reveal de scroll nos `.faq__item` e no `.faq__title`, somente dentro de `@supports (animation-timeline: view())`: `animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%;` keyframe `rise` compartilhado.
+- Fallback sem JS: details/summary nativo abre e fecha instantaneamente, com `.faq__a-wrap` em `grid-template-rows: 1fr` por padrão dentro de um bloco `.no-js` (classe removida pelo JS no load), garantindo conteúdo sempre acessível.
+- `prefers-reduced-motion: reduce`: todas as transitions e animations acima em `none`; abertura instantânea.
+
+### Interatividade
+
+- Hover no `.faq__q`: `background: rgba(140,239,211,0.04)` com `transition: background 0.25s ease;` número e marcador vão a #8CEFD3.
+- Clique/Enter/Espaço no summary alterna o item (comportamento nativo de details preservado na semântica; o JS apenas coordena a animação). Vários itens podem ficar abertos ao mesmo tempo; não fechar os demais automaticamente.
+- Link do asterisco na pergunta 07 rola para `#metodologia` (scroll-behavior smooth global; auto sob reduced-motion).
+- `aria-expanded` não é necessário: details/summary nativo já expõe o estado correto para leitores de tela.
+
+### Responsividade
+
+**1060px:**
+- Sem mudanças estruturais; os clamps de tipografia absorvem a redução.
+
+**680px:**
+- `.faq__q`: `grid-template-columns: 34px 1fr 22px; gap: 12px; padding: 20px 4px;`
+- `.faq__num`: `font-size: 14px;`
+- `.faq__question`: `font-size: 16.5px;`
+- `.faq__mark`: `width: 18px; height: 18px;` barras de 14px x 1.5px.
+- `.faq__a p`: `padding: 0 4px 26px 46px;` (46px = 34px + 12px, mantendo o alinhamento sob a pergunta).
+- `.faq__title`: o clamp resolve (40px no mínimo).
 
 ---
 
-## 19. Pendências que bloqueiam a publicação
+## Seção 12: CTA Final (id="inscricao")
 
-1. Capacidade real da sala do Okay Hub (afeta hero, `.ticket__seats`, nota dos lotes e letra miúda do CTA final).
-2. Valor da parcela, total parcelado e taxa da Sympla nos dois ingressos. Sem isso, nenhum "12x" na tela.
-3. Quantidade de arremates e período que compõem a média dos 42%.
-4. O que conta como aluno nos +2.400.
-5. Chat com leitura ao vivo, replay e garantia da transmissão. Recomendação forte, repetida: liberar replay de 48h no online — é a maior alavanca do ingresso barato e hoje está listado como não incluso.
-6. Razão social, CNPJ, endereço e canais de atendimento para o rodapé.
-7. Confirmar a programação (perguntas às 21h, próximos passos às 21h20).
-8. Depoimentos reais para a §11 — sem eles, a seção não existe.
-9. Foto vertical da Jacque em boa resolução para a §10.
-10. Validar com o jurídico a regra de arrependimento para quem compra nas 48 horas antes do evento.
-11. URL do evento na Sympla (destrava o `data-redirect` do modal e o JSON-LD) e URL do perfil no Google (destrava o link da faixa de credibilidade).
+### Arquétipo e Constraints
+**Arquétipo:** Poster (Baseados em Tipografia).
+**Constraints:** Headline em escala poster, até 108px (Tipografia) + Gradiente Radial reaproveitando o `hero__glow` (Cor) + Full Height (Layout, min-height 92svh).
+**Justificativa:** a página abre com um Type Hero assimétrico e fecha com um poster centralizado: mesmo DNA tipográfico, composição espelhada, o que dá sensação de "capa e contracapa". O glow radial reaparece uma única vez desde o hero, fechando o arco de luz da página, e a aspa em stroke retorna aqui como segunda e última aparição do refrão, encerrando o sistema. Urgência apenas por data absoluta, sem contador.
+
+### Conteúdo
+Título: `Quarta, 26 de agosto, 19h. A noite em que você aprende o jogo.`
+
+Parágrafo 1: `Dá para continuar colecionando abas de leilão que você nunca lê até o fim, ou dá para investir uma quarta-feira e atravessar um edital inteiro ao lado de quem faz isso desde 2007.`
+
+Parágrafo 2: `Depois dessa noite, anúncio de leilão vira um documento que você sabe abrir e uma conta que você sabe fazer, e a decisão passa a ser totalmente sua, inclusive a de ficar de fora.`
+
+Refrão (aparição 2 de 2): `Quem não entende o jogo não arremata. Assiste.`
+
+Botões: `Garantir minha vaga em Belo Horizonte` (primário) · `Assistir à transmissão ao vivo` (secundário)
+
+Endereço: `Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.`
+
+Letra miúda: `Inscrição pela Sympla, no valor do lote vigente indicado na tabela de lotes desta página, com parcelamento em até 12x e as taxas da plataforma exibidas no checkout. Ingresso pessoal e intransferível, com arrependimento em 7 dias corridos e devolução integral, desde que o pedido chegue até 48 horas antes do evento.`
+
+### Layout
+```html
+<section class="cta-final" id="inscricao">
+  <div class="cta-final__bg" aria-hidden="true">
+    <span class="cta-final__glow"></span>
+  </div>
+  <div class="cta-final__inner">
+    <h2 class="cta-final__title">
+      <span class="cta-final__quando">Quarta, 26 de agosto, 19h.</span>
+      <span class="cta-final__frase">A noite em que você <em>aprende o jogo.</em></span>
+    </h2>
+    <p class="cta-final__p">Dá para continuar colecionando abas de leilão que você nunca lê até o fim, ou dá para investir uma quarta-feira e atravessar um edital inteiro ao lado de quem faz isso desde 2007.</p>
+    <p class="cta-final__p">Depois dessa noite, anúncio de leilão vira um documento que você sabe abrir e uma conta que você sabe fazer, e a decisão passa a ser totalmente sua, inclusive a de ficar de fora.</p>
+    <figure class="cta-final__refrao">
+      <blockquote>
+        <p class="cta-final__quote">Quem não entende o jogo não arremata. <span class="hl">Assiste.</span></p>
+      </blockquote>
+    </figure>
+    <div class="cta-final__ctas">
+      <button type="button" class="btn btn--fill" data-modalidade="presencial">Garantir minha vaga em Belo Horizonte</button>
+      <button type="button" class="btn btn--ghost" data-modalidade="online">Assistir à transmissão ao vivo</button>
+    </div>
+    <p class="cta-final__end">Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.</p>
+    <p class="cta-final__fine">Inscrição pela Sympla, no valor do lote vigente indicado na tabela de lotes desta página, com parcelamento em até 12x e as taxas da plataforma exibidas no checkout. Ingresso pessoal e intransferível, com arrependimento em 7 dias corridos e devolução integral, desde que o pedido chegue até 48 horas antes do evento.</p>
+  </div>
+</section>
+```
+- `.cta-final`: `position: relative; overflow: hidden; border-top: 1px solid var(--line); min-height: 92svh; display: flex; flex-direction: column; justify-content: center; padding: clamp(100px, 14vh, 160px) var(--pad-x) clamp(80px, 10vh, 120px);`
+- `.cta-final__inner`: `position: relative; z-index: 2; width: 100%; max-width: 980px; margin: 0 auto; text-align: center;`
+- `.cta-final__title`: as duas linhas em `display: block`; margem inferior `clamp(28px, 4vh, 44px)`.
+- `.cta-final__p`: `max-width: 62ch; margin: 0 auto 18px;` (o segundo com `margin-bottom: 0`).
+- `.cta-final__refrao`: `margin: clamp(48px, 7vh, 76px) auto clamp(40px, 6vh, 64px); max-width: 700px;` A aspa entra por `::before` (ver Elementos Visuais) como bloco centralizado acima da frase, `display: block; margin: 0 auto 6px;`.
+- `.cta-final__ctas`: `display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 660px; margin: 0 auto 26px;`
+- `.cta-final__end`: `margin: 0 auto 12px; max-width: 68ch;`
+- `.cta-final__fine`: `margin: 0 auto; max-width: 68ch;`
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| `.cta-final__quando` | Fraunces itálico | 300 | `clamp(22px, 3vw, 42px)` | 1.15 | 0 |
+| `.cta-final__frase` | Fraunces | 650 | `clamp(42px, 7.2vw, 108px)` | 1.04 | -0.02em |
+| `.cta-final__frase em` | Fraunces itálico | 700 | herda | herda | herda |
+| `.cta-final__p` | DM Sans | 300 | `clamp(16px, 1.3vw, 18px)` | 1.7 | 0 |
+| `.cta-final__quote` | Fraunces itálico | 450 | `clamp(26px, 3.4vw, 46px)` | 1.2 | -0.01em |
+| `.cta-final__quote .hl` | Fraunces normal | 700 | herda | herda | herda |
+| Botões | DM Sans | 500 | 15.5px | nativo | 0.01em |
+| `.cta-final__end` | DM Sans | 400 | 14px | 1.6 | 0.01em |
+| `.cta-final__fine` | DM Sans | 300 | 12.5px | 1.65 | 0 |
+
+### Cores
+- Fundo: `var(--bg-0)` #071310. Hairline superior: `var(--line)` rgba(241,237,228,0.13).
+- `.cta-final__quando`: `var(--text-muted)` #9FB3AB. `.cta-final__frase`: `var(--text)` #F1EDE4. `.cta-final__frase em`: `var(--mint)` #8CEFD3.
+- Parágrafos: `var(--text-muted)`. `.cta-final__quote`: `var(--text)`. `.hl`: `var(--mint)`.
+- Glow: `radial-gradient(circle, rgba(22, 168, 142, 0.17) 0%, transparent 62%)`.
+- Aspa: `color: transparent; -webkit-text-stroke: 1.5px rgba(140, 239, 211, 0.4)`.
+- Botão primário: fundo #16A88E, texto #04110D, hover #2FD4AF, sombra `0 4px 18px rgba(0,0,0,0.35)`. Botão contorno: borda `var(--line-strong)`, texto `var(--text)`; hover borda e texto `var(--mint)` com preenchimento `rgba(140, 239, 211, 0.1)`.
+- Endereço: `var(--text-muted)`. Letra miúda: `rgba(159, 179, 171, 0.75)`.
+
+### Elementos Visuais
+- `.cta-final__glow`: `position: absolute; right: -20vw; top: -28vh; width: 58vw; height: 58vw; border-radius: 50%; filter: blur(10px);` gradiente acima. Mesmo dispositivo do `hero__glow`, espelhado (hero: esquerda embaixo; final: direita em cima).
+- `.cta-final__refrao::before`: `content: "\201C"; display: block; font-family: var(--font-display); font-weight: 650; font-size: clamp(90px, 10vw, 150px); line-height: 0.6; color: transparent; -webkit-text-stroke: 1.5px rgba(140, 239, 211, 0.4); user-select: none; margin: 0 auto 6px;` Idêntico em traço e cor ao `.refrao::before` da seção do mecanismo.
+- Nenhum outro decorativo. O grain global `body::after` cobre a seção.
+
+### Animações
+Dentro de `@supports (animation-timeline: view())`, todas com `animation: rise linear both; animation-timeline: view();` e keyframe `rise` já existente (opacity 0 + translateY(34px) para 1 e 0):
+- `.cta-final__title`: `animation-range: entry 0% entry 38%;`
+- `.cta-final__p`: `animation-range: entry 0% entry 45%;`
+- `.cta-final__refrao`: `animation-range: entry 0% entry 50%;`
+- `.cta-final__ctas`, `.cta-final__end`, `.cta-final__fine`: `animation-range: entry 0% entry 45%;`
+Fallback: sem suporte, tudo 100% visível (nenhum estado inicial oculto fora do `@supports`). `prefers-reduced-motion: reduce`: `animation: none` em todos.
+
+### Interatividade
+- Ambos os botões abrem o modal da Seção 13 e gravam `data-modalidade` no campo oculto `modalidade` ("presencial" ou "online").
+- Hover: idêntico ao hero (fill muda para #2FD4AF em 0.25s ease; ghost sobe preenchimento `scaleY(0)` para `scaleY(1)` em 0.32s `cubic-bezier(0.22, 1, 0.36, 1)`, transform-origin bottom).
+- Active: `transform: translateY(1px)`.
+- Focus: outline global 2px `var(--mint)` offset 3px.
+
+### Responsividade
+- **1060px:** nenhuma mudança estrutural; os clamps reduzem a escala. `.cta-final__ctas` mantém 2 colunas.
+- **680px:** `min-height: auto; padding: 80px var(--pad-x) 64px;` `.cta-final__ctas { grid-template-columns: 1fr; max-width: none; }` (primário em cima, largura total). `.cta-final__frase { font-size: clamp(38px, 11vw, 46px); }` `.cta-final__refrao::before { font-size: 72px; line-height: 0.8; }` Glow: `right: -40vw; top: -14vh; width: 110vw; height: 110vw;` Letra miúda 12px.
 
 ---
 
-## 20. Resumo dos arquétipos
+## Seção 13: Modal de Captura
 
-| Seção | Arquétipo | Constraints |
-|---|---|---|
-| 3 · Hero | Type Hero | White Space Hero · Container Narrow · Noise Texture · Mixed Fonts |
-| 4 · Credibilidade | Rhythmic | Color Blocking · Bleed Both · Hover Underline |
-| 5 · A dor | Editorial | Container Narrow · Mixed Weights · Clip Reveal |
-| 6 · Por que existe desconto | Split Assimétrico | Sticky Element · Scroll Progress · Selective Color |
-| 7 · A conta | Data Dense | Color Blocking · Scroll Horizontal contido · Counter Animation |
-| 8 · O que muda | Before/After | Dark Mode · Duocromático · Stagger |
-| 9 · O que eu vou mostrar | Bento Box | Headline oversized · Asymmetric Padding · Hover Lift |
-| 10 · Quem está falando | Documentary | Imagem Dessaturada · Golden Ratio · Selective Color |
-| 11 · Prova social | Masonry | Duocromático · Aspas tipográficas · Lightbox |
-| 12 · A oferta | Floating Cards | Color Blocking · Shadow Depth · Hover Lift |
-| 13 · Objeções | Reveal on Demand | Mixed Fonts · Grid rows animado · Filete de estado |
-| 14 · CTA final | Spotlight | Gradiente Radial · Framed Content · Hover Glow |
-| 15 · Rodapé | Sparse | Low Contrast · Hover Underline scaleX |
+### Arquétipo e Constraints
+**Arquétipo:** Floating Cards (Baseados em Camadas).
+**Constraints:** Modal (Estruturas Especiais) + Transparent Background com blur no overlay (Cor) + Fade Up na entrada do cartão (Movimento).
+**Justificativa:** o cartão de papel #F1EDE4 flutuando sobre o verde-preto repete o material documental da ficha do hero, com o mesmo furo de arquivo e a mesma sombra funda: o lead preenche "a mesma ficha" que viu na primeira dobra. Underline no lugar de caixa mantém o formulário com cara de documento, não de SaaS.
 
-Nenhum arquétipo se repete em seções consecutivas.
+### Conteúdo
+Título: `Me deixa seu contato`
+
+Texto: `Deixa seu nome, e-mail e WhatsApp, e eu te levo direto para a inscrição oficial na Sympla, no valor do lote vigente.`
+
+Rótulos dos campos: `NOME` · `E-MAIL` · `WHATSAPP`
+
+Botão: `Ir para a inscrição`
+
+Nota sob o botão: `Seus dados não vão para mais ninguém.`
+
+Sucesso, título: `Recebi seus dados`
+
+Sucesso, texto: `O link oficial da Sympla chega no seu WhatsApp em instantes, e a inscrição termina lá, no valor do lote vigente.`
+
+### Layout
+```html
+<div class="modal" hidden>
+  <div class="modal__overlay" data-fecha></div>
+  <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <button type="button" class="modal__close" aria-label="Fechar" data-fecha>(SVG X 14px)</button>
+    <h3 class="modal__title" id="modal-titulo">Me deixa seu contato</h3>
+    <p class="modal__text">Deixa seu nome, e-mail e WhatsApp, e eu te levo direto para a inscrição oficial na Sympla, no valor do lote vigente.</p>
+    <form class="modal__form" data-sheets="(URL do Apps Script existente, manter)"
+          data-redirect="https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3515691">
+      <div class="modal__campo">
+        <label for="f-nome">NOME</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+      </div>
+      <div class="modal__campo">
+        <label for="f-email">E-MAIL</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="modal__campo">
+        <label for="f-tel">WHATSAPP</label>
+        <input id="f-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required>
+      </div>
+      <input type="hidden" name="evento" value="2026-08-26"> <!-- manter o valor do form existente -->
+
+      <input type="hidden" name="modalidade" value="">
+      <!-- honeypot: manter o campo e o nome já usados pelo form existente -->
+      <div class="modal__hp" aria-hidden="true"><input name="bot-field" type="text" tabindex="-1" autocomplete="off"></div> <!-- honeypot: manter o name="bot-field" do form existente, que o forms.js já confere -->
+      <button type="submit" class="btn btn--fill modal__submit">Quero receber o link</button>
+      <p class="modal__nota">Seus dados não vão para mais ninguém.</p>
+    </form>
+    <div class="modal__sucesso" hidden>
+      <span class="modal__stamp" aria-hidden="true">L&amp;P<i>26.08</i></span>
+      <h3 class="modal__title">Recebi seus dados</h3>
+      <p class="modal__text">O link oficial da Sympla chega no seu WhatsApp em instantes, e a inscrição termina lá, no valor do lote vigente.</p>
+    </div>
+  </div>
+</div>
+```
+- `.modal`: `position: fixed; inset: 0; z-index: 57; display: grid; place-items: center; padding: 20px;`
+- `.modal__overlay`: `position: absolute; inset: 0; background: rgba(7, 19, 16, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);`
+- `.modal__card`: `position: relative; z-index: 1; width: min(480px, 100%); max-height: 90svh; overflow-y: auto; background: var(--paper); color: var(--ink-inverse); border-radius: 6px; padding: 40px 32px 30px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 4px 14px rgba(0, 0, 0, 0.35);` Sem rotação (formulário fica reto; o eco da ficha vem do papel, do furo e da sombra).
+- `.modal__campo`: `margin-top: 18px;` label `display: block; margin-bottom: 2px;` input `display: block; width: 100%;`
+- `.modal__submit`: `width: 100%; margin-top: 26px;`
+- `.modal__nota`: `margin-top: 12px; text-align: center;`
+- `.modal__hp`: `position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;`
+- `.modal__sucesso`: `text-align: center; padding: 8px 0 6px;` `.modal__stamp` centralizado com `margin: 0 auto 18px;`
+- Z-index do sistema: overlay/cartão em 57, abaixo do grain global (60), para o papel receber o mesmo grain da ficha do hero; acima do topbar (20) e da barra mobile (55). `body.modal-aberta { overflow: hidden; }`
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| `.modal__title` | Fraunces | 600 | `clamp(24px, 5vw, 30px)` | 1.15 | -0.01em |
+| `.modal__text` | DM Sans | 400 | 14.5px | 1.6 | 0 |
+| `label` | DM Sans | 700 | 10.5px | 1.4 | 0.16em, uppercase |
+| `input` | DM Sans | 400 | 16px | 1.4 | 0.01em |
+| `.modal__submit` | DM Sans | 500 | 15.5px | nativo | 0.01em |
+| `.modal__nota` | DM Sans | 400 | 12px | 1.5 | 0.02em |
+
+### Cores
+- Cartão: fundo #F1EDE4, texto #0E211C. Título #0E211C. Texto de apoio `rgba(14, 33, 28, 0.75)`.
+- Labels: `rgba(14, 33, 28, 0.7)`; com o campo em foco, o label do campo vira `var(--accent-deep)` #0E7A67.
+- Inputs: `background: transparent; border: none; border-radius: 0; border-bottom: 1px solid rgba(14, 33, 28, 0.35); padding: 10px 2px 8px; caret-color: var(--accent-deep);`
+- Foco do input: `border-bottom: 2px solid var(--accent-deep); margin-bottom: -1px; outline: none;` (indicador de foco próprio, visível, no lugar do outline global).
+- Erro: validação nativa do navegador (`required`, `type="email"`), sem microcopy inventada; estado visual via `input:user-invalid { border-bottom: 2px solid #A23B2B; margin-bottom: -1px; }` e `.modal__campo:has(input:user-invalid) label { color: #A23B2B; }`
+- Botão: mesmos estados do `.btn--fill` (fundo #16A88E, texto #04110D, hover #2FD4AF). Nota: `rgba(14, 33, 28, 0.6)`.
+- Fechar: `color: rgba(14, 33, 28, 0.55)`; hover `color: #0E211C; background: rgba(14, 33, 28, 0.07); border-radius: 50%;`
+- Overlay: `rgba(7, 19, 16, 0.8)` + blur 8px.
+- Stamp do sucesso: idêntico ao `.ficha__stamp` (64px, borda 1.5px `var(--accent-deep)`, rotate 8deg, opacity 0.85).
+
+### Elementos Visuais
+- Furo de arquivo: `.modal__card::before { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 44px; height: 5px; border-radius: 999px; background: rgba(14, 33, 28, 0.14); }` Idêntico ao da ficha.
+- Botão fechar: 36px por 36px, `position: absolute; top: 14px; right: 14px;` com X em SVG inline 14px, stroke 1.5px currentColor.
+- Stamp circular no estado de sucesso, reaproveitando o dispositivo da ficha do hero.
+
+### Animações
+- Abertura: overlay `opacity 0` para `1` em 0.25s ease; cartão `opacity: 0; transform: translateY(18px) scale(0.985)` para `opacity: 1; transform: none` em 0.3s `cubic-bezier(0.22, 1, 0.36, 1)`.
+- Fechamento: reverso em 0.2s ease.
+- Troca form/sucesso: form recebe `hidden`, `.modal__sucesso` perde `hidden` e entra com o mesmo rise de 0.3s.
+- `prefers-reduced-motion: reduce`: sem transição nenhuma, estados trocam instantaneamente.
+
+### Interatividade
+- Abertura: qualquer botão de CTA da página (hero, CTAs duplos, cards da oferta, CTA final, barra mobile) abre o modal, preenche o campo oculto `modalidade` com "presencial" ou "online" conforme o botão, adiciona `body.modal-aberta` e move o foco para o input `nome`.
+- Fechamento: clique no overlay, no botão fechar ou tecla Esc; o foco volta ao botão que abriu.
+- Focus trap: Tab circula apenas entre os focáveis do cartão (fechar, 3 inputs, submit).
+- Envio: POST ao endpoint do `data-sheets` do form existente; enquanto envia, submit recebe `disabled` e `opacity: 0.7; cursor: wait;`. No sucesso, exibe `data-success-title` e `data-success-text`. Com `data-redirect` para a página oficial do evento na Sympla: o envio grava o lead, dispara Lead e InitiateCheckout e navega 350ms depois.
+- Hover e focus dos botões: mesmos valores globais.
+
+### Responsividade
+- **1060px:** nenhuma mudança; o cartão já é fluido.
+- **680px:** `.modal { padding: 16px; }` mantendo `place-items: center` (nunca ancorar o cartão no rodapé da tela). `.modal__card { width: 100%; padding: 34px 22px 26px; }` Título 24px. Inputs mantêm 16px (evita zoom do iOS). `max-height: 88svh` com rolagem interna.
+
+---
+
+## Seção 14: Rodapé (inclui id="metodologia")
+
+### Arquétipo e Constraints
+**Arquétipo:** Editorial (Baseados em Tipografia).
+**Constraints:** Container Narrow, 76ch para o bloco de metodologia (Layout) + Low Contrast, corpo 13px em `--text-muted` sobre `--bg-0` (Cor).
+**Justificativa:** o rodapé é o colofão do documento: texto corrido, fino e honesto, sem colunas de sitemap. O contraste baixo tira o peso visual sem esconder nada, e a borda esquerda em `--accent` repete o dispositivo da nota dos 42% do hero, amarrando as duas pontas da página no mesmo aparato de nota de rodapé.
+
+### Conteúdo
+Bloco `#metodologia`:
+
+> **\* Sobre os 42%:** os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi, calculada entre o valor de avaliação do imóvel e o lance vencedor. A média cobre [N] arremates conduzidos entre [ano] e [ano] e considera todos os arremates do período, sem seleção de melhores casos **[CONFIRMAR com a Jacque]**. Valor de avaliação e preço de mercado são bases diferentes: a avaliação feita dentro do processo pode ficar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, imposto de transferência, taxas de cartório, dívidas assumidas, desocupação e reforma entram depois e reduzem a diferença final. Essa média mede trabalho que eu já realizei e não garante o resultado individual de quem assiste ao evento. Cada leilão depende do edital daquele imóvel, da disputa do dia, do estado de conservação do bem e do histórico dele no cartório. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação. Os valores usados nos exemplos desta página são inventados e não representam operação real. Eu tenho interesse comercial no assunto, porque conduzo arremates e vendo formação sobre leilão. Esta página não indica nenhum imóvel específico. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado. A documentação que sustenta a média fica à disposição para conferência pelo e-mail [contato **CONFIRMAR**].
+
+Identificação: `Realização: Leilão & Prosa · Faz Morar Imóveis · CRECI 5314 PJ · CNAI 19244 · [Razão social e CNPJ CONFIRMAR: exigido pelo Decreto 7.962/2013] · Atendimento: WhatsApp (31) 99695-1660 e [e-mail CONFIRMAR] · Belo Horizonte · MG · [Termos de uso] · [Política de privacidade]`
+
+Disclaimer (terceira aparição): `A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.`
+
+Apoios: `Apoio: AVANTIK`
+
+Copyright: `© 2026 Faz Morar Imóveis · Todos os direitos reservados.`
+
+### Layout
+```html
+<footer class="rodape">
+  <div class="rodape__inner">
+    <h2 class="sr-only">Metodologia e informações legais</h2>
+    <div class="rodape__metodologia" id="metodologia">
+      <p>(texto integral do bloco, com <strong>* Sobre os 42%:</strong> em strong e os marcadores [N], [ano] e [CONFIRMAR] mantidos na tela)</p>
+    </div>
+    <div class="rodape__id">
+      <p class="rodape__linha">(identificação completa, com [Termos de uso] e [Política de privacidade] como links quando as URLs existirem; até lá, texto entre colchetes)</p>
+      <p class="rodape__caixa">A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.</p>
+      <p class="rodape__apoio">Apoio: AVANTIK</p>
+      <p class="rodape__copy">© 2026 Faz Morar Imóveis · Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+```
+- `.rodape`: `border-top: 1px solid var(--line); background: var(--bg-0);`
+- `.rodape__inner`: `max-width: var(--w-page); margin: 0 auto; padding: clamp(56px, 8vh, 88px) var(--pad-x) 44px;`
+- `.rodape__metodologia`: `max-width: 76ch; padding-left: 18px; border-left: 2px solid var(--accent); scroll-margin-top: 28px;`
+- `.rodape__id`: `margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); max-width: 76ch;` Parágrafos com `margin-top: 14px` a partir do segundo.
+- `.sr-only`: padrão (position absolute, clip, 1px). Nada de colunas, nada de grid de links.
+
+### Tipografia
+| Elemento | Fonte | Peso | Tamanho | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| `#metodologia p` | DM Sans | 300 | 13px | 1.75 | 0.005em |
+| `#metodologia strong` | DM Sans | 700 | 13px | herda | herda |
+| `.rodape__linha` | DM Sans | 400 | 13px | 1.7 | 0.005em |
+| `.rodape__caixa` | DM Sans | 400 | 12.5px | 1.6 | 0.01em |
+| `.rodape__apoio` | DM Sans | 500 | 12px | 1.6 | 0.14em |
+| `.rodape__copy` | DM Sans | 300 | 12px | 1.6 | 0.02em |
+
+### Cores
+- Fundo `var(--bg-0)`. Hairline superior e divisória interna: `var(--line)` rgba(241,237,228,0.13).
+- Texto da metodologia e identificação: `var(--text-muted)` #9FB3AB. `strong`: `var(--text)` #F1EDE4.
+- Borda esquerda do `#metodologia`: `var(--accent)` #16A88E; com `:target` (chegada por âncora do asterisco), `var(--mint)` #8CEFD3.
+- Links (Termos, Política, e-mail quando existirem): `var(--mint)`, sublinhado 1px, offset 3px; hover `text-decoration-thickness: 2px`.
+- `.rodape__caixa`: `rgba(159, 179, 171, 0.85)`. `.rodape__apoio`: `var(--text)`, com os pontos médios em `var(--accent)`. `.rodape__copy`: `rgba(159, 179, 171, 0.6)`.
+
+### Elementos Visuais
+- Apenas hairlines e a borda esquerda accent do bloco de metodologia. Sem logotipos de apoiadores (apoios em texto puro, como manda a copy), sem ícones, sem colunas.
+
+### Animações
+- Nenhum reveal de scroll no rodapé (texto legal aparece sempre, imediatamente).
+- Única transição: `border-left-color 0.4s ease` no `#metodologia:target`. `prefers-reduced-motion: reduce`: `transition: none`.
+
+### Interatividade
+- Todo asterisco de 42% da página é `<a href="#metodologia">` e aterrissa aqui com `scroll-margin-top: 28px`.
+- Links de Termos e Política só viram `<a>` quando as URLs existirem (pendência 13 da copy); até lá permanecem texto entre colchetes.
+- Focus dos links: outline global.
+
+### Responsividade
+- **1060px:** nenhuma mudança.
+- **680px:** `padding: 48px var(--pad-x) calc(36px + 84px);` (o acréscimo de 84px reserva espaço para a barra fixa mobile não cobrir o copyright). `#metodologia` mantém 13px (mínimo da copy). `.rodape__linha` quebra livre; pontos médios permanecem.
+
+---
+
+## Bloco 15: Barra fixa mobile e regras globais
+
+### Arquétipo e Constraints
+**Arquétipo:** Reactive (Baseados em Movimento).
+**Constraints:** Fixed Element (Layout) + Glassmorphism, fundo translúcido com blur (Efeitos Especiais).
+**Justificativa:** a barra só existe onde o dedo precisa dela: em telas até 680px e só depois que o leitor atravessou o mecanismo, quando a promessa já foi entendida. O vidro escuro com hairline superior repete o material do overlay do modal, sem preço em botão nenhum, como em toda a página.
+
+### Conteúdo
+Botões: `Vaga em BH` (primário) · `Assistir ao vivo` (contorno). Sem preço, sem texto adicional.
+
+### Layout
+```html
+<!-- imediatamente após o </section> da seção do mecanismo -->
+<div id="sentinela-mec" aria-hidden="true"></div>
+...
+<div class="barra" role="region" aria-label="Inscrição">
+  <button type="button" class="btn btn--fill barra__btn" data-modalidade="presencial">Sala em BH</button>
+  <button type="button" class="btn btn--ghost barra__btn" data-modalidade="online">Ao vivo</button>
+</div>
+```
+- `.barra`: `position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: none; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(7, 19, 16, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--line); transform: translateY(110%);`
+- Em `max-width: 680px`: `display: grid;`
+- Estado visível: `.barra--on { transform: translateY(0); }`
+- `#sentinela-mec`: `height: 1px;` invisível, sem margem.
+- JS (única lógica):
+```js
+const sent = document.querySelector('#sentinela-mec');
+const barra = document.querySelector('.barra');
+new IntersectionObserver(function (entries) {
+  barra.classList.toggle('barra--on', entries[0].boundingClientRect.top < 0);
+}).observe(sent);
+```
+- `body.modal-aberta .barra { transform: translateY(110%); }` (a barra sai enquanto o modal está aberto).
+
+### Tipografia
+- `.barra__btn`: DM Sans, peso 500, 14px, letter-spacing 0.01em, `padding: 14px 12px;` raio 6px. Mesma família de estados dos botões globais.
+
+### Cores
+- Fundo `rgba(7, 19, 16, 0.92)` com blur 10px. Hairline `var(--line)` rgba(241,237,228,0.13).
+- Primário: #16A88E com texto #04110D, hover/active #2FD4AF. Contorno: borda 1px `var(--line-strong)`, texto `var(--text)`; active com preenchimento `rgba(140, 239, 211, 0.1)`.
+
+### Elementos Visuais
+- Nenhum decorativo além do vidro e da hairline. O grain global (z-index 60) passa por cima da barra, mantendo o material da página.
+
+### Animações
+- Entrada e saída: `transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);`
+- Fallback sem IntersectionObserver (navegador antigo): a barra fica sempre visível em mobile (`transform: none` dentro de `@supports not (selector(:has(*)))` não cobre isso; usar verificação em JS: se `!('IntersectionObserver' in window)`, adicionar `.barra--on` direto).
+- `prefers-reduced-motion: reduce`: `transition: none`, aparece e some instantaneamente.
+
+### Interatividade
+- Cada botão abre o modal da Seção 13 e grava a `modalidade` correspondente.
+- Focus: outline global 2px `var(--mint)` offset 3px (visível sobre o vidro escuro).
+
+### Responsividade
+- **Acima de 680px:** `display: none`, sempre, sem exceção.
+- **680px:** grid 2 colunas iguais, botões com os rótulos curtos `Vaga em BH` e `Assistir ao vivo`, que não quebram linha (`white-space: nowrap`).
+
+### Regras globais da página
+- **Foco:** `:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 2px; }` em todos os elementos interativos. Exceção única: inputs do modal, que trocam o outline pelo underline de 2px `var(--accent-deep)`.
+- **Seleção de texto:** `::selection { background: var(--accent); color: #04110D; }`
+- **Scroll:** `html { scroll-behavior: smooth; }` e `[id] { scroll-margin-top: 28px; }` para todas as âncoras.
+- **Reduced motion (bloco único):**
+```css
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__numeral { animation: none; }
+  .btn, .btn--ghost::before, .topbar__link, .barra,
+  .modal__overlay, .modal__card, #metodologia { transition: none; animation: none; }
+  @supports (animation-timeline: view()) {
+    .mec__row, .refrao, .cta-final__title, .cta-final__p,
+    .cta-final__refrao, .cta-final__ctas, .cta-final__end, .cta-final__fine { animation: none; }
+  }
+}
+```
+- **Fontes (Google Fonts, um único link, o mesmo já aprovado no index.html):**
+`https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&display=swap` com os dois preconnects (`fonts.googleapis.com` e `fonts.gstatic.com` com crossorigin). Pesos efetivamente usados: Fraunces 300, 400, 450, 500, 600, 650, 700, 750, romano e itálico; DM Sans 300, 400, 500, 700.
+- **Z-index (escala fechada):** topbar 20; overlay e cartão do modal 57 e 58; barra mobile 55; grain `body::after` 60, sempre no topo, pointer-events none.
+- **Âncoras, na ordem do DOM:**
+  1. `#topo` na `<section class="hero">` (destino do logo do topbar)
+  2. `#nota-42` no `.hero__note` (destino alternativo do asterisco quando o leitor está no topo; o asterisco padrão aponta para `#metodologia`)
+  3. `#ingressos` na seção 10, A Oferta (destino do link "Ingressos" do topbar)
+  4. `#inscricao` na seção 12, CTA Final
+  5. `#metodologia` no bloco de metodologia do rodapé (destino de todos os asteriscos de 42% da página)
+  6. `#sentinela-mec` existe no DOM logo após a seção do mecanismo, mas é sentinela de scroll, nunca destino de navegação.

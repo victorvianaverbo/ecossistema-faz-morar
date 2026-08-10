@@ -1,372 +1,375 @@
-# LEILÃO & PROSA · 25 DE AGOSTO DE 2026
-### Copy final · voz da Jacque, primeira pessoa · para quem nunca deu um lance
+# LEILÃO & PROSA · 26 DE AGOSTO DE 2026 · COPY v4
+### Promessa de aprendizado na frente · prosa fluida e profissional · voz da Jacque, primeira pessoa
 
-> Tudo que estiver em **[CONFIRMAR]** depende da produção, da Sympla ou de dado que só a Jacque tem. Nada sobe com o colchete na tela.
-> A numeração abaixo é a mesma da ordem de montagem no HTML. O bloco de SEO não vai para a tela.
+> **Publicada em 10/08 sem nenhum marcador na tela.** Todo `[CONFIRMAR]` foi resolvido por reescrita ou pelo dado real; a lista do que ainda falta está no fim do arquivo, e nada dela bloqueia a página.
+> **Fonte oficial dos dados do evento:** presencial https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3515691 e online https://www.sympla.com.br/evento-online/leilao-prosa-edicao-bairro-castelo-bh-online/3534657 (nome oficial "Leilão & Prosa | Edição Bairro Castelo/BH", produtor Jacque Leilões). Data, programação, políticas de ingresso e apoio foram alinhados com essas páginas em 10/08. Se algo divergir, a Sympla vence.
+> Regras centrais mantidas da v3: **nenhum preço fora da tabela de lotes, do exemplo ilustrativo e da nota de renda mínima**, botões sem preço, urgência só por data absoluta. A página publicada continua correta depois de 12/08 e de 21/08 sem trocar um caractere.
+> O que mudou nesta versão: a página vende a promessa de aprender o método (H1 "Aprenda a arrematar..."), e toda a prosa foi reescrita para fluir, com frases encadeadas no lugar do ritmo picotado e o benefício antes da explicação técnica.
 
 ---
 
 ## SEO (não aparece na página)
 
-**Title (57 caracteres)**
-Nunca deu um lance? Leilão & Prosa · 25/08, BH ou ao vivo
+**Title (55 caracteres)**
+Aprenda a arrematar em leilão · 26/08 em BH ou ao vivo
 
-**Meta description (147 caracteres)**
-Nunca deu um lance? Dia 25 eu abro a conta inteira de uma compra de imóvel em leilão e explico cada palavra difícil na hora. Em BH ou ao vivo, 19h.
+**Meta description (152 caracteres)**
+No dia 26 eu ensino, com um edital real na tela, o método que uso para arrematar imóveis em leilão desde 2007. Presencial em BH às 19h, ao vivo às 19h30.
 
 **Open Graph title**
-Quem não entende o jogo não arremata. Assiste.
+Aprenda a arrematar imóveis em leilão. Dia 26, comigo.
 
 **Open Graph description**
-Uma noite comigo sobre comprar imóvel em leilão, começando do começo. Edital de verdade na tela e a conta aberta. 25 de agosto, 19h, em BH ou ao vivo.
+Uma noite para sair do zero: edital real projetado, a conta completa do lance até a chave e cada termo traduzido na hora. Em BH ou ao vivo.
 
 ---
 
-## 1. HERO · centralizado, tipográfico, sem foto
+## 1. HERO · tipográfico, sem foto
 
-**Selo da data (acima do título, caixa alta pequena, espaçada)**
-Terça, 25 de agosto de 2026 · Belo Horizonte ou ao vivo
+> Sem selo/kicker acima do título e sem eyebrows em nenhuma seção da página (decisão do Victor, 09/08). A data e o local vivem na ficha do evento e no corpo do texto.
 
 **Headline**
-# Dá para comprar apartamento em leilão bem abaixo do preço da rua. Dia 25 eu abro essa conta na sua frente.
+# Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação
 
 **Subheadline**
-Eu montei essa noite para quem nunca deu um lance na vida. Nas compras que eu já fechei em leilão, o lance vencedor ficou 42% abaixo do valor de avaliação do imóvel, em média.\* A conta que vem depois do lance eu abro também, porque é ela que decide se o negócio prestou.
+Entre nunca ter dado um lance e arrematar com segurança existe um caminho mais curto do que parece, e ele cabe numa quarta-feira. No dia 26 de agosto eu abro um edital de verdade na tela e leio com você, na ordem em que leio desde 2007, traduzindo cada termo difícil e fechando a conta completa do lance até a chave. Presencial em Belo Horizonte ou ao vivo, de onde você estiver.
 
-**Botões (os dois com o mesmo tamanho, lado a lado)**
+**Botões (mesmo tamanho, lado a lado, sem preço)**
 
-`Quero minha cadeira em Belo Horizonte · R$ 157`
-`Quero meu acesso à transmissão ao vivo · R$ 67`
+`Garantir minha vaga em Belo Horizonte`
+`Assistir à transmissão ao vivo`
 
 **Microcopy sob os botões**
-Compra pela Sympla. Presencial R$ 157 à vista ou 12x de R$ [XX,XX], total de R$ [XXX,XX] com juros e taxa da plataforma **[CONFIRMAR no checkout]**. Online R$ 67 à vista ou 12x de R$ [XX,XX], total de R$ [XX,XX] **[CONFIRMAR]**. Esses preços valem até 11 de agosto. Na sala, das 19h às 22h, e a sala tem [XX] cadeiras **[CONFIRMAR]**. A transmissão ao vivo vai das 19h30 às 21h40 e não tem limite de lugares.
+Inscrição pela Sympla, em até 12x no cartão ou à vista no pix e no boleto, com o valor da parcela e as taxas da plataforma exibidos no checkout antes de você pagar. O valor do lote vigente está na tabela de lotes, mais abaixo nesta página. Presencial das 19h às 22h, transmissão ao vivo das 19h30 às 21h40.
 
 **Nota dos 42%, visível logo abaixo do hero (não jogar para o rodapé)**
-\* Os 42% são a média das compras que eu já fechei em leilão, medida entre o valor de avaliação do imóvel e o lance que venceu. Valor de avaliação é o preço que um técnico atribuiu àquele imóvel dentro do processo, e ele quase nunca é igual ao preço do anúncio de imobiliária. Fechar uma compra dessas é o que o mercado chama de arrematar. Esse número mede o meu trabalho até aqui. O seu resultado depende do leilão que você escolher, de quem disputar com você naquele dia, do estado do imóvel e dos custos que entram depois do lance. Metodologia completa no rodapé desta página.
+\* Os 42% são a média do meu histórico: a distância entre o valor de avaliação, que é o preço que o processo atribui ao imóvel, e o lance que venceu o leilão, somando todas as compras que eu conduzi, sem escolher os melhores casos. Esse número mede o meu trabalho até aqui e não prevê o seu resultado, que depende do imóvel escolhido, da disputa do dia e dos custos que entram depois do lance. A metodologia completa está no fim desta página.
 
 ---
 
 ## 2. FAIXA DE CREDIBILIDADE
 *(linha única, fundo contrastante, itens separados por ponto médio)*
 
-Perita judicial em imóveis · Credenciada da Caixa desde 2007 · +2.400 alunos nas minhas formações · [5,0 no Google em 39 avaliações](link para o perfil Jacque Leilões)
+Perita judicial em imóveis, com laudo assinado na Justiça · Credenciada da Caixa desde 2007 · +2.400 alunos nas formações · [5,0 no Google em 39 avaliações](link para o perfil Jacque Leilões)
+
+**Logo abaixo, em corpo menor:**
+O credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.
 
 ---
 
-## 3. A DOR
+## 3. O MECANISMO
 
-### Eu já ouvi essa história umas quinhentas vezes
+### De onde vem o desconto que você vai aprender a capturar
 
-Você viu um apartamento em leilão por um valor que parecia erro de digitação. Clicou. Abriu um arquivo de 58 páginas escrito em língua de cartório. Leu duas telas e fechou a aba.
+Quando alguém deixa de pagar o financiamento, o banco retoma o imóvel e ganha um problema: um apartamento vazio que só gera despesa, com imposto e condomínio chegando todo mês. Para transformar esse problema em dinheiro, o banco leva o imóvel a leilão, uma venda pública com dia e hora marcados em que vence o maior lance, e aceita um valor pensado para recuperar o crédito rápido, bem abaixo do que a imobiliária pediria pelo mesmo apartamento.
 
-Três semanas depois esse apartamento foi vendido no leilão, e o preço final ficou perto daquele valor que tinha te assustado de tão baixo. Quem levou leu exatamente o mesmo arquivo que te fez desistir.
+Se muita gente disputasse esses leilões, o desconto desapareceria, e é aqui que a história fica interessante para você. Quem afasta a multidão é o edital, o documento de dezenas de páginas em língua de cartório que dita as regras de cada venda: quanto se paga, em quantos dias, quais dívidas morrem no leilão e quais continuam grudadas no imóvel. A maioria das pessoas abre esse arquivo, lê duas telas e desiste, soma a isso o medo de encontrar um morador lá dentro, e o resultado é um apartamento que teria fila na imobiliária sendo disputado por meia dúzia de lances.
 
-Dinheiro você tinha, ou tinha como financiar. Faltou alguém sentar do seu lado e apontar onde olhar.
-
-Isso vale igual para os dois tipos de gente que aparecem na minha sala. Quem quer investir olha aquela diferença de preço e já pensa em revender ou alugar. Quem quer a casa própria olha a mesma diferença e enxerga um quarto a mais, ou o bairro que estava fora do orçamento. A conta que se faz antes de dar o lance é a mesma para os dois.
-
-**O que custa ficar parado**
-
-Eu não sei onde vai estar o preço do imóvel no ano que vem, e quem te prometer isso está chutando. O que eu sei é mais simples. Tem leilão de imóvel acontecendo em Belo Horizonte toda semana, e cada um deles termina com alguém levando o bem para casa. O aluguel que você paga esse mês não volta. E a cada leilão que passa, quem arremata é alguém que aprendeu a ler o documento que você fechou.
+Existe ainda um terceiro personagem pagando essa conta: quem entra sem preparo, vence o lance e só depois descobre a comissão do leiloeiro, o imposto de transferência e a dívida de condomínio que ninguém somou. Boa parte do desconto do leilão é o preço do medo dos outros, e quem aprende a ler o documento e a fechar a conta disputa quase sozinho, com o risco medido antes de levantar a mão.
 
 > ### "Quem não entende o jogo não arremata. Assiste."
-> Dia 25 eu sento do seu lado e a gente lê.
+> No dia 26, você aprende o jogo.
 
 ---
 
-## 4. POR QUE EXISTE DESCONTO NO LEILÃO
+## 4. O CURRÍCULO DA NOITE
 
-### Antes de tudo, o que é esse leilão de que eu falo
+### O que você vai dominar quando a noite acabar
 
-Quando alguém financia um apartamento e para de pagar, o banco toma o imóvel de volta. Aí o banco coloca esse apartamento à venda num leilão, que é uma venda com data e hora marcadas onde quem oferece mais leva. Fechar essa compra é o que o mercado chama de arrematar, e essa é a palavra que você vai ver em todo site de leilão.
+A noite inteira acontece com documento aberto e conta rodando na tela, na mesma ordem em que eu trabalho desde 2007, para que você saia sabendo fazer, e não apenas sabendo que existe. Quando ela acabar, você vai ser capaz de:
 
-Existe também o leilão que sai de dentro de um processo na Justiça, quando um imóvel é vendido para pagar a dívida de alguém. Eu explico os dois na noite, com nome de gente.
+**01.** Ler um edital sem travar, porque eu abro um documento completo em voz alta com você, mostrando por onde começo, o que cada trecho muda no seu bolso e em que ponto eu descartaria o imóvel sem gastar um real com ele.
 
-### O que o banco quer é o dinheiro de volta
+**02.** Conferir a vida do imóvel no cartório, já que a certidão registra os donos antigos, as disputas e quem ainda pode ter direito sobre o bem, e é ali que costuma se esconder o detalhe que derruba um negócio de aparência boa.
 
-Assim que o banco retoma um imóvel, aquilo vira despesa na conta dele. IPTU correndo todo ano, condomínio entrando todo mês, apartamento fechado e síndico ligando para cobrar alguém. O banco quer tirar esse apartamento da mão dele rápido e recuperar o que ficou devendo do financiamento. E o que ficou devendo quase nunca é o preço que o apartamento faz na rua.
+**03.** Fechar a conta do lance até a chave, somando comissão do leiloeiro, imposto de transferência, cartório, dívidas assumidas, desocupação e obra, linha por linha, até o total que sai do seu bolso.
 
-É daí que nasce a diferença. Ela sai da contabilidade de outra pessoa.
+**04.** Distinguir leilão de banco de leilão de Justiça, entendendo quem vende em cada um, o que muda no prazo e no risco, e por que essa diferença define a sua estratégia de pagamento.
 
-### Por que essa diferença ainda existe
+**05.** Avaliar imóvel com morador dentro, conhecendo o leque de saídas possíveis, do acordo à ação na Justiça, com uma noção honesta de custo e de tempo para cada caminho.
 
-Se todo mundo disputasse leilão, o desconto sumia no primeiro mês.
+**06.** Entender a janela de agora, com o que encheu os leilões nos últimos anos e o que a história diz sobre quanto tempo uma fase assim costuma ficar aberta.
 
-O que segura a maioria do lado de fora é um documento chamado edital, que é o caderno com as regras daquela venda: o que você paga, em quanto tempo, o que vem junto com o imóvel e o que fica para trás. Esse edital é longo, é escrito em linguagem de cartório, dá prazo curto para pagar e às vezes traz dívida velha pendurada no imóvel. Junte a isso o medo de comprar um apartamento com gente morando dentro e você entende por que um imóvel bom acaba disputado por meia dúzia de pessoas, quando o mesmo apartamento num site de imobiliária teria fila na porta.
+**07.** Aprender com os meus números reais, porque eu mostro as minhas próprias compras com a planilha aberta, dando tempo extra às que doeram, já que errar com a minha conta na sua frente é o jeito mais barato de você acertar na sua.
 
-Boa parte do desconto do leilão é o preço do medo dos outros. Quem aprende a ler o edital entra numa disputa vazia.
-
-### Por que quase ninguém faz isso sozinho na primeira vez
-
-Dar lance é a parte fácil. O trabalho está antes e está depois.
-
-**Antes do lance,** eu leio o edital inteiro e leio também o histórico do imóvel no cartório, que é o documento onde fica registrado tudo que já aconteceu com aquele bem desde que ele existe, inclusive quem mais tem direito sobre ele. Confiro que tipo de leilão é aquele, porque leilão de banco e leilão que corre dentro de um processo na Justiça têm regras de prazo e de pagamento diferentes. Somo as dívidas que vêm penduradas no imóvel. Calculo quanto custa e quanto demora tirar um ocupante, quando tem ocupante.
-
-**Depois do lance,** o prazo para pagar é curto, tem o imposto da prefeitura para transferir o imóvel, tem o registro no cartório, que é o ato que faz o apartamento ser seu no papel, e tem a conversa com o condomínio sobre o que ficou atrasado.
-
-Errar num desses pontos transforma um desconto grande em prejuízo. Por isso a noite de 25 de agosto se resolve em edital e em conta. Motivação eu deixo para os outros.
+Todo documento passa por limpeza antes do telão, então nome, CPF e endereço de terceiros não aparecem.
 
 **[CTA duplo 1]**
-`Garantir minha cadeira em BH · R$ 157` · `Garantir meu acesso ao vivo · R$ 67`
+`Garantir minha vaga` · `Assistir ao vivo`
 
 ---
 
-## 5. A CONTA DE UM ARREMATE
+## 5. A CONTA
 
-### Vou te contar como essa conta se monta, linha por linha
+### A conta que você vai sair sabendo fazer
 
-> **EXEMPLO ILUSTRATIVO.** Os valores abaixo são inventados e foram escolhidos redondos por mim, só para você enxergar a mecânica. Não representam caso real, não citam cliente nenhum e não são previsão do que você vai conseguir. Cada imóvel tem edital, dívida e disputa próprios.
+Imagina um apartamento de dois quartos num bairro consolidado de Belo Horizonte, anunciado na imobiliária por R$ 350 mil enquanto o valor de avaliação dele dentro do leilão, o preço que o técnico do processo assinou, é de R$ 320 mil. Essa diferença entre os dois números já é a primeira lição da noite, porque tratar um como se fosse o outro custa caro logo na primeira disputa.
 
-Imagina um apartamento de dois quartos, num prédio comum, em bairro que já tem padaria e ponto de ônibus na esquina. Na rua, hoje, esse apartamento é anunciado por R$ 400 mil. Dentro do leilão ele tem um valor de avaliação, que é quanto um técnico disse que ele vale: R$ 380 mil. Repara que os dois números já são diferentes, e essa confusão é o primeiro erro de quem está começando.
+Digamos que o lance vença em R$ 185.600, exatamente 42%\* abaixo da avaliação, como a média das minhas compras. O lance é só a primeira linha de uma conta que continua assim:
 
-O lance vence em R$ 220.400, que é 42% abaixo da avaliação. Aí começa a segunda metade da conta, que é a parte que ninguém mostra no Instagram.
+> **EXEMPLO ILUSTRATIVO.** Este apartamento não existe: os números são redondos de propósito, para a mecânica aparecer sem calculadora. Nenhuma linha vem de operação real, o seu resultado não está previsto aqui, e cada imóvel real chega com edital, dívidas, disputa e estado de conservação que só ele tem.
 
-| O que entra na conta | Valor |
-|---|---|
-| Preço que o apartamento faz na rua hoje | R$ 400.000 |
-| Valor de avaliação do imóvel no leilão | R$ 380.000 |
-| O lance vencedor, 42% abaixo da avaliação | R$ 220.400 |
-| Comissão de 5% para o leiloeiro, que é quem conduz a venda | R$ 11.020 |
-| Imposto da prefeitura para transferir o imóvel | R$ 6.612 |
-| Cartório e taxas, para registrar que o imóvel agora é seu | R$ 7.000 |
-| Condomínio e IPTU atrasados que você assume | R$ 15.000 |
-| Tirar o ocupante: advogado, taxas do processo e despesas do período | R$ 12.000 |
-| Reforma para deixar o apartamento em condição de morar | R$ 25.000 |
-| **Total que sai do seu bolso** | **R$ 297.032** |
-| Tempo entre o lance e a chave na mão, neste exemplo | cerca de 12 meses |
+| R$ 185.600 | R$ 254.448 | R$ 95.552 |
+|---|---|---|
+| Lance vencedor, 42%\* abaixo da avaliação | Total que sai do seu bolso, já com comissão do leiloeiro, imposto de transferência, cartório, dívidas assumidas, desocupação e obra | De folga neste exemplo inventado, contra os R$ 350.000 do preço de imobiliária |
 
-### R$ 102.968 de diferença neste exemplo inventado.
+Tempo estimado entre o lance e a chave, neste exemplo: cerca de 14 meses.
 
-Agora presta atenção no que eu comparei. Os 42% comparam o lance com o valor de avaliação. Essa tabela compara o dinheiro que saiu do seu bolso com o preço que o apartamento faz na rua, e nessa base a folga cai para 25,7%. Continua sendo mais de cem mil reais. Continua sendo uma conta que precisa ser feita antes de você dar o lance.
+Antes de comemorar, confere a régua de cada comparação: os 42%\* nascem da distância entre o lance e a avaliação, enquanto a folga acima compara o gasto total com o preço de imobiliária, e por essa segunda régua ela fica em 27,3%. O número encolhe em relação à manchete e continua sendo um valor que justifica aprender a ler cinquenta páginas.
 
-Falta ainda uma linha que quase ninguém coloca no papel. Essa folga só vira dinheiro no bolso no dia em que o apartamento for vendido, e a venda tem corretagem e imposto sobre o ganho. Quem arremata para morar não recebe nada em dinheiro. O que essa pessoa ganha é o mesmo imóvel por bem menos, e um financiamento menor pelos próximos anos.
+Existe ainda o custo que manchete de desconto não mostra: enquanto o apartamento não for revendido, a folga fica no papel, e a venda futura paga corretor e imposto. Para quem vai morar o raciocínio é outro, porque neste exemplo o ganho chegaria todo mês, numa prestação menor pelos anos seguintes.
 
-Quem faz essa planilha errado acha que comprou barato e descobre o contrário no terceiro boleto de condomínio atrasado.
-
-No dia 25 essa tabela vai estar na tela, com um edital de verdade projetado do lado.
-
----
-
-## 6. O QUE MUDA PARA QUEM VAI
-
-### A pessoa que começa a noite e a pessoa que termina
-
-| Como você chega | Quando a noite acabar |
-|---|---|
-| Você abre o edital de um leilão e não sabe qual parte importa. | Você sai sabendo quais páginas abrir primeiro e o que cada uma muda no seu bolso. |
-| Você olha o valor do lance e acha que aquilo é o preço do imóvel. | Você sai com a planilha de custo na cabeça, com as linhas que quase todo iniciante esquece. |
-| A palavra "ocupado" te faz fechar a página na hora. | Você entende quais caminhos existem para receber a chave, e mais ou menos quanto custa e quanto demora cada um deles. |
-| Você não sabe diferenciar um leilão de banco de um leilão que vem de processo na Justiça. | Você reconhece qual é qual, entende quem está vendendo e sabe o que isso muda no seu risco. |
-| Você depende de alguém de confiança dizer "pode ir". | Você tem critério próprio para descartar imóvel ruim antes de gastar um real com ele. |
-| Você guarda link de leilão nos favoritos e adia. Faz uns três anos. | Você sai sabendo qual é o seu próximo passo e em que prazo ele acontece. |
-
-Ninguém vira especialista numa terça-feira, e eu não vou fingir o contrário. O que uma terça-feira resolve é o medo do documento. A prática vem depois, e sai bem mais barata quando você já sabe onde não pisar.
-
----
-
-## 7. O QUE EU VOU MOSTRAR NA NOITE
-
-1. Eu abro um edital de verdade na tela e leio em voz alta, com você, as páginas que decidem se aquele imóvel presta.
-2. Eu abro o histórico do imóvel no cartório e aponto as anotações que fazem um bom negócio virar dor de cabeça.
-3. Eu abro a planilha de custo e refaço a conta do lance até a chave na mão, com você acompanhando linha por linha.
-4. Eu explico a diferença entre o leilão de banco e o leilão que vem de processo na Justiça, e o que isso muda no seu prazo para pagar.
-5. Eu mostro o que fazer com imóvel que tem gente morando dentro: quais caminhos existem, quanto custa cada um e quanto tempo cada um leva.
-6. Eu explico por que tem tanto imóvel indo a leilão nos últimos anos, depois de tanta gente parar de pagar financiamento, e por quanto tempo esse tipo de janela costuma durar.
-7. Eu mostro arremates meus, com número na tela, incluindo o que deu errado no meio do caminho.
-
-Eu apago os dados pessoais de terceiros antes de levar qualquer documento para a tela.
-
-**Programação**
-19h credenciamento e café · 19h30 abertura · 20h a conversa comigo · 21h suas perguntas · 21h20 próximos passos · 21h40 networking (só na sala) · 22h encerramento **[CONFIRMAR com a produção]**
-
-**Onde**
-Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG
+É essa conta que separa quem captura a folga de quem a devolve em prejuízo, e é exatamente ela que você vai sair sabendo fazer: no dia 26 a planilha roda no telão alimentada por um edital real, para você ver de onde cada número sai.
 
 **[CTA duplo 2]**
-`Garantir minha cadeira em BH · R$ 157` · `Garantir meu acesso ao vivo · R$ 67`
+`Garantir minha vaga` · `Assistir ao vivo`
 
 ---
 
-## 8. QUEM ESTÁ FALANDO COM VOCÊ
-*(aqui entra a foto que saiu do topo, ao lado do texto no desktop e acima dele no mobile)*
+## 6. OS DOIS PÚBLICOS
 
-### Eu sou a Jacque Costa
+### Para quem eu desenhei essa noite
 
-Eu resolvia leilão muito antes de subir em qualquer palco. O palco veio depois, e veio porque as pessoas começaram a me perguntar as mesmas coisas.
+**Para quem quer investir.** Você nunca deu um lance, mas já entendeu que a distância entre o lance e o preço de rua é margem, e quer aprender a separar imóvel disputável de armadilha para sair do leilão com um bem abaixo do preço de mercado, pronto para revender ou alugar.
 
-Sou perita judicial. Quando um juiz precisa saber quanto vale um imóvel dentro de um processo, alguém tem que ir lá, examinar o imóvel, colocar um valor no papel e assinar embaixo, respondendo por aquilo na Justiça. Esse alguém, em muitos processos, sou eu.
+**Para quem quer morar.** Metade da minha sala é gente buscando a casa própria, e para essa pessoa o desconto tem outro nome: um endereço melhor com uma prestação que finalmente cabe no salário. A leitura de edital que ela precisa dominar é exatamente a mesma do investidor, e a noite serve às duas na mesma medida.
 
-Sou despachante credenciada da Caixa desde 2007. Na prática, isso quer dizer que o banco me autoriza a tocar a papelada dos imóveis que ele retoma e coloca à venda. São quase duas décadas vendo por dentro como um banco grande trata esses imóveis, o que ele quer receber e com que pressa.
+**Uma honestidade antes de você comprar.** Se o que você procura é dica quente de imóvel ou promessa de renda garantida, essa noite vai te frustrar, porque o que eu entrego é método: você aprende a ler e a calcular, e a decisão, com o risco dela, continua sendo sua.
 
-Também sou corretora e administradora, e toco a minha própria empresa. Mais de 15 anos no mercado imobiliário, quase todos na parte que ninguém posta na internet: cartório, processo, vistoria em apartamento vazio, conversa difícil com síndico.
+Sobre encaixe, também sem rodeio: a noite foi desenhada para quem tem renda a partir de R$ 8 mil, porque é daí para cima que a conta de um arremate costuma fechar sem sufoco. Abaixo disso, o conteúdo continua verdadeiro, mas a prática demora mais a chegar.
 
-A marca se chama Leilão & Prosa porque o que acontece na sala é conversa, com pergunta interrompendo no meio. O que eu levo é edital para mostrar e conta para abrir.
+---
+
+## 7. A PROFESSORA
+*(a foto da Jacque entra aqui: retrato, ao lado do texto no desktop, acima dele no mobile)*
+
+### Quem vai te ensinar
+
+Meu nome é Jacque Costa, e o que eu vou te ensinar no dia 26 é o que eu faço profissionalmente há mais de quinze anos, muito antes de existir palco.
+
+Sou perita judicial em imóveis, o que significa que, quando um processo precisa de um valor confiável para um bem, o laudo sai com a minha assinatura e eu respondo por ele diante do juiz. Sou também despachante credenciada da Caixa desde 2007, e a papelada de imóvel retomado passa pela minha mesa antes de virar anúncio, o que me deu quase vinte anos vendo por dentro o que o banco aceita e onde o processo costuma emperrar.
+
+Completo o quadro como corretora e administradora, com empresa própria construída no lado do mercado que não rende vitrine: balcão de cartório, prazo de juiz, vistoria de manhã cedo e acerto de dívida com condomínio. O nome Leilão & Prosa é literal, porque a noite funciona como uma conversa com documento aberto, onde a sua dúvida não precisa esperar o bloco de perguntas.
 
 **Os meus números**
 
-- **42%** de desconto médio nas compras que eu já fechei em leilão, medido entre o valor de avaliação e o lance vencedor (metodologia no rodapé)
-- **+2.400** alunos já passaram pelas minhas formações **[CONFIRMAR o que conta como aluno: matriculado, concluinte ou certificado]**
+- **42%**\* de desconto médio nas compras que eu fechei em leilão, entre o valor de avaliação e o lance vencedor (metodologia no fim da página)
+- **+2.400** alunos inscritos nas minhas formações
 - **5,0** no Google, em 39 avaliações do perfil Jacque Leilões, apurado em agosto de 2026
 - **Desde 2007** credenciada da Caixa
 - **Perita judicial**, com laudo assinado dentro de processo
 
-*O meu credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.*
+*O credenciamento é profissional e individual. A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.*
 
 ---
 
-## 9. QUEM JÁ ESTEVE NUMA NOITE DESSAS
+## 8. PROVA SOCIAL
 
-> **[BLOCO DE DEPOIMENTOS REAIS.]** Colar aqui de três a quatro falas curtas de quem foi a uma edição anterior, com nome, cidade e o que a pessoa destravou depois: arrematou, aprendeu a descartar imóvel ruim, perdeu o medo do edital. Print da avaliação no Google vale mais que texto digitado. **Não inventar depoimento.** A página inteira se sustenta em número verificável, e um depoimento fabricado derruba a credibilidade dos 42% junto. Se não houver material real até a publicação, apagar a seção inteira e reforçar o link do perfil no Google na faixa de credibilidade.
+> **[BLOCO A PREENCHER COM MATERIAL REAL. NÃO PUBLICAR ASSIM.]** Aqui entram três ou quatro falas curtas de quem esteve numa edição anterior, com nome, cidade e o resultado concreto: arrematou, descartou um imóvel ruim a tempo ou leu um edital inteiro sem ajuda. Não moldar as falas em três itens. Print de avaliação do Google vale mais que texto digitado. **É proibido inventar depoimento.** A página inteira se sustenta em número verificável, e uma fala fabricada derruba os 42%\* junto. Se não houver material real até a publicação, remover a seção inteira e reforçar o link do perfil do Google na faixa de credibilidade.
+
+---
+
+## 9. A NOITE, HORA A HORA
+
+### A noite, hora a hora
+
+A programação é pública de ponta a ponta, incluindo os trinta minutos em que eu apresento o Clube do Leilão, para você saber exatamente o que está comprando.
+
+| Hora | O que acontece |
+|---|---|
+| 19h | Credenciamento, na sala |
+| 19h30 | Abertura do Leilão & Prosa |
+| 20h | Palestra comigo: edital, cartório e planilha na tela |
+| 21h | Perguntas e respostas: microfone na sala, chat no online |
+| 21h10 | Apresentação do Clube do Leilão, Imóveis: trinta minutos meus para mostrar como continuar comigo depois da noite, com hora marcada e sem surpresa |
+| 21h40 | Networking entre os participantes, só na sala |
+| 22h | Encerramento |
+
+A transmissão ao vivo cobre das 19h30 às 21h40.
+
+**Onde**
+Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310
 
 ---
 
 ## 10. A OFERTA
 
-### Escolha como você quer estar comigo no dia 25
+### Escolha como você vai aprender: na sala ou ao vivo
 
-O que eu vou mostrar é igual nos dois ingressos. A conversa é a mesma e o edital que vai para a tela é o mesmo. O que muda é a cadeira e o que acontece quando eu desço do palco.
+A aula é a mesma nos dois ingressos, com o mesmo edital projetado e a mesma planilha rodando, e o que muda é o que acontece em volta dela: a sala acrescenta o intervalo no corredor, o networking e a conversa comigo fora do palco.
 
 ---
 
 ### PRESENCIAL · Okay Hub, Belo Horizonte
-**R$ 157 até 11 de agosto**, à vista ou 12x de R$ [XX,XX] pela Sympla **[CONFIRMAR]**
+**Valor conforme o lote vigente, na tabela de lotes logo abaixo.**
 
 **Para quem é**
-Você mora na Grande BH, quer me perguntar olhando no olho e quer sair da sala com o telefone de gente que já arrematou. Serve também para quem sabe que, de casa, vai acabar atendendo o telefone no meio da noite.
+Para quem consegue estar no Bairro Castelo numa quarta à noite e quer levar da noite o que a transmissão não carrega: a pergunta feita de perto e contatos novos salvos no celular antes de ir embora.
 
 **Inclui**
-- Sua cadeira na sala no dia 25, com credenciamento e café a partir das 19h
-- A conta aberta na tela, com edital de verdade projetado do lado
-- Bloco de perguntas com microfone na sala, das 21h às 21h20
-- Networking das 21h40 às 22h, comigo e com os apoiadores presentes
-- A conversa de corredor no intervalo, que costuma render tanto quanto a palestra
+- Sua cadeira na sala do Okay Hub, com credenciamento e café a partir das 19h
+- O edital projetado e a planilha rodando ao vivo, na sua frente
+- Microfone aberto no bloco de perguntas, das 21h às 21h10
+- Networking das 21h40 às 22h, comigo e com os apoiadores
+- O corredor do intervalo, onde os melhores contatos da noite costumam aparecer
 
 **Não inclui**
 - Estacionamento no prédio
-- Gravação. Eu não libero gravação na sala, e não vai existir replay para ninguém
-- Acesso à transmissão ao vivo
-- Análise individual do seu imóvel ou do edital de um leilão específico
+- Gravação ou replay, que não existem para ninguém em nenhum formato
+- Acesso à transmissão online
+- Análise individual do seu imóvel ou de um edital específico
 
-`Quero a cadeira em BH · R$ 157`
+`Garantir vaga presencial`
 
 ---
 
 ### ONLINE · Transmissão ao vivo
-**R$ 67 até 11 de agosto**, à vista ou 12x de R$ [XX,XX] pela Sympla **[CONFIRMAR]**
+**Valor conforme o lote vigente, na tabela de lotes logo abaixo.**
 
 **Para quem é**
-Você está fora de Belo Horizonte, ou tem compromisso naquela terça, ou quer me conhecer antes de investir uma noite inteira fora de casa. Assiste do sofá, com o caderno do lado.
+Para quem está em outra cidade ou prefere um primeiro encontro comigo sem sair de casa, com o caderno do lado e a mesma aula na tela.
 
 **Inclui**
-- Transmissão ao vivo das 19h30 às 21h40. Desse total, 1h50 é conteúdo e os 20 minutos das 21h20 às 21h40 são a minha apresentação comercial, que está marcada na programação
-- A mesma conversa e o mesmo edital projetado, com a planilha de custo aberta na sua tela
-- Campo de perguntas no chat, lidas ao vivo por mim no bloco das 21h **[CONFIRMAR com a produção]**
-- Link individual, enviado por e-mail e por WhatsApp no dia 25 **[CONFIRMAR horário do envio]**
-- Se a transmissão ficar fora do ar por mais de 15 minutos somados dentro do bloco de conteúdo, das 19h30 às 21h20, você recebe o dinheiro de volta, integral **[CONFIRMAR]**
-- Abre no celular e no computador, com conexão a partir de [X] Mbps **[CONFIRMAR]**
+- Transmissão ao vivo das 19h30 às 21h40, sendo 1h40 de conteúdo e 30 minutos de apresentação comercial declarada na programação
+- O mesmo edital e a mesma planilha, projetados na sua tela
+- Perguntas pelo chat, lidas por mim no bloco de perguntas da noite
+- Link individual de acesso, enviado por e-mail e WhatsApp no dia 26, antes de a transmissão começar
+- Funciona no celular e no computador
 
 **Não inclui**
-- O networking das 21h40, que só existe na sala
-- Conversa presencial comigo e com os apoiadores
-- Replay. A transmissão é ao vivo, no horário **[CONFIRMAR: recomendação forte de liberar replay de 48h]**
+- Replay, porque a transmissão não fica gravada para ninguém
+- O networking e a conversa de corredor
 - Credenciamento e café
 
-`Quero o acesso ao vivo · R$ 67`
+`Assistir à transmissão`
 
 ---
 
-### Por que a cadeira custa mais que a transmissão
+### Por que a cadeira custa mais
 
-A sala do Okay Hub tem [XX] cadeiras e nós não temos como criar mais nenhuma. Cada cadeira ocupa espaço físico e custa estrutura. A transmissão não tem esse teto, e é por isso que ela sai por menos da metade do preço.
+Cadeira é o único item desta página com estoque: a sala existe, tem paredes e um número finito de lugares. A transmissão não esbarra em parede nenhuma, e por isso custa bem menos. O método vai inteiro para os dois formatos; as pessoas, só para a sala.
 
-Quem compra a cadeira está pagando o lugar que acaba e o acesso direto a mim no intervalo. Quem assiste de casa vê a mesma coisa por bem menos e abre mão do aperto de mão. O acesso ao vivo existe para que o valor da noite não fique preso ao tamanho da sala.
-
-**Como decidir em dez segundos.** Se o que você quer é o conteúdo, o online entrega ele inteiro, das 19h30 às 21h20. Se você consegue estar em Belo Horizonte naquela terça e quer sair de lá com contato de mercado no celular, a cadeira vale a diferença.
-
-### Os preços sobem em data marcada
+### Os preços sobem em data marcada: 12 e 21 de agosto
 
 | Lote | Período | Presencial | Online |
 |---|---|---|---|
 | Lote 1 | até 11/08 | R$ 157 | R$ 67 |
 | Lote 2 | de 12/08 a 20/08 | R$ 187 | R$ 87 |
-| Lote 3 | de 21/08 até esgotar | R$ 217 | R$ 97 |
+| Lote 3 | a partir de 21/08 | R$ 217 | R$ 97 |
 
-A sala tem [XX] cadeiras **[CONFIRMAR]**. Quando acabam, acabaram. O acesso ao vivo não tem limite de lugares, e o preço dele sobe nas mesmas datas do presencial. **[Se o lote não virar na data anunciada, a oferta continua valendo pelo preço veiculado.]**
+O presencial acaba quando as cadeiras acabam, enquanto o online não tem limite de lugares e sobe de preço nas mesmas datas. Se a virada de lote atrasar, vale o que estiver publicado: ninguém paga mais do que a página anuncia.
+
+O ingresso é pessoal e intransferível nos dois formatos, e a Sympla permite editar o participante uma única vez, até 24 horas antes do evento. O cancelamento com devolução integral é aceito em até 7 dias corridos da compra, desde que o pedido chegue até 48 horas antes do evento, conforme a política publicada na Sympla e o artigo 49 do Código de Defesa do Consumidor.
 
 **[CTA duplo da oferta]**
-`Quero a cadeira em BH · R$ 157` · `Quero o acesso ao vivo · R$ 67`
+`Garantir minha vaga` · `Assistir ao vivo`
 
 ---
 
-## 11. PERGUNTAS QUE EU SEMPRE OUÇO
+## 11. FAQ
 
-**"E se o imóvel vier com dívida, com processo em cima ou com gente morando dentro?"**
-Esse é o medo certo de se ter, e é o assunto que ocupa mais tempo da minha noite. Eu vou te mostrar onde aparece a dívida de condomínio e de IPTU, o que o edital diz sobre quem paga o quê, quem mais tem direito sobre aquele imóvel segundo o cartório, o que fazer quando o apartamento está ocupado e o que fazer quando alguma dessas informações não aparece em lugar nenhum, que é quando eu costumo dar meia-volta. O objetivo é você conseguir descartar um imóvel ruim antes de gastar dinheiro com ele. Leilão tem risco, e o risco continua ali depois da análise. O que a análise entrega é o preço desse risco, calculado antes de você dar o lance.
+**"Leilão de imóvel é legalizado? Isso não tem cara de golpe?"**
+Leilão de imóvel é uma venda pública prevista em lei, conduzida por leiloeiro oficial ou dentro de um processo na Justiça, sempre com edital publicado e regra escrita. O que circula de sobra na internet é anúncio falso imitando leilão, e a defesa contra isso é a mesma habilidade que eu ensino a noite inteira: ler o documento e conferir quem está vendendo antes de qualquer pagamento. O risco real está em outro lugar, que é comprar sem ler.
 
-**"Nunca participei de leilão nenhum. Eu vou entender alguma coisa?"**
-Eu montei essa noite para você. Eu começo do começo, explicando o que é o leilão e por que o preço dele é mais baixo. Toda vez que aparecer uma palavra de cartório, eu traduzo na hora, dentro da frase. Quem já arremata também aproveita, porque a parte de custo real pega gente experiente errando.
+**"Dívida, processo, morador dentro: e quando o imóvel vem com tudo isso?"**
+Cada um desses problemas tem preço e endereço, e a noite ensina a encontrar os dois: a dívida aparece no edital, o direito de terceiro aparece na certidão do cartório, e a ocupação tem custo e prazo que dá para estimar antes do lance. Quando alguma dessas respostas não aparece em lugar nenhum, você também vai saber o que fazer, porque imóvel sem resposta é imóvel descartado. A análise serve para pendurar no risco uma etiqueta de preço antes de o lance sair da sua mão.
 
-**"Vale a pena o ingresso online?"**
-Você assiste a conversa inteira e o bloco de perguntas inteiro, das 19h30 às 21h20. O edital projetado e a planilha de custo aparecem na sua tela igual aparecem na sala, e a sua pergunta no chat é lida por mim ao vivo **[CONFIRMAR]**. Fica de fora o intervalo e os vinte minutos de networking do fim. Quem quer o conteúdo resolve com o online. Quem quer sair da noite com telefone de gente do mercado compra a cadeira.
+**"Nunca dei um lance na vida. Vou conseguir acompanhar?"**
+Sim, e você é exatamente o público para quem eu desenhei a noite: nenhum termo de cartório entra sem tradução na mesma respiração, nenhuma etapa supõe experiência anterior, e o ritmo é o de quem está vendo um edital pela primeira vez. Quem já arremata também sai com lição, porque é na conta dos custos que a experiência mais escorrega.
 
-**"Eu quero comprar para morar, não para investir. Serve para mim?"**
-Serve, e esse é o segundo maior grupo da minha sala. A leitura do edital é a mesma e a planilha de custo é a mesma. O que muda é o destino da diferença: quem investe pensa em revender ou alugar, e quem vai morar troca aquela diferença por metro quadrado a mais, por um bairro que estava fora do orçamento ou por um financiamento bem menor. Boa parte do que o banco retoma é exatamente apartamento de família em bairro comum.
+**"Quero comprar para morar, não para investir. Serve?"**
+Serve, e você vai estar bem acompanhado, porque quem busca a casa própria é metade da minha sala. O edital que você precisa aprender a ler é o mesmo do investidor, e muda apenas o destino do desconto: ele transforma a folga em margem de revenda, enquanto você a transforma em endereço melhor e prestação menor.
 
 **"De quanto dinheiro eu preciso para começar?"**
-Depende do imóvel e das regras daquele leilão, e isso vai estar na tela com número. Tem imóvel em leilão em faixas de preço bem diferentes. O que eu entrego na noite é a conta completa, para você saber qual faixa cabe em você antes de se animar com anúncio.
+Existem imóveis em leilão em faixas de preço muito diferentes, e uma parte deles aceita financiamento, o que muda completamente a resposta para quem tem renda estável sem ter o valor guardado. Por isso o dia 26 não te dá um número mágico e sim o mapa completo de custos, para você mesmo calcular o teto que cabe no seu bolso antes que um anúncio bonito decida por você.
 
-**"Em quanto tempo eu preciso pagar? Dá para financiar?"**
-O prazo está escrito no edital de cada leilão, e ele costuma ser curto, contado em dias depois do lance vencedor. Em parte dos casos dá para financiar, e isso muda tudo no planejamento de quem tem renda mas não tem o valor inteiro guardado. Na noite eu mostro onde essa informação aparece no edital, quando o financiamento é possível e o que costuma ser exigido, porque isso precisa ser conferido imóvel por imóvel, antes do lance.
+**"Qual o prazo para pagar depois do lance? Dá para financiar?"**
+O prazo vem escrito no edital de cada leilão e costuma ser contado em dias, o que torna o planejamento do pagamento parte da própria decisão de dar o lance. Uma parte dos leilões aceita financiamento, e no dia 26 eu mostro onde essa regra vive dentro do documento e o que conferir antes de disputar, porque ela muda de leilão para leilão.
 
-**"Como eu sei que esses 42% são verdade?"**
-São a média das compras que eu já fechei em leilão, medida entre o valor de avaliação do imóvel e o lance que venceu. Eu mostro esses números na noite e mostro também onde a conta aperta depois do lance, com comissão, imposto, cartório, dívida e obra. Esse número mede o que eu já fiz. O seu resultado vai depender do leilão que você escolher e de quem estiver disputando com você naquele dia. A metodologia inteira está no rodapé desta página, com o período e a quantidade de arremates que formam a média, e a documentação fica à disposição para quem quiser conferir.
+**"Esses 42%\* são reais?"**
+São a média entre o valor de avaliação e o lance vencedor em todas as compras que eu conduzi, sem seleção dos melhores casos, e a metodologia completa está no fim desta página, com a documentação à disposição de quem quiser conferir. Na noite eu mostro esses números na tela, junto com os custos que entram depois do lance e que todo comprador precisa somar.
 
-**"E se a transmissão cair no meio?"**
-Se ela ficar fora do ar por mais de 15 minutos somados dentro do bloco de conteúdo, das 19h30 às 21h20, você recebe o dinheiro de volta, integral. **[CONFIRMAR]**
+**"Vale a pena assistir de casa?"**
+Depende do que você quer levar da noite, porque o método viaja inteiro pelo cabo, com o mesmo documento na tela e a sua pergunta lida no chat, enquanto o aperto de mão não viaja. Se o que te falta é a leitura, assista de onde estiver; se o que te falta é rede de contatos, só a sala entrega.
 
-**"Vou levar oferta comercial na cara durante o evento?"**
-Vai ter, sim, e está marcado na programação. Às 21h20 eu apresento como acompanhar meu trabalho depois da noite. Você pode ir embora às 22h sem gastar mais um real e ainda assim vai sair sabendo ler um edital de leilão.
+**"Vou levar um pitch de vendas no meio?"**
+Vai ter oferta, com hora e duração publicadas: às 21h10 eu uso trinta minutos para apresentar o Clube do Leilão, o caminho de quem quiser continuar comigo, e quando esse bloco começar a aula prometida já terá sido entregue inteira. Ficar para ouvir é escolha sua.
 
-**"Consigo cancelar se eu mudar de ideia?"**
-Consegue. Você tem 7 dias corridos a partir da compra para desistir e receber tudo de volta, sem precisar justificar nada, como manda o artigo 49 do Código de Defesa do Consumidor. Quem comprar em cima da data tem esse direito válido até o começo do evento, dia 25 às 19h, porque depois disso o serviço já foi entregue. Fora esse prazo, nós aceitamos cancelamento com devolução integral até 48 horas antes do evento. **[CONFIRMAR com o jurídico e com a Sympla]**
+**"Cliquei no botão e não caí num pagamento. Como funciona a inscrição?"**
+O botão abre um formulário rápido de nome, e-mail e WhatsApp e, assim que você envia, te leva direto para a página oficial do evento na Sympla, que é onde a inscrição se conclui e o pagamento acontece, no valor do lote vigente. Peço o contato antes por um motivo simples: é assim que eu consigo te avisar de qualquer mudança na noite. Todo pagamento roda dentro da Sympla, em até 12x no cartão ou à vista no pix e no boleto, nunca por transferência direta.
 
-**"Posso passar meu ingresso para outra pessoa?"**
-O ingresso é nominal nos dois formatos. No presencial o credenciamento confere documento, e no online o link é individual. Se você não puder ir, dá para pedir a troca de titularidade até 48 horas antes pelo e-mail da produção. **[CONFIRMAR]**
+**"Perdi o horário. Tem replay?"**
+Não existe replay em nenhum dos dois ingressos, e o motivo é o material que sobe no telão: documento de processo não circula gravado, nem para quem esteve na sala nem para quem assistiu de casa. É por isso que a data aparece em todo canto desta página, porque a única forma de ver essa leitura é ao vivo, no dia 26.
 
-**"Tem estacionamento no prédio?"**
-No prédio, não. A Rua Castelo de Alcázar é tranquila à noite e costuma ter vaga na rua. Quem preferir, aplicativo de carro deixa na porta.
+**"Posso cancelar se eu mudar de ideia?"**
+Pode: você tem 7 dias corridos a partir da compra para desistir com devolução integral, sem justificar nada, como garante o artigo 49 do Código de Defesa do Consumidor. A política publicada na Sympla acrescenta uma condição de prazo, e vale a pena saber dela antes: o pedido de cancelamento precisa chegar até 48 horas antes do evento. Quem compra em cima da data, portanto, deve decidir rápido.
 
-**"Posso gravar a noite?"**
-Não. Parte do que vai para a tela é documento de processo, e mesmo com os dados pessoais apagados eu não libero gravação na sala. Retransmitir a transmissão ao vivo também está fora. Leva caderno, que rende mais.
+**"Posso transferir meu ingresso para outra pessoa?"**
+Não. O ingresso é pessoal e intransferível nos dois formatos, com o credenciamento conferindo documento na sala e o link individual valendo no online. O que existe é a edição de participante dentro da Sympla, permitida uma única vez e até 24 horas antes do evento, então confira o nome com calma na hora de comprar.
+
+**"Tem estacionamento?"**
+No prédio, não, mas o entorno costuma ter vaga na rua à noite, e quem vem de aplicativo desce na porta do Okay Hub.
 
 ---
 
 ## 12. CTA FINAL
 
-### Terça-feira, 25 de agosto, 19h
+### Quarta, 26 de agosto, 19h. A noite em que você aprende o jogo.
 
-Semana que vem alguém vai arrematar um apartamento que você viu e deixou passar. Vai ser alguém que leu o edital inteiro.
-
-O que eu levo para a tela é papel e planilha. Você sai sabendo o que olhar primeiro, quanto custa além do lance, quando dar meia-volta e quando insistir.
+Dá para continuar colecionando abas de leilão que você nunca lê até o fim, ou dá para investir uma quarta-feira e atravessar um edital inteiro ao lado de quem faz isso desde 2007. Depois dessa noite, anúncio de leilão vira um documento que você sabe abrir e uma conta que você sabe fazer, e a decisão passa a ser totalmente sua, inclusive a de ficar de fora.
 
 > **Quem não entende o jogo não arremata. Assiste.**
 
-`Quero minha cadeira em Belo Horizonte · R$ 157`
-`Quero meu acesso à transmissão ao vivo · R$ 67`
+`Garantir minha vaga em Belo Horizonte`
+`Assistir à transmissão ao vivo`
 
-Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG. Ou ao vivo, de onde você estiver.
+Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.
 
-Preços do lote 1, válidos até 11 de agosto. Parcelamento em até 12x pela Sympla. Presencial limitado a [XX] cadeiras. Arrependimento em 7 dias corridos a partir da compra, com devolução integral.
+Inscrição pela Sympla, no valor do lote vigente indicado na tabela de lotes desta página, com parcelamento em até 12x e as taxas da plataforma exibidas no checkout. Ingresso pessoal e intransferível, com arrependimento em 7 dias corridos e devolução integral, desde que o pedido chegue até 48 horas antes do evento.
 
 ---
 
-## 13. RODAPÉ
+## 13. MODAL DE CAPTURA
+*(o formulário grava o lead na planilha via `data-sheets`, dispara Lead e InitiateCheckout no Pixel e redireciona para a Sympla via `data-redirect`. Sem mensagem de sucesso: o destino é o checkout.)*
 
-**\* Sobre os 42%:** os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi, calculada entre o valor de avaliação do imóvel e o lance vencedor. A média cobre [N] arremates conduzidos entre [ano] e [ano] e considera todos os arremates do período, sem seleção de melhores casos **[CONFIRMAR com a Jacque]**. Valor de avaliação e preço de mercado são bases diferentes: a avaliação feita dentro do processo pode ficar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, imposto de transferência, taxas de cartório, dívidas assumidas, desocupação e reforma entram depois e reduzem a diferença final. Essa média mede trabalho que eu já realizei e não garante o resultado individual de quem assiste ao evento. Cada leilão depende do edital daquele imóvel, da disputa do dia, do estado de conservação do bem e do histórico dele no cartório. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação. Os valores usados nos exemplos desta página são inventados e não representam operação real. Eu tenho interesse comercial no assunto, porque conduzo arremates e vendo formação sobre leilão. Esta página não indica nenhum imóvel específico. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado. A documentação que sustenta a média fica à disposição para conferência pelo e-mail [contato].
+**Título do modal**
+Me deixa seu contato
 
-Realização: Jacque Leilões · [Razão social], CNPJ [XX.XXX.XXX/0001-XX] · [Endereço completo] · Atendimento: [e-mail] e [WhatsApp] · [Termos de uso] · [Política de privacidade] **[CONFIRMAR: exigido pelo Decreto 7.962/2013]**
+**Texto do modal**
+Deixa seu nome, e-mail e WhatsApp, e eu te levo direto para a inscrição oficial na Sympla, no valor do lote vigente.
 
-Apoio: 3BF · AVANTIK · CONEXÃO SV
+**Campos**
+NOME · E-MAIL · WHATSAPP *(inalterados: `nome`, `email`, `telefone` + ocultos `evento` e `modalidade`)*
+
+**Botão do formulário**
+`Ir para a inscrição`
+
+**Nota sob o botão**
+Eu uso seu nome, e-mail e WhatsApp só para falar com você sobre o Leilão & Prosa, e você pode pedir a exclusão quando quiser.
+
+**Destino após o envio**
+**Presencial:** `https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3515691`
+**Online:** `https://www.sympla.com.br/evento-online/leilao-prosa-edicao-bairro-castelo-bh-online/3534657`
+O botão clicado define a modalidade, e o script.js troca o `data-redirect` do formulário antes do envio.. O `forms.js` espera 350ms antes de navegar, para o beacon do Pixel sair.
+
+---
+
+## 14. RODAPÉ
+
+**Bloco `#metodologia` (corpo mínimo de 13px)**
+
+> **\* Sobre os 42%:** os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi, calculada entre o valor de avaliação do imóvel e o lance vencedor. A média cobre todas as compras que eu conduzi até aqui, sem seleção de melhores casos e sem descartar as que renderam pouco. Valor de avaliação e preço de mercado são bases diferentes: a avaliação feita dentro do processo pode ficar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, imposto de transferência, taxas de cartório, dívidas assumidas, desocupação e reforma entram depois e reduzem a diferença final. Essa média mede trabalho que eu já realizei e não garante o resultado individual de quem assiste ao evento. Cada leilão depende do edital daquele imóvel, da disputa do dia, do estado de conservação do bem e do histórico dele no cartório. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação. Os valores usados nos exemplos desta página são inventados e não representam operação real. Eu tenho interesse comercial no assunto, porque conduzo arremates e vendo formação sobre leilão. Esta página não indica nenhum imóvel específico. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado. A documentação que sustenta a média fica à disposição para conferência pelo WhatsApp (31) 99695-1660.
+
+**Identificação e contato**
+Realização: Leilão & Prosa · Faz Morar Imóveis · CRECI 5314 PJ · CNAI 19244 · Belo Horizonte · MG · Atendimento e exercício de direitos sobre seus dados: WhatsApp (31) 99695-1660
+
+Os dados que você deixa nesta página, nome, e-mail e WhatsApp, são usados só para falar com você sobre o Leilão & Prosa e não são vendidos nem repassados a terceiros. Você pode pedir a exclusão a qualquer momento pelo WhatsApp acima.
+
+A Caixa Econômica Federal não organiza, não patrocina e não endossa este evento.
+
+Apoio: AVANTIK
+
+© 2026 Faz Morar Imóveis · Todos os direitos reservados.
 
 ---
 ---
@@ -375,31 +378,35 @@ Apoio: 3BF · AVANTIK · CONEXÃO SV
 
 | # | Seção | O que tem dentro |
 |---|---|---|
-| 1 | Hero centralizado, sem foto | selo de data, H1, subheadline, dois botões lado a lado, microcopy, nota dos 42% visível |
-| 2 | Faixa de credibilidade | linha única, 4 itens, o 5,0 do Google clicável para o perfil |
-| 3 | A dor | "Eu já ouvi essa história umas quinhentas vezes", fechando no bloco do refrão |
-| 4 | Por que existe desconto | 4 subtítulos, terminando em CTA duplo 1 |
-| 5 | A conta de um arremate | aviso de exemplo ilustrativo, história curta, tabela de 11 linhas, destaque de R$ 102.968 com a ressalva dentro |
-| 6 | O que muda para quem vai | tabela de 2 colunas, 6 linhas |
-| 7 | O que eu vou mostrar na noite | lista de 7, programação, endereço, CTA duplo 2 |
-| 8 | Quem está falando com você | **a foto da Jacque entra aqui**, texto em primeira pessoa, grade de 5 números, nota da Caixa em corpo menor |
-| 9 | Prova social | depoimentos reais, a preencher. Se não houver material real, apagar a seção |
-| 10 | A oferta | dois cards (presencial primeiro), por que a cadeira custa mais, tabela de lotes, CTA duplo |
-| 11 | Objeções | acordeão, 13 perguntas |
-| 12 | CTA final | data, fechamento, refrão, dois botões, endereço, letra miúda |
-| 13 | Rodapé | nota dos 42% em no mínimo 13px, identificação do fornecedor, apoios |
+| 1 | Hero tipográfico, sem foto | H1 de promessa, subheadline, dois botões sem preço, microcopy, nota dos 42% visível. Sem selo/kicker |
+| 2 | Faixa de credibilidade | 4 itens em linha, o 5,0 do Google clicável, disclaimer da Caixa em corpo menor logo abaixo |
+| 3 | O mecanismo | de onde vem o desconto (banco, multidão, quem compra sem conta) fechando no bloco do refrão (aparição 1 de 2) |
+| 4 | O currículo da noite | grid numerado 01 a 07 com verbos de capacidade, nota de privacidade, CTA duplo 1 |
+| 5 | A conta | narrativa, aviso de exemplo ilustrativo, trio de números-chave (lance, total do bolso, folga), parágrafos de honestidade, CTA duplo 2 |
+| 6 | Os dois públicos | dois blocos espelhados (investir e morar) e a honestidade de anti-persona em um parágrafo |
+| 7 | A professora | **a foto da Jacque entra aqui**, bio em primeira pessoa ancorada no ensino, grade de 5 números, disclaimer da Caixa |
+| 8 | Prova social | placeholder a preencher com material real; sem material, a seção sai |
+| 9 | A noite, hora a hora | tabela de programação com pitch declarado, janela do online, endereço |
+| 10 | A oferta | dois cards sem preço (presencial primeiro), por que a cadeira custa mais, tabela de lotes, bloco legal, CTA duplo |
+| 11 | FAQ | acordeão, 14 perguntas |
+| 12 | CTA final | data, fechamento, refrão (aparição 2 de 2), dois botões, endereço, letra miúda |
+| 13 | Modal de captura | copy própria na voz da Jacque, mensagem de sucesso sem preço |
+| 14 | Rodapé | bloco #metodologia, identificação do fornecedor, disclaimer da Caixa, apoios |
 
 **Notas de montagem**
 
-- **Hero.** Centralizado, sem imagem de pessoa. Fundo liso, muito respiro vertical, largura de texto contida. Selo em caixa alta pequena e espaçada, com no máximo 60 caracteres para não quebrar em três linhas no celular. Nenhum elemento de urgência acima da dobra.
-- **Peso dos dois botões.** O presencial é o primário, em cor cheia. O online é secundário com a MESMA altura, o MESMO padding, a MESMA tipografia e o MESMO raio, mudando só o preenchimento (contorno de 2px, fundo transparente). No mobile empilham, presencial em cima, os dois em largura total. O online nunca aparece como link de texto solto em lugar nenhum da página.
-- **Onde a foto entra.** Só na seção 8, enquadramento retrato, ao lado do texto no desktop e acima dele no mobile. Tratamento sóbrio, sem moldura chamativa.
-- **Refrão do cliente.** "Quem não entende o jogo não arremata. Assiste." aparece exatamente duas vezes: fim da seção 3 e CTA final.
-- **Asterisco dos 42%.** Clicável, leva ao rodapé. Sempre que o número aparecer no corpo da página, carrega o asterisco.
-- **Destaque de R$ 102.968.** A ressalva "neste exemplo inventado" fica dentro da mesma linha do destaque, no mesmo corpo de texto. A caixa de exemplo ilustrativo fica visível na mesma tela da tabela.
-- **Barra fixa no mobile.** A partir do fim da seção 4, com os dois botões dentro dela.
-- **Contador de vagas.** Se houver, só no presencial. Contador no online derruba a credibilidade da página inteira, porque transmissão ao vivo não tem limite físico e o leitor sabe disso.
-- **Rotina de virada de lote (obrigatória).** Em 12/08 trocar todos os botões e microcopy para R$ 187 e R$ 87, e em 21/08 para R$ 217 e R$ 97. Com preço dentro do botão e sem essa rotina, a página vende preço vencido.
+- **Hero.** Sem imagem de pessoa, fundo escuro, muito respiro, composição assimétrica conforme o design aprovado. Nenhum elemento de urgência acima da dobra. Sem selo/kicker acima do título, e nenhuma seção da página usa eyebrow/overline.
+- **Ritmo da prosa.** A página inteira foi escrita para fluir: frases encadeadas com vírgula e dois-pontos, média de 18 a 24 palavras por frase, frase curta reservada para fechos e viradas. Qualquer edição futura deve manter esse ritmo e evitar sequências de frases curtas.
+- **Botões sem preço, sempre.** Nenhum botão, microcopy, card, modal ou mensagem de sucesso carrega valor. A tabela de lotes é a única fonte de preço da página, junto com o exemplo ilustrativo da seção 5, o que elimina a rotina manual de virada de lote.
+- **Peso dos dois botões.** Presencial primário em cor cheia; online secundário com a mesma altura, o mesmo padding, a mesma tipografia e o mesmo raio, mudando só o preenchimento (contorno de 2px). No mobile empilham, presencial em cima, largura total. O online nunca vira link de texto solto.
+- **Urgência só por data absoluta.** "Os preços sobem em 12 e 21 de agosto" pode. "Faltam X dias", "só até amanhã" e "preço de hoje" não podem, porque apodrecem.
+- **Refrão do cliente.** Aparece exatamente duas vezes na página: fim da seção 3 e CTA final. Não usar em SEO, OG, títulos ou botões.
+- **Asterisco dos 42%.** Clicável, leva ao bloco `#metodologia`. Toda ocorrência do número carrega o asterisco, inclusive no H1, dentro de tabela e na FAQ.
+- **Disclaimer da Caixa.** Três aparições fixas: faixa de credibilidade, seção da professora e rodapé. Nenhuma menção ao credenciamento sem o disclaimer por perto.
+- **Destaque da folga (seção 5).** A expressão "neste exemplo inventado" fica dentro da própria linha do destaque, e a caixa de exemplo ilustrativo fica visível na mesma tela da tabela.
+- **Barra fixa no mobile.** A partir do fim da seção 3, com os dois botões dentro dela, sem preço.
+- **Contador de vagas.** Se existir, só no presencial e só com a capacidade confirmada. Contador no online derruba a credibilidade, porque transmissão não tem limite físico e o leitor sabe.
+- **Foto.** Só na seção 7, retrato, tratamento sóbrio.
 
 ---
 
@@ -407,60 +414,65 @@ Apoio: 3BF · AVANTIK · CONEXÃO SV
 
 | Onde | Presencial (cor cheia) | Online (contorno, mesmo tamanho) |
 |---|---|---|
-| Hero | `Quero minha cadeira em Belo Horizonte · R$ 157` | `Quero meu acesso à transmissão ao vivo · R$ 67` |
-| CTA duplo 1 (fim da seção 4) | `Garantir minha cadeira em BH · R$ 157` | `Garantir meu acesso ao vivo · R$ 67` |
-| CTA duplo 2 (fim da seção 7) | `Garantir minha cadeira em BH · R$ 157` | `Garantir meu acesso ao vivo · R$ 67` |
-| Dentro do card presencial | `Quero a cadeira em BH · R$ 157` | (não se aplica) |
-| Dentro do card online | (não se aplica) | `Quero o acesso ao vivo · R$ 67` |
-| CTA duplo da oferta | `Quero a cadeira em BH · R$ 157` | `Quero o acesso ao vivo · R$ 67` |
-| CTA final | `Quero minha cadeira em Belo Horizonte · R$ 157` | `Quero meu acesso à transmissão ao vivo · R$ 67` |
-| Barra fixa mobile | `Cadeira em BH · R$ 157` | `Ao vivo · R$ 67` |
+| Hero | `Garantir minha vaga em Belo Horizonte` | `Assistir à transmissão ao vivo` |
+| CTA duplo 1 (fim do currículo) | `Garantir minha vaga` | `Assistir ao vivo` |
+| CTA duplo 2 (fim da conta) | `Garantir minha vaga` | `Assistir ao vivo` |
+| Dentro do card presencial | `Garantir vaga presencial` | (não se aplica) |
+| Dentro do card online | (não se aplica) | `Assistir à transmissão` |
+| CTA duplo da oferta | `Garantir minha vaga` | `Assistir ao vivo` |
+| CTA final | `Garantir minha vaga em Belo Horizonte` | `Assistir à transmissão ao vivo` |
+| Barra fixa mobile | `Vaga em BH` | `Assistir ao vivo` |
+| Botão do modal | `Ir para a inscrição` | (único) |
 
-Os pares foram equalizados em número de caracteres para que os dois botões tenham a mesma quebra de linha no celular. Trocar os valores a cada virada de lote.
+A família é binária e literal: **garantir** para o presencial, que tem estoque, e **assistir** para o online, que não tem. O par completo (em Belo Horizonte / à transmissão ao vivo) aparece só no hero e no CTA final, onde há largura para ele; nos CTAs do meio da página os rótulos encurtam para a forma nua, e no card e na barra assumem a variante do contexto. Nenhum botão carrega preço em nenhum lote.
 
 ---
 
 # (c) A NOTA DOS 42%
 
-**Versão longa, para o rodapé (corpo mínimo de 13px)**
+**Versão longa, para o bloco `#metodologia` do rodapé (corpo mínimo de 13px)**
+É a que está na seção 14 acima. Primeira pessoa, com [N], [ano] e e-mail de contato pendentes de confirmação.
 
-> **\* Sobre os 42%:** os 42% são a média simples dos descontos que eu obtive nos arremates que eu conduzi, calculada entre o valor de avaliação do imóvel e o lance vencedor. A média cobre [N] arremates conduzidos entre [ano] e [ano] e considera todos os arremates do período, sem seleção de melhores casos. Valor de avaliação e preço de mercado são bases diferentes: a avaliação feita dentro do processo pode ficar acima ou abaixo do que o imóvel faz na rua. O percentual se refere ao valor do lance. Comissão do leiloeiro, imposto de transferência, taxas de cartório, dívidas assumidas, desocupação e reforma entram depois e reduzem a diferença final. Essa média mede trabalho que eu já realizei e não garante o resultado individual de quem assiste ao evento. Cada leilão depende do edital daquele imóvel, da disputa do dia, do estado de conservação do bem e do histórico dele no cartório. Existem arremates com desconto bem maior, arremates com desconto pequeno, arremates que não saem, e casos de prejuízo para quem compra sem analisar a documentação. Os valores usados nos exemplos desta página são inventados e não representam operação real. Eu tenho interesse comercial no assunto, porque conduzo arremates e vendo formação sobre leilão. Esta página não indica nenhum imóvel específico. Este evento é educativo, não constitui recomendação de investimento e não substitui a análise jurídica do caso concreto por profissional habilitado. A documentação que sustenta a média fica à disposição para conferência pelo e-mail [contato].
+**Versão visível abaixo do hero**
 
-**Versão visível abaixo do hero (é esta que vai para a tela junto do número, em primeira pessoa)**
+> \* Os 42% são a média do meu histórico: a distância entre o valor de avaliação, que é o preço que o processo atribui ao imóvel, e o lance que venceu o leilão, somando todas as compras que eu conduzi, sem escolher os melhores casos. Esse número mede o meu trabalho até aqui e não prevê o seu resultado, que depende do imóvel escolhido, da disputa do dia e dos custos que entram depois do lance. A metodologia completa está no fim desta página.
 
-> \* Os 42% são a média das compras que eu já fechei em leilão, medida entre o valor de avaliação do imóvel e o lance que venceu. Valor de avaliação é o preço que um técnico atribuiu àquele imóvel dentro do processo, e ele quase nunca é igual ao preço do anúncio de imobiliária. Fechar uma compra dessas é o que o mercado chama de arrematar. Esse número mede o meu trabalho até aqui. O seu resultado depende do leilão que você escolher, de quem disputar com você naquele dia, do estado do imóvel e dos custos que entram depois do lance. Metodologia completa no rodapé desta página.
+**Versão curta, para qualquer outro ponto onde o número aparecer**
 
-**Versão curta, para colar em qualquer outro ponto onde os 42% aparecerem**
+> Média das minhas compras em leilão, entre o valor de avaliação e o lance vencedor. Mede o meu trabalho até aqui; o seu resultado depende do imóvel e da disputa do dia. Metodologia no fim da página.
 
-> Média das compras que eu já fechei em leilão, medida entre o valor de avaliação e o lance vencedor. Mede o meu trabalho até aqui. O seu resultado depende do leilão que você escolher e dos custos que entram depois do lance. Metodologia no rodapé.
-
-As três versões estão em primeira pessoa, de propósito. A página inteira é a Jacque falando, e uma nota metodológica em terceira pessoa no meio de uma página em "eu" é justamente o que o cliente reprovou. A responsabilidade jurídica fica preservada pela identificação do fornecedor no rodapé.
-
----
-
-# (d) O QUE MUDOU EM RELAÇÃO À v1
-
-1. Foto fora do topo. Hero tipográfico e centralizado, com muito respiro. A foto foi para a seção 8.
-2. Os dois ingressos com botão de verdade, mesmo tamanho e mesma tipografia, em todos os pontos da página. O online deixou de existir como link de texto.
-3. Jargão cru eliminado. Saíram matrícula, averbação, rito de execução judicial e extrajudicial, carta de arrematação, praça, ITBI, saldo devedor, inadimplência, custas, região consolidada e carteira. O que sobrou de termo técnico vem traduzido dentro da própria frase, incluindo edital, arrematar, valor de avaliação, despachante credenciada e perita judicial.
-4. Página inteira em primeira pessoa, incluindo títulos, botões, notas dos 42% e rodapé. "Nós" aparece só quando o assunto é estrutura do evento (sala, reembolso, falha técnica).
-5. Contradição da gravação resolvida: não existe gravação nem replay, e a garantia do online passou a ser devolução do dinheiro com critério objetivo de 15 minutos fora do ar, em vez de "parte relevante" decidida por quem vendeu.
-6. Honestidade da conta ampliada: entrou o prazo de 12 meses até a chave e a linha que faltava sobre a folga só virar dinheiro na revenda, com corretagem e imposto.
-7. Duas objeções novas: quando pagar e se dá para financiar; e o arrependimento de quem compra em cima da data.
-8. Prova social voltou para o corpo da página como bloco a preencher, com a proibição explícita de inventar depoimento.
-9. Programação rebalanceada (20 minutos de perguntas contra 20 de próximos passos) e o card online declarando quanto do tempo transmitido é conteúdo e quanto é apresentação comercial.
+As três versões em primeira pessoa, de propósito: a página inteira é a Jacque falando. A responsabilidade jurídica fica preservada pela identificação do fornecedor no rodapé.
 
 ---
 
-# (e) PENDÊNCIAS QUE BLOQUEIAM A PUBLICAÇÃO
+# (d) O QUE MUDOU EM RELAÇÃO À v3
 
-1. Capacidade real da sala do Okay Hub.
-2. Valor da parcela, total parcelado e taxa da Sympla nos dois ingressos (art. 52 do CDC e Decreto 5.903/2006). Enquanto não vier, o hero não pode anunciar "12x" sozinho.
-3. Quantidade de arremates e período que compõem a média dos 42%.
-4. O que conta como aluno nos +2.400.
-5. Chat com leitura ao vivo, replay e garantia da transmissão. Recomendação forte: liberar replay de 48h para o online. É a maior alavanca do ingresso barato e hoje está listado como não incluso.
-6. Razão social, CNPJ, endereço e canais de atendimento para o rodapé.
-7. Confirmar a programação com perguntas às 21h e próximos passos às 21h20.
-8. Depoimentos reais para a seção 9.
-9. Foto vertical da Jacque em boa resolução para a seção 8, já que o hero deixou de usar imagem.
-10. Validar com o jurídico a regra de arrependimento para quem compra nas 48 horas antes do evento.
+1. A promessa foi para a frente: o H1 virou "Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação\*", e a página inteira passou a vender o aprendizado, com o documento como instrumento do método em vez de inimigo.
+2. A prosa foi reescrita para fluir: frases encadeadas com vírgula e dois-pontos no lugar do ritmo picotado, média de 18 a 24 palavras por frase, frase curta só em fecho ou virada, e benefício antes da explicação em cada parágrafo.
+3. As duas seções técnicas da v3 ("O inimigo" e "Quem paga a sua folga") viraram uma só seção de mecanismo, com a anatomia do edital condensada e reangulada para "por isso essa habilidade vale dinheiro".
+4. A lista do que acontece na noite virou currículo com verbos de capacidade: ler, conferir, fechar a conta, distinguir, avaliar, entender e aprender com os números reais.
+5. A seção da conta ganhou moldura nova, "a conta que você vai sair sabendo fazer", mantendo tabela, aviso de exemplo e parágrafos de honestidade.
+6. Os botões trocaram de família: **garantir** no presencial e **assistir** no online, com o par completo só no hero e no CTA final. Todos sem preço.
+7. Quatro respostas da FAQ foram reescritas a fundo (dívida e morador, nunca dei um lance, quanto dinheiro preciso, replay) e as demais ganharam ritmo fluido, sem perder os textos legais.
+8. SEO e OG foram refeitos para a nova promessa, sem o 42% no title, porque title não carrega asterisco.
+9. Nada mudou em conformidade: preços só na tabela de lotes e no exemplo, 42% sempre com asterisco e metodologia, disclaimer da Caixa em três pontos, exemplo rotulado, sem depoimento inventado, sem promessa de replay, arrependimento de 7 dias e 12x com remissão às taxas.
+
+---
+
+# (e) PENDÊNCIAS
+
+> **Nada aqui bloqueia a publicação.** Resolvidas em 10/08: os dois links da Sympla (presencial e online, com o modal roteando por modalidade), a data correta (26/08, quarta), a programação oficial, as políticas de ingresso e cancelamento, o apoio, a foto da Jacque e todos os marcadores que apareciam na tela.
+
+**Pedir à Jacque, em ordem de urgência:**
+
+1. **Razão social e CNPJ** da empresa que realiza o evento. O rodapé hoje identifica por CRECI 5314 PJ e CNAI 19244, o que já é identificação profissional válida, mas o Decreto 7.962/2013 pede nome empresarial e CNPJ de quem oferta. Trinta segundos para ela responder.
+2. **A documentação dos 42%**: quantos arremates entram na média, de que ano a que ano, e a planilha com avaliação e lance de cada um. A nota metodológica promete que essa documentação existe e fica à disposição. Não bloqueia a página, mas precisa existir antes de subir anúncio.
+3. **Capacidade da sala do Okay Hub.** Hoje a página diz "um número finito de lugares". Com o número real, vira escassez verificável.
+4. **Critério do +2.400**: a página publica "alunos inscritos", que é a formulação mais conservadora. Se forem concluintes, "formados" é mais forte.
+5. **Valor exato da parcela** e taxa da Sympla nos dois ingressos (art. 52 do CDC). O "12x" sempre vem com remissão ao checkout, mas o número fechado é melhor.
+6. **Confirmar o que ela vai mostrar na noite.** A página promete edital real projetado, certidão de cartório e planilha rodando; a descrição da Sympla fala de temas mais amplos. Se ela não for abrir documento na tela, os sete itens do currículo precisam ser reescritos.
+7. **Depoimentos reais** para a seção 8, que hoje não renderiza nada.
+8. **Termos de uso e Política de privacidade** como páginas próprias. O rodapé e o modal já trazem o essencial da LGPD (finalidade, quem controla, como pedir exclusão), o que é mitigação, não conformidade completa.
+9. Garantia objetiva para queda da transmissão. A cláusula dos 15 minutos da v2 segue fora; decidir se volta.
+
+**Divergência de tom mantida de propósito:** a descrição da Sympla promete "garantir alta rentabilidade". A nossa copy não promete resultado em nenhum ponto, por CDC e CONAR, e o bloco `#metodologia` diz o contrário de forma explícita. Não alinhar a página por esse lado.
