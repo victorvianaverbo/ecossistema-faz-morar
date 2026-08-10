@@ -341,7 +341,7 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--accent-deep);
+  color: #0A5F50;
   padding-top: 10px;
 }
 
@@ -2011,7 +2011,7 @@ mark.confirmar {
   font-size: 12px;
   line-height: 1.6;
   letter-spacing: 0.02em;
-  color: rgba(159, 179, 171, 0.6);
+  color: rgba(159, 179, 171, 0.85);
 }
 
 /* Sem isso, arrastar sobre o overlay rola a página atrás do modal. */
