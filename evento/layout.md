@@ -119,7 +119,7 @@ Nota: esta página NÃO usa os tokens `.brand-lp` de `/_shared/base.css`; a iden
 - Justificativa: a promessa "Aprenda a arrematar" é verbal por natureza; tipografia em escala dramática vende sozinha, e a ficha em papel ancora o universo documental do leilão sem foto de banco de imagem.
 
 ### Conteúdo
-Exato da copy seção 1 (sem selo/kicker): H1 "Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação", subheadline completa, botões `Garantir minha vaga em Belo Horizonte` / `Assistir à transmissão ao vivo`, microcopy completa, nota dos 42%.
+Exato da copy seção 1 (sem selo/kicker): H1 "Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação", subheadline completa, botões `Garantir minha vaga presencial` / `Assistir à transmissão ao vivo`, microcopy completa, nota dos 42%.
 
 ### Layout
 - `position: relative; min-height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center;` padding `clamp(120px,16vh,170px) var(--pad-x) 34px`.
@@ -208,7 +208,7 @@ Itens (numeral + sentença única, sem cortar uma palavra):
 - `07.` `Aprender com os meus números reais, porque eu mostro as minhas próprias compras com a planilha aberta, dando tempo extra às que doeram, já que errar com a minha conta na sua frente é o jeito mais barato de você acertar na sua.`
 
 Nota de privacidade: `Todo documento passa por limpeza antes do telão, então nome, CPF e endereço de terceiros não aparecem.`
-CTA duplo 1: botão primário `Garantir minha vaga` · botão secundário `Assistir ao vivo`
+CTA duplo 1: botão primário `Garantir minha vaga presencial` · botão secundário `Assistir à transmissão ao vivo`
 
 ### Layout
 ```html
@@ -218,7 +218,7 @@ CTA duplo 1: botão primário `Garantir minha vaga` · botão secundário `Assis
       <h2 class="curr__title">O que você vai <em>dominar</em> quando a noite acabar</h2>
       <p class="curr__intro">A noite inteira acontece com documento aberto e conta rodando na tela, na mesma ordem em que eu trabalho desde 2007, para que você saia sabendo fazer, e não apenas sabendo que existe. Quando ela acabar, você vai ser capaz de:</p>
       <div class="curr__ctas">
-        <button type="button" class="btn btn--fill">Garantir minha vaga na sala</button>
+        <button type="button" class="btn btn--fill">Garantir minha vaga presencial na sala</button>
         <button type="button" class="btn btn--ghost">Garantir meu acesso ao vivo</button>
       </div>
     </div>
@@ -799,7 +799,7 @@ Todos os textos exatos da copy.md, seção 10, nesta ordem:
 - Label: `Para quem é` + parágrafo: `Para quem consegue estar no Bairro Castelo numa quarta à noite e quer levar da noite o que a transmissão não carrega: a pergunta feita de perto e contatos novos salvos no celular antes de ir embora.`
 - Label: `Inclui` + 5 itens: `Sua cadeira na sala do Okay Hub, com credenciamento e café a partir das 19h` / `O edital projetado e a planilha rodando ao vivo, na sua frente` / `Microfone aberto no bloco de perguntas, das 21h às 21h10` / `Networking das 21h40 às 22h, comigo e com os apoiadores` / `O corredor do intervalo, onde os melhores contatos da noite costumam aparecer`
 - Label: `Não inclui` + 4 itens: `Estacionamento no prédio` / `Gravação ou replay, que não existem para ninguém em nenhum formato` / `Acesso à transmissão online` / `Análise individual do seu imóvel ou de um edital específico`
-- Botão: `Garantir vaga presencial`
+- Botão: `Garantir minha vaga presencial`
 
 **Card 2 (dark):**
 - Título: `ONLINE · Transmissão ao vivo`
@@ -807,7 +807,7 @@ Todos os textos exatos da copy.md, seção 10, nesta ordem:
 - Label: `Para quem é` + parágrafo: `Para quem está em outra cidade ou prefere um primeiro encontro comigo sem sair de casa, com o caderno do lado e a mesma aula na tela.`
 - Label: `Inclui` + 5 itens: `Transmissão ao vivo das 19h30 às 21h40, sendo 1h40 de conteúdo e 30 minutos de apresentação comercial declarada na programação` / `O mesmo edital e a mesma planilha, projetados na sua tela` / `Perguntas pelo chat, lidas por mim no bloco das 21h [CONFIRMAR com a produção]` / `Link individual de acesso, enviado por e-mail e WhatsApp no dia 26 [CONFIRMAR horário do envio]` / `Funciona no celular e no computador`
 - Label: `Não inclui` + 3 itens: `Replay, porque a transmissão não fica gravada para ninguém` / `O networking e a conversa de corredor` / `Credenciamento e café`
-- Botão: `Assistir à transmissão`
+- Botão: `Assistir à transmissão ao vivo`
 
 **Bloco da cadeira, H3:** `Por que a cadeira custa mais`
 Parágrafo: `Cadeira é o único item desta página com estoque: a sala existe, tem paredes e um número finito de lugares [CONFIRMAR capacidade]. A transmissão não esbarra em parede nenhuma, e por isso custa bem menos. O método vai inteiro para os dois formatos; as pessoas, só para a sala.`
@@ -820,7 +820,7 @@ Linhas: `Lote 1 / até 11/08 / R$ 157 / R$ 67`, `Lote 2 / de 12/08 a 20/08 / R$ 
 `O presencial acaba quando as cadeiras acabam, enquanto o online não tem limite de lugares e sobe de preço nas mesmas datas. Se a virada de lote atrasar, vale o que estiver publicado: ninguém paga mais do que a página anuncia.`
 `O ingresso é pessoal e intransferível nos dois formatos, e a Sympla permite editar o participante uma única vez, até 24 horas antes do evento. O cancelamento com devolução integral é aceito em até 7 dias corridos da compra, desde que o pedido chegue até 48 horas antes do evento, conforme a política publicada na Sympla e o artigo 49 do Código de Defesa do Consumidor.`
 
-**CTA duplo da oferta:** `Garantir minha vaga` (cheio) · `Assistir ao vivo` (contorno)
+**CTA duplo da oferta:** `Garantir minha vaga presencial` (cheio) · `Assistir à transmissão ao vivo` (contorno)
 
 Nenhum botão carrega preço. Os preços aparecem exclusivamente nas células da tabela de lotes.
 
@@ -1121,7 +1121,7 @@ Parágrafo 2: `Depois dessa noite, anúncio de leilão vira um documento que voc
 
 Refrão (aparição 2 de 2): `Quem não entende o jogo não arremata. Assiste.`
 
-Botões: `Garantir minha vaga em Belo Horizonte` (primário) · `Assistir à transmissão ao vivo` (secundário)
+Botões: `Garantir minha vaga presencial` (primário) · `Assistir à transmissão ao vivo` (secundário)
 
 Endereço: `Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.`
 
@@ -1146,7 +1146,7 @@ Letra miúda: `Inscrição pela Sympla, no valor do lote vigente indicado na tab
       </blockquote>
     </figure>
     <div class="cta-final__ctas">
-      <button type="button" class="btn btn--fill" data-modalidade="presencial">Garantir minha vaga em Belo Horizonte</button>
+      <button type="button" class="btn btn--fill" data-modalidade="presencial">Garantir minha vaga presencial</button>
       <button type="button" class="btn btn--ghost" data-modalidade="online">Assistir à transmissão ao vivo</button>
     </div>
     <p class="cta-final__end">Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.</p>
@@ -1411,7 +1411,7 @@ Copyright: `© 2026 Faz Morar Imóveis · Todos os direitos reservados.`
 **Justificativa:** a barra só existe onde o dedo precisa dela: em telas até 680px e só depois que o leitor atravessou o mecanismo, quando a promessa já foi entendida. O vidro escuro com hairline superior repete o material do overlay do modal, sem preço em botão nenhum, como em toda a página.
 
 ### Conteúdo
-Botões: `Vaga em BH` (primário) · `Assistir ao vivo` (contorno). Sem preço, sem texto adicional.
+Botões: `Garantir minha vaga presencial` (primário) · `Assistir à transmissão ao vivo` (contorno). Sem preço, sem texto adicional.
 
 ### Layout
 ```html
@@ -1458,7 +1458,7 @@ new IntersectionObserver(function (entries) {
 
 ### Responsividade
 - **Acima de 680px:** `display: none`, sempre, sem exceção.
-- **680px:** grid 2 colunas iguais, botões com os rótulos curtos `Vaga em BH` e `Assistir ao vivo`, que não quebram linha (`white-space: nowrap`).
+- **680px:** grid 2 colunas iguais, botões com os rótulos curtos `Garantir minha vaga presencial` e `Assistir à transmissão ao vivo`, que não quebram linha (`white-space: nowrap`).
 
 ### Regras globais da página
 - **Foco:** `:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 2px; }` em todos os elementos interativos. Exceção única: inputs do modal, que trocam o outline pelo underline de 2px `var(--accent-deep)`.

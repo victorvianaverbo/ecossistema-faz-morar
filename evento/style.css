@@ -2041,10 +2041,13 @@ body.modal-aberta .barra { transform: translateY(110%); }
 /* Sem isso, arrastar sobre o overlay rola a página atrás do modal. */
 body.modal-aberta { overflow: hidden; }
 
+/* Os dois rótulos têm 30 caracteres e não cabem numa linha só na barra:
+   quebram em duas, e o botão cresce o necessário. */
 .barra__btn {
-  font-size: clamp(12.5px, 3.6vw, 14px);
-  padding: 14px 10px;
-  white-space: nowrap;
+  font-size: clamp(12px, 3.4vw, 13.5px);
+  padding: 11px 8px;
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 /* ---------- SEÇÃO 13 · MODAL DE CAPTURA ---------- */

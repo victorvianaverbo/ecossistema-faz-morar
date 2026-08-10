@@ -36,7 +36,7 @@ Entre nunca ter dado um lance e arrematar com segurança existe um caminho mais 
 
 **Botões (mesmo tamanho, lado a lado, sem preço)**
 
-`Garantir minha vaga em Belo Horizonte`
+`Garantir minha vaga presencial`
 `Assistir à transmissão ao vivo`
 
 **Microcopy sob os botões**
@@ -95,7 +95,7 @@ A noite inteira acontece com documento aberto e conta rodando na tela, na mesma 
 Todo documento passa por limpeza antes do telão, então nome, CPF e endereço de terceiros não aparecem.
 
 **[CTA duplo 1]**
-`Garantir minha vaga` · `Assistir ao vivo`
+`Garantir minha vaga presencial` · `Assistir à transmissão ao vivo`
 
 ---
 
@@ -122,7 +122,7 @@ Existe ainda o custo que manchete de desconto não mostra: enquanto o apartament
 É essa conta que separa quem captura a folga de quem a devolve em prejuízo, e é exatamente ela que você vai sair sabendo fazer: no dia 26 a planilha roda no telão alimentada por um edital real, para você ver de onde cada número sai.
 
 **[CTA duplo 2]**
-`Garantir minha vaga` · `Assistir ao vivo`
+`Garantir minha vaga presencial` · `Assistir à transmissão ao vivo`
 
 ---
 
@@ -219,7 +219,7 @@ Para quem consegue estar no Bairro Castelo numa quarta à noite e quer levar da 
 - Acesso à transmissão online
 - Análise individual do seu imóvel ou de um edital específico
 
-`Garantir vaga presencial`
+`Garantir minha vaga presencial`
 
 ---
 
@@ -241,7 +241,7 @@ Para quem está em outra cidade ou prefere um primeiro encontro comigo sem sair 
 - O networking e a conversa de corredor
 - Credenciamento e café
 
-`Assistir à transmissão`
+`Assistir à transmissão ao vivo`
 
 ---
 
@@ -262,7 +262,7 @@ O presencial acaba quando as cadeiras acabam, enquanto o online não tem limite 
 O ingresso é pessoal e intransferível nos dois formatos, e a Sympla permite editar o participante uma única vez, até 24 horas antes do evento. O cancelamento com devolução integral é aceito em até 7 dias corridos da compra, desde que o pedido chegue até 48 horas antes do evento, conforme a política publicada na Sympla e o artigo 49 do Código de Defesa do Consumidor.
 
 **[CTA duplo da oferta]**
-`Garantir minha vaga` · `Assistir ao vivo`
+`Garantir minha vaga presencial` · `Assistir à transmissão ao vivo`
 
 ---
 
@@ -320,7 +320,7 @@ Dá para continuar colecionando abas de leilão que você nunca lê até o fim, 
 
 > **Quem não entende o jogo não arremata. Assiste.**
 
-`Garantir minha vaga em Belo Horizonte`
+`Garantir minha vaga presencial`
 `Assistir à transmissão ao vivo`
 
 Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310. Ou ao vivo, de onde você estiver.
@@ -414,14 +414,14 @@ Apoio: AVANTIK
 
 | Onde | Presencial (cor cheia) | Online (contorno, mesmo tamanho) |
 |---|---|---|
-| Hero | `Garantir minha vaga em Belo Horizonte` | `Assistir à transmissão ao vivo` |
-| CTA duplo 1 (fim do currículo) | `Garantir minha vaga` | `Assistir ao vivo` |
-| CTA duplo 2 (fim da conta) | `Garantir minha vaga` | `Assistir ao vivo` |
-| Dentro do card presencial | `Garantir vaga presencial` | (não se aplica) |
-| Dentro do card online | (não se aplica) | `Assistir à transmissão` |
-| CTA duplo da oferta | `Garantir minha vaga` | `Assistir ao vivo` |
-| CTA final | `Garantir minha vaga em Belo Horizonte` | `Assistir à transmissão ao vivo` |
-| Barra fixa mobile | `Vaga em BH` | `Assistir ao vivo` |
+| Hero | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
+| CTA duplo 1 (fim do currículo) | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
+| CTA duplo 2 (fim da conta) | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
+| Dentro do card presencial | `Garantir minha vaga presencial` | (não se aplica) |
+| Dentro do card online | (não se aplica) | `Assistir à transmissão ao vivo` |
+| CTA duplo da oferta | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
+| CTA final | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
+| Barra fixa mobile | `Garantir minha vaga presencial` | `Assistir à transmissão ao vivo` |
 | Botão do modal | `Ir para a inscrição` | (único) |
 
 A família é binária e literal: **garantir** para o presencial, que tem estoque, e **assistir** para o online, que não tem. O par completo (em Belo Horizonte / à transmissão ao vivo) aparece só no hero e no CTA final, onde há largura para ele; nos CTAs do meio da página os rótulos encurtam para a forma nua, e no card e na barra assumem a variante do contexto. Nenhum botão carrega preço em nenhum lote.
