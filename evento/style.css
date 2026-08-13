@@ -113,41 +113,31 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(120px, 16vh, 170px) var(--pad-x) 34px;
+  padding: clamp(120px, 16vh, 170px) var(--pad-x) clamp(46px, 7vh, 78px);
   overflow: hidden;
 }
 
-/* fundo: numeral 25 gigante + glow */
-.hero__bg { position: absolute; inset: 0; pointer-events: none; }
+/* foto da cena ocupando o hero inteiro */
+.hero__foto { position: absolute; inset: 0; z-index: 0; }
 
-.hero__numeral {
-  position: absolute;
-  top: -0.15em;
-  right: -0.12em;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(340px, 46vw, 760px);
-  line-height: 0.8;
-  color: rgba(140, 239, 211, 0.02);
-  -webkit-text-stroke: 1.5px rgba(140, 239, 211, 0.22);
-  user-select: none;
-  animation: drift 26s ease-in-out infinite alternate;
+.hero__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 74% 50%;
+  display: block;
 }
 
-@keyframes drift {
-  from { transform: translate(0, 0); }
-  to   { transform: translate(-1.6vw, 3vh); }
-}
-
-.hero__glow {
+/* veu de legibilidade: fecha na esquerda, onde mora o texto, e abre na direita */
+.hero__veu {
   position: absolute;
-  left: -18vw;
-  bottom: -34vh;
-  width: 62vw;
-  height: 62vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(22, 168, 142, 0.17) 0%, transparent 62%);
-  filter: blur(10px);
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(100deg, rgba(7,19,16,0.97) 0%, rgba(7,19,16,0.94) 30%, rgba(7,19,16,0.66) 50%, rgba(7,19,16,0.2) 76%),
+    linear-gradient(to bottom, rgba(7,19,16,0.9) 0%, rgba(7,19,16,0) 24%),
+    linear-gradient(to top, rgba(7,19,16,0.75) 0%, rgba(7,19,16,0) 22%);
 }
 
 .hero__inner {
@@ -156,10 +146,6 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   width: 100%;
   max-width: var(--w-page);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.45fr);
-  gap: clamp(40px, 5vw, 84px);
-  align-items: center;
 }
 
 /* Headline — Type Hero: linhas escalonadas, pesos extremos */
@@ -227,8 +213,9 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
 
 /* Sub */
 .hero__sub {
-  max-width: 58ch;
-  font-size: clamp(16px, 1.35vw, 18.5px);
+  max-width: 44ch;
+  font-size: clamp(16.5px, 1.4vw, 19.5px);
+  line-height: 1.62;
   color: var(--text-muted);
   margin-bottom: clamp(28px, 4vh, 42px);
 }
@@ -294,13 +281,6 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
 .btn--ghost:hover { border-color: var(--mint); color: var(--mint); }
 .btn--ghost:hover::before { transform: scaleY(1); }
 
-.hero__micro {
-  max-width: 62ch;
-  font-size: 12.5px;
-  line-height: 1.65;
-  color: rgba(159, 179, 171, 0.75);
-}
-
 /* ============ FICHA DO EVENTO (papel) ============ */
 
 .ficha {
@@ -313,7 +293,8 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   box-shadow:
     0 30px 70px rgba(0, 0, 0, 0.5),
     0 4px 14px rgba(0, 0, 0, 0.35);
-  align-self: center;
+  max-width: 520px;
+  margin: clamp(40px, 6vh, 64px) 0 0;
 }
 
 .ficha::before {
@@ -407,17 +388,13 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
 
 /* Nota dos 42% */
 .hero__note {
-  position: relative;
-  z-index: 2;
-  max-width: min(var(--w-page), 100%);
-  margin: clamp(34px, 5vh, 54px) auto 0;
-  padding-left: 18px;
+  margin-top: clamp(20px, 3vh, 30px);
+  padding-left: 16px;
   border-left: 2px solid var(--accent);
   font-size: 12.5px;
-  line-height: 1.7;
+  line-height: 1.6;
   color: rgba(159, 179, 171, 0.85);
-  column-width: 38ch;
-  column-gap: 48px;
+  max-width: 52ch;
 }
 
 .hero__note a { color: var(--mint); }
@@ -591,7 +568,6 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero__numeral { animation: none; }
   .btn, .btn--ghost::before, .topbar__link { transition: none; }
   @supports (animation-timeline: view()) {
     .mec__row, .refrao { animation: none; }
@@ -601,7 +577,6 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
 /* ============ RESPONSIVO ============ */
 
 @media (max-width: 1060px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 54px; }
   .ficha { max-width: 460px; transform: rotate(-1deg); }
 }
 
@@ -611,18 +586,32 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   .topbar { padding: 20px var(--pad-x); }
   .topbar__edition { display: none; }
 
-  .hero { padding-top: 110px; min-height: auto; }
+  .hero { padding-top: 104px; justify-content: flex-start; }
 
-  .hero__numeral {
-    font-size: 300px;
-    top: -30px;
-    right: -60px;
-    -webkit-text-stroke-color: rgba(140, 239, 211, 0.14);
+  .hero__foto img { object-position: 50% 34%; }
+
+  /* no celular o texto fica no topo, entao o veu escurece de cima para baixo */
+  .hero__veu {
+    background: linear-gradient(to bottom,
+      rgba(7,19,16,0.96) 0%,
+      rgba(7,19,16,0.92) 32%,
+      rgba(7,19,16,0.7) 48%,
+      rgba(7,19,16,0.4) 66%,
+      rgba(7,19,16,0.66) 100%);
   }
 
-  .t-2 { font-size: clamp(36px, 12vw, 46px); }
-  .t-3 { column-gap: 0.3em; }
-  .t-3 .stat { font-size: clamp(40px, 13vw, 52px); }
+  .t-2 { font-size: clamp(30px, 9.2vw, 44px); }
+
+  /* no celular a headline vira texto corrido: em flex ela estourava a largura da tela */
+  .t-3 {
+    display: block;
+    column-gap: 0.3em;
+    font-size: clamp(23px, 6.8vw, 34px);
+  }
+  .t-3 .stat { font-size: clamp(36px, 10.5vw, 48px); }
+  .t-3b { display: inline; }
+
+  .hero__sub { max-width: 100%; }
 
   .hero__ctas { grid-template-columns: 1fr; max-width: none; }
   .btn { padding: 18px 16px; }

@@ -24,26 +24,27 @@ Uma noite para sair do zero: edital real projetado, a conta completa do lance at
 
 ---
 
-## 1. HERO · tipográfico, sem foto
+## 1. HERO · foto da Jacque em full-bleed, texto na coluna esquerda
 
-> Sem selo/kicker acima do título e sem eyebrows em nenhuma seção da página (decisão do Victor, 09/08). A data e o local vivem na ficha do evento e no corpo do texto.
+> Sem selo/kicker acima do título e sem eyebrows em nenhuma seção da página (decisão do Victor, 09/08).
+>
+> **Revisão de 13/08:** a dobra carregava 321 palavras e não cabia numa tela de 1080p. Foi enxugada para 66. O hero deixou de ser tipográfico puro e ganhou a foto da Jacque, a mesma direção de arte dos criativos do Meta Ads, para o anúncio e a página parecerem a mesma marca no primeiro segundo depois do clique. A ficha do evento saiu do hero e foi para a seção "A noite, hora a hora", ao lado do endereço. O microcopy de pagamento foi removido: parcelamento, taxas e horários já aparecem na tabela de lotes, em duas respostas do FAQ e na nota do CTA final.
 
-**Headline**
+**Headline** (mantida)
 # Aprenda a arrematar imóveis em leilão em média 42% abaixo da avaliação
 
 **Subheadline**
-Entre nunca ter dado um lance e arrematar com segurança existe um caminho mais curto do que parece, e ele cabe numa quarta-feira. No dia 26 de agosto eu abro um edital de verdade na tela e leio com você, na ordem em que leio desde 2007, traduzindo cada termo difícil e fechando a conta completa do lance até a chave. Presencial em Belo Horizonte ou ao vivo, de onde você estiver.
+No dia 26 de agosto eu abro um edital de verdade na tela e leio com você, linha por linha. Presencial em Belo Horizonte ou por transmissão ao vivo.
 
 **Botões (mesmo tamanho, lado a lado, sem preço)**
 
 `Garantir minha vaga presencial`
 `Assistir à transmissão ao vivo`
 
-**Microcopy sob os botões**
-Inscrição pela Sympla, em até 12x no cartão ou à vista no pix e no boleto, com o valor da parcela e as taxas da plataforma exibidos no checkout antes de você pagar. O valor do lote vigente está na tabela de lotes, mais abaixo nesta página. Presencial das 19h às 22h, transmissão ao vivo das 19h30 às 21h40.
+**Nota dos 42%, ainda na dobra, agora em uma linha**
+\* Média das compras que eu conduzi, sem escolher os melhores casos. [Como eu calculo.](#metodologia)
 
-**Nota dos 42%, visível logo abaixo do hero (não jogar para o rodapé)**
-\* Os 42% são a média do meu histórico: a distância entre o valor de avaliação, que é o preço que o processo atribui ao imóvel, e o lance que venceu o leilão, somando todas as compras que eu conduzi, sem escolher os melhores casos. Esse número mede o meu trabalho até aqui e não prevê o seu resultado, que depende do imóvel escolhido, da disputa do dia e dos custos que entram depois do lance. A metodologia completa está no fim desta página.
+> O texto integral da metodologia continua no rodapé, em `#metodologia`, que é o mesmo destino dos asteriscos usados nas seções da conta, do currículo e do FAQ. O compromisso de manter o número explicado na dobra foi preservado, só que em uma linha com link em vez de um parágrafo de 84 palavras.
 
 ---
 
@@ -189,6 +190,18 @@ A transmissão ao vivo cobre das 19h30 às 21h40.
 
 **Onde**
 Okay Hub de Negócios e Coworking · Rua Castelo de Alcázar, 125 · Bairro Castelo · Belo Horizonte/MG · CEP 31330-310
+
+**Ficha do evento** *(veio do hero em 13/08, para aliviar a dobra; o cartão de papel continua igual)*
+
+| | |
+|---|---|
+| Data | Quarta, 26 de agosto de 2026 |
+| Presencial | 19h às 22h · Okay Hub, Bairro Castelo, BH |
+| Ao vivo | Transmissão das 19h30 às 21h40 |
+| Formato | Edital real projetado e conta aberta na tela |
+| Investimento | Valor do lote vigente, na tabela de lotes desta página |
+
+Ingresso pessoal e intransferível · Arrependimento em 7 dias
 
 ---
 
