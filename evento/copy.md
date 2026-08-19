@@ -1,3 +1,18 @@
+> # ⚠️ ESTE ARQUIVO ESTÁ DESATUALIZADO A PARTIR DE 18/08/2026
+>
+> A Jacque avisou que a página descrevia coisas que ela **não faz** na noite: abrir edital na tela,
+> ler linha por linha, rodar planilha no telão e fechar a conta ao vivo. Nada disso acontece na
+> apresentação dela.
+>
+> **O que ela faz de verdade:** explica o que é leilão de imóveis, trata os medos que travam quem
+> quer comprar (imóvel ocupado e imóvel com dívida), conta a experiência dela desde 2007, abre para
+> perguntas e fecha com trinta minutos apresentando o Clube do Leilão.
+>
+> O `index.html` foi corrigido em 18/08 e **passa a ser a fonte de verdade**. Também saíram da
+> página os 42% e a seção da conta com o exemplo numérico, porque ela não abre valores no palco.
+> Este `copy.md` ainda descreve a versão antiga em vários pontos: use-o só como histórico até ser
+> reescrito.
+
 # LEILÃO & PROSA · 26 DE AGOSTO DE 2026 · COPY v4
 ### Promessa de aprendizado na frente · prosa fluida e profissional · voz da Jacque, primeira pessoa
 
