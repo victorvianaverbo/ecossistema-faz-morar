@@ -56,7 +56,7 @@ Cole no editor (Extensões > Apps Script), substituindo todo o conteúdo de `Có
  * NUNCA "Nova implantação": ela troca a URL /exec e derruba o formulário do site.
  */
 
-var VERSAO = '2026-08-10';
+var VERSAO = '2026-08-27';
 
 // ---------------------------------------------------------------- configuração
 var FUSO                  = 'America/Sao_Paulo';
@@ -334,8 +334,14 @@ function abasDeEdicao(ss) {
 
 function apontarResumoPara(ss, nomeAba) {
   var r = ss.getSheetByName(ABA_RESUMO) || criarResumo(ss);
-  r.getRange('B1').setValue(nomeAba);
+  // A ordem aqui importa e ja custou um lead (27/08/2026, ver _Falhas). A lista
+  // suspensa de B1 e estrita (setAllowInvalid(false)): escrever nela um nome de
+  // aba que ainda nao consta da lista levanta excecao, e essa excecao sobe pelo
+  // criarAbaEdicao ate o doPost, derrubando a gravacao do proprio lead que
+  // estava criando a aba. Ou seja: morria o primeiro lead de cada edicao nova.
+  // Primeiro a lista aprende o nome, so depois o valor entra.
   atualizarSeletor(ss, r);
+  r.getRange('B1').setValue(nomeAba);
 }
 
 function atualizarSeletor(ss, resumo) {
@@ -457,6 +463,57 @@ function configurarPlanilha() {
 
   ss.setActiveSheet(ss.getSheetByName(ABA_RESUMO));
   Logger.log('Pronto. Abas de edição: ' + abasDeEdicao(ss).join(', '));
+}
+
+/**
+ * Rode UMA VEZ no editor quando a planilha sair do lugar. Nao apaga nada, nao
+ * escreve em celula de lead e pode rodar quantas vezes quiser.
+ *   1. cria a aba da edicao atual, se ainda nao existir
+ *   2. devolve o cabecalho padrao a qualquer aba "Edicao *" fora dele
+ *      (um "z" digitado por cima de "Data", por exemplo)
+ *   3. refaz a lista suspensa do Resumo com todas as abas de edicao
+ *   4. aponta o Resumo para a edicao atual
+ *   5. lista no log as abas fora do padrao, sem deletar nenhuma
+ */
+function repararPlanilha() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  ss.setSpreadsheetTimeZone(FUSO);
+
+  var nome = nomeDaAba(EDICAO_ATUAL);
+  if (!ss.getSheetByName(nome)) {
+    criarAbaEdicao(ss, nome);
+    Logger.log('Aba criada: ' + nome);
+  }
+
+  ss.getSheets().forEach(function (aba) {
+    if (aba.getName().indexOf('Edicao ') !== 0) return;
+    var largura = Math.min(COLUNAS.length, aba.getMaxColumns());
+    var atual   = aba.getRange(1, 1, 1, largura).getValues()[0];
+    var torto   = false;
+    for (var i = 0; i < largura; i++) {
+      if (String(atual[i]).trim() !== COLUNAS[i]) { torto = true; break; }
+    }
+    if (!torto) return;
+    aba.getRange(1, 1, 1, largura)
+       .setValues([COLUNAS.slice(0, largura)])
+       .setFontWeight('bold').setBackground('#1F2A24').setFontColor('#FFFFFF')
+       .setVerticalAlignment('middle');
+    aba.setFrozenRows(1);
+    Logger.log('Cabecalho corrigido em "' + aba.getName() + '". Estava: ' + atual.join(' | '));
+  });
+
+  apontarResumoPara(ss, nome);
+  Logger.log('Resumo aponta para: ' + nome);
+
+  ss.getSheets().forEach(function (aba) {
+    var n = aba.getName();
+    if (n === ABA_RESUMO || n === ABA_FALHAS || n.indexOf('Edicao ') === 0) return;
+    Logger.log('Fora do padrao: "' + n + '" com ' + aba.getLastRow() +
+               ' linha(s). Nao mexi: confira e apague a mao se for lixo.');
+  });
+
+  ss.setActiveSheet(ss.getSheetByName(ABA_RESUMO));
+  Logger.log('Pronto.');
 }
 
 /**
