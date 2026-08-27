@@ -1,5 +1,5 @@
 /* ============================================================
-   LEILÃO & PROSA · EVENTO 25/08 · DESIGN v3 "PREMIUM NOTURNO"
+   LEILÃO & PROSA · EVENTO 23/09 · DESIGN v3 "PREMIUM NOTURNO"
    Type Hero assimétrico · Fraunces + DM Sans · dark seletivo
    ============================================================ */
 
@@ -572,12 +572,14 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   @supports (animation-timeline: view()) {
     .mec__row, .refrao { animation: none; }
   }
+
 }
 
 /* ============ RESPONSIVO ============ */
 
 @media (max-width: 1060px) {
   .ficha { max-width: 460px; transform: rotate(-1deg); }
+
 }
 
 @media (max-width: 680px) {
@@ -631,6 +633,7 @@ a { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3
   .refrao { grid-template-columns: 1fr; row-gap: 10px; }
   .refrao::before { font-size: 72px; line-height: 0.8; }
   .refrao__bridge { grid-column: 1; }
+
 }
 
 /* ============================================================
@@ -676,17 +679,7 @@ mark.confirmar {
 
 .ast:hover { color: var(--mint); }
 
-
 [id] { scroll-margin-top: 28px; }
-
-
-
-/* Títulos de seção compartilham o em itálico menta do mecanismo */
-.curr__title em, .conta__title em, .oferta__title em {
-  font-style: italic;
-  font-weight: 650;
-  color: var(--mint);
-}
 
 /* ---------- SEÇÃO 4 · O CURRÍCULO DA NOITE ---------- */
 
@@ -801,119 +794,6 @@ mark.confirmar {
   color: rgba(159, 179, 171, 0.85);
 }
 
-/* ---------- SEÇÃO 5 · A CONTA ---------- */
-
-.conta {
-  background: var(--bg-1);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(90px, 13vh, 150px) var(--pad-x);
-}
-
-.conta__inner { max-width: 880px; margin: 0 auto; }
-
-.conta__title {
-  font-family: var(--font-display);
-  font-weight: 450;
-  font-size: clamp(32px, 4.2vw, 60px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-.conta__p {
-  margin-top: 22px;
-  max-width: 68ch;
-  font-size: clamp(15.5px, 1.25vw, 17.5px);
-  color: var(--text-muted);
-}
-
-.conta__p--first { margin-top: clamp(26px, 4vh, 38px); }
-
-.quadro {
-  margin: clamp(40px, 6vh, 62px) 0 clamp(28px, 4vh, 42px);
-}
-
-.quadro__aviso {
-  padding: 14px 18px;
-  background: rgba(14, 122, 103, 0.07);
-  border-top: 1px dashed rgba(14, 33, 28, 0.28);
-  border-bottom: 1px dashed rgba(14, 33, 28, 0.28);
-  font-weight: 400;
-  font-size: 12.5px;
-  line-height: 1.6;
-  letter-spacing: 0.005em;
-  color: rgba(14, 33, 28, 0.82);
-}
-
-.quadro__aviso strong {
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-deep);
-}
-
-.quadro__trio {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-bottom: 1px solid var(--line);
-}
-
-.quadro__cel {
-  padding: clamp(20px, 3vh, 30px) clamp(16px, 2vw, 26px) clamp(20px, 3vh, 30px) 0;
-}
-
-.quadro__cel + .quadro__cel {
-  padding-left: clamp(16px, 2vw, 26px);
-  border-left: 1px solid var(--line);
-}
-
-.quadro__cel--folga { background: rgba(14, 122, 103, 0.05); }
-
-.quadro__num {
-  display: block;
-  margin-bottom: 8px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(26px, 3.4vw, 42px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--text);
-}
-
-.quadro__cel--folga .quadro__num { color: var(--accent-deep); }
-
-.quadro__rot {
-  display: block;
-  max-width: 34ch;
-  font-weight: 400;
-  font-size: 12.5px;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: var(--text-muted);
-  text-wrap: pretty;
-}
-
-.quadro__tempo {
-  margin-top: 12px;
-  font-weight: 400;
-  font-size: 12.5px;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
-  color: var(--text-muted);
-}
-
-.conta__p--honest { margin-top: 18px; }
-
-.conta__ctas {
-  margin-top: clamp(40px, 6vh, 56px);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 660px;
-}
-
 /* ---------- SEÇÃO 6 · OS DOIS PÚBLICOS ---------- */
 
 .pub__inner {
@@ -1001,6 +881,7 @@ mark.confirmar {
   .pub__split .pub__panel:hover { opacity: 1; filter: none; }
   .pub__split .pub__panel--investir:hover { background: rgba(140, 239, 211, 0.05); }
   .pub__split .pub__panel--morar:hover { background: rgba(22, 168, 142, 0.08); }
+
 }
 
 .pub__honest {
@@ -1296,17 +1177,6 @@ mark.confirmar {
   letter-spacing: 0.02em;
 }
 
-.agenda__online {
-  margin-top: 18px;
-  padding-left: 18px;
-  border-left: 2px solid var(--accent);
-  font-weight: 400;
-  font-size: clamp(14.5px, 1.15vw, 16px);
-  line-height: 1.65;
-  letter-spacing: 0.01em;
-  color: var(--text);
-}
-
 .agenda__onde {
   margin-top: clamp(44px, 6vh, 64px);
   border-top: 1px solid var(--line);
@@ -1335,324 +1205,55 @@ mark.confirmar {
   color: var(--text);
 }
 
-/* ---------- SEÇÃO 10 · A OFERTA ---------- */
-
-.oferta {
-  padding: clamp(90px, 13vh, 150px) var(--pad-x) clamp(80px, 11vh, 130px);
-  max-width: calc(var(--w-page) + 2 * 56px);
-  margin: 0 auto;
-}
-
-.oferta__head { max-width: 880px; margin-bottom: clamp(46px, 6vh, 72px); }
-
-.oferta__title {
-  font-family: var(--font-display);
-  font-weight: 450;
-  font-size: clamp(32px, 4.2vw, 60px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-.oferta__lead {
-  margin-top: 20px;
-  max-width: 62ch;
-  font-size: clamp(15.5px, 1.25vw, 17.5px);
-  color: var(--text-muted);
-}
-
-.oferta__cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 3.2vw, 48px);
-  align-items: start;
-  max-width: 1080px;
-  margin: 0 auto clamp(70px, 9vh, 110px);
-}
-
-.ticket-wrap { position: relative; }
-
-.ticket {
-  position: relative;
-  border-radius: 6px;
-  padding: 34px 34px 36px calc(64px + 28px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.ticket--paper {
-  background: var(--paper);
-  color: var(--ink-inverse);
-  transform: rotate(-1deg);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 4px 14px rgba(0, 0, 0, 0.35);
-}
-
-.ticket--dark {
-  background: var(--bg-1);
-  border: 1px solid var(--line-strong);
-  color: var(--text);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-}
-
-.ticket--paper:hover {
-  transform: rotate(-1deg) translateY(-4px);
-  box-shadow: 0 38px 80px rgba(0, 0, 0, 0.55), 0 6px 18px rgba(0, 0, 0, 0.4);
-}
-
-.ticket--dark:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 28px 62px rgba(0, 0, 0, 0.48);
-  border-color: rgba(241, 237, 228, 0.35);
-}
-
-/* Perfuração do canhoto */
-.ticket::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 60px;
-  width: 8px;
-  background-image: radial-gradient(circle at 4px 9px, var(--bg-0) 3px, transparent 3.5px);
-  background-size: 8px 18px;
-  background-repeat: repeat-y;
-  pointer-events: none;
-}
-
-.ticket::after {
-  content: "";
-  position: absolute;
-  left: 57px;
-  top: -7px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--bg-0);
-}
-
-.ticket-wrap::after {
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  left: 57px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--bg-0);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.ticket__stub {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 64px;
-  display: grid;
-  place-content: center;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1;
-  user-select: none;
-}
-
-.ticket--paper .ticket__stub { color: var(--accent-deep); }
-.ticket--dark .ticket__stub { color: rgba(140, 239, 211, 0.75); }
-
-.ticket__stub i {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  font-style: normal;
-  margin-top: 4px;
-}
-
-.ticket__title { margin: 4px 0 6px; }
-
-.ticket__mode {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(24px, 2.3vw, 31px);
-  line-height: 1.1;
-  letter-spacing: 0.01em;
-}
-
-.ticket__place {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 13.5px;
-  letter-spacing: 0.04em;
-}
-
-.ticket--paper .ticket__place { color: rgba(14, 33, 28, 0.7); }
-.ticket--dark .ticket__place { color: var(--text-muted); }
-
-.ticket__lote {
-  margin-bottom: 24px;
-  padding-bottom: 18px;
-  font-weight: 500;
-  font-size: 13.5px;
-  line-height: 1.55;
-}
-
-.ticket--paper .ticket__lote { color: var(--accent-deep); border-bottom: 1px dashed rgba(14, 33, 28, 0.2); }
-.ticket--dark .ticket__lote { color: var(--mint); border-bottom: 1px dashed var(--line); }
-
-.ticket__label {
-  margin: 22px 0 8px;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.ticket--paper .ticket__label { color: rgba(14, 33, 28, 0.65); }
-.ticket--dark .ticket__label { color: var(--text-muted); }
-
-.ticket__who {
-  max-width: 52ch;
-  font-size: 14.5px;
-  line-height: 1.65;
-}
-
-.ticket--paper .ticket__who { font-weight: 400; }
-.ticket--dark .ticket__who { font-weight: 300; color: var(--text-muted); }
-
-.ticket__list { list-style: none; margin: 0; padding: 0; }
-
-.ticket__list li {
-  padding: 9px 0;
-  font-size: 14.5px;
-  line-height: 1.55;
-}
-
-.ticket--paper .ticket__list li { font-weight: 400; border-top: 1px dashed rgba(14, 33, 28, 0.2); }
-.ticket--dark .ticket__list li { font-weight: 300; color: var(--text-muted); border-top: 1px dashed var(--line); }
-
-.ticket--paper .ticket__list li:last-child { border-bottom: 1px dashed rgba(14, 33, 28, 0.2); }
-.ticket--dark .ticket__list li:last-child { border-bottom: 1px dashed var(--line); }
-
-.ticket--paper .ticket__list--out li { color: rgba(14, 33, 28, 0.58); }
-.ticket--dark .ticket__list--out li { color: rgba(159, 179, 171, 0.6); }
-
-.ticket__btn { display: block; width: 100%; margin-top: 28px; }
-
-.ticket--paper .btn--fill { box-shadow: 0 4px 18px rgba(14, 33, 28, 0.25); }
-
-.oferta__cadeira {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(24px, 4vw, 64px);
-  max-width: 1080px;
-  margin: 0 auto clamp(60px, 8vh, 96px);
-  padding-top: clamp(40px, 6vh, 64px);
+/* O que a vaga inclui: duas colunas de lista documental, no mesmo papel */
+.inclui {
+  margin-top: clamp(40px, 5.5vh, 60px);
+  padding-top: clamp(30px, 4vh, 44px);
   border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(28px, 4vw, 64px);
   align-items: start;
 }
 
-.oferta__h3 {
-  font-family: var(--font-display);
-  font-weight: 550;
-  font-size: clamp(24px, 2.6vw, 36px);
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-.oferta__cadeira-txt {
-  max-width: 58ch;
-  font-size: clamp(15.5px, 1.25vw, 17.5px);
-  color: var(--text-muted);
-}
-
-.lotes {
-  max-width: 880px;
-  margin: 0 auto clamp(56px, 8vh, 88px);
-}
-
-.lotes__h3 { margin-bottom: 28px; }
-
-.lotes__scroll { overflow-x: auto; }
-
-.lotes__table {
-  width: 100%;
-  min-width: 520px;
-  border-collapse: collapse;
-}
-
-.lotes__table th {
-  text-align: left;
-  padding: 16px 18px 16px 0;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(159, 179, 171, 0.85);
-}
-
-.lotes__table td {
-  text-align: left;
-  padding: 16px 18px 16px 0;
-}
-
-.lotes__table th.num,
-.lotes__table td.num {
-  text-align: right;
-  padding-right: 0;
-  padding-left: 18px;
-}
-
-.lotes__table tbody tr { border-top: 1px solid var(--line); }
-.lotes__table tbody tr:last-child { border-bottom: 1px solid var(--line); }
-
-.lotes__table td:first-child { font-weight: 500; font-size: 14.5px; color: var(--text); }
-.lotes__table td:nth-child(2) { font-weight: 300; font-size: 14.5px; color: var(--text-muted); }
-
-.lotes__table td.num {
+.inclui__titulo {
   font-family: var(--font-display);
   font-weight: 550;
   font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.2;
   letter-spacing: -0.01em;
-  font-variant-numeric: tabular-nums;
   color: var(--text);
+  margin-bottom: 14px;
 }
 
-.lotes__table tr.is-vigente {
-  background: rgba(140, 239, 211, 0.045);
-  box-shadow: inset 2px 0 0 var(--accent);
-}
+.inclui__lista { list-style: none; margin: 0; padding: 0; }
 
-.lotes__table tr.is-vigente td.num { color: var(--mint); }
-
-.lotes__nota {
-  margin-top: 24px;
-  max-width: 68ch;
-  font-size: clamp(15.5px, 1.25vw, 17.5px);
+.inclui__lista li {
+  padding: 10px 0;
+  border-top: 1px dashed var(--line);
+  font-weight: 400;
+  font-size: 14.5px;
+  line-height: 1.55;
   color: var(--text-muted);
 }
 
-.lotes__legal {
-  margin-top: 14px;
-  max-width: 68ch;
+.inclui__lista li:last-child { border-bottom: 1px dashed var(--line); }
+
+.inclui__lista--out li { color: rgba(74, 95, 88, 0.72); }
+
+.agenda__legal {
+  margin-top: clamp(26px, 3.5vh, 36px);
+  max-width: 74ch;
   font-weight: 300;
   font-size: 13px;
   line-height: 1.65;
-  color: rgba(159, 179, 171, 0.85);
+  color: var(--text-muted);
 }
 
-.oferta__ctas {
+.agenda__ctas {
+  margin-top: clamp(30px, 4vh, 42px);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 660px;
-  margin: 0 auto;
+  grid-template-columns: minmax(0, 360px);
 }
 
 /* ---------- SEÇÃO 11 · FAQ ---------- */
@@ -2285,15 +1886,10 @@ body.modal-aberta { overflow: hidden; }
     animation-timeline: view();
     animation-range: entry 0% entry 42%;
   }
-  .conta__title, .conta__p, .conta__ctas {
+  .inclui, .agenda__legal, .agenda__ctas {
     animation: rise linear both;
     animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
-  .quadro {
-    animation: rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 45%;
+    animation-range: entry 0% entry 42%;
   }
   .pub__panel {
     animation: rise linear both;
@@ -2331,12 +1927,6 @@ body.modal-aberta { overflow: hidden; }
     animation-timeline: view();
     animation-range: entry 15% exit 80%;
   }
-  .ticket-wrap, .oferta__cadeira, .lotes, .oferta__ctas {
-    animation: rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 42%;
-  }
-  .ticket-wrap:nth-child(2) { animation-range: entry 0% entry 50%; }
   .faq__title, .faq__item {
     animation: rise linear both;
     animation-timeline: view();
@@ -2367,17 +1957,12 @@ body.modal-aberta { overflow: hidden; }
 /* ---------- MOVIMENTO REDUZIDO (seções 4 a 15) ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .curr__num, .curr__lead, .ticket, .faq__q, .faq__num, .faq__mark,
-  .faq__a-wrap, .faq__a, .modal__overlay, .modal__card,
-  .rodape__metodologia, .pub__panel, .pub__panel::before, .ast {
-    transition: none;
-  }
   @supports (animation-timeline: view()) {
     .curr__left, .curr__item, .curr__privacy,
-    .conta__title, .conta__p, .conta__ctas, .quadro,
+    .inclui, .agenda__legal, .agenda__ctas,
     .pub__panel, .pub__honest-inner,
     .prof__media, .prof__body, .prof__numeros,
-    .tl__item, .ticket-wrap, .oferta__cadeira, .lotes, .oferta__ctas,
+    .tl__item,
     .faq__title, .faq__item,
     .cta-final__title, .cta-final__p, .cta-final__refrao,
     .cta-final__ctas, .cta-final__end, .cta-final__fine {
@@ -2385,6 +1970,7 @@ body.modal-aberta { overflow: hidden; }
     }
     .tl::after { animation: none; transform: scaleY(1); }
   }
+
 }
 
 /* ---------- RESPONSIVO 1060px (seções 4 a 15) ---------- */
@@ -2402,7 +1988,6 @@ body.modal-aberta { overflow: hidden; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
-
 
   .pub__split { grid-template-columns: 1fr; }
   .pub__panel--morar { border-left: none; border-top: 1px solid var(--line); }
@@ -2424,8 +2009,6 @@ body.modal-aberta { overflow: hidden; }
   .tl::before, .tl::after { left: calc(clamp(64px, 9vw, 96px) + clamp(16px, 2.5vw, 28px) + 9.5px); }
   .tl__hora { font-size: clamp(20px, 2.6vw, 26px); }
 
-  .oferta__cards { grid-template-columns: 1fr; max-width: 560px; gap: 40px; }
-  .oferta__cadeira { grid-template-columns: 1fr; gap: 16px; }
 }
 
 /* ---------- RESPONSIVO 680px (seções 4 a 15) ---------- */
@@ -2437,20 +2020,6 @@ body.modal-aberta { overflow: hidden; }
   .curr__text { padding-top: 4px; }
   .curr__ctas { grid-template-columns: 1fr; gap: 12px; max-width: none; }
   .curr__privacy { margin-top: 20px; font-size: 12.5px; }
-
-  .conta { padding: 70px var(--pad-x) 76px; }
-  .quadro { margin: 34px 0 26px; }
-  .quadro__aviso { padding: 14px; font-size: 12px; }
-  .quadro__trio { grid-template-columns: 1fr; }
-  .quadro__cel { padding: 18px 0; border-top: 1px solid var(--line); }
-  .quadro__cel:first-child { border-top: none; }
-  .quadro__cel + .quadro__cel { padding-left: 0; border-left: none; }
-  .quadro__cel--folga { margin: 0 -14px; padding-right: 14px; }
-  /* precisa vencer o .quadro__cel + .quadro__cel acima, que zera o padding */
-  .quadro__cel + .quadro__cel--folga { padding-left: 14px; }
-  .quadro__num { font-size: 30px; }
-  .quadro__rot { max-width: none; }
-  .conta__ctas { grid-template-columns: 1fr; gap: 12px; max-width: none; }
 
   .pub__panel { padding: 28px 0 36px; }
   .pub__ghost { font-size: 64px; top: 10px; left: 0; -webkit-text-stroke-color: rgba(140, 239, 211, 0.14); }
@@ -2473,23 +2042,9 @@ body.modal-aberta { overflow: hidden; }
   .tl__item--pitch { margin: 8px -12px; padding: 18px 12px; }
   .tl__desc { max-width: none; }
   .agenda__onde { grid-template-columns: 1fr; row-gap: 8px; }
+  .inclui { grid-template-columns: 1fr; gap: 26px; }
+  .agenda__ctas { grid-template-columns: 1fr; }
   .agenda__onde-title { text-align: left; }
-
-  .ticket { padding: 28px 22px 30px calc(48px + 20px); }
-  .ticket__stub { width: 48px; font-size: 12px; }
-  .ticket::before { left: 44px; }
-  .ticket::after { left: 41px; }
-  .ticket-wrap::after { left: 41px; }
-  .ticket--paper { transform: none; }
-  .ticket--paper:hover { transform: translateY(-4px); }
-  .ticket__mode { font-size: 22px; }
-  .lotes__table { min-width: 380px; }
-  .lotes__table th { font-size: 11.5px; letter-spacing: 0.08em; }
-  .lotes__table th, .lotes__table td { padding-right: 10px; }
-  .lotes__table td { padding: 13px 10px 13px 0; }
-  .lotes__table td.num { font-size: 18px; }
-  .ticket__label { font-size: 12px; letter-spacing: 0.14em; }
-  .oferta__ctas { grid-template-columns: 1fr; }
 
   .faq__q { grid-template-columns: 34px 1fr 22px; gap: 12px; padding: 20px 4px; }
   .faq__num { font-size: 14px; }
@@ -2531,13 +2086,10 @@ body.modal-aberta { overflow: hidden; }
   /* Alvos de toque mínimos */
   .topbar__link { padding: 12px 20px; }
   .ast { font-size: 0.7em; }
+
 }
 
 /* Telas de 320 a 420px: o canhoto do ingresso comia 21% da largura útil */
 @media (max-width: 420px) {
-  .ticket { padding: 24px 16px 26px calc(38px + 16px); }
-  .ticket__stub { width: 38px; font-size: 11px; }
-  .ticket::before { left: 34px; }
-  .ticket::after,
-  .ticket-wrap::after { left: 31px; }
+
 }

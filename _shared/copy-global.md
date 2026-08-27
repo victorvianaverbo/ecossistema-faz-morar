@@ -119,7 +119,7 @@ Regra: nenhum link pode ir ao ar como `#`. Enquanto um placeholder não estiver 
 | Consórcio Caixa | consorcio/ | /consorcio/ |
 | Conta Caixa PF | conta-caixa/ | /conta-caixa/ |
 | Seguros | seguros/ | /seguros/ |
-| Evento ao vivo | evento/ | /evento/ |
+| Evento presencial | evento/ | /evento/ |
 | Comunidade gratuita Leilão & Prosa | comunidade/ | /comunidade/ |
 | Consultoria especializada | consultoria/ | /consultoria/ |
 | Livro Leilão & Prosa | livro/ | /livro/ |

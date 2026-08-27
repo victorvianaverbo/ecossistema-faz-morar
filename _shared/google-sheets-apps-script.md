@@ -15,7 +15,7 @@ Como os leads da landing page chegam no Google Sheets, como a planilha é organi
 | Aba | O que é |
 |---|---|
 | `Resumo` | Painel. Um seletor em `B1` escolhe a edição e todos os números acompanham. |
-| `Edicao 26-08-2026` | Uma aba por edição do evento, criada automaticamente pelo script. |
+| `Edicao 23-09-2026` | Uma aba por edição do evento, criada automaticamente pelo script. |
 | `Historico 28-07-2026` | A aba original, com os 36 leads de julho e as anotações de ligação. Congelada. |
 | `_Falhas` | Criada só se algum envio der erro, guardando o payload cru. |
 
@@ -23,7 +23,7 @@ Como os leads da landing page chegam no Google Sheets, como a planilha é organi
 
 `Data · Nome · WhatsApp · E-mail · Modalidade · Status · Observação da ligação · utm_source · utm_medium · utm_campaign · utm_content · utm_term · fbclid · gclid · Referrer · Origem · Evento`
 
-A ordem é a de quem trabalha a lista: contato e modalidade primeiro (quem escolhe online costuma morar fora de BH, e isso muda a conversa), as duas colunas da equipe em seguida, e o rastro de mídia no fim.
+A ordem é a de quem trabalha a lista: contato primeiro, as duas colunas da equipe em seguida, e o rastro de mídia no fim. A coluna Modalidade sobrevive por compatibilidade com as edições que tinham transmissão online; a partir de setembro ela grava sempre `presencial`.
 
 ---
 
@@ -63,7 +63,7 @@ var FUSO                  = 'America/Sao_Paulo';
 var ABA_RESUMO            = 'Resumo';
 var ABA_FALHAS            = '_Falhas';
 var ABA_SEM_EDICAO        = 'Edicao sem data';
-var EDICAO_ATUAL          = '2026-08-26';  // mesmo valor do input hidden "evento"
+var EDICAO_ATUAL          = '2026-09-23';  // mesmo valor do input hidden "evento"
 // Em milissegundos, e não em minutos multiplicados: multiplicação em cadeia
 // dentro de documentação markdown já chegou aqui sem os operadores.
 var JANELA_DUPLICIDADE_MS = 600000;        // 10 minutos
@@ -233,7 +233,7 @@ function registrarFalha(e, err) {
 // ---------------------------------------------------------------- abas
 
 /**
- * "2026-08-26" vira "Edicao 26-08-2026". Sem acento de propósito: o nome entra
+ * "2026-09-23" vira "Edicao 23-09-2026". Sem acento de propósito: o nome entra
  * dentro de fórmulas INDIRECT no Resumo, e nome simples não dá dor de cabeça.
  */
 function nomeDaAba(evento) {
@@ -514,9 +514,9 @@ function testeDeGravacao() {
 
 **4. Fuso do projeto.** Engrenagem à esquerda (*Configurações do projeto*) > **Fuso horário** > `(GMT-03:00) São Paulo`.
 
-**5. Montar a estrutura.** Volte ao *Editor*, no seletor de função escolha **`configurarPlanilha`** e clique em **Executar**. Vai pedir autorização: *Revisar permissões* > sua conta > *Avançado* > *Acessar Projeto sem título (não seguro)* > **Permitir**. O log deve mostrar `Pronto. Abas de edição: Edicao 26-08-2026`.
+**5. Montar a estrutura.** Volte ao *Editor*, no seletor de função escolha **`configurarPlanilha`** e clique em **Executar**. Vai pedir autorização: *Revisar permissões* > sua conta > *Avançado* > *Acessar Projeto sem título (não seguro)* > **Permitir**. O log deve mostrar `Pronto. Abas de edição: Edicao 23-09-2026`.
 
-**6. Conferir.** Na planilha devem existir, nesta ordem: `Resumo`, `Edicao 26-08-2026`, `Historico 28-07-2026`. Abra a de julho e confirme as 36 linhas com a coluna de observação intacta na 13ª posição.
+**6. Conferir.** Na planilha devem existir, nesta ordem: `Resumo`, `Edicao 23-09-2026`, `Historico 28-07-2026`. Abra a de julho e confirme as 36 linhas com a coluna de observação intacta na 13ª posição.
 
 **7. Testar a gravação.** No editor, função **`testeDeGravacao`** > **Executar**. Na aba da edição deve aparecer a linha `TESTE - APAGAR` com o telefone `5531999999999` como texto (sem `#ERROR!`) e a campanha de 18 dígitos íntegra. Confira o `Resumo`: total 1, online 1. Depois apague a linha.
 

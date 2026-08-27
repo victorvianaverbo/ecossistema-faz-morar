@@ -1,4 +1,4 @@
-// Evento 25/08 · interatividade da página (vanilla, sem dependências).
+// Evento 23/09 · interatividade da página (vanilla, sem dependências).
 // O envio do formulário, as UTMs e os eventos de conversão ficam no /_shared/forms.js.
 (function () {
   'use strict';
@@ -21,14 +21,6 @@
     quemAbriu = botao;
     var modalidade = botao.getAttribute('data-modalidade') || 'presencial';
     if (campoModalidade) campoModalidade.value = modalidade;
-
-    // Cada modalidade tem um evento próprio na Sympla. O forms.js lê o
-    // data-redirect na hora do envio, então basta trocá-lo aqui.
-    var form = modal.querySelector('form');
-    if (form) {
-      var destino = form.getAttribute('data-redirect-' + modalidade);
-      if (destino) form.setAttribute('data-redirect', destino);
-    }
 
     modal.hidden = false;
     document.body.classList.add('modal-aberta');
@@ -75,46 +67,6 @@
     });
   }
 
-  /* ---------- Contadores da planilha (progressive enhancement) ---------- */
-
-  function formatar(valor) {
-    return 'R$ ' + new Intl.NumberFormat('pt-BR').format(Math.round(valor));
-  }
-
-  function animarContador(el, atraso) {
-    var alvo = parseInt(el.getAttribute('data-target'), 10);
-    if (!alvo) return;
-    var duracao = parseInt(el.getAttribute('data-duracao'), 10) || 900;
-    var delay = parseInt(el.getAttribute('data-delay'), 10) || atraso || 0;
-    var inicio = null;
-
-    function passo(agora) {
-      if (!inicio) inicio = agora;
-      var t = Math.min((agora - inicio) / duracao, 1);
-      var suave = 1 - Math.pow(1 - t, 3); // easeOutCubic
-      el.textContent = formatar(alvo * suave);
-      if (t < 1) requestAnimationFrame(passo);
-      else el.textContent = formatar(alvo);
-    }
-
-    setTimeout(function () { requestAnimationFrame(passo); }, delay);
-  }
-
-  if (!reduzido.matches && 'IntersectionObserver' in window) {
-    var alvosContador = [document.querySelector('.quadro__trio')];
-    alvosContador.forEach(function (alvo) {
-      if (!alvo) return;
-      var obs = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) return;
-        obs.disconnect();
-        alvo.querySelectorAll('.count').forEach(function (el, i) {
-          animarContador(el, i * 70);
-        });
-      }, { threshold: 0.35 });
-      obs.observe(alvo);
-    });
-  }
-
   /* ---------- FAQ: abertura animada com grid-template-rows ---------- */
 
   document.querySelectorAll('.faq__item').forEach(function (item) {
@@ -154,16 +106,4 @@
     });
   });
 
-  /* ---------- Lote vigente na tabela ---------- */
-
-  var hoje = new Date();
-  var lote = 1;
-  if (hoje >= new Date(2026, 7, 21)) lote = 3;      // a partir de 21/08/2026
-  else if (hoje >= new Date(2026, 7, 12)) lote = 2; // de 12/08 a 20/08/2026
-
-  var linhaVigente = document.querySelector('.lotes__table tr[data-lote="' + lote + '"]');
-  if (linhaVigente) {
-    linhaVigente.classList.add('is-vigente');
-    linhaVigente.setAttribute('aria-current', 'true');
-  }
 })();

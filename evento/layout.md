@@ -1,4 +1,7 @@
-# LAYOUT.MD · LEILÃO & PROSA · EVENTO 26/08/2026 · v3 "PREMIUM NOTURNO"
+# LAYOUT.MD · LEILÃO & PROSA · EVENTO 23/09/2026 · v3 "PREMIUM NOTURNO"
+
+> **Revisão de 01/09/2026 (edição de setembro):** a data virou quarta, 23 de setembro. **Acabou a transmissão online**: todos os CTAs vendem a vaga presencial, e saíram o card dark, a coluna Online da tabela, a linha Ao vivo da ficha e as regras `.ticket--dark`. **A seção 10 (A Oferta) foi removida inteira**, junto com a tabela de lotes e o bloco "Por que a cadeira custa mais", que só existia para comparar com a transmissão; o que inclui e o que não inclui virou o bloco `.inclui` dentro da seção da programação, que herdou o `id="ingressos"` para o link da topbar continuar válido. A página não exibe mais preço de ingresso. O Clube do Leilão passou a aparecer na bio e no fecho dos públicos.
+
 
 > Especificação completa da página, seção a seção, baseada na copy v4 (`copy.md`) e no design aprovado do hero + faixa + mecanismo (`index.html` + `style.css` na raiz da pasta). Este documento é a bíblia do `/desenvolver`: nada aqui é sugestão, tudo é valor exato.
 > A versão anterior da página vive em `_backup_v1/` e deve ser IGNORADA. Onde este documento e o HTML atual divergirem, este documento vence.
@@ -123,7 +126,7 @@ Exato da copy seção 1 (sem selo/kicker): H1 "Aprenda a arrematar imóveis em l
 
 ### Layout
 - `position: relative; min-height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center;` padding `clamp(120px,16vh,170px) var(--pad-x) 34px`.
-- Topbar absoluto: wordmark "Leilão & Prosa" (Fraunces 500 19px, & itálico 300 em `--mint`) à esquerda; "Edição 26.08" (11.5px 500 tracking 0.22em uppercase `--text-muted`) + pill "Ingressos" (13px 500 tracking 0.14em uppercase, borda `--line-strong`, raio 999px, padding 10px 22px, hover `--mint`) à direita; padding 26px var(--pad-x).
+- Topbar absoluto: wordmark "Leilão & Prosa" (Fraunces 500 19px, & itálico 300 em `--mint`) à esquerda; "Edição 23.09" (11.5px 500 tracking 0.22em uppercase `--text-muted`) + pill "Ingressos" (13px 500 tracking 0.14em uppercase, borda `--line-strong`, raio 999px, padding 10px 22px, hover `--mint`) à direita; padding 26px var(--pad-x).
 - `.hero__inner`: grid `minmax(0,1.55fr) minmax(300px,0.45fr)`, gap `clamp(40px,5vw,84px)`, align center, máx 1240px.
 - Fundo: numeral "25" absoluto (top -0.15em, right -0.12em, `font-size: clamp(340px,46vw,760px)`, Fraunces 700, stroke 1.5px rgba(140,239,211,0.22), fill rgba(140,239,211,0.02), lh 0.8, drift `translate(0,0) → translate(-1.6vw,3vh)` 26s ease-in-out infinite alternate) + glow radial (left -18vw, bottom -34vh, 62vw x 62vw, `radial-gradient(circle, rgba(22,168,142,0.17) 0%, transparent 62%)`, blur 10px).
 - Nota dos 42% abaixo do grid: `border-left: 2px solid var(--accent)`, padding-left 18px, `column-width: 38ch; column-gap: 48px`, 12.5px lh 1.7, rgba(159,179,171,0.85), margem-top `clamp(34px,5vh,54px)`, id `nota-42`.
@@ -136,14 +139,14 @@ Exato da copy seção 1 (sem selo/kicker): H1 "Aprenda a arrematar imóveis em l
 - Sub: DM Sans 300 `clamp(16px,1.35vw,18.5px)`, máx 58ch, `--text-muted`, margem-bottom `clamp(28px,4vh,42px)`. Microcopy: 12.5px lh 1.65, rgba(159,179,171,0.75), máx 62ch.
 
 ### Ficha do evento (aside, material papel)
-Dispositivo 2 completo: raio 6px, rotação -1.4deg, sombra funda, furo de arquivo (pill 44x5px rgba(14,33,28,0.14) centrado, top 16px), padding 26px 26px 30px. Cabeçalho: rótulo "FICHA DO EVENTO" (11px 700 tracking 0.24em `--accent-deep`) + carimbo circular 64px (borda 1.5px `--accent-deep`, rotação 8deg, opacity 0.85, "L&P" Fraunces 600 15px + "26.08" DM Sans 700 9.5px tracking 0.12em). Linhas `<dl>`: grid `104px 1fr` gap 12px, padding 10px 0, `border-top: 1px dashed rgba(14,33,28,0.22)`; dt 10.5px 700 tracking 0.16em rgba(14,33,28,0.7) uppercase; dd 13.5px lh 1.5. Conteúdo exato: Data "Quarta, 26 de agosto de 2026" / Presencial "19h às 22h · Okay Hub, Bairro Castelo, BH" / Ao vivo "Transmissão das 19h30 às 21h40" / Formato "Edital real projetado e conta aberta na tela" / Investimento "Valor do lote vigente, na tabela de lotes desta página". Linha fina: "Ingresso pessoal e intransferível · Arrependimento em 7 dias" (11px, rgba(14,33,28,0.7), border-top dashed). SEM barcode.
+Dispositivo 2 completo: raio 6px, rotação -1.4deg, sombra funda, furo de arquivo (pill 44x5px rgba(14,33,28,0.14) centrado, top 16px), padding 26px 26px 30px. Cabeçalho: rótulo "FICHA DO EVENTO" (11px 700 tracking 0.24em `--accent-deep`) + carimbo circular 64px (borda 1.5px `--accent-deep`, rotação 8deg, opacity 0.85, "L&P" Fraunces 600 15px + "23.09" DM Sans 700 9.5px tracking 0.12em). Linhas `<dl>`: grid `104px 1fr` gap 12px, padding 10px 0, `border-top: 1px dashed rgba(14,33,28,0.22)`; dt 10.5px 700 tracking 0.16em rgba(14,33,28,0.7) uppercase; dd 13.5px lh 1.5. Conteúdo exato: Data "Quarta, 23 de setembro de 2026" / Presencial "19h às 22h · Okay Hub, Bairro Castelo, BH" / Ao vivo "Transmissão das 19h30 às 21h40" / Formato "Edital real projetado e conta aberta na tela" / Investimento "Valor do lote vigente, na tabela de lotes desta página". Linha fina: "Ingresso pessoal e intransferível · Arrependimento em 7 dias" (11px, rgba(14,33,28,0.7), border-top dashed). SEM barcode.
 
 ### Animações e interatividade
 Sem animação de entrada. Drift do numeral apenas. Botões conforme sistema global. Focus visible global.
 
 ### Responsividade
 - 1060px: grid 1 coluna, gap 54px, ficha máx 460px rotação -1deg.
-- 680px: padding-top 110px, min-height auto; numeral 300px top -30px right -60px stroke rgba(140,239,211,0.14); `.t-2` `clamp(36px,12vw,46px)`; CTAs 1 coluna; ficha sem rotação largura 100%; "Edição 26.08" some.
+- 680px: padding-top 110px, min-height auto; numeral 300px top -30px right -60px stroke rgba(140,239,211,0.14); `.t-2` `clamp(36px,12vw,46px)`; CTAs 1 coluna; ficha sem rotação largura 100%; "Edição 23.09" some.
 
 ---
 
@@ -173,7 +176,7 @@ Exato da copy seção 2: "Perita judicial em imóveis, com laudo assinado na Jus
 - Justificativa: os três pagadores do desconto são um argumento em sequência; linhas empilhadas com numerais dão peso de tese, não de feature list.
 
 ### Conteúdo
-Exato da copy seção 3: título "De onde vem o desconto que você vai aprender a capturar" ("capturar" em itálico 650 `--mint`), os 3 parágrafos com subtítulos "O banco com pressa" / "A multidão do lado de fora" / "Quem entra sem a conta", e o refrão (1ª de 2 aparições): "Quem não entende o jogo<br>não arremata. Assiste." + ponte "No dia 26, você aprende o jogo."
+Exato da copy seção 3: título "De onde vem o desconto que você vai aprender a capturar" ("capturar" em itálico 650 `--mint`), os 3 parágrafos com subtítulos "O banco com pressa" / "A multidão do lado de fora" / "Quem entra sem a conta", e o refrão (1ª de 2 aparições): "Quem não entende o jogo<br>não arremata. Assiste." + ponte "No dia 23, você aprende o jogo."
 
 ### Especificação
 - Container máx 1240px + pad-x, padding vertical padrão. SEM overline acima do título (regra 1).
@@ -492,7 +495,7 @@ Painéis: `padding: clamp(36px, 4.5vw, 64px) clamp(28px, 4vw, 56px) clamp(44px, 
 ### Conteúdo
 H2: `Quem vai te ensinar`
 
-Parágrafo 1: `Meu nome é Jacque Costa, e o que eu vou te ensinar no dia 26 é o que eu faço profissionalmente há mais de quinze anos, muito antes de existir palco.`
+Parágrafo 1: `Meu nome é Jacque Costa, e o que eu vou te ensinar no dia 23 é o que eu faço profissionalmente há mais de quinze anos, muito antes de existir palco.`
 
 Parágrafo 2: `Sou perita judicial em imóveis, o que significa que, quando um processo precisa de um valor confiável para um bem, o laudo sai com a minha assinatura e eu respondo por ele diante do juiz. Sou também despachante credenciada da Caixa desde 2007, e a papelada de imóvel retomado passa pela minha mesa antes de virar anúncio, o que me deu quase vinte anos vendo por dentro o que o banco aceita e onde o processo costuma emperrar.`
 
@@ -805,7 +808,7 @@ Todos os textos exatos da copy.md, seção 10, nesta ordem:
 - Título: `ONLINE · Transmissão ao vivo`
 - Linha de valor: `Valor conforme o lote vigente, na tabela de lotes logo abaixo.`
 - Label: `Para quem é` + parágrafo: `Para quem está em outra cidade ou prefere um primeiro encontro comigo sem sair de casa, com o caderno do lado e a mesma aula na tela.`
-- Label: `Inclui` + 5 itens: `Transmissão ao vivo das 19h30 às 21h40, sendo 1h40 de conteúdo e 30 minutos de apresentação comercial declarada na programação` / `O mesmo edital e a mesma planilha, projetados na sua tela` / `Perguntas pelo chat, lidas por mim no bloco das 21h [CONFIRMAR com a produção]` / `Link individual de acesso, enviado por e-mail e WhatsApp no dia 26 [CONFIRMAR horário do envio]` / `Funciona no celular e no computador`
+- Label: `Inclui` + 5 itens: `Transmissão ao vivo das 19h30 às 21h40, sendo 1h40 de conteúdo e 30 minutos de apresentação comercial declarada na programação` / `O mesmo edital e a mesma planilha, projetados na sua tela` / `Perguntas pelo chat, lidas por mim no bloco das 21h [CONFIRMAR com a produção]` / `Link individual de acesso, enviado por e-mail e WhatsApp no dia 23 [CONFIRMAR horário do envio]` / `Funciona no celular e no computador`
 - Label: `Não inclui` + 3 itens: `Replay, porque a transmissão não fica gravada para ninguém` / `O networking e a conversa de corredor` / `Credenciamento e café`
 - Botão: `Assistir à transmissão ao vivo`
 
@@ -835,7 +838,7 @@ Nenhum botão carrega preço. Os preços aparecem exclusivamente nas células da
   <div class="oferta__cards">
     <div class="ticket-wrap">          <!-- alvo da animação de scroll -->
       <article class="ticket ticket--paper">
-        <span class="ticket__stub" aria-hidden="true">L&P<i>26.08</i></span>
+        <span class="ticket__stub" aria-hidden="true">L&P<i>23.09</i></span>
         <h3 class="ticket__title"><span class="ticket__mode">PRESENCIAL</span> <span class="ticket__place">· Okay Hub, Belo Horizonte</span></h3>
         <p class="ticket__lote">
         <p class="ticket__label">Para quem é</p>
@@ -877,7 +880,7 @@ Valores exatos:
 - `.oferta__head`: `max-width: 880px; margin-bottom: clamp(46px, 6vh, 72px);` H2 e lead empilhados, lead com `margin-top: 20px; max-width: 62ch;`
 - `.oferta__cards`: `display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3.2vw, 48px); align-items: start; max-width: 1080px; margin: 0 auto clamp(70px, 9vh, 110px);`
 - `.ticket`: `position: relative; border-radius: 6px; padding: 34px 34px 36px calc(64px + 28px);` (64px é a largura do canhoto). `.ticket--paper`: `transform: rotate(-1deg);` `.ticket--dark`: `transform: none;`
-- `.ticket__stub`: `position: absolute; top: 0; left: 0; bottom: 0; width: 64px; display: grid; place-content: center; writing-mode: vertical-rl; transform: rotate(180deg);` conteúdo idêntico ao carimbo da ficha aprovada (`L&P` + `26.08`).
+- `.ticket__stub`: `position: absolute; top: 0; left: 0; bottom: 0; width: 64px; display: grid; place-content: center; writing-mode: vertical-rl; transform: rotate(180deg);` conteúdo idêntico ao carimbo da ficha aprovada (`L&P` + `23.09`).
 - Serrilha do canhoto (em cada `.ticket`, via `.ticket__stub::after`): `content: ""; position: absolute; top: 10px; bottom: 10px; right: 0; width: 0; border-right: 1.5px dashed;` mais a coluna de furos via `.ticket::before`: `content: ""; position: absolute; top: 12px; bottom: 12px; left: 60px; width: 8px; background-image: radial-gradient(circle at 4px 9px, var(--bg-0) 3px, transparent 3.5px); background-size: 8px 18px; background-repeat: repeat-y; pointer-events: none;` e dois recortes de meia-lua nas pontas da serrilha via `.ticket::after`: `content: ""; position: absolute; left: 57px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-0);` duplicado na base com `box-shadow: 0 [altura-do-card] 0 var(--bg-0)` substituído na prática por um segundo pseudo-elemento no `.ticket-wrap::after` com `bottom: -7px; left: 57px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-0); position: absolute; z-index: 2;` (o `.ticket-wrap` recebe `position: relative`).
 - `.ticket__title`: `margin: 4px 0 6px;` `.ticket__lote`: `margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px dashed;`
 - `.ticket__label`: `margin: 22px 0 8px;` `.ticket__who`: `max-width: 52ch;`
@@ -924,7 +927,7 @@ Valores exatos:
 ### Elementos Visuais
 
 - Serrilha de canhoto nos dois cards: coluna de furos circulares de 6px de diâmetro (radial-gradient de 3px de raio, passo vertical de 18px) na cor exata do fundo da página (#071310), simulando perfuração; linha dashed de 1.5px acompanhando; recortes de meia-lua de 14px nas duas extremidades da linha de perfuração, também em #071310.
-- Carimbo vertical `L&P 26.08` no canhoto, rotacionado 180deg em writing-mode vertical, ecoando o carimbo circular da ficha do hero.
+- Carimbo vertical `L&P 23.09` no canhoto, rotacionado 180deg em writing-mode vertical, ecoando o carimbo circular da ficha do hero.
 - Hairlines dashed internas nos cards, herdadas da linguagem da ficha (`border-top: 1px dashed`).
 - Hairline sólida de 1px `var(--line)` abrindo a seção, o bloco da cadeira e cada linha da tabela.
 - Nenhum ícone, nenhum checkmark, nenhum badge de lote, nenhuma coluna destacada.
@@ -987,10 +990,10 @@ As 14 entradas, com pergunta e resposta exatas da copy:
 `Serve, e você vai estar bem acompanhado, porque quem busca a casa própria é metade da minha sala. O edital que você precisa aprender a ler é o mesmo do investidor, e muda apenas o destino do desconto: ele transforma a folga em margem de revenda, enquanto você a transforma em endereço melhor e prestação menor.`
 
 **05.** `"De quanto dinheiro eu preciso para começar?"`
-`Existem imóveis em leilão em faixas de preço muito diferentes, e uma parte deles aceita financiamento, o que muda completamente a resposta para quem tem renda estável sem ter o valor guardado. Por isso o dia 26 não te dá um número mágico e sim o mapa completo de custos, para você mesmo calcular o teto que cabe no seu bolso antes que um anúncio bonito decida por você.`
+`Existem imóveis em leilão em faixas de preço muito diferentes, e uma parte deles aceita financiamento, o que muda completamente a resposta para quem tem renda estável sem ter o valor guardado. Por isso o dia 23 não te dá um número mágico e sim o mapa completo de custos, para você mesmo calcular o teto que cabe no seu bolso antes que um anúncio bonito decida por você.`
 
 **06.** `"Qual o prazo para pagar depois do lance? Dá para financiar?"`
-`O prazo vem escrito no edital de cada leilão e costuma ser contado em dias, o que torna o planejamento do pagamento parte da própria decisão de dar o lance. Uma parte dos leilões aceita financiamento, e no dia 26 eu mostro onde essa regra vive dentro do documento e o que conferir antes de disputar, porque ela muda de leilão para leilão.`
+`O prazo vem escrito no edital de cada leilão e costuma ser contado em dias, o que torna o planejamento do pagamento parte da própria decisão de dar o lance. Uma parte dos leilões aceita financiamento, e no dia 23 eu mostro onde essa regra vive dentro do documento e o que conferir antes de disputar, porque ela muda de leilão para leilão.`
 
 **07.** `"Esses 42%* são reais?"`
 `São a média entre o valor de avaliação e o lance vencedor em todas as compras que eu conduzi, sem seleção dos melhores casos, e a metodologia completa está no fim desta página, com a documentação à disposição de quem quiser conferir. Na noite eu mostro esses números na tela, junto com os custos que entram depois do lance e que todo comprador precisa somar.`
@@ -1005,10 +1008,10 @@ As 14 entradas, com pergunta e resposta exatas da copy:
 `O botão abre um formulário rápido de nome, e-mail e WhatsApp, e logo depois você recebe no seu WhatsApp o link oficial da inscrição na Sympla, que é onde o pagamento acontece, no valor do lote vigente. Todo pagamento roda dentro da Sympla, nunca por transferência direta, e pelo WhatsApp você pode perguntar o que quiser antes de pagar.`
 
 **11.** `"Perdi o horário. Tem replay?"`
-`Não existe replay em nenhum dos dois ingressos, e o motivo é o material que sobe no telão: documento de processo não circula gravado, nem para quem esteve na sala nem para quem assistiu de casa. É por isso que a data aparece em todo canto desta página, porque a única forma de ver essa leitura é ao vivo, no dia 26.`
+`Não existe replay em nenhum dos dois ingressos, e o motivo é o material que sobe no telão: documento de processo não circula gravado, nem para quem esteve na sala nem para quem assistiu de casa. É por isso que a data aparece em todo canto desta página, porque a única forma de ver essa leitura é ao vivo, no dia 23.`
 
 **12.** `"Posso cancelar se eu mudar de ideia?"`
-`Pode, e o prazo é generoso: são 7 dias corridos a partir da compra para desistir com devolução integral, sem justificar nada, como garante o artigo 49 do Código de Defesa do Consumidor. Quem compra perto da data mantém esse direito até as 19h do dia 26, quando o serviço começa a ser entregue, e fora da janela dos 7 dias a produção aceita cancelamento com devolução integral até 48 horas antes do evento. [CONFIRMAR com o jurídico e com a Sympla]`
+`Pode, e o prazo é generoso: são 7 dias corridos a partir da compra para desistir com devolução integral, sem justificar nada, como garante o artigo 49 do Código de Defesa do Consumidor. Quem compra perto da data mantém esse direito até as 19h do dia 23, quando o serviço começa a ser entregue, e fora da janela dos 7 dias a produção aceita cancelamento com devolução integral até 48 horas antes do evento. [CONFIRMAR com o jurídico e com a Sympla]`
 
 **13.** `"Posso transferir meu ingresso para outra pessoa?"`
 `Não. O ingresso é pessoal e intransferível nos dois formatos, com o credenciamento conferindo documento na sala e o link individual valendo no online. O que existe é a edição de participante dentro da Sympla, permitida uma única vez e até 24 horas antes do evento, então confira o nome com calma na hora de comprar.`
@@ -1113,7 +1116,7 @@ Valores exatos:
 **Justificativa:** a página abre com um Type Hero assimétrico e fecha com um poster centralizado: mesmo DNA tipográfico, composição espelhada, o que dá sensação de "capa e contracapa". O glow radial reaparece uma única vez desde o hero, fechando o arco de luz da página, e a aspa em stroke retorna aqui como segunda e última aparição do refrão, encerrando o sistema. Urgência apenas por data absoluta, sem contador.
 
 ### Conteúdo
-Título: `Quarta, 26 de agosto, 19h. A noite em que você aprende o jogo.`
+Título: `Quarta, 23 de setembro, 19h. A noite em que você aprende o jogo.`
 
 Parágrafo 1: `Dá para continuar colecionando abas de leilão que você nunca lê até o fim, ou dá para investir uma quarta-feira e atravessar um edital inteiro ao lado de quem faz isso desde 2007.`
 
@@ -1135,7 +1138,7 @@ Letra miúda: `Inscrição pela Sympla, no valor do lote vigente indicado na tab
   </div>
   <div class="cta-final__inner">
     <h2 class="cta-final__title">
-      <span class="cta-final__quando">Quarta, 26 de agosto, 19h.</span>
+      <span class="cta-final__quando">Quarta, 23 de setembro, 19h.</span>
       <span class="cta-final__frase">A noite em que você <em>aprende o jogo.</em></span>
     </h2>
     <p class="cta-final__p">Dá para continuar colecionando abas de leilão que você nunca lê até o fim, ou dá para investir uma quarta-feira e atravessar um edital inteiro ao lado de quem faz isso desde 2007.</p>
@@ -1254,7 +1257,7 @@ Sucesso, texto: `O link oficial da Sympla chega no seu WhatsApp em instantes, e 
         <label for="f-tel">WHATSAPP</label>
         <input id="f-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required>
       </div>
-      <input type="hidden" name="evento" value="2026-08-26"> <!-- manter o valor do form existente -->
+      <input type="hidden" name="evento" value="2026-09-23"> <!-- manter o valor do form existente -->
 
       <input type="hidden" name="modalidade" value="">
       <!-- honeypot: manter o campo e o nome já usados pelo form existente -->
@@ -1263,7 +1266,7 @@ Sucesso, texto: `O link oficial da Sympla chega no seu WhatsApp em instantes, e 
       <p class="modal__nota">Seus dados não vão para mais ninguém.</p>
     </form>
     <div class="modal__sucesso" hidden>
-      <span class="modal__stamp" aria-hidden="true">L&amp;P<i>26.08</i></span>
+      <span class="modal__stamp" aria-hidden="true">L&amp;P<i>23.09</i></span>
       <h3 class="modal__title">Recebi seus dados</h3>
       <p class="modal__text">O link oficial da Sympla chega no seu WhatsApp em instantes, e a inscrição termina lá, no valor do lote vigente.</p>
     </div>
