@@ -2,9 +2,13 @@
 
 > **Revisão de 01/09/2026 (edição de setembro):** a data virou quarta, 23 de setembro. **Acabou a transmissão online**: todos os CTAs vendem a vaga presencial, e saíram o card dark, a coluna Online da tabela, a linha Ao vivo da ficha e as regras `.ticket--dark`. **A seção 10 (A Oferta) foi removida inteira**, junto com a tabela de lotes e o bloco "Por que a cadeira custa mais", que só existia para comparar com a transmissão; o que inclui e o que não inclui virou o bloco `.inclui` dentro da seção da programação, que herdou o `id="ingressos"` para o link da topbar continuar válido. A página não exibe mais preço de ingresso. O Clube do Leilão passou a aparecer na bio e no fecho dos públicos.
 
+> **Revisão de 27/08/2026 (layout e peso):** `.hero__ctas`, `.cta-final__ctas` e `.curr__ctas` (em tablet) ainda eram grids de duas colunas de quando havia dois botões, e o botão único ficava com metade da largura — no CTA final, fora do eixo central; viraram coluna única de 380px. A `.ficha`, que nasceu sobre a foto escura do hero e hoje mora na zona clara, ganhou contorno e sombra de tinta, porque `--paper` sobre `--bg-0` claro dá 1,05:1 de contraste e a sombra preta a 50% lia como sujeira. O `@media (max-width: 420px)` ficou vazio quando a seção da oferta saiu e foi removido.
+
 
 > Especificação completa da página, seção a seção, baseada na copy v4 (`copy.md`) e no design aprovado do hero + faixa + mecanismo (`index.html` + `style.css` na raiz da pasta). Este documento é a bíblia do `/desenvolver`: nada aqui é sugestão, tudo é valor exato.
-> A versão anterior da página vive em `_backup_v1/` e deve ser IGNORADA. Onde este documento e o HTML atual divergirem, este documento vence.
+> A versão anterior da página vive em `_backup_v1/` e deve ser IGNORADA.
+>
+> **Precedência (mudou em 27/08/2026):** o corpo deste documento ainda descreve a página como ela era antes da virada de setembro — ele fala de transmissão online, da seção da oferta, da tabela de lotes e da headline dos 42%, nada disso existe mais. As revisões acima e o `index.html` publicado vencem sempre. Trate o corpo como registro histórico do design, não como especificação a seguir, até que ele seja regerado.
 
 ---
 

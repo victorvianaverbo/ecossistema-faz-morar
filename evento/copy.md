@@ -4,7 +4,7 @@
 >
 > **O que mudou nesta edição:** data de 26/08 para **quarta, 23 de setembro**; **acabou a transmissão online**, e todo CTA passou a vender a vaga presencial; a seção de ingressos saiu e o que ela tinha de útil virou o bloco "o que a sua vaga inclui" dentro da programação; a tabela de lotes saiu, então a página não exibe preço de ingresso em lugar nenhum, e a Sympla é a fonte; o Clube do Leilão passou a aparecer na bio e no fecho dos públicos, como continuidade e não como venda.
 >
-> **Pendência única:** a edição de setembro ainda não existe na Sympla. Enquanto não existir, o modal captura o contato e promete o link por WhatsApp, sem redirecionar. Quando a URL existir, é trocar os dois `data-success-*` do formulário por `data-redirect`.
+> **Inscrição ligada em 27/08/2026.** A edição existe na Sympla (id 3556475) e o formulário voltou a redirecionar: o modal captura nome, e-mail e WhatsApp, grava na planilha, dispara `Lead` e `InitiateCheckout` e manda para o checkout. URL: `https://www.sympla.com.br/evento/leilao-prosa-edicao-bairro-castelo-bh/3556475`. Data, horário e local conferidos direto na Sympla: 23 de setembro de 2026, 19h às 22h, Okay Hub.
 
 ---
 
@@ -29,7 +29,8 @@ Uma noite para entender como funciona o leilão, sem juridiquês, e perder o med
 **Headline**
 # Entenda como funciona
 # leilão de imóveis
-# e perca o medodo que trava todo mundo
+# e perca o medo
+# do que trava todo mundo
 
 **Subheadline**  
 No dia 23 de setembro eu conto como o leilão funciona de verdade, do jeito que aprendi desde 2007. Presencial em Belo Horizonte, numa quarta à noite.
@@ -202,8 +203,8 @@ O prazo vem escrito nas regras de cada leilão e costuma ser contado em dias, o 
 **07.** "Vou levar um pitch de vendas no meio?"
 Vai ter oferta, com hora e duração publicadas: às 21h10 eu uso trinta minutos para apresentar o Clube do Leilão, o caminho de quem quiser continuar comigo, e quando esse bloco começar a palestra prometida já terá sido entregue inteira. Ficar para ouvir é escolha sua.
 
-**08.** "Cliquei no botão e não caí num pagamento. Como funciona a inscrição?"
-A inscrição da edição de 23 de setembro ainda vai abrir na Sympla, então por enquanto o botão pega só o seu contato. Assim que abrir, eu te mando o link pelo WhatsApp e você conclui por lá, que é onde o pagamento acontece, em até 12x no cartão ou à vista no pix e no boleto. Pagamento nenhum roda fora da Sympla, e nunca por transferência direta.
+**08.** "Como funciona a inscrição? Onde eu pago?"
+Você deixa nome, e-mail e WhatsApp aqui e eu te levo direto para a página do evento na Sympla, que é onde a compra acontece: em até 12x no cartão, ou à vista no pix e no boleto. Peço o contato antes porque é por ele que eu aviso qualquer mudança de sala ou de horário. Pagamento nenhum roda fora da Sympla, e nunca por transferência direta.
 
 **09.** "Perdi o horário. Fica gravado?"
 Não existe. A noite acontece uma vez, na sala, e não fica gravada em formato nenhum. É por isso que a data aparece em todo canto desta página: a única forma de participar é estar lá no dia 23.
@@ -241,15 +242,15 @@ Inscrição pela Sympla, no valor do lote vigente, com parcelamento em até 12x 
 
 **Título:** Me deixa seu contato
 
-**Texto:** Deixa seu nome, e-mail e WhatsApp. Assim que a inscrição da edição de 23 de setembro abrir na Sympla, eu te mando o link, e você garante a vaga antes de a sala encher.
+**Texto:** Deixa seu nome, e-mail e WhatsApp e eu te levo para a Sympla, onde você escolhe o ingresso e conclui a compra. Peço o contato antes porque é por ele que eu aviso qualquer mudança de sala ou de horário.
 
 **Campos:** Nome · E-mail · WhatsApp
 
-**Botão:** `Quero receber o link`
+**Botão:** `Ir para a inscrição`
 
 **Nota:** Eu uso seu nome, e-mail e WhatsApp só para falar com você sobre o Leilão & Prosa, e você pode pedir a exclusão quando quiser.
 
-**Sucesso:** Recebi seus dados — Assim que a inscrição da edição de 23 de setembro abrir na Sympla, eu te mando o link pelo WhatsApp.
+**Destino após o envio:** redireciona para a Sympla (`data-redirect`), sem tela de sucesso.
 
 ---
 
