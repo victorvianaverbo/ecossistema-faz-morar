@@ -1,8 +1,8 @@
 # Copy - Curso Fundamentos Práticos dos Leilões
 
 > Blocos globais: ver `/_shared/copy-global.md`
-> Página de venda do Curso 1 da formação. Preço: R$ 397,00 à vista ou 12x R$ 40,40.
-> Conversão: checkout [URL_CHECKOUT_FUNDAMENTOS].
+> Página de venda do Curso 1 da formação. Preço: R$ 397,00 à vista ou em até 12x no cartão.
+> Conversão: checkout Hyype https://checkout.hyype.com.br/c9929ae2-62be-43f3-939a-9415e8bf329f
 
 ## Hero
 
@@ -10,8 +10,8 @@
 - Headline: Não somos um amontoado de teoria jurídica. Somos um treinamento prático.
 - Subheadline: O conhecimento prático para operar leilões com segurança absoluta e construir sua autonomia total, do primeiro cadastro ao primeiro lance.
 - Selos: Pagamento 100% seguro · Acesso imediato · 5.0 no Google (39 avaliações)
-- CTA primário: Começar hoje por 12x R$ 40,40
-- Apoio: ou R$ 397,00 à vista
+- CTA primário: Começar hoje por R$ 397
+- Apoio: à vista, ou em até 12x no cartão
 
 ## Seção: O que você vai dominar
 
@@ -41,7 +41,7 @@ Aqui, o aluno não contrata serviços de terceiros. Você aprende a base prátic
 
 - Título: A hora da decisão inteligente.
 - Subtítulo: Escolha o caminho mais rápido para o seu primeiro imóvel de leilão.
-- Preço: R$ 397,00 à vista ou 12x R$ 40,40 no cartão de crédito
+- Preço: R$ 397,00 à vista ou em até 12x no cartão no cartão de crédito
 - Bullets:
   - Acesso completo ao Curso 1: Fundamentos Práticos dos Leilões
   - Acesso por 1 ano, para assistir quando e onde quiser

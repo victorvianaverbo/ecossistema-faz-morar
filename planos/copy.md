@@ -1,7 +1,7 @@
 # Copy - Planos do Leilão & Prosa
 
 > Blocos globais: ver `/_shared/copy-global.md`
-> Página de planos anuais de assinatura. Conversão: [URL_CHECKOUT_PLANO_ENSINA], [URL_CHECKOUT_PLANO_APOIA], [URL_CHECKOUT_PLANO_FAZ] (ou WhatsApp enquanto não existirem).
+> Página de planos anuais de assinatura. Conversão: Te Ensina https://checkout.hyype.com.br/a71a0343-26d6-4ef5-bfe1-bada684d6795 · Te Apoia https://checkout.hyype.com.br/d12dd751-8464-4556-a8a7-f28b59dd47e7 · Faz por Você segue no WhatsApp (não está na Hyype).
 
 ## Hero
 
@@ -33,7 +33,7 @@
 
 ## Seção: Plano 2 — Leilão & Prosa Te Apoia (destaque/recomendado)
 
-- Preço: R$ 4.700/ano
+- Preço: R$ 3.567/ano
 - Foco: Segurança e validação técnica
 - Inclui:
   - Acesso completo à plataforma do Leilão & Prosa por 12 meses

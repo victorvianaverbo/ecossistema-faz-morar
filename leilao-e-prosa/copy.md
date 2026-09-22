@@ -10,7 +10,7 @@ Início (/) / Serviços (/servicos/) / Leilão & Prosa
 - Eyebrow (categoria): CLUBE DO LEILÃO
 - Headline: Arremate o imóvel certo, com o lance blindado.
 - Descrição: A comunidade e as ferramentas que transformam leilão em oportunidade real: mapa do imóvel, análise jurídica e a calculadora que protege o seu dinheiro.
-- CTA primário: Entrar no Clube → [URL_CHECKOUT_GURU_CLUBE]
+- CTA primário: Entrar no Clube → https://checkout.hyype.com.br/d12dd751-8464-4556-a8a7-f28b59dd47e7
 - CTA secundário: Falar no WhatsApp → https://wa.me/5531996951660
 - Card de fato (painel escuro):
   - Label: DESCONTO MÉDIO
@@ -33,7 +33,7 @@ Início (/) / Serviços (/servicos/) / Leilão & Prosa
 ## Seção: Nota + CTA final
 - Título fixo: Pronto para dar o próximo passo?
 - Nota: Custos de cartório, ITBI e eventuais débitos do imóvel são simulados na calculadora antes do lance — sem surpresas.
-- Card: Leilão & Prosa · CTA "Entrar no Clube" → [URL_CHECKOUT_GURU_CLUBE] · WhatsApp (31) 99695-1660
+- Card: Leilão & Prosa · CTA "Entrar no Clube" → https://checkout.hyype.com.br/d12dd751-8464-4556-a8a7-f28b59dd47e7 · WhatsApp (31) 99695-1660
 
 ## Seção: Footer
 - Versão compacta — ver `/_shared/copy-global.md`

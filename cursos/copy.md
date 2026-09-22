@@ -10,7 +10,7 @@ Início (/) / Serviços (/servicos/) / Cursos e Mentorias
 - Eyebrow (categoria): CURSOS & MENTORIAS
 - Headline: Aprenda a arrematar do zero — e acesse na hora.
 - Descrição: Trilhas práticas, do primeiro leilão à pós-arrematação, com quem já fez. Pagou, o acesso à área de membros é liberado automaticamente.
-- CTA primário: Ver trilhas de curso → [URL_CHECKOUT_GURU_CURSOS]
+- CTA primário: Ver trilhas de curso → /planos/ (checkout por curso nas LPs de cada módulo)
 - CTA secundário: Falar no WhatsApp → https://wa.me/5531996951660
 - Card de fato (painel escuro):
   - Label: ALUNOS FORMADOS
@@ -27,13 +27,13 @@ Início (/) / Serviços (/servicos/) / Cursos e Mentorias
 ## Seção: Como funciona (fundo escuro)
 - Título fixo: Simples, do primeiro contato ao resultado.
 - Passo 01 — Escolha a trilha: Do zero ao avançado, no seu ritmo.
-- Passo 02 — Pague com segurança: Checkout integrado via Asaas e Digital Manager Guru.
-- Passo 03 — Acesse na hora: Liberação automática na área de membros (MemberKit).
+- Passo 02 — Pague com segurança: Cartão em até 12x, Pix ou boleto, no checkout seguro.
+- Passo 03 — Acesse na hora: Pagamento confirmado, acesso liberado na área de membros Leilão & Prosa.
 
 ## Seção: Nota + CTA final
 - Título fixo: Pronto para dar o próximo passo?
 - Nota: Assim que o pagamento é confirmado, o acesso ao curso é liberado automaticamente — sem espera e sem trabalho manual.
-- Card: Cursos e Mentorias · CTA "Ver trilhas de curso" → [URL_CHECKOUT_GURU_CURSOS] · WhatsApp (31) 99695-1660
+- Card: Cursos e Mentorias · CTA "Ver trilhas de curso" → /planos/ (checkout por curso nas LPs de cada módulo) · WhatsApp (31) 99695-1660
 
 ## Seção: Footer
 - Versão compacta — ver `/_shared/copy-global.md`
