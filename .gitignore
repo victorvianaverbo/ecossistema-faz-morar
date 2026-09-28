@@ -7,3 +7,8 @@ lh-*.json
 
 # Versoes antigas guardadas em disco, nao vao para o site
 _backup_*/
+
+# Fichas geradas no build por scripts/gerar-imoveis.mjs (so os dados e as fotos vao pro git)
+imoveis/*/
+!imoveis/_dados/
+!imoveis/fotos/

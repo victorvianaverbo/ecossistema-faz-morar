@@ -943,6 +943,24 @@ body.nav-open { overflow: hidden; }
 .listing__media-bg--2 { background: linear-gradient(140deg, #4D4D50, var(--ink)); }
 .listing__media-bg--3 { background: linear-gradient(140deg, #383839, var(--ink)); }
 
+/* Capa real vinda do painel de imóveis (scripts/gerar-imoveis.mjs) */
+.listing__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease);
+}
+
+.listing:hover .listing__img { transform: scale(1.05); }
+
+.listing--vendido .listing__img { filter: grayscale(.6); }
+
+.listing__tag--vendido { background: var(--ink); }
+
+.listing__price--consulte { font-size: 22px; }
+
 .listing__tag {
   position: absolute;
   top: 16px;
@@ -1306,7 +1324,8 @@ button:focus-visible {
     transform: scaleX(1);
   }
 
-  .listing:hover .listing__media-bg { transform: none; }
+  .listing:hover .listing__media-bg,
+  .listing:hover .listing__img { transform: none; }
 }
 
 /* ============ RESPONSIVO ============ */

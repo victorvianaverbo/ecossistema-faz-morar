@@ -1,0 +1,148 @@
+# Painel de imóveis (Decap CMS). O login é pelo GitHub: a conta precisa ser
+# colaboradora do repositório, e a Netlify precisa do OAuth provider do GitHub
+# instalado (Site configuration → Access & security → OAuth).
+#
+# Cada imóvel é um JSON em imoveis/_dados/. No deploy, scripts/gerar-imoveis.mjs
+# lê esses arquivos e gera a vitrine, as fichas e os destaques da home.
+backend:
+  name: github
+  repo: victorvianaverbo/ecossistema-faz-morar
+  branch: main
+  commit_messages:
+    create: "Imóveis: cadastra {{slug}}"
+    update: "Imóveis: atualiza {{slug}}"
+    delete: "Imóveis: remove {{slug}}"
+    uploadMedia: "Imóveis: envia foto {{path}}"
+    deleteMedia: "Imóveis: apaga foto {{path}}"
+
+locale: pt
+site_url: https://fazmorar.com.br
+display_url: https://fazmorar.com.br/imoveis/
+logo_url: /apple-touch-icon.png
+
+media_folder: imoveis/fotos
+public_folder: /imoveis/fotos
+
+collections:
+  - name: imoveis
+    label: Imóveis
+    label_singular: Imóvel
+    description: >-
+      Só aparece no site o que estiver como "Publicado" ou "Vendido". Depois de
+      salvar, o site atualiza em cerca de 1 minuto.
+    folder: imoveis/_dados
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "{{titulo}}-{{bairro}}"
+    identifier_field: titulo
+    summary: "{{titulo}} · {{bairro}} · {{status}}"
+    sortable_fields: [titulo, status, ordem, preco]
+    view_filters:
+      - { label: Publicados, field: status, pattern: publicado }
+      - { label: Rascunhos, field: status, pattern: rascunho }
+      - { label: Vendidos, field: status, pattern: vendido }
+    preview_path: "imoveis/{{slug}}/"
+    editor:
+      preview: false
+    fields:
+      - label: Título
+        name: titulo
+        widget: string
+        hint: "Ex.: Apartamento 3 quartos com varanda. O endereço do anúncio é criado a partir do título e do bairro no primeiro salvamento e não muda depois."
+
+      - label: Situação
+        name: status
+        widget: select
+        default: rascunho
+        options:
+          - { label: "Rascunho (não aparece no site)", value: rascunho }
+          - { label: "Publicado", value: publicado }
+          - { label: "Vendido (continua no site com selo de vendido)", value: vendido }
+
+      - label: Destaque na home
+        name: destaque
+        widget: boolean
+        default: false
+        required: false
+        hint: A home mostra 3 imóveis. Os marcados como destaque vêm primeiro e o resto é completado com os publicados.
+
+      - label: Tipo
+        name: tipo
+        widget: select
+        default: venda
+        options:
+          - { label: Venda direta, value: venda }
+          - { label: Leilão, value: leilao }
+
+      - { label: Cidade, name: cidade, widget: string, default: Belo Horizonte }
+      - { label: UF, name: uf, widget: string, default: MG }
+      - { label: Bairro, name: bairro, widget: string, required: false }
+
+      - label: Preço (R$)
+        name: preco
+        widget: number
+        value_type: int
+        min: 0
+        required: false
+        hint: Só números, sem ponto. Ex. 350000. Em branco aparece "Sob consulta".
+
+      - label: Rótulo do preço
+        name: preco_rotulo
+        widget: string
+        required: false
+        hint: Em branco usa "Valor" (venda direta) ou "Lance inicial" (leilão).
+
+      - label: Desconto (%)
+        name: desconto
+        widget: number
+        value_type: int
+        min: 0
+        max: 99
+        required: false
+        hint: Opcional. Aparece como selo "−40%" na foto.
+
+      - label: Selo
+        name: selo
+        widget: string
+        required: false
+        hint: "Opcional. Ex.: 1ª praça, Aceita financiamento, Pronto para morar."
+
+      - { label: Quartos, name: quartos, widget: number, value_type: int, min: 0, required: false }
+      - { label: Banheiros, name: banheiros, widget: number, value_type: int, min: 0, required: false }
+      - { label: Vagas, name: vagas, widget: number, value_type: int, min: 0, required: false }
+      - { label: Área (m²), name: area, widget: number, value_type: float, min: 0, required: false }
+
+      - label: Descrição
+        name: descricao
+        widget: text
+        required: false
+        hint: Linha em branco separa parágrafos. Linhas começando com "- " viram lista.
+
+      - label: Fotos
+        name: fotos
+        widget: list
+        required: false
+        hint: A primeira foto é a capa. Arraste para mudar a ordem. JPG ou PNG; o site otimiza o tamanho sozinho.
+        field: { label: Foto, name: imagem, widget: image, choose_url: false }
+
+      - label: Vídeo do YouTube
+        name: video
+        widget: string
+        required: false
+        hint: Opcional. Cole o link do vídeo.
+
+      - label: WhatsApp de contato
+        name: whatsapp
+        widget: string
+        required: false
+        hint: Em branco usa o da Faz Morar (31) 99695-1660. Formato 5531999999999.
+
+      - label: Ordem
+        name: ordem
+        widget: number
+        value_type: int
+        default: 0
+        required: false
+        hint: Menor aparece primeiro. Empate vai por ordem alfabética.

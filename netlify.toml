@@ -1,5 +1,7 @@
 [build]
   publish = "."
+  # Gera vitrine, fichas e destaques da home a partir de imoveis/_dados/ (painel /admin)
+  command = "node scripts/gerar-imoveis.mjs"
 
 [dev]
   publish = "."
@@ -61,6 +63,19 @@
   status = 301
   force = true
 
+# Dados crus do painel (inclui rascunhos) e o script de build nao sao pagina do site
+[[redirects]]
+  from = "/imoveis/_dados/*"
+  to = "/imoveis/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/"
+  status = 404
+  force = true
+
 # Headers de seguranca
 [[headers]]
   for = "/*"
@@ -68,6 +83,13 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Painel de imoveis fora do Google
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-cache"
 
 # Cache para assets estaticos
 [[headers]]

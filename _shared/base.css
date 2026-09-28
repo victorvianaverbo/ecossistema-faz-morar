@@ -1256,6 +1256,9 @@ input:focus-visible {
   .how--light .how__step:first-child { border-top: 0; padding-top: 0; }
 
   .cta--card .cta__grid { grid-template-columns: 1fr; }
+
+  /* 4 colunas não cabem: no celular estouravam a tela e a página rolava de lado */
+  .footer-c__nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
 }
 
 @media (max-width: 640px) {
@@ -1290,4 +1293,6 @@ input:focus-visible {
   .svc-hero__actions .btn { width: 100%; text-align: center; }
 
   .footer-c__inner { padding: 40px 24px; }
+
+  .footer-c__nav { padding: 48px 24px 8px; gap: 28px 20px; }
 }
