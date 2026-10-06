@@ -93,7 +93,7 @@ Tokens em `/_shared/base.css` e `/home/style.css` (mantidos em sincronia).
 | [URL_CHECKOUT_DOSSIE] | Checkout/entrega do Dossiê do Financiamento | Cliente/Guru |
 | [URL_CHECKOUT_CONSULTORIA] | Checkout/agendamento da consultoria | Cliente |
 | [URL_CHECKOUT_PLANO_ENSINA] | Assinatura Leilão & Prosa Te Ensina (R$ 2.561/ano) | Resolvido: https://checkout.hyype.com.br/a71a0343-26d6-4ef5-bfe1-bada684d6795 |
-| [URL_CHECKOUT_PLANO_APOIA] | Assinatura Leilão & Prosa Te Apoia (R$ 3.567/ano) | Resolvido: https://checkout.hyype.com.br/d12dd751-8464-4556-a8a7-f28b59dd47e7 |
+| [URL_CHECKOUT_PLANO_APOIA] | Assinatura Leilão & Prosa Te Apoia (R$ 4.700/ano) | Resolvido: https://checkout.hyype.com.br/d12dd751-8464-4556-a8a7-f28b59dd47e7 |
 | [URL_CHECKOUT_PLANO_FAZ] | Assinatura Leilão & Prosa Faz por Você (R$ 24.000/ano) | Não está na Hyype; segue no WhatsApp |
 | [DATA_EVENTO] | Data do próximo evento ao vivo | Cliente |
 | [CIDADE_EVENTO] | Cidade do evento | Cliente |

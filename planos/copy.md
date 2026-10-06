@@ -33,7 +33,7 @@
 
 ## Seção: Plano 2 — Leilão & Prosa Te Apoia (destaque/recomendado)
 
-- Preço: R$ 3.567/ano
+- Preço: R$ 4.700/ano
 - Foco: Segurança e validação técnica
 - Inclui:
   - Acesso completo à plataforma do Leilão & Prosa por 12 meses
