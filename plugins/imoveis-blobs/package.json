@@ -1,0 +1,6 @@
+{
+  "name": "imoveis-blobs",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs"
+}

@@ -8,7 +8,14 @@ lh-*.json
 # Versoes antigas guardadas em disco, nao vao para o site
 _backup_*/
 
-# Fichas geradas no build por scripts/gerar-imoveis.mjs (so os dados e as fotos vao pro git)
+# Imoveis: dados e fotos descem do Netlify Blobs no build (plugins/imoveis-blobs)
+# e as fichas sao geradas por scripts/gerar-imoveis.mjs. Nada disso vai pro git.
 imoveis/*/
-!imoveis/_dados/
-!imoveis/fotos/
+imoveis/_dados/*
+imoveis/fotos/*
+!imoveis/_dados/.gitkeep
+!imoveis/fotos/.gitkeep
+
+# Dependencias da funcao do painel de imoveis
+node_modules/
+deno.lock

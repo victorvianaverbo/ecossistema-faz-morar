@@ -1,0 +1,8 @@
+{
+  "name": "ecossistema-faz-morar",
+  "private": true,
+  "description": "Site estático. As dependências abaixo servem só à função do painel de imóveis e ao plugin de build (Netlify Blobs).",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.2"
+  }
+}

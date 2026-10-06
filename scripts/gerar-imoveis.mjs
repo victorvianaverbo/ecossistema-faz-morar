@@ -1,6 +1,7 @@
-// Gera o marketplace de imóveis a partir dos JSONs que o painel (/admin, Decap
-// CMS) grava em imoveis/_dados/. Roda no build da Netlify (netlify.toml) e pode
-// rodar local: `node scripts/gerar-imoveis.mjs`. Node puro, sem dependências.
+// Gera o marketplace de imóveis a partir dos JSONs em imoveis/_dados/. No build
+// da Netlify, esses JSONs (e as fotos) descem do Netlify Blobs pelo plugin
+// plugins/imoveis-blobs, que guarda o que o painel /admin grava. Local, dá para
+// testar com JSONs à mão: `node scripts/gerar-imoveis.mjs`. Node puro.
 //
 // Saída:
 //   imoveis/index.html            vitrine com filtro por tipo e cidade

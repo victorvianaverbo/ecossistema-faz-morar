@@ -6,11 +6,496 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Painel de imóveis | Faz Morar</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <!-- Configuração em /admin/config.yml. Cada imóvel salvo vira um commit no
-       GitHub e a Netlify republica o site em ~1 minuto. -->
-  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+  <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/figtree-400-700.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/_shared/fonts/dm-serif-display-400.woff2" crossorigin>
+  <link rel="stylesheet" href="/_shared/fonts.css?v=20260719b">
+  <!-- Painel de imóveis. Fala com netlify/functions/painel-imoveis.mjs (/api/painel/*).
+       Cada salvamento republica o site em cerca de 1 a 2 minutos. -->
+  <style>
+    :root {
+      --accent: #B08D57; --accent-deep: #8A6B3E; --mint: #F3EDE3;
+      --ink: #2E2E30; --ink-rgb: 46, 46, 48; --ink-60: rgba(46,46,48,.64); --ink-50: rgba(46,46,48,.52);
+      --line: rgba(46,46,48,.12); --paper: #FFFFFF; --mist: #F6F3EE;
+      --ok: #2F7D4F; --erro: #B3261E;
+      --serif: 'DM Serif Display', serif; --sans: 'Figtree', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--sans); color: var(--ink); background: var(--mist); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+
+    .topo { background: var(--paper); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+    .topo__in { max-width: 1040px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .marca { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 20px; }
+    .marca small { font-family: var(--sans); font-size: 13px; color: var(--ink-50); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 10px; padding: 12px 20px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: background .2s, border-color .2s, opacity .2s; text-decoration: none; }
+    .btn--pri { background: var(--ink); color: #fff; }
+    .btn--pri:hover { background: #46464B; }
+    .btn--sec { background: var(--paper); border-color: var(--line); color: var(--ink); }
+    .btn--sec:hover { border-color: rgba(var(--ink-rgb), .4); }
+    .btn--perigo { background: none; color: var(--erro); padding-left: 0; padding-right: 0; }
+    .btn--link { background: none; border: 0; padding: 6px 0; color: var(--ink-60); font-weight: 600; }
+    .btn:disabled { opacity: .5; cursor: wait; }
+
+    /* login */
+    .login { max-width: 380px; margin: 12vh auto 0; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 36px 30px; }
+    .login h1 { font-family: var(--serif); font-weight: 400; font-size: 30px; margin: 18px 0 6px; }
+    .login p { color: var(--ink-60); font-size: 15px; margin-bottom: 22px; }
+    .login .btn { width: 100%; margin-top: 16px; }
+
+    /* campos */
+    label.campo { display: block; }
+    .campo > span { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .campo > small { display: block; font-size: 12.5px; color: var(--ink-50); margin-top: 5px; line-height: 1.4; }
+    input[type=text], input[type=password], input[type=number], input[type=url], input[type=tel], select, textarea {
+      width: 100%; border: 1px solid rgba(var(--ink-rgb), .2); border-radius: 10px; padding: 11px 13px; background: var(--paper); font-size: 16px;
+    }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+    textarea { min-height: 160px; resize: vertical; line-height: 1.5; }
+    .check { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+    .check input { width: 20px; height: 20px; accent-color: var(--ink); }
+
+    /* lista */
+    .cabeca { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+    .cabeca h1 { font-family: var(--serif); font-weight: 400; font-size: 34px; }
+    .lista { display: grid; gap: 12px; }
+    .item { display: grid; grid-template-columns: 96px 1fr auto; gap: 16px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px; text-align: left; width: 100%; transition: border-color .2s, box-shadow .2s; }
+    .item:hover { border-color: rgba(var(--ink-rgb), .3); box-shadow: 0 8px 20px -12px rgba(var(--ink-rgb), .3); }
+    .item__capa { width: 96px; height: 68px; border-radius: 9px; background: var(--mist) center/cover no-repeat; }
+    .item__titulo { font-weight: 700; font-size: 16px; }
+    .item__sub { font-size: 13.5px; color: var(--ink-60); margin-top: 3px; }
+    .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+    .chip--publicado { background: #E3F1E8; color: var(--ok); }
+    .chip--rascunho { background: #EEE; color: var(--ink-60); }
+    .chip--vendido { background: var(--ink); color: #fff; }
+    .vazio { background: var(--paper); border: 1px dashed rgba(var(--ink-rgb), .25); border-radius: 16px; padding: 48px 24px; text-align: center; color: var(--ink-60); }
+    .vazio strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 26px; color: var(--ink); margin-bottom: 8px; }
+
+    /* editor */
+    .form { display: grid; gap: 18px; }
+    .bloco { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 16px; }
+    .bloco h2 { font-size: 16px; font-weight: 700; }
+    .grade2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grade3 { display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 14px; }
+    .grade4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .foto { position: relative; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: var(--mist); border: 1px solid var(--line); }
+    .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .foto__capa { position: absolute; top: 8px; left: 8px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+    .foto__acoes { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; padding: 6px; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+    .foto__acoes button { width: 32px; height: 32px; border-radius: 8px; border: 0; background: rgba(255,255,255,.92); font-size: 16px; line-height: 1; }
+    .foto__acoes button:disabled { opacity: .35; cursor: default; }
+    .foto--enviando { display: grid; place-items: center; font-size: 13px; color: var(--ink-60); }
+    .enviar { aspect-ratio: 4 / 3; border: 2px dashed rgba(var(--ink-rgb), .25); border-radius: 10px; display: grid; place-items: center; text-align: center; font-weight: 600; font-size: 14px; color: var(--ink-60); cursor: pointer; padding: 10px; }
+    .enviar:hover { border-color: var(--accent); color: var(--accent-deep); }
+    .rodape-form { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; position: sticky; bottom: 0; background: rgba(246,243,238,.95); backdrop-filter: blur(8px); padding: 14px 0; border-top: 1px solid var(--line); }
+    .rodape-form .dir { display: flex; gap: 10px; }
+
+    .aviso { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 13px 20px; border-radius: 12px; font-size: 14.5px; font-weight: 600; box-shadow: 0 12px 30px rgba(0,0,0,.25); z-index: 50; max-width: calc(100% - 32px); }
+    .aviso--erro { background: var(--erro); }
+    .msg-erro { color: var(--erro); font-size: 14px; font-weight: 600; margin-top: 12px; }
+
+    @media (max-width: 640px) {
+      .grade2, .grade3 { grid-template-columns: 1fr; }
+      .grade4 { grid-template-columns: 1fr 1fr; }
+      .item { grid-template-columns: 72px 1fr; }
+      .item__capa { width: 72px; height: 54px; }
+      .item .chip { grid-column: 2; justify-self: start; }
+      .cabeca h1 { font-size: 28px; }
+      .bloco { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.16.3/dist/decap-cms.js"></script>
+
+  <header class="topo" id="topo" hidden>
+    <div class="topo__in">
+      <div class="marca">
+        <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><path fill="#2E2E30" d="M0 0h100v100H0z"/><path fill="#FFF" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
+        <span>Faz Morar <small>· imóveis</small></span>
+      </div>
+      <div>
+        <a class="btn btn--link" href="/imoveis/" target="_blank" rel="noopener">Ver site</a>
+        &nbsp;
+        <button class="btn btn--link" id="sair" type="button">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ LOGIN ============ -->
+  <section id="tela-login" hidden>
+    <form class="login" id="form-login">
+      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><path fill="#2E2E30" d="M0 0h100v100H0z"/><path fill="#FFF" d="M17.5 24.5H82.5V40.6H17.5ZM17.5 47.8H33.5V75.3H17.5ZM41.5 40.6H58V75.3H41.5ZM66.5 40.6H82.5V75.3H66.5Z"/></svg>
+      <h1>Painel de imóveis</h1>
+      <p>Entre com a senha da Faz Morar para cadastrar e publicar imóveis.</p>
+      <label class="campo"><span>Senha</span><input type="password" name="senha" autocomplete="current-password" required autofocus></label>
+      <button class="btn btn--pri" type="submit">Entrar</button>
+      <div class="msg-erro" id="erro-login" hidden></div>
+    </form>
+  </section>
+
+  <!-- ============ LISTA ============ -->
+  <main class="wrap" id="tela-lista" hidden>
+    <div class="cabeca">
+      <h1>Imóveis</h1>
+      <button class="btn btn--pri" id="novo" type="button">+ Novo imóvel</button>
+    </div>
+    <div class="lista" id="lista"></div>
+  </main>
+
+  <!-- ============ EDITOR ============ -->
+  <main class="wrap" id="tela-editor" hidden>
+    <button class="btn btn--link" id="voltar" type="button">← Voltar para a lista</button>
+    <div class="cabeca" style="margin-top:8px">
+      <h1 id="editor-titulo">Novo imóvel</h1>
+      <a class="btn btn--sec" id="ver-no-site" href="#" target="_blank" rel="noopener" hidden>Ver no site ↗</a>
+    </div>
+
+    <form class="form" id="form-imovel" novalidate>
+      <div class="bloco">
+        <h2>Publicação</h2>
+        <div class="grade2">
+          <label class="campo"><span>Situação</span>
+            <select name="status">
+              <option value="rascunho">Rascunho (não aparece no site)</option>
+              <option value="publicado">Publicado</option>
+              <option value="vendido">Vendido (fica no site com selo)</option>
+            </select>
+          </label>
+          <label class="campo"><span>Tipo</span>
+            <select name="tipo">
+              <option value="venda">Venda direta</option>
+              <option value="leilao">Leilão</option>
+            </select>
+          </label>
+        </div>
+        <label class="check"><input type="checkbox" name="destaque"> Destaque na página inicial</label>
+      </div>
+
+      <div class="bloco">
+        <h2>Imóvel</h2>
+        <label class="campo"><span>Título *</span><input type="text" name="titulo" maxlength="120" placeholder="Ex.: Apartamento 3 quartos com varanda" required>
+          <small>O endereço da página é criado no primeiro salvamento, com o título e o bairro, e não muda depois.</small></label>
+        <div class="grade3">
+          <label class="campo"><span>Bairro</span><input type="text" name="bairro" maxlength="60"></label>
+          <label class="campo"><span>UF</span><input type="text" name="uf" maxlength="2" value="MG"></label>
+          <label class="campo"><span>Cidade</span><input type="text" name="cidade" maxlength="60" value="Belo Horizonte"></label>
+        </div>
+        <div class="grade4">
+          <label class="campo"><span>Área (m²)</span><input type="text" inputmode="decimal" name="area"></label>
+          <label class="campo"><span>Quartos</span><input type="number" min="0" name="quartos"></label>
+          <label class="campo"><span>Banheiros</span><input type="number" min="0" name="banheiros"></label>
+          <label class="campo"><span>Vagas</span><input type="number" min="0" name="vagas"></label>
+        </div>
+        <label class="campo"><span>Descrição</span><textarea name="descricao" maxlength="5000"></textarea>
+          <small>Deixe uma linha em branco entre parágrafos. Linhas que começam com "- " viram lista.</small></label>
+      </div>
+
+      <div class="bloco">
+        <h2>Preço</h2>
+        <div class="grade2">
+          <label class="campo"><span>Preço (R$)</span><input type="text" inputmode="numeric" name="preco" placeholder="350.000">
+            <small>Em branco aparece "Sob consulta".</small></label>
+          <label class="campo"><span>Rótulo do preço</span><input type="text" name="preco_rotulo" maxlength="40" placeholder="Valor / Lance inicial">
+            <small>Em branco usa "Valor" (venda) ou "Lance inicial" (leilão).</small></label>
+          <label class="campo"><span>Desconto (%)</span><input type="number" min="0" max="99" name="desconto">
+            <small>Opcional. Aparece como selo "−40%" na foto.</small></label>
+          <label class="campo"><span>Selo</span><input type="text" name="selo" maxlength="40" placeholder="1ª praça, Aceita financiamento…"></label>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h2>Fotos</h2>
+        <p class="campo"><small style="margin:0">A primeira é a capa. Use as setas para mudar a ordem. Pode escolher várias de uma vez; o painel reduz o tamanho antes de enviar.</small></p>
+        <div class="fotos" id="fotos"></div>
+        <input type="file" id="arquivo" accept="image/jpeg,image/png,image/webp" multiple hidden>
+      </div>
+
+      <div class="bloco">
+        <h2>Contato e extras</h2>
+        <div class="grade2">
+          <label class="campo"><span>Vídeo do YouTube</span><input type="url" name="video" placeholder="https://youtube.com/watch?v=…"></label>
+          <label class="campo"><span>WhatsApp de contato</span><input type="tel" name="whatsapp" placeholder="5531996951660">
+            <small>Em branco usa o da Faz Morar, (31) 99695-1660.</small></label>
+          <label class="campo"><span>Ordem na vitrine</span><input type="number" name="ordem" value="0">
+            <small>Menor aparece primeiro.</small></label>
+        </div>
+      </div>
+
+      <div class="rodape-form">
+        <button class="btn btn--perigo" id="excluir" type="button" hidden>Excluir imóvel</button>
+        <span></span>
+        <div class="dir">
+          <button class="btn btn--sec" id="cancelar" type="button">Cancelar</button>
+          <button class="btn btn--pri" id="salvar" type="submit">Salvar</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite" hidden></div>
+
+  <script>
+  (function () {
+    var API = '/api/painel';
+    var $ = function (s) { return document.querySelector(s); };
+    var telas = { login: $('#tela-login'), lista: $('#tela-lista'), editor: $('#tela-editor') };
+    var form = $('#form-imovel');
+    var atual = null;          // slug em edição (null = novo)
+    var fotos = [];            // caminhos /imoveis/fotos/<nome>
+    var enviando = 0;
+    var sujo = false;
+
+    // ---------- utilidades ----------
+    function api(caminho, opcoes) {
+      opcoes = opcoes || {};
+      var headers = opcoes.corpoBruto ? { 'Content-Type': opcoes.tipo } : { 'Content-Type': 'application/json' };
+      return fetch(API + caminho, {
+        method: opcoes.metodo || 'GET',
+        headers: headers,
+        credentials: 'same-origin',
+        body: opcoes.corpoBruto || (opcoes.corpo ? JSON.stringify(opcoes.corpo) : undefined)
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (r.status === 401 && caminho !== '/login') { mostrar('login'); throw new Error(d.erro || 'Sessão expirada.'); }
+          if (!r.ok) throw new Error(d.erro || 'Erro ' + r.status);
+          return d;
+        });
+      });
+    }
+
+    var timerAviso;
+    function avisar(msg, ehErro) {
+      var el = $('#aviso');
+      el.textContent = msg;
+      el.className = 'aviso' + (ehErro ? ' aviso--erro' : '');
+      el.hidden = false;
+      clearTimeout(timerAviso);
+      timerAviso = setTimeout(function () { el.hidden = true; }, ehErro ? 7000 : 5000);
+    }
+
+    function mostrar(nome) {
+      Object.keys(telas).forEach(function (k) { telas[k].hidden = k !== nome; });
+      $('#topo').hidden = nome === 'login';
+      window.scrollTo(0, 0);
+    }
+
+    function brl(n) { return 'R$ ' + Number(n).toLocaleString('pt-BR'); }
+    function previa(caminho) { return API + '/fotos/' + caminho.split('/').pop(); }
+    function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+
+    // ---------- login ----------
+    $('#form-login').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = this.querySelector('button');
+      var erro = $('#erro-login');
+      btn.disabled = true; erro.hidden = true;
+      api('/login', { metodo: 'POST', corpo: { senha: this.senha.value } })
+        .then(function () { carregarLista(); })
+        .catch(function (err) { erro.textContent = err.message; erro.hidden = false; })
+        .finally(function () { btn.disabled = false; });
+    });
+
+    $('#sair').addEventListener('click', function () {
+      api('/sair', { metodo: 'POST' }).finally(function () { mostrar('login'); });
+    });
+
+    // ---------- lista ----------
+    var rotuloStatus = { publicado: 'Publicado', rascunho: 'Rascunho', vendido: 'Vendido' };
+
+    function carregarLista() {
+      return api('/imoveis').then(function (lista) {
+        mostrar('lista');
+        var el = $('#lista');
+        if (!lista.length) {
+          el.innerHTML = '<div class="vazio"><strong>Nenhum imóvel ainda.</strong>Clique em "Novo imóvel" para cadastrar o primeiro.</div>';
+          return;
+        }
+        var peso = { publicado: 0, rascunho: 1, vendido: 2 };
+        lista.sort(function (a, b) { return peso[a.status] - peso[b.status] || (a.ordem || 0) - (b.ordem || 0) || String(a.titulo).localeCompare(b.titulo, 'pt-BR'); });
+        el.innerHTML = lista.map(function (i) {
+          var sub = [i.bairro, i.cidade].filter(Boolean).join(' · ') + (i.preco ? ' · ' + brl(i.preco) : '') + (i.destaque ? ' · ★ destaque' : '');
+          return '<button type="button" class="item" data-slug="' + esc(i.slug) + '">' +
+            '<span class="item__capa"' + (i.capa ? ' style="background-image:url(\'' + previa(i.capa) + '\')"' : '') + '></span>' +
+            '<span><span class="item__titulo">' + esc(i.titulo) + '</span><span class="item__sub" style="display:block">' + esc(sub) + '</span></span>' +
+            '<span class="chip chip--' + i.status + '">' + (rotuloStatus[i.status] || i.status) + '</span></button>';
+        }).join('');
+      });
+    }
+
+    $('#lista').addEventListener('click', function (e) {
+      var item = e.target.closest('.item');
+      if (item) abrir(item.dataset.slug);
+    });
+
+    // ---------- editor ----------
+    function preencher(d) {
+      form.reset();
+      ['status', 'tipo', 'titulo', 'bairro', 'uf', 'cidade', 'area', 'quartos', 'banheiros', 'vagas', 'descricao',
+       'preco', 'preco_rotulo', 'desconto', 'selo', 'video', 'whatsapp', 'ordem'].forEach(function (k) {
+        if (d[k] == null) return;
+        var v = d[k];
+        if (k === 'preco') v = Number(v).toLocaleString('pt-BR');
+        if (k === 'area') v = String(v).replace('.', ',');
+        form.elements[k].value = v;
+      });
+      form.elements.destaque.checked = !!d.destaque;
+      fotos = (d.fotos || []).slice();
+      desenharFotos();
+      sujo = false;
+    }
+
+    function novo() {
+      atual = null;
+      preencher({});
+      $('#editor-titulo').textContent = 'Novo imóvel';
+      $('#excluir').hidden = true;
+      $('#ver-no-site').hidden = true;
+      mostrar('editor');
+      form.elements.titulo.focus();
+    }
+
+    function abrir(slug) {
+      api('/imoveis/' + slug).then(function (d) {
+        atual = slug;
+        preencher(d);
+        $('#editor-titulo').textContent = d.titulo;
+        $('#excluir').hidden = false;
+        var link = $('#ver-no-site');
+        link.href = '/imoveis/' + slug + '/';
+        link.hidden = d.status === 'rascunho';
+        mostrar('editor');
+      }).catch(function (err) { avisar(err.message, true); });
+    }
+
+    function coletar() {
+      var el = form.elements;
+      var num = function (k) { return el[k].value.trim(); };
+      return {
+        status: el.status.value, tipo: el.tipo.value, destaque: el.destaque.checked,
+        titulo: num('titulo'), bairro: num('bairro'), uf: num('uf'), cidade: num('cidade'),
+        area: num('area'), quartos: num('quartos'), banheiros: num('banheiros'), vagas: num('vagas'),
+        descricao: el.descricao.value, preco: num('preco').replace(/\D/g, ''), preco_rotulo: num('preco_rotulo'),
+        desconto: num('desconto'), selo: num('selo'), video: num('video'), whatsapp: num('whatsapp'), ordem: num('ordem'),
+        fotos: fotos
+      };
+    }
+
+    function voltar() {
+      if (sujo && !confirm('Sair sem salvar as alterações?')) return;
+      carregarLista();
+    }
+
+    $('#novo').addEventListener('click', novo);
+    $('#voltar').addEventListener('click', voltar);
+    $('#cancelar').addEventListener('click', voltar);
+    form.addEventListener('input', function () { sujo = true; });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var dados = coletar();
+      if (!dados.titulo) { avisar('Dê um título ao imóvel.', true); form.elements.titulo.focus(); return; }
+      if (enviando) { avisar('Espere as fotos terminarem de enviar.', true); return; }
+      if (dados.status !== 'rascunho' && !fotos.length && !confirm('Publicar sem nenhuma foto?')) return;
+      var btn = $('#salvar');
+      btn.disabled = true;
+      var req = atual
+        ? api('/imoveis/' + atual, { metodo: 'PUT', corpo: dados })
+        : api('/imoveis', { metodo: 'POST', corpo: dados });
+      req.then(function (r) {
+        sujo = false;
+        var noSite = dados.status === 'rascunho' ? 'Salvo como rascunho (não aparece no site).' : 'Salvo! O site atualiza em 1 a 2 minutos.';
+        avisar(r.republicando === false && dados.status !== 'rascunho' ? 'Salvo, mas o site não foi atualizado agora. Ele atualiza na próxima alteração.' : noSite, r.republicando === false && dados.status !== 'rascunho');
+        return carregarLista();
+      }).catch(function (err) { avisar(err.message, true); })
+        .finally(function () { btn.disabled = false; });
+    });
+
+    $('#excluir').addEventListener('click', function () {
+      if (!atual || !confirm('Excluir este imóvel e as fotos dele? Não dá para desfazer.')) return;
+      api('/imoveis/' + atual, { metodo: 'DELETE' }).then(function () {
+        sujo = false;
+        avisar('Imóvel excluído. O site atualiza em 1 a 2 minutos.');
+        carregarLista();
+      }).catch(function (err) { avisar(err.message, true); });
+    });
+
+    // ---------- fotos ----------
+    function desenharFotos() {
+      var el = $('#fotos');
+      var html = fotos.map(function (f, n) {
+        return '<div class="foto"><img src="' + previa(f) + '" alt="Foto ' + (n + 1) + '">' +
+          (n === 0 ? '<span class="foto__capa">Capa</span>' : '') +
+          '<div class="foto__acoes">' +
+            '<button type="button" data-mover="' + n + '" data-dir="-1" aria-label="Mover para a esquerda"' + (n === 0 ? ' disabled' : '') + '>←</button>' +
+            '<button type="button" data-remover="' + n + '" aria-label="Remover foto">✕</button>' +
+            '<button type="button" data-mover="' + n + '" data-dir="1" aria-label="Mover para a direita"' + (n === fotos.length - 1 ? ' disabled' : '') + '>→</button>' +
+          '</div></div>';
+      }).join('');
+      for (var i = 0; i < enviando; i++) html += '<div class="foto foto--enviando">Enviando…</div>';
+      html += '<label class="enviar" for="arquivo">+ Adicionar fotos</label>';
+      el.innerHTML = html;
+    }
+
+    $('#fotos').addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.remover != null) {
+        fotos.splice(Number(b.dataset.remover), 1);
+      } else if (b.dataset.mover != null) {
+        var n = Number(b.dataset.mover), m = n + Number(b.dataset.dir);
+        var t = fotos[n]; fotos[n] = fotos[m]; fotos[m] = t;
+      }
+      sujo = true;
+      desenharFotos();
+    });
+
+    // Reduz para no máximo 2000px e JPEG antes de enviar: foto de celular cai de ~5 MB para ~500 KB
+    function reduzir(arquivo) {
+      return new Promise(function (ok, falha) {
+        var img = new Image();
+        var url = URL.createObjectURL(arquivo);
+        img.onload = function () {
+          URL.revokeObjectURL(url);
+          var max = 2000, w = img.naturalWidth, h = img.naturalHeight;
+          var k = Math.min(1, max / Math.max(w, h));
+          var c = document.createElement('canvas');
+          c.width = Math.round(w * k); c.height = Math.round(h * k);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          c.toBlob(function (b) { b ? ok(b) : falha(new Error('Não consegui ler a foto.')); }, 'image/jpeg', 0.85);
+        };
+        img.onerror = function () { URL.revokeObjectURL(url); falha(new Error('Arquivo não é uma imagem válida: ' + arquivo.name)); };
+        img.src = url;
+      });
+    }
+
+    $('#arquivo').addEventListener('change', function () {
+      var arquivos = Array.prototype.slice.call(this.files);
+      this.value = '';
+      // envia em sequência para manter a ordem escolhida
+      arquivos.reduce(function (fila, arq) {
+        enviando++;
+        desenharFotos();
+        return fila.then(function () {
+          return reduzir(arq)
+            .then(function (blob) { return api('/fotos', { metodo: 'POST', corpoBruto: blob, tipo: 'image/jpeg' }); })
+            .then(function (r) { fotos.push(r.caminho); sujo = true; })
+            .catch(function (err) { avisar(err.message, true); })
+            .finally(function () { enviando--; desenharFotos(); });
+        });
+      }, Promise.resolve());
+    });
+
+    window.addEventListener('beforeunload', function (e) {
+      if (sujo || enviando) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    // ---------- início ----------
+    api('/sessao').then(carregarLista).catch(function () { mostrar('login'); });
+  })();
+  </script>
 </body>
 </html>

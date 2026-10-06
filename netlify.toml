@@ -1,7 +1,15 @@
 [build]
   publish = "."
-  # Gera vitrine, fichas e destaques da home a partir de imoveis/_dados/ (painel /admin)
+  # Gera vitrine, fichas e destaques da home a partir de imoveis/_dados/, que o
+  # plugin imoveis-blobs preenche com o que o painel /admin gravou no Blobs
   command = "node scripts/gerar-imoveis.mjs"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[plugins]]
+  package = "./plugins/imoveis-blobs"
 
 [dev]
   publish = "."
@@ -63,7 +71,7 @@
   status = 301
   force = true
 
-# Dados crus do painel (inclui rascunhos) e o script de build nao sao pagina do site
+# Dados crus do painel (inclui rascunhos), codigo de build e dependencias nao sao pagina do site
 [[redirects]]
   from = "/imoveis/_dados/*"
   to = "/imoveis/"
@@ -72,6 +80,36 @@
 
 [[redirects]]
   from = "/scripts/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/plugins/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
   to = "/"
   status = 404
   force = true
